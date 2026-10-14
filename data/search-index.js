@@ -28,6 +28,20 @@ const SEARCH=[
   "text": "Restaurant Review · Tampa, FL La Segunda Bakery and Cafe ★★★★★ The Cuban: ham, roast pork, Swiss, pickles, and mustard on La Segunda's own Cuban bread. La Segunda Bakery and Cafe 2512 N 15th St, Tampa, FL 33605 Rating: 5/5 Came for the Cuban sandwich and stayed staring at the dessert case. La Segunda has been baking authentic Cuban bread daily since 1915, and the sandwich lived up to that reputation, easily the best Cuban I've had after trying a few others around Florida. The bread had that perfect crackle outside and soft crumb inside. What I didn't expect was how stacked the pastry case would be. There were custard horns and cream puffs dusted in powdered sugar, guava cheese and apple turnovers, flan cups, strawberry shortcake, NY cheesecake with fruit, carrot cake, red velvet, Napoleons, and a piña colada cake with toasted coconut and a cherry on top. It felt less like a side display and more like half the reason locals keep showing up. Parking is tight but manageable (street spots work for a quick stop). No seating inside, so grab-and-go or order ahead. If you're in Tampa for Cuban bread done right, and a dessert case that makes you renegotiate your order, this is the stop. ← All reviews"
  },
  {
+  "url": "posts/bai-tong-thai-street-cafe-seattle.html",
+  "type": "Review",
+  "title": "Bai Tong Thai Street Cafe",
+  "desc": "5-star review of Bai Tong Thai Street Cafe on Capitol Hill in Seattle, WA: crispy garlic chicken, pad thai and panang curry.",
+  "text": "Restaurant Review · Seattle, WA Bai Tong Thai Street Cafe Fantastic Thai Food and Excellent Service ★★★★★ 1121 E Pike St, Seattle, WA 98122 Rating: 5/5 I had a great experience at Bai Tong Thai Street Cafe in Seattle. The service was friendly and attentive from start to finish, and the food absolutely lived up to the hype. We ordered the Crispy Garlic Chicken, Pad Thai, and Panang Curry—every dish was flavorful, perfectly cooked, and beautifully presented. The crispy garlic chicken was especially memorable with its crunch and bold flavor. Definitely a spot I’d return to and recommend to anyone craving an authentic Thai street food vibe. What we ordered Crispy Garlic Chicken · Pad Thai · Panang Curry ← All reviews"
+ },
+ {
+  "url": "posts/pza-pizzeria-lake-havasu.html",
+  "type": "Review",
+  "title": "PZA Pizzeria",
+  "desc": "5-star review of PZA Pizzeria in Lake Havasu City, AZ: wood-fired build-your-own pizza and a cheese-free BLT pizza with bacon jam and arugula.",
+  "text": "Restaurant Review · Lake Havasu City, AZ PZA Pizzeria Wood-Fired, Build-Your-Own Pizza ★★★★★ 1641 McCulloch Blvd N, Lake Havasu City, AZ 86403 Rating: 5/5 I recently visited a pizza place that offers a fantastic wood-fired, build-your-own pizza experience, and I was thoroughly impressed. The freshness of the ingredients really stood out, and watching them shape the dough by hand was a cool touch. Every bite tasted incredibly fresh and flavorful. One of the standout pizzas for me was the BLT. It didn't have any cheese, which I thought might be a downside at first, but it turned out to be my favorite! The combination of bacon jam, arugula, and fresh tomatoes was so delicious. The savory and slightly sweet bacon jam paired perfectly with the peppery arugula, and the tomatoes added a refreshing balance with the balsamic vinegar glaze. If you're into unique pizza flavors, I highly recommend giving it a try. Definitely want to come back and try the Mac and cheese pizza. What we ordered BLT Pizza · Build-Your-Own Pizza (ham and black olive) ← All reviews"
+ },
+ {
   "url": "posts/thai-alaska-kitchen-sitka.html",
   "type": "Review",
   "title": "Thai Alaska Kitchen",
