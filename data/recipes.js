@@ -331,6 +331,33 @@ const RECIPES=[
   "desc": "Sweet, tangy restaurant-style honey mustard. A Sam's Table original."
  },
  {
+  "url": "posts/recipes/remoulade-sauce.html",
+  "title": "Remoulade Sauce",
+  "category": "Sauces",
+  "tags": [
+   "dip",
+   "dipping sauce",
+   "Cajun",
+   "Creole",
+   "seafood sauce",
+   "no cook",
+   "original"
+  ],
+  "ingredients": [
+   "mayonnaise",
+   "dill pickle relish",
+   "lemon juice",
+   "hot sauce",
+   "capers",
+   "paprika",
+   "Creole mustard",
+   "Dijon mustard",
+   "Worcestershire",
+   "garlic"
+  ],
+  "desc": "Tangy, creamy Cajun-style sauce for seafood and fries. A Sam's Table original."
+ },
+ {
   "url": "posts/recipes/slow-cooker-marinara-sauce.html",
   "title": "Slow Cooker Marinara Sauce",
   "category": "Sauces",
