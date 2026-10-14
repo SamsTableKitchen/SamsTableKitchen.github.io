@@ -11,7 +11,7 @@ const PLACES = [
   { name: "La Segunda Bakery and Cafe", city: "Tampa", region: "Florida, USA", cuisine: "Cuban bakery & cafe", photo: "images/cuban-sandwich.jpg",
     note: "Baking Cuban bread daily since 1915, with a seriously stacked pastry case.", mustOrder: "Cuban sandwich",
     address: "2512 N 15th St, Tampa, FL 33605", lat: 27.96579, lng: -82.44330, review: "posts/la-segunda-tampa.html" },
-  { name: "El Mezcal | Mexican Restaurant", city: "Homosassa", region: "Florida, USA", cuisine: "Mexican",
+  { name: "El Mezcal | Mexican Restaurant", city: "Homosassa", region: "Florida, USA", cuisine: "Mexican", photo: "images/r-el-mezcal-chimichangas.jpg",
     note: "Great service and super flavorful food with a smoky chipotle kick.", mustOrder: "Chipotle Shrimp, Shrimp Chimichangas",
     address: "4522 S Suncoast Blvd, Homosassa, FL 34446", lat: 28.79595, lng: -82.57635, review: "posts/el-mezcal-homosassa.html" },
   { name: "Guyer's Ice Cream & Doughnuts", city: "Crystal River", region: "Florida, USA", cuisine: "Ice cream & doughnuts",
