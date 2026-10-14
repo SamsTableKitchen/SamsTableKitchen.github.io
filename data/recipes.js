@@ -358,6 +358,31 @@ const RECIPES=[
   "desc": "Tangy, creamy Cajun-style sauce for seafood and fries. A Sam's Table original."
  },
  {
+  "url": "posts/recipes/raising-canes-copycat-sauce.html",
+  "title": "Raising Cane's Copycat Sauce",
+  "category": "Sauces",
+  "tags": [
+   "copycat",
+   "dipping sauce",
+   "chicken tenders",
+   "Cane's sauce",
+   "no cook",
+   "make ahead"
+  ],
+  "ingredients": [
+   "mayonnaise",
+   "ketchup",
+   "Worcestershire",
+   "garlic powder",
+   "black pepper",
+   "creole seasoning",
+   "Tony Chachere's",
+   "paprika",
+   "salt"
+  ],
+  "desc": "Tangy, peppery dipping sauce just like the chicken-finger chain's. Recipe from The Country Cook."
+ },
+ {
   "url": "posts/recipes/slow-cooker-marinara-sauce.html",
   "title": "Slow Cooker Marinara Sauce",
   "category": "Sauces",
