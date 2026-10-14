@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Food Guide | Sam's Table</title><meta name="description" content="Sam's restaurant recommendations by city, with an interactive map."><link rel="canonical" href="https://samstablekitchen.github.io/food-guide.html"><meta property="og:type" content="website"><meta property="og:site_name" content="Sam's Table"><meta property="og:title" content="Food Guide | Sam's Table"><meta property="og:description" content="Sam's restaurant recommendations by city, with an interactive map."><meta property="og:url" content="https://samstablekitchen.github.io/food-guide.html"><meta property="og:image" content="https://samstablekitchen.github.io/images/hero-thai.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#6B7F3A">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"></head><body><a class="skip-link" href="#main">Skip to content</a>
+<header class="site"><div class="wrap"><a class="logo" href="index.html">Sam's <span>Table</span></a><nav><a href="index.html">Home</a><a href="recipes.html">Recipes</a><a href="reviews.html">Reviews</a><a href="travel.html">Travel Eats</a><a href="food-guide.html" class=on>Food Guide</a><a href="about.html">About</a><a href="search.html" aria-label="Search">&#128269;</a></nav></div></header><main id="main">
+<div class="page-head"><div class="wrap"><span class="kicker">Food Guide</span><h1>Where I'd Eat Again</h1><p>Restaurants I've actually been to, by city. Tap a city or a pin to explore.</p></div></div>
+<div class="wrap" style="padding-bottom:72px"><div class="filters" id="filters"></div><div id="map"></div><div id="guide"></div></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="data/places.js"></script>
+<script>
+const map=L.map('map',{scrollWheelZoom:false});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+const icon=L.divIcon({className:'pin',html:'<span></span>',iconSize:[22,22],iconAnchor:[11,11]});
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const markers=PLACES.map(p=>({p,m:L.marker([p.lat,p.lng],{icon}).addTo(map).bindPopup((p.photo?`<img class="pop-img" src="${p.photo}" alt="">`:'')+`<b>${esc(p.name)}</b><br>${esc(p.cuisine)} · ${esc(p.city)}`+(p.review?`<br><a href="${p.review}">Read review</a>`:''))}));
+const cities=[...new Set(PLACES.map(p=>p.city))];
+function show(c){document.querySelectorAll('.filters button').forEach(b=>b.classList.toggle('on',b.dataset.c===c));
+ const list=c==='All'?PLACES:PLACES.filter(p=>p.city===c);
+ map.fitBounds(L.latLngBounds(list.map(p=>[p.lat,p.lng])).pad(.3),{maxZoom:14});
+ const g=document.getElementById('guide');g.innerHTML='';
+ (c==='All'?cities:[c]).forEach(ct=>{const ps=PLACES.filter(p=>p.city===ct);
+  g.insertAdjacentHTML('beforeend',`<h2 class="city-h">${esc(ct)} <small>${esc(ps[0].region)}</small></h2><div class="grid">`+ps.map(p=>`<div class="card gcard">${p.photo?`<img src="${p.photo}" alt="${esc(p.name)}" loading="lazy">`:''}<div class="body"><span class="kicker">${esc(p.cuisine)}</span><h3>${esc(p.name)}</h3><p>${esc(p.note)}</p>${p.mustOrder?`<p class="must"><b>Must order:</b> ${esc(p.mustOrder)}</p>`:''}<p class="addr">${esc(p.address||'')}</p>${p.review?`<a class="more" href="${p.review}">Read full review &rarr;</a>`:''}</div></div>`).join('')+'</div>')});}
+document.getElementById('filters').innerHTML=['All',...cities].map(c=>`<button data-c="${esc(c)}">${esc(c)}</button>`).join('');
+document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>show(b.dataset.c));show('All');
+</script>
+</main><footer><div class="wrap"><p class="logo">Sam's Table</p><p>Pull up a chair. There's always room at the table.</p><p><a href="index.html">Home</a><a href="recipes.html">Recipes</a><a href="reviews.html">Reviews</a><a href="travel.html">Travel Eats</a><a href="food-guide.html">Food Guide</a><a href="about.html">About</a></p><p>&copy; 2026 Sam's Table · Real food, real photos</p></div></footer></body></html>

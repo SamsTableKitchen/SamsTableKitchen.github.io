@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://samstablekitchen.github.io/sitemap.xml
