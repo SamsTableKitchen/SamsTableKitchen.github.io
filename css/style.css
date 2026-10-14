@@ -99,3 +99,5 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 @media(max-width:720px){.scrap{height:560px}.pol{width:150px!important}.pol:nth-child(n+7){display:none}
 .pol.p1{left:-4%!important;top:10px!important}.pol.p2{left:58%!important;top:390px!important}.pol.p3{left:-2%!important;top:380px!important}.pol.p4{left:62%!important;top:14px!important}.pol.p5{left:30%!important;top:420px!important;width:140px!important}.pol.p6{left:30%!important;top:-20px!important;width:130px!important}
 .scrap .panel{width:84%;padding:22px 18px}.scrap h1{font-size:2.4rem}.scrap p{font-size:1rem}}
+
+.tstrip.clamp .t-extra{display:none}.t-actions{text-align:center;margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}@media(min-width:721px){.tstrip.clamp{grid-template-columns:repeat(2,1fr);max-width:640px;margin:0 auto}}
