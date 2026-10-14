@@ -87,3 +87,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .recipe-photo{display:block;width:100%;max-width:900px;margin:0 auto 24px;height:auto;aspect-ratio:1200/1164;object-fit:cover}.my-tip{background:#F4EBDD;border-left:4px solid var(--terra);padding:16px 20px;margin-top:24px}.my-tip b{color:var(--terra);text-transform:uppercase;letter-spacing:.12em;font-size:.8rem}.my-tip p{margin:6px 0 0}
 .cs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px}.cs-card:hover{transform:none}.cs-card img{aspect-ratio:4/3;object-fit:cover}.cs-badge{display:inline-block;background:#F4EBDD;color:var(--terra);font-weight:700;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:8px}
 .about-place{background:var(--cream,#faf6ef);border-radius:12px;padding:20px 24px;margin:32px 0}.about-place h2{margin-top:0;font-size:1.35rem}.about-place p{margin:.6em 0}.about-place .src{font-size:.85rem;color:#777}
+.latest-more,.latest-end{text-align:center;margin-top:28px}.latest-end a{color:var(--accent,#6B7F3A);font-weight:600}
+.card.text-card{background:#f4f1e8;justify-content:center;min-height:180px}.card.text-card .body{padding:28px 24px}
+.keep-exploring{margin:48px 0 24px;padding-top:32px;border-top:1px solid var(--line)}.keep-exploring h2{text-align:center;margin-bottom:24px}
+.ke-grid{grid-template-columns:repeat(3,1fr)}@media(max-width:720px){.ke-grid{grid-template-columns:1fr}}
