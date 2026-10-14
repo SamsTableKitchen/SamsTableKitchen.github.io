@@ -101,3 +101,4 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .scrap .panel{width:84%;padding:22px 18px}.scrap h1{font-size:2.4rem}.scrap p{font-size:1rem}}
 
 .tstrip.clamp .t-extra{display:none}.t-actions{text-align:center;margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}@media(min-width:721px){.tstrip.clamp{grid-template-columns:repeat(2,1fr);max-width:640px;margin:0 auto}}
+.tstrip.tgal .t-extra{display:none}
