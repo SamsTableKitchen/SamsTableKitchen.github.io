@@ -28,6 +28,13 @@ const SEARCH=[
   "text": "Restaurant Review · Tampa, FL La Segunda Bakery and Cafe ★★★★★ The Cuban: ham, roast pork, Swiss, pickles, and mustard on La Segunda's own Cuban bread. La Segunda Bakery and Cafe 2512 N 15th St, Tampa, FL 33605 Rating: 5/5 Came for the Cuban sandwich and stayed staring at the dessert case. La Segunda has been baking authentic Cuban bread daily since 1915, and the sandwich lived up to that reputation, easily the best Cuban I've had after trying a few others around Florida. The bread had that perfect crackle outside and soft crumb inside. What I didn't expect was how stacked the pastry case would be. There were custard horns and cream puffs dusted in powdered sugar, guava cheese and apple turnovers, flan cups, strawberry shortcake, NY cheesecake with fruit, carrot cake, red velvet, Napoleons, and a piña colada cake with toasted coconut and a cherry on top. It felt less like a side display and more like half the reason locals keep showing up. Parking is tight but manageable (street spots work for a quick stop). No seating inside, so grab-and-go or order ahead. If you're in Tampa for Cuban bread done right, and a dessert case that makes you renegotiate your order, this is the stop. ← All reviews"
  },
  {
+  "url": "posts/carriage-house-jefferson.html",
+  "type": "Review",
+  "title": "The Carriage House",
+  "desc": "5-star review of The Carriage House Buffet & Catering in Jefferson, GA: a fresh, hot Southern breakfast buffet with my favorite pancakes ever.",
+  "text": "Restaurant Review · Jefferson, GA The Carriage House Buffet & Catering Of Jefferson ★★★★★ 1235 Athens St, Jefferson, GA 30549 Rating: 5/5 Stopped by The Carriage House in Jefferson for the breakfast buffet and was very impressed. The food was fresh, hot, and constantly being replenished. I really appreciated that they required everyone to wear a glove when serving themselves from the buffet—it made everything feel much more sanitary. The biscuits, gravy, and eggs were great, but the pancakes were absolutely delicious and honestly my favorite pancakes I've ever had. If you're looking for a very good, inexpensive breakfast in the area, I highly recommend giving The Carriage House a try. What we ordered Breakfast buffet (pancakes, biscuits and gravy, eggs) ← All reviews"
+ },
+ {
   "url": "posts/seoul-casa-anchorage.html",
   "type": "Review",
   "title": "Seoul Casa",

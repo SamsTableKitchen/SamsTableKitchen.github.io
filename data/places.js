@@ -78,7 +78,7 @@ const PLACES = [
     note: "Notes coming soon.", address: "85 Old Farm Rd #160, Jefferson, GA 30549", lat: 34.1241, lng: -83.60389 },
   { name: "The Carriage House Buffet & Catering", city: "Jefferson", region: "Georgia, USA", cuisine: "Southern buffet",
     about: "Buffet and catering spot known for its all-you-can-eat weekend breakfast: eggs, bacon, biscuits and gravy, grits, pancakes, waffles and French toast.",
-    note: "A great breakfast place.", recommended: true, address: "1235 Athens St, Jefferson, GA 30549", lat: 34.10091, lng: -83.5741 },
+    note: "A great breakfast place.", recommended: true, mustOrder: "Pancakes", review: "posts/carriage-house-jefferson.html", address: "1235 Athens St, Jefferson, GA 30549", lat: 34.10091, lng: -83.5741 },
   { name: "Paper Plane", city: "Hapeville", region: "Georgia, USA", cuisine: "Thai",
     about: "Neighborhood Thai restaurant and bar near the Atlanta airport, with craft cocktails, local beer and weekend brunch.",
     note: "Notes coming soon.", address: "816 S Central Ave, Hapeville, GA 30354", lat: 33.66251, lng: -84.41601 },
