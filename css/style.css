@@ -82,3 +82,4 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 @media(max-width:720px){.about-collage .m:last-child{grid-column:span 2}}
 @media(max-width:720px){.mosaic .m.tall,.mosaic .m.wide{grid-row:auto;grid-column:auto}.mosaic.clamp .m:nth-child(n+13){display:block}.mosaic.clamp .m:nth-child(n+14){display:none}}
 .about-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:32px 0}.about-strip img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:6px}@media(max-width:720px){.about-strip{gap:6px}.about-strip img{border-radius:4px}}
+.gallery img:first-child{grid-column:span 2;aspect-ratio:16/9}
