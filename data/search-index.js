@@ -28,6 +28,20 @@ const SEARCH=[
   "text": "Restaurant Review · Tampa, FL La Segunda Bakery and Cafe ★★★★★ The Cuban: ham, roast pork, Swiss, pickles, and mustard on La Segunda's own Cuban bread. La Segunda Bakery and Cafe 2512 N 15th St, Tampa, FL 33605 Rating: 5/5 Came for the Cuban sandwich and stayed staring at the dessert case. La Segunda has been baking authentic Cuban bread daily since 1915, and the sandwich lived up to that reputation, easily the best Cuban I've had after trying a few others around Florida. The bread had that perfect crackle outside and soft crumb inside. What I didn't expect was how stacked the pastry case would be. There were custard horns and cream puffs dusted in powdered sugar, guava cheese and apple turnovers, flan cups, strawberry shortcake, NY cheesecake with fruit, carrot cake, red velvet, Napoleons, and a piña colada cake with toasted coconut and a cherry on top. It felt less like a side display and more like half the reason locals keep showing up. Parking is tight but manageable (street spots work for a quick stop). No seating inside, so grab-and-go or order ahead. If you're in Tampa for Cuban bread done right, and a dessert case that makes you renegotiate your order, this is the stop. ← All reviews"
  },
  {
+  "url": "posts/oscars-cafe-springdale.html",
+  "type": "Review",
+  "title": "Oscar's Cafe",
+  "desc": "5-star review of Oscar's Cafe in Springdale, UT, just outside Zion: the Murder Burger garlic burger and pork enchiladas.",
+  "text": "Restaurant Review · Springdale, UT Oscar's Cafe Burgers & Tex-Mex near Zion ★★★★★ 948 Zion Park Blvd, Springdale, UT 84767 Rating: 5/5 Only 5 minutes from Zion (shuttle stop #5), Oscar’s is a must-try. I had the Murder Burger — a half-pound garlic burger with pepper jack, cheddar, bacon, and all the fixings — and it was one of the best burgers I’ve ever had, with great prices too. I also tried the pork enchiladas and they were fantastic. Service was friendly and fast. Definitely worth stopping. What we ordered Murder Burger · Pork Enchiladas ← All reviews"
+ },
+ {
+  "url": "posts/slaters-5050-las-vegas.html",
+  "type": "Review",
+  "title": "Slater's 50/50",
+  "desc": "5-star review of Slater's 50/50 Silverado Ranch in Las Vegas: excellent burgers, standout bacon, fried mac and cheese balls and a $28 all-you-can-eat special.",
+  "text": "Restaurant Review · Las Vegas, NV Slater's 50/50 Silverado Ranch Burgers ★★★★★ 467 E Silverado Ranch Blvd Ste 100, Las Vegas, NV 89183 Rating: 5/5 Slater’s 50/50 is such a great spot in Las Vegas, especially since it’s a little off the Strip. It’s nice to escape the crowds and enjoy a more relaxed atmosphere while still getting amazing food. I came here a few years ago and thought it was just okay at the time, but coming back now was a completely different experience—in the best way possible. Today, everything was absolutely awesome. The burgers are excellent, and their bacon really stands out—crispy, flavorful, and clearly high quality. You can tell they take pride in it. The appetizers are just as impressive, especially the fried mac and cheese balls, which were fantastic: perfectly crispy on the outside and creamy on the inside. They also offer an AYCE special for $28 that includes all-you-can-eat burgers and appetizers, which is an incredible value for the quality and portions you get. Everything we tried was so, so good, and the food came out fresh and well-prepared. On top of that, the service was wonderful—friendly, attentive, and made the whole experience even better. Slater’s 50/50 is definitely worth a try if you’re looking for great burgers, killer bacon, delicious apps, and a solid deal away from the Strip. I’ll absolutely be back! 🍔🥓 What we ordered Lone Star Smoke Burger · Jalapeño Poppers · Mac & Cheese Balls · Chicken Tenders with Bourbon BBQ · Onion Rings (AYCE) ← All reviews"
+ },
+ {
   "url": "posts/carriage-house-jefferson.html",
   "type": "Review",
   "title": "The Carriage House",
