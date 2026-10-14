@@ -28,6 +28,13 @@ const SEARCH=[
   "text": "Restaurant Review · Tampa, FL La Segunda Bakery and Cafe ★★★★★ The Cuban: ham, roast pork, Swiss, pickles, and mustard on La Segunda's own Cuban bread. La Segunda Bakery and Cafe 2512 N 15th St, Tampa, FL 33605 Rating: 5/5 Came for the Cuban sandwich and stayed staring at the dessert case. La Segunda has been baking authentic Cuban bread daily since 1915, and the sandwich lived up to that reputation, easily the best Cuban I've had after trying a few others around Florida. The bread had that perfect crackle outside and soft crumb inside. What I didn't expect was how stacked the pastry case would be. There were custard horns and cream puffs dusted in powdered sugar, guava cheese and apple turnovers, flan cups, strawberry shortcake, NY cheesecake with fruit, carrot cake, red velvet, Napoleons, and a piña colada cake with toasted coconut and a cherry on top. It felt less like a side display and more like half the reason locals keep showing up. Parking is tight but manageable (street spots work for a quick stop). No seating inside, so grab-and-go or order ahead. If you're in Tampa for Cuban bread done right, and a dessert case that makes you renegotiate your order, this is the stop. ← All reviews"
  },
  {
+  "url": "posts/bonrue-bakery-hurricane.html",
+  "type": "Review",
+  "title": "Bonrue Bakery",
+  "desc": "5-star review of Bonrue Bakery (formerly Farmstead) in Hurricane, UT, on the way to Zion: a chocolate croissant, coffee and a stunning pastry case.",
+  "text": "Restaurant Review · Hurricane, UT Bonrue Bakery Farmstead Bakery & Coffee ★★★★★ 11 S Main St, Hurricane, UT 84737 Rating: 5/5 If you’re on your way to Zion National Park, Bonrue is a must-stop! The pastry case alone is worth the visit — everything looks fresh, golden, and perfectly made. The chocolate croissant caught my eye immediately; it’s beautifully layered with rich, chocolate stripes and looks as good as it tastes. They also have tempting options like Boston cream donuts and other gorgeous pastries that make it hard to choose just one. Pair your pastry with a coffee, and you’ve got the perfect start to your day or a great treat after a hike. The atmosphere is inviting, and the quality is top-notch. I’d definitely recommend stopping here for a coffee or fresh pastry if you’re in the area. What we ordered Chocolate Croissant · Coffee ← All reviews"
+ },
+ {
   "url": "posts/oscars-cafe-springdale.html",
   "type": "Review",
   "title": "Oscar's Cafe",
