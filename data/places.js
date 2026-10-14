@@ -121,7 +121,13 @@ const PLACES = [
   { name: "Bai Tong Thai Street Cafe", city: "Seattle", region: "Washington, USA", cuisine: "Thai street food", photo: "images/r-baitong-garlic-chicken.jpg",
     about: "Capitol Hill restaurant serving Thai street food like tom yum noodles, Thai sausage and Thai chicken rice, alongside classics like pad Thai and curries, with a full bar and Thai-inspired cocktails.",
     note: "Friendly, attentive service and food that lived up to the hype. The crispy garlic chicken was especially memorable.", recommended: true, mustOrder: "Crispy Garlic Chicken", address: "1121 E Pike St, Seattle, WA 98122", lat: 47.61404, lng: -122.31783, review: "posts/bai-tong-thai-street-cafe-seattle.html" },
-  { name: "Uncle Joe's Pizzeria", city: "Anchorage", region: "Alaska, USA", cuisine: "Pizza", photo: "images/r-uncle-joes-specialty.jpg",
+  { name: "Uncle Joe's Pizzeria", city: "Anchorage", region: "Alaska, USA", cuisine: "Pizza", photo: "images/r-uncle-joes-gyro-pizza.jpg",
     about: "Local Anchorage pizzeria since 1993 serving handcrafted, stone-baked pizzas, calzones, strombolis, wings, pasta and salads, plus craft beer. Known for specialties like the spicy reindeer sausage pizza and house-made lasagna.",
-    note: "Absolutely fantastic! Phenomenal pizza, amazing service and a warm, welcoming atmosphere.", recommended: true, address: "11700 Old Seward Hwy, Anchorage, AK 99515", lat: 61.11489, lng: -149.86399, review: "posts/uncle-joes-pizzeria-anchorage.html" }
+    note: "Absolutely fantastic! Phenomenal pizza, amazing service and a warm, welcoming atmosphere.", recommended: true, mustOrder: "Gyro Pizza", address: "11700 Old Seward Hwy, Anchorage, AK 99515", lat: 61.11489, lng: -149.86399, review: "posts/uncle-joes-pizzeria-anchorage.html" },
+  { name: "Grindhouse Killer Burgers", city: "Atlanta", region: "Georgia, USA", cuisine: "Burgers", photo: "images/f-grindhouse.jpg",
+    about: "Atlanta burger joint in Grant Park serving burgers, fries, shakes, beer and cocktails, with veggie and Impossible burger options. This location has a retro drive-in feel, several patios and outdoor games.",
+    note: "Good burgers.", recommended: true, address: "701 Memorial Dr SE, Atlanta, GA 30316", lat: 33.74662, lng: -84.36515 },
+  { name: "Mi Ranchito Mexican Restaurant", city: "San Diego", region: "California, USA", cuisine: "Mexican seafood", photo: "images/r-mi-ranchito-burrito.jpg",
+    about: "Family-owned Mexican seafood spot in Rancho Peñasquitos serving fresh fish daily, made-from-scratch salsas and guacamole, and big stuffed burritos. Known for its seafood burrito (crab, scallops and shrimp) and lobster burrito.",
+    note: "Best food I have had in California, and the chef-owner is awesome and super friendly.", recommended: true, mustOrder: "Lobster Burrito", address: "12812 Rancho Peñasquitos Blvd, San Diego, CA 92129", lat: 32.95126, lng: -117.10767, review: "posts/mi-ranchito-san-diego.html" }
 ];
