@@ -1,5 +1,6 @@
 // Regenerate when adding posts: list of pages for site search
 const SEARCH=[
+ {"url": "posts/recipes/slow-cooker-marinara-sauce.html", "type": "Recipe", "title": "Slow Cooker Marinara Sauce", "desc": "Easy, freezer-friendly slow cooker marinara sauce. Recipe by Star Anastasia at The Skinnyish Dish.", "text": "Recipe Sauce slow cooker marinara tomato sauce crockpot freezer friendly 3 cans (28 oz) crushed tomatoes, preferably a higher quality brand such as Cento (diced, whole, or tomato sauce also work; drain extra liquid if using diced/whole) 2 cans (14.5 oz) fire roasted diced tomatoes, drained 8 garlic cloves, minced 1 large yellow onion, diced 2 tbsp dried oregano 2 tbsp dried basil 1/4 tsp red pepper flakes, more or less to taste 1½ tsp kosher salt 1 tsp pepper 1–2 bay leaves (optional) Add everything to a 6-quart slow cooker and stir. Cook on low for 8 to 10 hours. Pull out the bay leaves, then taste and add more salt and pepper if needed."},
  {
   "url": "posts/la-segunda-tampa.html",
   "type": "Review",
@@ -26,7 +27,7 @@ const SEARCH=[
   "type": "Recipes",
   "title": "Recipes",
   "desc": "Simple, budget-friendly recipes, meal prep ideas, and culinary school notes from Sam's Table.",
-  "text": "Recipes, meal prep and culinary school notes coming soon."
+  "text": "Recipes: Slow Cooker Marinara Sauce. Meal prep and culinary school notes coming soon."
  },
  {
   "url": "travel.html",
