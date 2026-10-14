@@ -383,6 +383,78 @@ const RECIPES=[
   "desc": "Tangy, peppery dipping sauce just like the chicken-finger chain's. Recipe from The Country Cook."
  },
  {
+  "url": "posts/recipes/oven-roasted-corn-on-the-cob.html",
+  "title": "The Best Way to Cook Corn on the Cob",
+  "category": "Sides",
+  "tags": [
+   "corn",
+   "oven",
+   "easy",
+   "summer",
+   "cookout",
+   "vegetarian",
+   "no shucking"
+  ],
+  "ingredients": [
+   "corn on the cob",
+   "butter",
+   "salt",
+   "chili",
+   "lime",
+   "garlic",
+   "parmesan",
+   "mayo",
+   "cotija",
+   "chili powder"
+  ],
+  "desc": "Roast whole ears in the husk, then slide them out silk-free. A Sam's Table original."
+ },
+ {
+  "url": "posts/recipes/pellet-grill-frozen-chicken-wings.html",
+  "title": "Pellet Grill Frozen Chicken Wings (0 to 400 Method)",
+  "category": "Mains",
+  "tags": [
+   "pellet grill",
+   "smoker",
+   "wings",
+   "frozen",
+   "game day",
+   "BBQ",
+   "chicken"
+  ],
+  "ingredients": [
+   "frozen chicken wings",
+   "oil",
+   "seasoning",
+   "rub",
+   "wing sauce"
+  ],
+  "desc": "Frozen wings straight onto a cold pellet grill, then cranked to 400°F. A Sam's Table original."
+ },
+ {
+  "url": "posts/recipes/pellet-grill-smoked-chicken-drumsticks.html",
+  "title": "Pellet Grill Smoked Chicken Drumsticks",
+  "category": "Mains",
+  "tags": [
+   "pellet grill",
+   "smoker",
+   "drumsticks",
+   "BBQ",
+   "chicken",
+   "smoked"
+  ],
+  "ingredients": [
+   "chicken drumsticks",
+   "oil",
+   "binder",
+   "seasoning",
+   "rub",
+   "BBQ sauce"
+  ],
+  "desc": "Smoked at 250°F, then finished hot for crispy skin. A Sam's Table original.",
+  "img": "images/h-drumsticks-smoker-1.jpg"
+ },
+ {
   "url": "posts/recipes/slow-cooker-marinara-sauce.html",
   "title": "Slow Cooker Marinara Sauce",
   "category": "Sauces",
