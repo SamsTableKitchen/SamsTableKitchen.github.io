@@ -129,5 +129,8 @@ const PLACES = [
     note: "Good burgers.", recommended: true, address: "701 Memorial Dr SE, Atlanta, GA 30316", lat: 33.74662, lng: -84.36515 },
   { name: "Mi Ranchito Mexican Restaurant", city: "San Diego", region: "California, USA", cuisine: "Mexican seafood", photo: "images/r-mi-ranchito-burrito.jpg",
     about: "Family-owned Mexican seafood spot in Rancho Peñasquitos serving fresh fish daily, made-from-scratch salsas and guacamole, and big stuffed burritos. Known for its seafood burrito (crab, scallops and shrimp) and lobster burrito.",
-    note: "Best food I have had in California, and the chef-owner is awesome and super friendly.", recommended: true, mustOrder: "Lobster Burrito", address: "12812 Rancho Peñasquitos Blvd, San Diego, CA 92129", lat: 32.95126, lng: -117.10767, review: "posts/mi-ranchito-san-diego.html" }
+    note: "Best food I have had in California, and the chef-owner is awesome and super friendly.", recommended: true, mustOrder: "Lobster Burrito", address: "12812 Rancho Peñasquitos Blvd, San Diego, CA 92129", lat: 32.95126, lng: -117.10767, review: "posts/mi-ranchito-san-diego.html" },
+  { name: "9th Island Grill", city: "Las Vegas area", region: "Nevada, USA", cuisine: "Hawaiian plate lunch", photo: "images/r-9th-island-mixed-plate.jpg",
+    about: "Hawaiian plate-lunch spot in St. Rose Square serving plates with 2 scoops of rice and mac salad, like kiawe-grilled teriyaki BBQ chicken, chicken katsu, garlic chicken, kalua pork and loco moco, plus mixed plates, sandwiches and poke.",
+    note: "Very good and nice and hot, with all the sauces on the side for dipping.", recommended: true, mustOrder: "Mixed plate", address: "3459 St Rose Pkwy Ste 100, Henderson, NV 89052", lat: 35.98938, lng: -115.13874, review: "posts/9th-island-grill-henderson.html" }
 ];
