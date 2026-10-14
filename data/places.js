@@ -111,5 +111,8 @@ const PLACES = [
     note: "Notes coming soon.", address: "4025 Broadway, San Antonio, TX 78209", lat: 29.46299, lng: -98.46562 },
   { name: "Seoul Casa", city: "Anchorage", region: "Alaska, USA", cuisine: "Korean Mexican fusion", photo: "images/r-seoul-casa-eggrolls.jpg",
     about: "South Anchorage restaurant blending Korean and Mexican food, with dishes like the Kimchirito (a kimchi fried rice burrito), K-Town nachos with kalbi beef, and bulgogi egg rolls. It was featured on Diners, Drive-Ins and Dives.",
-    note: "An absolute gem! The Korean and Mexican fusion is executed perfectly. Don't miss the crispy bulgogi egg rolls.", recommended: true, mustOrder: "Bulgogi egg rolls, kalbi beef enchiladas", address: "601 E Dimond Blvd Ste 6, Anchorage, AK 99515", lat: 61.14479, lng: -149.8713, review: "posts/seoul-casa-anchorage.html" }
+    note: "An absolute gem! The Korean and Mexican fusion is executed perfectly. Don't miss the crispy bulgogi egg rolls.", recommended: true, mustOrder: "Bulgogi egg rolls, kalbi beef enchiladas", address: "601 E Dimond Blvd Ste 6, Anchorage, AK 99515", lat: 61.14479, lng: -149.8713, review: "posts/seoul-casa-anchorage.html" },
+  { name: "Thai Alaska Kitchen", city: "Sitka", region: "Alaska, USA", cuisine: "Thai food truck", photo: "images/r-thai-alaska-curry.jpg",
+    about: "Family-run Thai food truck in Sitka serving Thai dishes from a rotating menu, with takeout, curbside pickup and catering.",
+    note: "Some of the best Thai food I've had in Alaska. The panaang curry was incredibly flavorful.", recommended: true, mustOrder: "Panaang curry with butterfly pea flower rice", address: "306 Lake St, Sitka, AK 99835", lat: 57.05208, lng: -135.33396, review: "posts/thai-alaska-kitchen-sitka.html" }
 ];

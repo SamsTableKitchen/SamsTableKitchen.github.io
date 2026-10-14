@@ -28,6 +28,13 @@ const SEARCH=[
   "text": "Restaurant Review · Tampa, FL La Segunda Bakery and Cafe ★★★★★ The Cuban: ham, roast pork, Swiss, pickles, and mustard on La Segunda's own Cuban bread. La Segunda Bakery and Cafe 2512 N 15th St, Tampa, FL 33605 Rating: 5/5 Came for the Cuban sandwich and stayed staring at the dessert case. La Segunda has been baking authentic Cuban bread daily since 1915, and the sandwich lived up to that reputation, easily the best Cuban I've had after trying a few others around Florida. The bread had that perfect crackle outside and soft crumb inside. What I didn't expect was how stacked the pastry case would be. There were custard horns and cream puffs dusted in powdered sugar, guava cheese and apple turnovers, flan cups, strawberry shortcake, NY cheesecake with fruit, carrot cake, red velvet, Napoleons, and a piña colada cake with toasted coconut and a cherry on top. It felt less like a side display and more like half the reason locals keep showing up. Parking is tight but manageable (street spots work for a quick stop). No seating inside, so grab-and-go or order ahead. If you're in Tampa for Cuban bread done right, and a dessert case that makes you renegotiate your order, this is the stop. ← All reviews"
  },
  {
+  "url": "posts/thai-alaska-kitchen-sitka.html",
+  "type": "Review",
+  "title": "Thai Alaska Kitchen",
+  "desc": "5-star review of Thai Alaska Kitchen, a Thai food truck in Sitka, AK: panaang curry with butterfly pea flower rice and a noodle bowl.",
+  "text": "Restaurant Review · Sitka, AK Thai Alaska Kitchen Thai Food Truck ★★★★★ 306 Lake St, Sitka, AK 99835 Rating: 5/5 Thai Alaska Kitchen serves some of the best Thai food I’ve had in Alaska. The panaang curry was incredibly flavorful—I could have happily finished a whole bowl on its own. The butterfly pea flower rice not only looks beautiful but adds something special to the meal. Everything is clearly made with love and attention to detail. Highly recommend checking them out! What we ordered Panaang Curry with Butterfly Pea Flower Rice · Noodle Bowl with a Fried Chicken Drumstick ← All reviews"
+ },
+ {
   "url": "posts/bonrue-bakery-hurricane.html",
   "type": "Review",
   "title": "Bonrue Bakery",
