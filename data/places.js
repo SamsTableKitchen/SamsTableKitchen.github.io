@@ -102,5 +102,8 @@ const PLACES = [
     note: "Notes coming soon.", address: "1455 Waldron Rd, Corpus Christi, TX 78418", lat: 27.66277, lng: -97.28585 },
   { name: "The Hayden", city: "San Antonio", region: "Texas, USA", cuisine: "American & Jewish deli",
     about: "Casual deli-style diner on Broadway serving breakfast through dinner, known for pastrami, matzo ball soup, latkes and burgers.",
-    note: "Notes coming soon.", address: "4025 Broadway, San Antonio, TX 78209", lat: 29.46299, lng: -98.46562 }
+    note: "Notes coming soon.", address: "4025 Broadway, San Antonio, TX 78209", lat: 29.46299, lng: -98.46562 },
+  { name: "Seoul Casa", city: "Anchorage", region: "Alaska, USA", cuisine: "Korean Mexican fusion", photo: "images/r-seoul-casa-eggrolls.jpg",
+    about: "South Anchorage restaurant blending Korean and Mexican food, with dishes like the Kimchirito (a kimchi fried rice burrito), K-Town nachos with kalbi beef, and bulgogi egg rolls. It was featured on Diners, Drive-Ins and Dives.",
+    note: "An absolute gem! The Korean and Mexican fusion is executed perfectly. Don't miss the crispy bulgogi egg rolls.", recommended: true, mustOrder: "Bulgogi egg rolls, kalbi beef enchiladas", address: "601 E Dimond Blvd Ste 6, Anchorage, AK 99515", lat: 61.14479, lng: -149.8713, review: "posts/seoul-casa-anchorage.html" }
 ];

@@ -28,6 +28,13 @@ const SEARCH=[
   "text": "Restaurant Review · Tampa, FL La Segunda Bakery and Cafe ★★★★★ The Cuban: ham, roast pork, Swiss, pickles, and mustard on La Segunda's own Cuban bread. La Segunda Bakery and Cafe 2512 N 15th St, Tampa, FL 33605 Rating: 5/5 Came for the Cuban sandwich and stayed staring at the dessert case. La Segunda has been baking authentic Cuban bread daily since 1915, and the sandwich lived up to that reputation, easily the best Cuban I've had after trying a few others around Florida. The bread had that perfect crackle outside and soft crumb inside. What I didn't expect was how stacked the pastry case would be. There were custard horns and cream puffs dusted in powdered sugar, guava cheese and apple turnovers, flan cups, strawberry shortcake, NY cheesecake with fruit, carrot cake, red velvet, Napoleons, and a piña colada cake with toasted coconut and a cherry on top. It felt less like a side display and more like half the reason locals keep showing up. Parking is tight but doable (street spots work for a quick stop). No seating inside, so grab-and-go or order ahead. If you're in Tampa for Cuban bread done right, and a dessert case that makes you renegotiate your order, this is the stop. ← All reviews"
  },
  {
+  "url": "posts/seoul-casa-anchorage.html",
+  "type": "Review",
+  "title": "Seoul Casa",
+  "desc": "5-star review of Seoul Casa, a Korean Mexican fusion restaurant in Anchorage, AK: bulgogi egg rolls, kalbi beef enchiladas and a quesadilla with mac salad.",
+  "text": "Restaurant Review · Anchorage, AK Seoul Casa Korean Mexican Fusion ★★★★★ Seoul Casa 601 E Dimond Blvd Ste 6, Anchorage, AK 99515 Rating: 5/5 Seoul Casa is an absolute gem! The fusion of Korean and Mexican flavors is executed perfectly. I ordered the bulgogi egg rolls, which were crispy and packed with delicious, savory flavor. The kalbi beef enchiladas and quesadilla were both outstanding—tender, flavorful, and filling. The mac salad was the perfect side to round out the meal. Every dish was well-prepared and full of unique, delightful flavors. Highly recommend this spot for anyone looking to try something different and amazing! What we ordered Bulgogi Egg Rolls · Kalbi Beef Enchiladas · Quesadilla with Mac Salad"
+ },
+ {
   "url": "posts/el-mezcal-homosassa.html",
   "type": "Review",
   "title": "El Mezcal",
