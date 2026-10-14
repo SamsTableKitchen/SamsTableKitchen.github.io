@@ -310,6 +310,27 @@ const RECIPES=[
   "desc": "Lightly sweet, chunky Korean-style potato salad. Recipe by Huy Vu at Hungry Huy."
  },
  {
+  "url": "posts/recipes/childhood-honey-mustard.html",
+  "title": "Childhood Honey Mustard",
+  "category": "Sauces",
+  "tags": [
+   "dip",
+   "dipping sauce",
+   "no cook",
+   "quick",
+   "original"
+  ],
+  "ingredients": [
+   "Miracle Whip",
+   "honey",
+   "yellow mustard",
+   "Dijon mustard",
+   "brown sugar",
+   "lemon juice"
+  ],
+  "desc": "Sweet, tangy restaurant-style honey mustard. A Sam's Table original."
+ },
+ {
   "url": "posts/recipes/slow-cooker-marinara-sauce.html",
   "title": "Slow Cooker Marinara Sauce",
   "category": "Sauces",
