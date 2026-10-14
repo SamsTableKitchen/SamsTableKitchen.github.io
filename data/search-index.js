@@ -142,8 +142,8 @@ const SEARCH=[
  {
   "url": "travel.html",
   "type": "Travel",
-  "title": "Where I've Been",
-  "desc": "Places Sam has traveled and eaten, from Alaska and Mexico to the Baltics and the Mediterranean.",
+  "title": "Travel: Where I've Been",
+  "desc": "Places Sam has traveled, mapped from Alaska and Mexico to the Baltics and the Mediterranean, plus scenic travel photography.",
   "text": "Travel map by region: Revillagigedo Island (Ketchikan) Anchorage Asheville Athens Atlanta Baltimore Berlin Brian Head Bryce Canyon Cabo San Lucas Cedar Breaks Cedar City Colorado City Copenhagen Corfu Corpus Christi Crystal River Daggett Dolan Springs Dubrovnik Ensenada Fort Worth Gdynia Glacier Bay Grand Canyon Haines Hamburg Hamina Hanover (Utz factory) Helsinki Henderson Hubbard Glacier Hurricane Imperial Beach Istanbul Juneau Klaipeda Kotka Lake Havasu City Las Vegas Mesquite Mykonos & Delos Nashville Parowan Riga San Diego Santorini Seattle Sitka Skagway St. George Stockholm Tallinn Tampa Trieste Valley of Fire Vancouver Victoria Visby Washington Zadar & Nadin"
  },
  {
