@@ -286,8 +286,8 @@ const POSTS=[
 "kicker": "Recipe · Desserts",
 "title": "Strawberry Lemonade Cookies",
 "desc": "Two-tone chewy cookies, half strawberry and half lemon. Recipe by Tornadough Alli.",
-"img": "",
-"alt": "",
+"img": "images/h-lemonade-cookies.webp",
+"alt": "Strawberry Lemonade Cookies",
 "o": 9
 },
 {

@@ -234,7 +234,8 @@ const RECIPES=[
    "lemon zest",
    "food color"
   ],
-  "desc": "Two-tone chewy cookies, half strawberry and half lemon. Recipe by Tornadough Alli."
+  "desc": "Two-tone chewy cookies, half strawberry and half lemon. Recipe by Tornadough Alli.",
+  "img": "images/h-lemonade-cookies.webp"
  },
  {
   "url": "posts/recipes/huli-huli-chicken.html",
