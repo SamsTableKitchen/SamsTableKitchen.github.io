@@ -153,3 +153,12 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .gallery img{height:auto}
 .gallery.pair{align-items:start}
 .gallery.pair img,.gallery.pair img:first-child{grid-column:auto;aspect-ratio:auto;height:auto;object-fit:contain}
+.rate{text-align:center;margin:28px 0 8px;padding:20px 0;border-top:1px solid var(--line)}
+.rate h3{font-size:1.1rem;margin:0 0 6px}
+.rate-stars{display:inline-flex;gap:4px}
+.rate button{background:none;border:0;cursor:pointer;font-size:2rem;line-height:1;color:#cfc6bb;padding:4px 6px;min-width:44px;min-height:44px}
+.rate button.on,.rate button.hov{color:var(--terra)}
+.rate button:focus-visible{outline:2px solid var(--olive);outline-offset:2px}
+.rate-msg{font-size:.85rem;color:#6b6259;margin:6px 0 0}
+.meta-note{font-size:.78rem;color:#6b6259;margin:-18px 0 24px;font-style:italic}
+@media print{.rate{display:none}}
