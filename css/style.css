@@ -162,3 +162,11 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .rate-msg{font-size:.85rem;color:#6b6259;margin:6px 0 0}
 .meta-note{font-size:.78rem;color:#6b6259;margin:-18px 0 24px;font-style:italic}
 @media print{.rate{display:none}}
+
+.press-bio{margin:44px 0 0;padding:28px 28px 22px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--olive)}
+.press-bio h2,.work-with h2{font-size:1.5rem;margin:.2em 0 .5em}
+.press-bio .press-text{font-size:1.05rem;margin:0 0 10px}
+.press-note{font-size:.82rem;color:#6b6259;font-style:italic;margin:0}
+.work-with{margin:36px 0 0;text-align:center}
+.work-links{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;justify-content:center}
+@media(max-width:640px){.press-bio{padding:22px 18px 18px}}
