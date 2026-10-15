@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact | Sam's Table</title><meta name="description" content="Questions, recipe ideas, restaurant suggestions, or business inquiries? Send me a message."><link rel="canonical" href="https://samstablekitchen.github.io/contact.html"><meta property="og:type" content="website"><meta property="og:site_name" content="Sam's Table"><meta property="og:title" content="Contact | Sam's Table"><meta property="og:description" content="Questions, recipe ideas, restaurant suggestions, or business inquiries? Send me a message."><meta property="og:url" content="https://samstablekitchen.github.io/contact.html"><meta property="og:image" content="https://samstablekitchen.github.io/images/about-banner.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#6B7F3A">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=20261015a"><link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><style>
+.contact-grid{display:grid;grid-template-columns:2fr 1fr;gap:32px;align-items:start;padding-bottom:72px}
+.contact-form{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:28px}
+.contact-form .field{margin-bottom:18px}
+.contact-form label{display:block;font-weight:700;margin-bottom:6px;color:var(--ink)}
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:16px;background:#fff;color:var(--ink)}
+.contact-form textarea{min-height:160px;resize:vertical}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{outline:2px solid var(--olive);outline-offset:1px;border-color:var(--olive)}
+.contact-form .req{color:var(--terra)}
+.contact-form button{background:var(--olive);color:#fff;border:0;border-radius:8px;padding:13px 26px;font:inherit;font-weight:700;cursor:pointer}
+.contact-form button[disabled]{opacity:.6;cursor:wait}
+.hp{position:absolute;left:-9999px}
+.form-status{margin-top:16px;padding:12px 14px;border-radius:8px;display:none}
+.form-status.ok{display:block;background:#eef3e4;border:1px solid var(--olive)}
+.form-status.err{display:block;background:#fbeee8;border:1px solid var(--terra)}
+.biz-box{background:var(--bg);border:1px solid var(--line);border-left:4px solid var(--terra);border-radius:12px;padding:22px}
+.biz-box h2{font-size:1.25rem;margin:0 0 8px}
+.biz-box a{color:var(--terra);font-weight:700;word-break:break-all}
+@media(max-width:760px){.contact-grid{grid-template-columns:1fr}.contact-form{padding:20px}.contact-form button{width:100%}}
+</style></head><body><a class="skip-link" href="#main">Skip to content</a>
+<header class="site"><div class="wrap"><a class="logo" href="index.html">Sam's <span>Table</span></a><nav><a href="index.html">Home</a><a href="recipes.html">Recipes</a><a href="reviews.html">Reviews</a><a href="travel.html">Travel</a><a href="food-guide.html">Food Guide</a><a href="about.html">About</a><a href="contact.html" class=on>Contact</a><a href="search.html" aria-label="Search">&#128269;</a></nav></div></header><main id="main">
+<div class="page-head"><div class="wrap"><span class="kicker">Contact</span><h1>Get in touch</h1></div></div>
+<div class="wrap narrow prose"><p class=lead>Have a question about a recipe, a restaurant I should try, or just want to say hi? I'd love to hear from you. Send me a note below and I'll get back to you as soon as I can.</p></div>
+<div class="wrap contact-grid">
+<form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+<input type="hidden" name="access_key" value="WEB3FORMS_KEY_PLACEHOLDER">
+<input type="hidden" name="subject" value="New message from samstablekitchen.com">
+<input type="hidden" name="from_name" value="samstablekitchen.com">
+<input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+<div class="field"><label for="cf-name">Name <span class="req" aria-hidden="true">*</span></label><input id="cf-name" name="name" type="text" autocomplete="name" required></div>
+<div class="field"><label for="cf-email">Email <span class="req" aria-hidden="true">*</span></label><input id="cf-email" name="email" type="email" autocomplete="email" required></div>
+<div class="field"><label for="cf-topic">What's this about? <span class="req" aria-hidden="true">*</span></label><select id="cf-topic" name="topic" required><option value="General question">General question</option><option value="Recipe question">Recipe question</option><option value="Restaurant suggestion">Restaurant suggestion</option><option value="Collaboration / business inquiry">Collaboration / business inquiry</option></select></div>
+<div class="field"><label for="cf-message">Message <span class="req" aria-hidden="true">*</span></label><textarea id="cf-message" name="message" required></textarea></div>
+<button type="submit">Send message</button>
+<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+</form>
+<aside class="biz-box"><h2>Business &amp; collaborations</h2><p>Restaurants, review invites, and paid partnerships: email me directly.</p><p><a href="mailto:collabs@samstablekitchen.com">collabs@samstablekitchen.com</a></p></aside>
+</div>
+</main><footer><div class="wrap"><p class="logo">Sam's Table</p><p>Pull up a chair. There's always room at the table.</p><p><a href="index.html">Home</a><a href="recipes.html">Recipes</a><a href="reviews.html">Reviews</a><a href="travel.html">Travel</a><a href="food-guide.html">Food Guide</a><a href="about.html">About</a><a href="contact.html">Contact</a></p><p>&copy; 2026 Sam's Table · Real food, real photos</p></div></footer>
+<script>
+(function(){var f=document.getElementById('contact-form'),s=document.getElementById('form-status'),b=f.querySelector('button');
+f.addEventListener('submit',function(e){e.preventDefault();s.className='form-status';
+if(!f.checkValidity()){f.reportValidity();return;}
+b.disabled=true;b.textContent='Sending...';
+fetch(f.action,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)})
+.then(function(r){return r.json().then(function(j){if(!r.ok||!j.success)throw 0;});})
+.then(function(){f.reset();s.textContent="Thanks! Your message is on its way. I'll get back to you soon.";s.className='form-status ok';})
+.catch(function(){s.textContent='Sorry, something went wrong. Please try again in a few minutes.';s.className='form-status err';})
+.finally(function(){b.disabled=false;b.textContent='Send message';});});})();
+</script></body></html>
