@@ -32,6 +32,7 @@ for f in pages:
 src = open("data/places.js", encoding="utf-8").read()
 for block in re.findall(r'\{\s*name:.*?\}', src, re.S):
     g = lambda k: (re.search(r'\b%s:\s*"((?:[^"\\]|\\.)*)"' % k, block) or [None, ""])[1]
+    if g("review"): continue  # the full review is already indexed
     note = g("note"); about = g("about")
     summ = note if note and "coming soon" not in note.lower() else (about or g("cuisine"))
     items.append({"t": g("name"), "u": "/" + g("review") if g("review") else "/food-guide.html",
