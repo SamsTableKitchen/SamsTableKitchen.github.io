@@ -28,7 +28,7 @@ const RECIPES=[
    "broccoli"
   ],
   "desc": "Charred chicken thighs in a sticky bourbon glaze. Adapted from a recipe shared on Reddit.",
-  "img": "images/r-bourbon-chicken.jpg"
+  "img": "images/r-bourbon-chicken.webp"
  },
  {
   "url": "posts/recipes/vegan-lentil-burgers.html",
@@ -452,7 +452,7 @@ const RECIPES=[
    "BBQ sauce"
   ],
   "desc": "Smoked at 250°F, then finished hot for crispy skin. A Sam's Table original.",
-  "img": "images/h-drumsticks-smoker-1.jpg"
+  "img": "images/h-drumsticks-smoker-1.webp"
  },
  {
   "url": "posts/recipes/slow-cooker-marinara-sauce.html",

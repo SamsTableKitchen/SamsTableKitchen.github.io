@@ -73,32 +73,32 @@ const TRIPS = [
 /* Photos linked to places (optional). Key = place name above, value = list of image paths. */
 const TRAVEL_PHOTOS = {
  "Cabo San Lucas": [
-  "images/t-mexico.jpg"
+  "images/t-mexico.webp"
  ],
  "Gdynia": [
-  "images/t-gdansk.jpg"
+  "images/t-gdansk.webp"
  ],
  "Valley of Fire": [
-  "images/t-valley-of-fire.jpg",
-  "images/t-valley-of-fire-2.jpg"
+  "images/t-valley-of-fire.webp",
+  "images/t-valley-of-fire-2.webp"
  ],
  "Tallinn": [
-  "images/t-tallinn.jpg"
+  "images/t-tallinn.webp"
  ],
  "Riga": [
-  "images/t-riga.jpg"
+  "images/t-riga.webp"
  ],
  "Revillagigedo Island (Ketchikan)": [
-  "images/t-alaska-river.jpg"
+  "images/t-alaska-river.webp"
  ],
  "Hubbard Glacier": [
-  "images/t-alaska-glacier.jpg"
+  "images/t-alaska-glacier.webp"
  ],
  "Dubrovnik": [
-  "images/t-croatia.jpg"
+  "images/t-croatia.webp"
  ],
  "Kotka": [
-  "images/t-kotka.jpg"
+  "images/t-kotka.webp"
  ]
 };
 /* Captions for photos whose exact stop is known only roughly */

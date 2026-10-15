@@ -106,3 +106,5 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .about-hero{padding-top:28px}.about-hero img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:18px;box-shadow:0 10px 30px rgba(60,40,20,.15);background:#F8F0E6}.about-head{padding-top:28px}@media(max-width:720px){.about-hero{padding:16px 12px 0}.about-hero img{border-radius:12px}}
 .about-hero img{max-width:720px;margin:0 auto}.about-head{padding-top:20px;padding-bottom:20px}@media(max-width:720px){.about-hero{padding:16px 16px 0}.about-hero img{max-width:520px}}
 .about-hero img{max-width:440px}@media(max-width:720px){.about-hero img{max-width:300px}}
+@media print{main>*:not(:has(#recipe-card)),main .wrap:has(#recipe-card)>*:not(#recipe-card),header.site,footer,#recipe-card .noprint{display:none!important}main .wrap:has(#recipe-card){padding:0!important;max-width:none}#recipe-card{box-shadow:none;border:0;margin:0}}
+#recipe-card{scroll-margin-top:90px}@media(max-width:720px){#recipe-card{scroll-margin-top:175px}}

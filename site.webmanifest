@@ -1,0 +1,20 @@
+{
+ "name": "Sam's Table",
+ "short_name": "Sam's Table",
+ "icons": [
+  {
+   "src": "/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  }
+ ],
+ "theme_color": "#6B7F3A",
+ "background_color": "#FAF6EF",
+ "display": "standalone",
+ "start_url": "/"
+}

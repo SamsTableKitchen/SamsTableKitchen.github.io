@@ -6,7 +6,7 @@ const POSTS=[
 "kicker": "Restaurant Review · Las Vegas, NV",
 "title": "Hash House A Go Go (Plaza)",
 "desc": "Great food and great service: the Fried chicken egg Benedict and a pancake to share.",
-"img": "images/r-hashhouse-benedict.jpg",
+"img": "images/r-hashhouse-benedict.webp",
 "alt": "Fried Chicken Eggs Benedict at Hash House A Go Go",
 "o": 0
 },
@@ -16,7 +16,7 @@ const POSTS=[
 "kicker": "Restaurant Review · Las Vegas, NV",
 "title": "Fuku Burger Chinatown",
 "desc": "Great burgers and fries: the bacon-loaded BUTA and the TAMAGO with a runny egg.",
-"img": "images/r-fuku-buta.jpg",
+"img": "images/r-fuku-buta.webp",
 "alt": "BUTA burger at Fuku Burger",
 "o": 1
 },
@@ -26,7 +26,7 @@ const POSTS=[
 "kicker": "Restaurant Review · Las Vegas area (Henderson), NV",
 "title": "9th Island Grill",
 "desc": "A Hawaiian mixed plate with BBQ chicken and chicken katsu, a tasty pulled pork sandwich, and sauces on the side.",
-"img": "images/r-9th-island-mixed-plate.jpg",
+"img": "images/r-9th-island-mixed-plate.webp",
 "alt": "Mixed plate at 9th Island Grill",
 "o": 2
 },
@@ -36,7 +36,7 @@ const POSTS=[
 "kicker": "Restaurant Review · San Diego, CA",
 "title": "Mi Ranchito Mexican Restaurant",
 "desc": "My favorite meal in all of California: fresh lobster and seafood burritos and a super friendly chef-owner.",
-"img": "images/r-mi-ranchito-burrito.jpg",
+"img": "images/r-mi-ranchito-burrito.webp",
 "alt": "Burrito plate at Mi Ranchito",
 "o": 3
 },
@@ -46,7 +46,7 @@ const POSTS=[
 "kicker": "Restaurant Review · Anchorage, AK",
 "title": "Uncle Joe's Pizzeria",
 "desc": "Phenomenal stone-baked pizza, amazing service and a warm, welcoming atmosphere.",
-"img": "images/r-uncle-joes-gyro-pizza.jpg",
+"img": "images/r-uncle-joes-gyro-pizza.webp",
 "alt": "Gyro Pizza with tzatziki, tomatoes, red onions and black olives at Uncle Joe's Pizzeria",
 "o": 4
 },
@@ -56,7 +56,7 @@ const POSTS=[
 "kicker": "Restaurant Review · Seattle, WA",
 "title": "Bai Tong Thai Street Cafe",
 "desc": "Fantastic Thai food and excellent service: crispy garlic chicken, pad thai and panang curry.",
-"img": "images/r-baitong-garlic-chicken.jpg",
+"img": "images/r-baitong-garlic-chicken.webp",
 "alt": "Crispy garlic chicken at Bai Tong Thai Street Cafe",
 "o": 5
 },
@@ -66,7 +66,7 @@ const POSTS=[
 "kicker": "Restaurant Review · Lake Havasu City, AZ",
 "title": "PZA Pizzeria",
 "desc": "Fresh wood-fired, build-your-own pizza, and a cheese-free BLT with bacon jam that became my favorite.",
-"img": "images/r-pza-blt.jpg",
+"img": "images/r-pza-blt.webp",
 "alt": "BLT pizza with arugula at PZA Pizzeria",
 "o": 6
 },
@@ -76,7 +76,7 @@ const POSTS=[
 "kicker": "Restaurant Review · Sitka, AK",
 "title": "Thai Alaska Kitchen",
 "desc": "Some of the best Thai food in Alaska: rich panaang curry with beautiful butterfly pea flower rice.",
-"img": "images/r-thai-alaska-curry.jpg",
+"img": "images/r-thai-alaska-curry.webp",
 "alt": "Panaang curry with blue butterfly pea flower rice at Thai Alaska Kitchen",
 "o": 7
 },
@@ -86,7 +86,7 @@ const POSTS=[
 "kicker": "Restaurant Review · Hurricane, UT",
 "title": "Bonrue Bakery",
 "desc": "A must-stop on the way to Zion: a gorgeous pastry case, a striped chocolate croissant and coffee.",
-"img": "images/r-bonrue-croissant.jpg",
+"img": "images/r-bonrue-croissant.webp",
 "alt": "Chocolate croissants at Bonrue Bakery",
 "o": 8
 },
@@ -96,7 +96,7 @@ const POSTS=[
 "kicker": "Restaurant Review · Springdale, UT",
 "title": "Oscar's Cafe",
 "desc": "The Murder Burger, a half-pound garlic burger, and fantastic pork enchiladas just 5 minutes from Zion.",
-"img": "images/r-oscars-murder-burger.jpg",
+"img": "images/r-oscars-murder-burger.webp",
 "alt": "Murder Burger at Oscar's Cafe",
 "o": 9
 },
@@ -106,7 +106,7 @@ const POSTS=[
 "kicker": "Restaurant Review · Las Vegas, NV",
 "title": "Slater's 50/50",
 "desc": "Excellent burgers, killer bacon, crispy mac and cheese balls and a $28 all-you-can-eat deal off the Strip.",
-"img": "images/r-slaters-burger.jpg",
+"img": "images/r-slaters-burger.webp",
 "alt": "Lone Star Smoke Burger at Slater's 50/50",
 "o": 10
 },
@@ -126,7 +126,7 @@ const POSTS=[
 "kicker": "Restaurant Review · Anchorage, AK",
 "title": "Seoul Casa",
 "desc": "Korean Mexican fusion done right: crispy bulgogi egg rolls, kalbi beef enchiladas and a quesadilla with mac salad.",
-"img": "images/r-seoul-casa-eggrolls.jpg",
+"img": "images/r-seoul-casa-eggrolls.webp",
 "alt": "Bulgogi egg rolls at Seoul Casa",
 "o": 12
 },
@@ -156,7 +156,7 @@ const POSTS=[
 "kicker": "Recipe · Mains",
 "title": "Pellet Grill Smoked Chicken Drumsticks",
 "desc": "Smoked at 250°F, then finished hot for crispy skin. A Sam's Table original.",
-"img": "images/h-drumsticks-smoker-1.jpg",
+"img": "images/h-drumsticks-smoker-1.webp",
 "alt": "Pellet Grill Smoked Chicken Drumsticks",
 "o": 18
 },
@@ -196,7 +196,7 @@ const POSTS=[
 "kicker": "Recipe · Mains",
 "title": "Bourbon Chicken",
 "desc": "Charred chicken thighs in a sticky bourbon glaze. Adapted from a recipe shared on Reddit.",
-"img": "images/r-bourbon-chicken.jpg",
+"img": "images/r-bourbon-chicken.webp",
 "alt": "Bourbon Chicken",
 "o": 0
 },
@@ -336,7 +336,7 @@ const POSTS=[
 "kicker": "Restaurant Review · Tampa, FL",
 "title": "La Segunda Bakery and Cafe",
 "desc": "Cuban bread done right since 1915, and a dessert case that makes you renegotiate your order.",
-"img": "images/cuban-sandwich.jpg",
+"img": "images/cuban-sandwich.webp",
 "alt": "La Segunda Bakery and Cafe",
 "o": 13
 },
@@ -346,7 +346,7 @@ const POSTS=[
 "kicker": "Restaurant Review · Homosassa, FL",
 "title": "El Mezcal | Mexican Restaurant",
 "desc": "Chipotle shrimp, soft shrimp chimichangas with cheese sauce, and great service on a quiet Sunday.",
-"img": "images/r-el-mezcal-chimichangas.jpg",
+"img": "images/r-el-mezcal-chimichangas.webp",
 "alt": "Shrimp chimichangas at El Mezcal",
 "o": 14
 }
