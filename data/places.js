@@ -9,6 +9,7 @@
 */
 const PLACES = [
   { name: "La Segunda Bakery and Cafe", city: "Tampa", region: "Florida, USA", cuisine: "Cuban bakery & cafe", photo: "images/cuban-sandwich.webp",
+    about: "Family-run Cuban bakery founded in Ybor City in 1915 and now in its fourth generation. Its hand-made Cuban bread, marked with a palmetto leaf down the middle, is used by restaurants across Tampa Bay. The Ybor bakery is takeout only, known for Cuban sandwiches, guava pastries and Cuban coffee.",
     note: "Baking Cuban bread daily since 1915, with a seriously stacked pastry case.", mustOrder: "Cuban sandwich",
     address: "2512 N 15th St, Tampa, FL 33605", lat: 27.96579, lng: -82.44330, review: "posts/la-segunda-tampa.html" },
   { name: "El Mezcal | Mexican Restaurant", city: "Homosassa", region: "Florida, USA", cuisine: "Mexican", photo: "images/r-el-mezcal-chimichangas.webp",
