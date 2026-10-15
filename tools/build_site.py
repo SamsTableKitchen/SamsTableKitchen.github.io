@@ -36,7 +36,7 @@ for block in re.findall(r'\{\s*name:.*?\}', src, re.S):
     note = g("note"); about = g("about")
     summ = note if note and "coming soon" not in note.lower() else (about or g("cuisine"))
     items.append({"t": g("name"), "u": "/" + g("review") if g("review") else "/food-guide.html",
-                  "s": summ[:160], "c": "Food Guide",
+                  "s": summ if len(summ) <= 160 else summ[:157].rsplit(" ", 1)[0] + "...", "c": "Food Guide",
                   "k": " ".join([g("city"), g("region"), g("cuisine"), g("mustOrder"), about])})
 
 json.dump(items, open("search-index.json", "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
