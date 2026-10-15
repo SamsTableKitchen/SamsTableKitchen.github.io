@@ -150,4 +150,6 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .lb button:hover{background:rgba(255,255,255,.1)}
 .lb-x{top:18px;right:18px}.lb-prev{left:18px;top:50%;transform:translateY(-50%)}.lb-next{right:18px;top:50%;transform:translateY(-50%)}
 @media(max-width:640px){.g-head{padding:64px 0 36px}.photo-wall{columns:2 150px;column-gap:14px;padding-top:28px}.g-item{margin-bottom:20px}.g-open{padding:5px}.g-item figcaption{font-size:.62rem;letter-spacing:.1em;padding-top:8px}.lb-prev,.lb-next{top:auto;bottom:22px;transform:none}}
-.gallery.pair img:first-child{grid-column:auto;aspect-ratio:4/3}
+.gallery img{height:auto}
+.gallery.pair{align-items:start}
+.gallery.pair img,.gallery.pair img:first-child{grid-column:auto;aspect-ratio:auto;height:auto;object-fit:contain}
