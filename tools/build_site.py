@@ -23,8 +23,9 @@ for f in pages:
     s = open(f, encoding="utf-8").read()
     title = html.unescape(re.search(r'<title>(.*?)</title>', s, re.S).group(1))
     title = re.sub(r"\s*\|\s*Sam's Table$", "", title).replace(" Review", "") or "Home"
+    title = title.replace(" (Meal Prep)", "")
     if f == "index.html": title = "Home"
-    cat = "Recipe" if f.startswith("posts/recipes/") else "Review" if f.startswith("posts/") else "Page"
+    cat = "Recipe" if f.startswith("posts/recipes/") else "Meal Prep Plan" if f.startswith("posts/meal-prep/plans/") else "Meal Prep" if f.startswith("posts/meal-prep/") else "Review" if f.startswith("posts/") else "Page"
     items.append({"t": title, "u": "/" + ("" if f == "index.html" else f), "s": meta(s, "description"),
                   "c": cat, "k": text(s)[:600] if cat != "Page" else ""})
 
