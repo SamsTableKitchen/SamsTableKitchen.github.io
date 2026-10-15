@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://samstablekitchen.github.io/sitemap.xml
+
+Sitemap: https://samstablekitchen.com/sitemap.xml
