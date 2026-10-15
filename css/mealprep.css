@@ -16,3 +16,4 @@
 .mp-tips ul{max-width:760px;margin:0 auto;background:#fff;border:1px solid var(--line);padding:20px 24px 20px 40px}.mp-tips li{margin-bottom:8px}
 @media(max-width:600px){.mp-week{font-size:.85rem}.mp-week th,.mp-week td{padding:8px}.mp-store{padding:16px 18px}.mp-store dl{grid-template-columns:1fr}.mp-steps{padding:16px 16px 16px 34px}}
 @media print{.mp-card .mp-tags,.chips,.rsearch{display:none}}
+.mp-label{display:inline-block;background:#fff;border:1px solid var(--line);border-left:4px solid var(--terra);padding:6px 14px;font-size:.9rem;font-weight:700;color:var(--ink);margin:10px 0 0}
