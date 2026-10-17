@@ -170,3 +170,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .work-with{margin:36px 0 0;text-align:center}
 .work-links{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;justify-content:center}
 @media(max-width:640px){.press-bio{padding:22px 18px 18px}}
+.closed-badge{display:inline-block;background:#5a5a5a;color:#fff;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.2em .6em;border-radius:4px;margin:.2em .4em .4em 0}
+.gcard.is-closed img{filter:grayscale(.55)}
+.pin-btn{display:inline-flex;align-items:center;gap:.45em;background:#e60023;color:#fff!important;font-weight:700;text-decoration:none!important;padding:.55em 1.05em;border-radius:999px;font-size:.92rem;margin:.6em 0}
+.pin-btn:hover{background:#ad081b}
+.pin-btn svg{width:1.1em;height:1.1em;fill:currentColor}
