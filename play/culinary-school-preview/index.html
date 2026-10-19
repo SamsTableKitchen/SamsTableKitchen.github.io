@@ -677,6 +677,7 @@ if (meta.badge && !meta.badges.includes('rookie')) meta.badges.push('rookie');
 if (RUNS.fs.washDone && !meta.badges.includes('clean')) meta.badges.push('clean');
 const KS = Object.assign({idx:0, best:{}, score:0, done:false}, saved.knife || {});
 const SC = Object.assign({idx:0, best:{}, score:0, done:false}, saved.sauce || {});
+{ const old = 'toma' + 't'; if (SC.best && SC.best[old] != null && SC.best.tomsauce == null) { SC.best.tomsauce = SC.best[old]; delete SC.best[old]; } }
 const BK = Object.assign({idx:0, best:{}, weigh:{}, score:0, done:false}, saved.bake || {});
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify({run:RUNS.fs, run3:RUNS.sk2, meta, knife:KS, sauce:SC, bake:BK})); } catch(e) {} };
 function setLevel(id){
@@ -2551,7 +2552,7 @@ const SAUCES = [
   bases:['bstock','wstock','milk','butter'], thicks:['brown','white','blond','reduce'],
   how:'Brown stock with brown roux, browned mirepoix and tomato purée. A long, gentle simmer: stay in the zone and skim the surface.',
   tip:'Espagnole (brown sauce) is brown stock thickened with brown roux and flavoured with browned mirepoix and tomato purée. It simmers for a long time and is skimmed often before it is strained. Brown roux thickens less than white roux, because browning breaks down some of the flour’s starch. Simmer espagnole with more brown stock and reduce it by half to make demi-glace.'},
- {id:'tomat', name:'Sauce tomat', short:'tomatoes, simmered down', icon:'🍅', color:'#c43a22', base:'tomato', thick:'reduce', kind:'reduce', need:13, event:'splatter', scorchK:1.25,
+ {id:'tomsauce', name:'Tomato sauce', short:'tomatoes, simmered down', icon:'🍅', color:'#c43a22', base:'tomato', thick:'reduce', kind:'reduce', need:13, event:'splatter', scorchK:1.25,
   bases:['tomato','bstock','milk','wstock'], thicks:['reduce','white','brown','emulsion'],
   how:'Tomatoes and aromatics, simmered until they cook down and thicken. Tomato sugars scorch easily, so keep stirring the bottom.',
   tip:'Classic tomato sauce simmers tomatoes with aromatics; some versions add salt pork and stock, and older recipes also used a little roux. Today it is usually thickened just by simmering it down and puréeing it. Tomatoes are acidic, so cook them in stainless steel or another non-reactive pan, not bare aluminum or cast iron.',
@@ -2737,7 +2738,7 @@ const Sauce = (() => {
       document.querySelectorAll('.ptile').forEach(x => x.disabled = true);
       const o = kind === 'base' ? SAUCE_BASES[id] : SAUCE_THICK[id];
       $('pNote').innerHTML = `<b class="okt">✓ ${esc(o.n)}.</b> ${esc(pickWhy(kind))}`;
-      if (kind === 'base'){ surf.visible = true; surfM.color.set(sc.id === 'tomat' ? '#ffffff' : '#ffffff'); }
+      if (kind === 'base'){ surf.visible = true; surfM.color.set(sc.id === 'tomsauce' ? '#ffffff' : '#ffffff'); }
       setTimeout(() => { if (state !== 'pick') return; if (kind === 'base'){ step = 'thick'; setPrompt(); pickCard(); } else readyCard(); }, reduce.matches ? 500 : 1500);
     } else {
       R.wrong[kind]++; b.classList.add('bad'); b.disabled = true; sfx.wrong();
@@ -2746,13 +2747,13 @@ const Sauce = (() => {
     }
   }
   function pickWhy(kind){
-    if (kind === 'base') return {bechamel:'Béchamel is the milk-based mother sauce.', veloute:'Velouté starts from a light (white) stock: chicken, veal or fish.', espagnole:'Espagnole gets its deep flavour from brown stock made with roasted bones.', tomat:'Tomatoes, simmered with aromatics, are the base.', hollandaise:'Warm clarified butter is the fat the yolks hold in the emulsion.'}[sc.id];
+    if (kind === 'base') return {bechamel:'Béchamel is the milk-based mother sauce.', veloute:'Velouté starts from a light (white) stock: chicken, veal or fish.', espagnole:'Espagnole gets its deep flavour from brown stock made with roasted bones.', tomsauce:'Tomatoes, simmered with aromatics, are the base.', hollandaise:'Warm clarified butter is the fat the yolks hold in the emulsion.'}[sc.id];
     return {white:'A white roux is cooked only a couple of minutes so the sauce stays pale.', blond:'A blond roux cooks a little longer, until light golden and nutty.', brown:'Brown roux cooks until nut-brown for a deep, toasty flavour.', reduce:'No roux needed: it thickens as it simmers down, then gets puréed.', emulsion:'Egg yolks emulsify the butter into a thick, smooth sauce.'}[sc.thick];
   }
   function wrongWhy(kind, id){
     if (kind === 'base'){
       const o = SAUCE_BASES[id].n.toLowerCase();
-      return {milk:`Milk is the base of béchamel, not ${sc.name.toLowerCase()}.`, wstock:`White stock is the base of velouté.`, bstock:`Brown stock is the base of espagnole.`, tomato:`Tomatoes are the base of sauce tomat.`, butter:`Clarified butter is the base of hollandaise.`}[id] || `Not ${o}.`;
+      return {milk:`Milk is the base of béchamel, not ${sc.name.toLowerCase()}.`, wstock:`White stock is the base of velouté.`, bstock:`Brown stock is the base of espagnole.`, tomato:`Tomatoes are the base of tomato sauce.`, butter:`Clarified butter is the base of hollandaise.`}[id] || `Not ${o}.`;
     }
     return {white:'White roux is for the pale, milk-based sauce (béchamel).', blond:'Blond roux goes with light stocks (velouté).', brown:'Brown roux goes with brown stock (espagnole).', emulsion:'An egg-yolk emulsion is how hollandaise thickens, not this sauce.', reduce:'This one needs more than reducing to thicken.'}[id];
   }
@@ -2950,7 +2951,7 @@ const Sauce = (() => {
     const total = SAUCES.reduce((n, s) => n + (SC.best[s.id] || 0), 0);
     card(`<div class="kick">Level 4 complete</div><h2>Mother sauces mastered!</h2>
       <div class="kstars">🍲</div><div class="size">${total} of ${SAUCES.length*3} stars · ${SC.score.toLocaleString()} points</div>
-      <p class="how">Béchamel, velouté, espagnole, sauce tomat and hollandaise: the five mother sauces that hundreds of other sauces are built from. Baking is next.</p>
+      <p class="how">Béchamel, velouté, espagnole, tomato sauce and hollandaise: the five mother sauces that hundreds of other sauces are built from. Baking is next.</p>
       <div class="newb"><span style="font-size:22px">🥄</span> Badge: Saucier</div>
       <div class="row2"><button class="btn ghost" id="sAgain">Play again</button><button class="btn" id="sMap">Back to the map${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`, true);
     $('sAgain').onclick = () => { SC.idx = 0; SC.score = 0; save(); intro(); };
