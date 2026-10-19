@@ -7,7 +7,7 @@ def font(path,size,w=None):
         try: f.set_variation_by_axes([w])
         except Exception: pass
     return f
-PINS=[('bourbon-chicken','r-bourbon-chicken','Bourbon Chicken','Sticky, sweet and savory'),
+PINS=[('bourbon-chicken','r-bourbon-chicken-plate','Bourbon Chicken','Sticky, sweet and savory'),
 ('pellet-grill-smoked-chicken-drumsticks','h-drumsticks-plate','Smoked Chicken Drumsticks','On the pellet grill'),
 ('strawberry-lemonade-cookies','h-lemonade-cookies','Strawberry Lemonade Cookies','Bright, soft and chewy')]
 BG=(250,247,242);INK=(43,43,43);OL=(107,127,58);TE=(196,104,61)

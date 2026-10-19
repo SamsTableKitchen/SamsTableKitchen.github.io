@@ -205,7 +205,7 @@ const POSTS=[
 "type": "Recipe",
 "kicker": "Recipe · Mains",
 "title": "Bourbon Chicken",
-"desc": "Charred chicken thighs in a sticky bourbon glaze. Adapted from a recipe shared on Reddit.",
+"desc": "Chicken thighs simmered in a sticky bourbon sauce. Adapted from a recipe shared on Reddit.",
 "img": "",
 "alt": "",
 "o": 0
