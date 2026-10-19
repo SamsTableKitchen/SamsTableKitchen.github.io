@@ -3175,7 +3175,7 @@ const Bake = (() => {
     const avail = Math.max(120, Hh - topPx - botPx);
     cam.aspect = W/Hh; cam.fov = 38; cam.clearViewOffset(); cam.updateProjectionMatrix();
     const vt = Math.tan(THREE.MathUtils.degToRad(cam.fov)/2), ht = vt*cam.aspect, elev = THREE.MathUtils.degToRad(trayG.visible ? 22 : 50);
-    const ex = trayG.visible ? 13 : 11, ey = trayG.visible ? 10 : 8;
+    const ex = trayG.visible ? 13 : 16, ey = trayG.visible ? 10 : 11.5;
     const d = Math.max(ex/(2*ht), ey / (2*vt*avail/Hh));
     const c = focusPt();
     cam.position.set(c.x, c.y + Math.sin(elev)*d, c.z + Math.cos(elev)*d); cam.lookAt(c);
@@ -3299,7 +3299,9 @@ const Bake = (() => {
   }
   const inZone = () => { const g = G(); return v >= g.lo && v <= g.hi; };
   function pourOn(){ if (state !== 'play') return; holding = true; R.pourT = 0; $('bb-pour') && $('bb-pour').classList.add('on'); if (!tared) chips('The reading includes the bowl! Tare first', 'bad'); }
-  function pourOff(){ holding = false; $('bb-pour') && $('bb-pour').classList.remove('on'); }
+  function pourOff(){ const was = holding; holding = false; $('bb-pour') && $('bb-pour').classList.remove('on');
+    if (was && state === 'play' && st && st.t === 'weigh' && tared && v < 1){ const left = st.target - Math.round(v*st.max);
+      chips(left > st.tol ? `${left} g to go: tap Pour in short bursts` : left >= -st.tol ? 'On target: tap Done' : `${-left} g over: tap Done or redo`, Math.abs(left) <= st.tol ? '' : left < 0 ? 'bad' : 'warn'); } }
   function act(a){
     if (state !== 'play') return;
     const g = G();
@@ -3438,7 +3440,7 @@ const Bake = (() => {
   }
   function sim(dt){
     const g = G();
-    if (st.t === 'weigh' && holding){ R.pourT += dt; v = Math.min(1, v + dt*(0.05 + Math.min(R.pourT, 2.5)*0.12)); if (v >= 1){ pourOff(); chips('Way too much! Redo the step', 'bad'); } paint(); }
+    if (st.t === 'weigh' && holding){ R.pourT += dt; v = Math.min(1, v + dt*(0.05 + Math.min(R.pourT, 2.5)*0.12)); if (v >= 1){ pourOff(); chips('Way too much! Redo the step', 'bad'); } else if (tared){ const left = st.target - Math.round(v*st.max); chips(left > st.tol ? `${left} g to go` : left >= -st.tol ? 'Right on target: let go!' : `${-left} g over`, Math.abs(left) <= st.tol ? '' : left < 0 ? 'bad' : 'warn'); } paint(); }
     if (g.auto){ v = Math.min(1, v + dt*g.auto*(reduce.matches ? 1 : 1)); paint();
       if (v >= 1){ chips(st.g === 'proof' ? 'It collapsed!' : 'Burnt!', 'bad'); return endGauge(); }
       if (!lastTest || R.tests === 0) chips(v < g.lo ? (st.g === 'proof' ? 'Rising…' : 'Baking…') : v <= g.hi ? (st.g === 'bake' ? 'Edges look golden!' : st.g === 'proof' ? 'Looks puffy… check it' : 'Smells great… check it') : 'Hurry!', v > g.hi ? 'bad' : v >= g.lo && st.g === 'bake' ? '' : 'warn'); }
