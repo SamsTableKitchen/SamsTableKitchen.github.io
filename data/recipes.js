@@ -2,6 +2,59 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
  {
+  "url": "posts/recipes/easy-cheesy-crispy-vegan-black-bean-tacos.html",
+  "title": "Easy Cheesy Crispy Vegan Black Bean Tacos",
+  "category": "Mains",
+  "tags": [
+   "vegan",
+   "vegetarian",
+   "tacos",
+   "Mexican",
+   "black beans",
+   "quick",
+   "dinner",
+   "dairy free"
+  ],
+  "ingredients": [
+   "black beans",
+   "salsa",
+   "taco seasoning",
+   "flour tortillas",
+   "vegan cheese",
+   "vegan butter",
+   "oil"
+  ],
+  "desc": "Crispy pan-fried tacos with a black bean and salsa filling and melty vegan cheese. Recipe by Andrew Bernard at Make It Dairy Free."
+ },
+ {
+  "url": "posts/recipes/pai-huang-gua-chinese-cucumber-salad.html",
+  "title": "Pai Huang Gua (Chinese Cucumber Salad)",
+  "category": "Sides",
+  "tags": [
+   "vegan",
+   "vegetarian",
+   "salad",
+   "Chinese",
+   "cucumber",
+   "side",
+   "no cook",
+   "summer"
+  ],
+  "ingredients": [
+   "cucumber",
+   "rice vinegar",
+   "black vinegar",
+   "garlic",
+   "soy sauce",
+   "sesame oil",
+   "sugar",
+   "sesame seeds",
+   "cilantro",
+   "chili crisp"
+  ],
+  "desc": "Smashed cucumbers in a garlicky soy and vinegar dressing. Recipe by Kevin at Silk Road Recipes."
+ },
+ {
   "url": "posts/recipes/vegan-tofu-egg-salad.html",
   "title": "Vegan Tofu Egg Salad",
   "category": "Mains",
