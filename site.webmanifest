@@ -1,20 +1,27 @@
 {
- "name": "Sam's Table",
- "short_name": "Sam's Table",
- "icons": [
-  {
-   "src": "/icon-192.png",
-   "sizes": "192x192",
-   "type": "image/png"
-  },
-  {
-   "src": "/icon-512.png",
-   "sizes": "512x512",
-   "type": "image/png"
-  }
- ],
- "theme_color": "#6B7F3A",
- "background_color": "#FAF6EF",
- "display": "standalone",
- "start_url": "/"
+  "id": "/",
+  "name": "Sam's Table",
+  "short_name": "Sam's Table",
+  "description": "Simple, budget-friendly recipes, meal prep, and honest restaurant reviews from a culinary student in Las Vegas.",
+  "lang": "en-US",
+  "dir": "ltr",
+  "start_url": "/?source=app",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#6B7F3A",
+  "background_color": "#FAF7F2",
+  "categories": ["food", "lifestyle"],
+  "icons": [
+    {"src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "/icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable"},
+    {"src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ],
+  "shortcuts": [
+    {"name": "Recipes", "short_name": "Recipes", "description": "Browse every recipe", "url": "/recipes.html?source=app-shortcut", "icons": [{"src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png"}]},
+    {"name": "Meal Prep", "short_name": "Meal Prep", "description": "Make-ahead meals and weekly plans", "url": "/meal-prep.html?source=app-shortcut", "icons": [{"src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png"}]},
+    {"name": "Food Guide", "short_name": "Food Guide", "description": "Where to eat, on a map", "url": "/food-guide.html?source=app-shortcut", "icons": [{"src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png"}]},
+    {"name": "What should I make?", "short_name": "Pick for me", "description": "Let the recipe picker decide", "url": "/what-to-make.html?source=app-shortcut", "icons": [{"src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png"}]}
+  ]
 }

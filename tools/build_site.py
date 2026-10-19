@@ -4,8 +4,11 @@ Run from the site folder after adding or editing pages:  python3 tools/build_sit
 import re, json, glob, html, os, datetime, subprocess
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
+# Refresh the recipe picker data and the app (PWA) wiring on every page first.
+subprocess.run(["python3", "tools/build_picker.py"], check=True)
+subprocess.run(["python3", "tools/pwa.py"], check=True)
 SITE = "https://samstablekitchen.com"
-SKIP = {"404.html", "search.html"}
+SKIP = {"404.html", "search.html", "offline.html"}
 
 def meta(s, name):
     m = re.search(r'<meta name="%s" content="(.*?)"' % name, s)
