@@ -20,7 +20,7 @@ def text(s):
     t = html.unescape(re.sub(r'<[^>]+>', ' ', t))
     return re.sub(r'\s+', ' ', t).strip()
 
-pages = sorted(f for f in glob.glob("**/*.html", recursive=True) if f not in SKIP)
+pages = sorted(f for f in glob.glob("**/*.html", recursive=True) if f not in SKIP and not f.startswith("play/"))   # play/: unlisted previews, never indexed
 items = []
 for f in pages:
     s = open(f, encoding="utf-8").read()

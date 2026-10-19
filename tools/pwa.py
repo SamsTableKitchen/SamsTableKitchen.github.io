@@ -13,6 +13,7 @@ META = ('<!--pwa--><meta name="mobile-web-app-capable" content="yes"><meta name=
 APP = '<script src="/js/app.js" defer></script>'
 changed = 0
 for f in glob.glob('**/*.html', recursive=True):
+    if f.startswith('play/'): continue          # unlisted standalone games: no site/app wiring
     s = o = open(f, encoding='utf-8').read()
     if '</head>' not in s: continue
     s = re.sub(r'<!--pwa-->.*?<!--/pwa-->', '', s, flags=re.S)
