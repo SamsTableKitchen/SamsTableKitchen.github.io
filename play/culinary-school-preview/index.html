@@ -210,6 +210,7 @@ body.panel-open #touch,body.panel-open #prompt,body.panel-open .goal{display:non
 .badge i{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:20px;background:radial-gradient(circle at 35% 30%,#ffe7a3,#e2ac3c);box-shadow:0 3px 0 #b8862a}
 .badge.off{color:#8d8377} .badge.off i{background:#efe9df;box-shadow:0 3px 0 #ddd3c4;filter:grayscale(1);opacity:.75}
 .badge.sel i{outline:3px solid var(--terra);outline-offset:2px}
+@media (max-width:430px){ .badges{grid-template-columns:repeat(8,minmax(0,1fr));gap:8px 2px} .badge{font-size:0;gap:0} .badge i{width:38px;height:38px;font-size:19px} }
 .badgeinfo{font-size:13px;color:var(--muted);text-align:center;margin-top:8px;min-height:18px}
 #lvSheet{position:absolute;inset:0;z-index:5;display:flex;align-items:flex-end;background:rgba(43,30,20,.28);padding:0 12px calc(12px + env(safe-area-inset-bottom))}
 #lvSheet .card{width:100%;max-width:520px;margin:0 auto;padding:18px}
@@ -219,10 +220,10 @@ body.panel-open #touch,body.panel-open #prompt,body.panel-open .goal{display:non
 /* ===== knife skills ===== */
 #kpad{position:absolute;inset:0;z-index:15;touch-action:none;cursor:crosshair}
 #kfx{position:absolute;left:0;top:0;width:100%;height:100%;z-index:16;pointer-events:none}
-#knifeUI,#sauceUI{position:absolute;inset:0;z-index:20;pointer-events:none}
-#knifeUI .row,#sauceUI .row{display:flex;align-items:center;gap:8px;padding:calc(12px + env(safe-area-inset-top)) 14px 0}
-#knifeUI .row > *,#sauceUI .row > *{pointer-events:auto}
-#knifeUI .pill,#sauceUI .pill{font-size:15px;font-weight:800;padding:8px 13px;border:0;box-shadow:0 2px 0 var(--line),0 3px 10px rgba(60,40,20,.12)}
+#knifeUI,#sauceUI,#bakeUI{position:absolute;inset:0;z-index:20;pointer-events:none}
+#knifeUI .row,#sauceUI .row,#bakeUI .row{display:flex;align-items:center;gap:8px;padding:calc(12px + env(safe-area-inset-top)) 14px 0}
+#knifeUI .row > *,#sauceUI .row > *,#bakeUI .row > *{pointer-events:auto}
+#knifeUI .pill,#sauceUI .pill,#bakeUI .pill{font-size:15px;font-weight:800;padding:8px 13px;border:0;box-shadow:0 2px 0 var(--line),0 3px 10px rgba(60,40,20,.12)}
 #kTimer.low{color:#c0392b;animation:pulse 1s ease-in-out infinite}
 .kprompt{margin:10px 14px 0;display:flex;gap:12px;align-items:center;padding:12px 14px;max-width:560px}
 .kpic{width:52px;height:52px;border-radius:14px;background:#fdf0e6;display:grid;place-items:center;flex:none}
@@ -269,9 +270,16 @@ body.panel-open #touch,body.panel-open #prompt,body.panel-open .goal{display:non
 #coach .card{max-width:520px;margin:0 auto;padding:12px 14px;display:flex;gap:12px;align-items:center;pointer-events:auto;border:2px solid #f3d9b8}
 .coachtxt{flex:1;font-size:16px;line-height:1.38;font-weight:700}
 .coachtxt small{display:block;font-weight:700;color:var(--muted);font-size:14px;margin-top:2px}
-@media (min-width:700px){ .kprompt{margin:10px auto 0} #knifeUI .row,#sauceUI .row{max-width:900px;margin:0 auto} }
+@media (min-width:700px){ .kprompt{margin:10px auto 0} #knifeUI .row,#sauceUI .row,#bakeUI .row{max-width:900px;margin:0 auto} }
 body.mk #joy,body.mk #useBtn{display:none!important}
-#spad{position:absolute;inset:0;z-index:15;touch-action:none;cursor:grab}
+#spad,#bpad{position:absolute;inset:0;z-index:15;touch-action:none;cursor:grab}
+#bakeUI .kbar{pointer-events:auto;padding:10px 14px 12px}
+#bakeUI .kbarrow{align-items:center;gap:8px}
+#bakeUI .kbarrow .kchips{margin:0;min-height:0;justify-content:flex-end;font-size:12.5px;text-align:right}
+#bCtl .sbtn{padding:10px 8px;font-size:16px}
+#bCtl .sbtn.on{transform:translateY(2px);filter:brightness(.92)}
+#map .maptop .sndBtn,#map .maptop #mapBack{flex:none}
+@media (max-width:430px){ #map .maptop{gap:6px;padding-left:10px;padding-right:10px} #map .maptitle{font-size:20px} #map .pill{padding:7px 9px;font-size:13px} }
 #sauceUI .kbar{pointer-events:auto;padding:10px 14px 12px}
 #sauceUI .kbarrow{align-items:center;gap:8px}
 #sauceUI .kbarrow .kchips{margin:0;min-height:0;justify-content:flex-end;font-size:12.5px}
@@ -329,7 +337,7 @@ body.mk #joy,body.mk #useBtn{display:none!important}
   </div>
   <div class="level-card">
    <div class="num">1</div>
-   <div><b id="t-level">Food Safety · Knife Skills · Safe Kitchen II · Sauces</b><small id="t-status">4 levels to play, more coming soon</small></div>
+   <div><b id="t-level">Food Safety · Knife Skills · Safe Kitchen II · Sauces · Baking</b><small id="t-status">5 levels to play</small></div>
   </div>
   <div class="btns">
    <button class="btn" id="startBtn">Play</button>
@@ -470,6 +478,28 @@ body.mk #joy,body.mk #useBtn{display:none!important}
  <div class="kcard card" id="sCard" hidden></div>
 </div>
 
+<!-- ============ BAKING ============ -->
+<div id="bpad" hidden></div>
+<div id="bakeUI" hidden>
+ <div class="row">
+  <button class="icon-btn" id="bHome" aria-label="Back to the map">✕</button>
+  <span class="pill" id="bStep">Step 1/6</span>
+  <span class="sp"></span>
+  <span class="pill" id="bScore">⭐ 0</span>
+  <button class="icon-btn sndBtn" aria-label="Sound on">🔊</button>
+ </div>
+ <div class="kprompt card" id="bPrompt"><div class="kpic" id="bPic"></div><div style="flex:1;min-width:0"><div class="kick" id="bKick"></div><div class="ktitle" id="bTitle"></div><div class="ksub" id="bSub"></div></div></div>
+ <div class="kbar card sbar" id="bBar" hidden>
+  <div class="kbarrow"><span><span id="bLab">Scale</span> <b id="bVal">–</b></span><span class="kchips" id="bChips"></span></div>
+  <div class="gauge" id="bGauge"><div class="gband" id="bBand"></div><div class="gneedle" id="bNeedle"></div></div>
+  <div class="glabels" id="bGLab"></div>
+  <div class="smeters" id="bGluW" hidden style="grid-template-columns:1fr"><div><small>Gluten (keep it low)</small><div class="kmeter"><span id="bGlu" class="red"></span></div></div></div>
+  <div class="sctl" id="bCtl"></div>
+ </div>
+ <div id="bPops"></div>
+ <div class="kcard card" id="bCard" hidden></div>
+</div>
+
 <div id="coach" hidden><div class="card"><div class="coachtxt" id="coachTxt"></div><button class="btn ghost small" id="coachSkip">Skip tutorial</button></div></div>
 
 <div class="fx" id="fx"></div>
@@ -585,7 +615,7 @@ const LEVELS = [
  {id:'knife',  name:'Knife Skills',    icon:'🔪', kind:'knife',   sub:'Level 2'},
  {id:'sk2',    name:'Safe Kitchen II', icon:'🌡️', kind:'kitchen', sub:'Level 3'},
  {id:'sauces', name:'Sauces',          icon:'🍲', kind:'sauce',   sub:'Level 4'},
- {id:'baking', name:'Baking',          icon:'🥐', soon:true, sub:'Coming soon'},
+ {id:'baking', name:'Baking',          icon:'🥐', kind:'bake',    sub:'Level 5'},
 ];
 const BADGES = [
  {id:'clean',    name:'Clean Hands',      icon:'🧼', how:'Finish the handwashing challenge'},
@@ -602,6 +632,8 @@ const BADGES = [
  {id:'roll',     name:'On a Roll',        icon:'🎯', how:'Answer 5 questions in a row correctly'},
  {id:'saucier',  name:'Saucier',          icon:'🥄', how:'Make all five mother sauces'},
  {id:'emulsion', name:'Emulsion Expert',  icon:'🍳', how:'2 or more stars on the hollandaise without breaking it'},
+ {id:'scale',    name:'Measure Master',   icon:'⚖️', how:'Weigh the flour within 2 g for both the cookies and the bread'},
+ {id:'baker',    name:'Golden Crust',     icon:'🥐', how:'2 or more stars on all three bakes'},
 ];
 let QUESTIONS = QUESTIONS_FS;
 let NQ = QUESTIONS.filter(s => !s.type).length;
@@ -645,7 +677,8 @@ if (meta.badge && !meta.badges.includes('rookie')) meta.badges.push('rookie');
 if (RUNS.fs.washDone && !meta.badges.includes('clean')) meta.badges.push('clean');
 const KS = Object.assign({idx:0, best:{}, score:0, done:false}, saved.knife || {});
 const SC = Object.assign({idx:0, best:{}, score:0, done:false}, saved.sauce || {});
-const save = () => { try { localStorage.setItem(KEY, JSON.stringify({run:RUNS.fs, run3:RUNS.sk2, meta, knife:KS, sauce:SC})); } catch(e) {} };
+const BK = Object.assign({idx:0, best:{}, weigh:{}, score:0, done:false}, saved.bake || {});
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify({run:RUNS.fs, run3:RUNS.sk2, meta, knife:KS, sauce:SC, bake:BK})); } catch(e) {} };
 function setLevel(id){
   curLevel = id;
   QUESTIONS = id === 'sk2' ? QUESTIONS_SK2 : QUESTIONS_FS;
@@ -1728,13 +1761,13 @@ function setHUD(on){ $('hud').hidden = !on; }
 
 function renderTitle(){
   mode = 'title'; closePanel(); setHUD(false); $('results').hidden = true; $('title').hidden = false; $('prompt').hidden = true;
-  MapUI.close(); Knife.close(); Sauce.close(); coachHide();
+  MapUI.close(); Knife.close(); Sauce.close(); Bake.close(); coachHide();
   paintSound();
   $('t-xp').textContent = '⭐ ' + (meta.totalXp || 0).toLocaleString() + ' XP' + (meta.badges.length ? ` · 🏅 ${meta.badges.length}` : '');
-  const nDone = ['fs', 'knife', 'sk2', 'sauces'].filter(id => meta.done[id]).length;
+  const nDone = ['fs', 'knife', 'sk2', 'sauces', 'baking'].filter(id => meta.done[id]).length;
   $('startBtn').innerHTML = (nDone ? 'Continue' : 'Play') + (isTouch ? '' : ' <kbd>Enter</kbd>');
   $('resetBtn').hidden = true;
-  $('t-status').textContent = nDone ? `${nDone} of 4 levels done · ${meta.badges.length} of ${BADGES.length} badges` : 'Quizzes, handwashing, a cutting-board game and a stovetop sauce game · Baking coming soon';
+  $('t-status').textContent = nDone ? `${nDone} of 5 levels done · ${meta.badges.length} of ${BADGES.length} badges` : 'Quizzes, handwashing, a cutting-board game, a stovetop sauce game and a baking game';
   const r = document.querySelectorAll('.rung'); r.forEach((el, i) => el.className = i < nDone ? 'rung done' : i === nDone ? 'rung now' : 'rung');
   $('controlsHint').innerHTML = document.body.classList.contains('touch')
     ? '<span>🕹️ Joystick to walk</span><span>✋ Use button at a station</span><span>👆 Swipe to cut</span>'
@@ -2523,7 +2556,7 @@ const SAUCES = [
   how:'Tomatoes and aromatics, simmered until they cook down and thicken. Tomato sugars scorch easily, so keep stirring the bottom.',
   tip:'Classic tomato sauce simmers tomatoes with aromatics; some versions add salt pork and stock, and older recipes also used a little roux. Today it is usually thickened just by simmering it down and puréeing it. Tomatoes are acidic, so cook them in stainless steel or another non-reactive pan, not bare aluminum or cast iron.',
   safe:'Cooling a big batch? Split it into shallow pans or use an ice paddle so it moves through the temperature danger zone (41°F to 135°F) quickly.'},
- {id:'hollandaise', name:'Hollandaise', short:'egg yolks + butter emulsion', icon:'🍳', color:'#f2cd5a', base:'butter', thick:'emulsion', kind:'emulsion', need:7, pourNeed:7, event:'none',
+ {id:'hollandaise', name:'Hollandaise', short:'egg yolks + butter emulsion', icon:'🍳', color:'#f2cd5a', base:'butter', thick:'emulsion', kind:'emulsion', need:7, pourNeed:6, event:'none',
   bases:['butter','milk','wstock','tomato'], thicks:['emulsion','white','blond','reduce'],
   how:'Whisk the yolks over barely simmering water until thick and foamy, then hold Pour to drizzle in warm butter slowly while you keep whisking.',
   tip:'Hollandaise is an emulsion: egg yolks hold warm clarified butter in tiny droplets, and lemon juice adds brightness. Cook the yolks gently until they thicken, then add the butter slowly while whisking. If it breaks, whisk a fresh yolk (or a spoonful of warm water) in a clean bowl and slowly whisk the broken sauce back in.',
@@ -2653,7 +2686,7 @@ const Sauce = (() => {
       : isE() ? `Hold ${HB[0]}–${HB[1]}°F and keep whisking` : 'Hold a gentle simmer and keep stirring';
   }
   function timerText(){
-    const el = state === 'play' ? (performance.now() - tStart)/1000 : (R ? R.time : 0), left = Math.max(0, limit - el);
+    const el = state === 'play' ? R.cook : (R ? R.time : 0), left = Math.max(0, limit - el);   // game time, so slow frames don't eat the clock
     $('sTimer').textContent = `⏱ ${Math.floor(left/60)}:${String(Math.floor(left % 60)).padStart(2, '0')}`; $('sTimer').classList.toggle('low', state === 'play' && left < 6);
     return left;
   }
@@ -2673,7 +2706,7 @@ const Sauce = (() => {
     sc = SAUCES[SC.idx]; state = 'pick'; step = 'base';
     R = {score:0, wrong:{base:0, thick:0}, time:0, cook:0, inBand:0, steady:0, best:0, risk:0, prog:0, pour:0, skimmed:0, spawned:0, fail:null, stars:0};
     H = 3; L = 0.22; T = 122; stir = 0.6; pouring = false; pourRun = 0; evtT = 4; evt = null; skimT = 3;
-    limit = isE() ? 55 : sc.need + 26;
+    limit = isE() ? 60 : sc.need + 26;
     tut = !meta.tut.sauce;
     dress(); scum.forEach(f => { f.visible = false; f.userData.on = false; }); skinM.opacity = 0; surfM.color.set('#ffffff');
     $('sCombo').hidden = true; setPrompt(); timerText(); hudScore(); paintHeat();
@@ -2877,7 +2910,7 @@ const Sauce = (() => {
   function finish(fail){
     if (state !== 'play') return;
     state = 'result'; pourOff(); $('sCombo').hidden = true;
-    R.time = (performance.now() - tStart)/1000; R.fail = fail;
+    R.time = R.cook; R.fail = fail;
     const ok = !fail, frac = R.cook ? R.inBand/R.cook : 0, picks = !R.wrong.base && !R.wrong.thick;
     const skimOK = sc.event !== 'skim' || R.spawned === 0 || R.skimmed/R.spawned >= 0.7;
     let stars = ok ? (picks && frac >= 0.6 && R.risk < 0.5 && skimOK ? 3 : frac >= 0.4 ? 2 : 1) : (fail === 'time' && (isE() ? R.prog >= 1 : R.prog >= 0.5) ? 1 : 0);
@@ -2917,7 +2950,7 @@ const Sauce = (() => {
     const total = SAUCES.reduce((n, s) => n + (SC.best[s.id] || 0), 0);
     card(`<div class="kick">Level 4 complete</div><h2>Mother sauces mastered!</h2>
       <div class="kstars">🍲</div><div class="size">${total} of ${SAUCES.length*3} stars · ${SC.score.toLocaleString()} points</div>
-      <p class="how">Béchamel, velouté, espagnole, sauce tomat and hollandaise: the five mother sauces that hundreds of other sauces are built from. Baking is coming soon.</p>
+      <p class="how">Béchamel, velouté, espagnole, sauce tomat and hollandaise: the five mother sauces that hundreds of other sauces are built from. Baking is next.</p>
       <div class="newb"><span style="font-size:22px">🥄</span> Badge: Saucier</div>
       <div class="row2"><button class="btn ghost" id="sAgain">Play again</button><button class="btn" id="sMap">Back to the map${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`, true);
     $('sAgain').onclick = () => { SC.idx = 0; SC.score = 0; save(); intro(); };
@@ -2963,11 +2996,493 @@ const Sauce = (() => {
       scum: scum.filter(f => f.userData.on).map(f => project(f.position)), pan: built && sc ? project(new THREE.Vector3(0, surfY(), 0)) : null})};
 })();
 /* =====================================================================
+   LEVEL 5 · BAKING: three bakes (cookies, muffins, a simple yeast bread).
+   Each bake is a short run of steps: pick the right way (tiles) or work a
+   gauge (weigh on the scale, cream, fold, knead, proof, bake) and stop in
+   the green zone.
+   ===================================================================== */
+const BAKES = [
+ {id:'cookies', name:'Chocolate chip cookies', icon:'🍪', method:'Creaming method', color:'#c98d4f', kind:'cookie',
+  steps:[
+   {t:'pick', q:'The recipe says 250 g of flour. What’s the most accurate way to measure it?',
+    c:[['⚖️','Weigh it on a scale','tare the bowl first'],['🥄','Scoop it with the cup','pack it in tight'],['🫗','Pour it into a cup','shake it level'],['👀','Eyeball it','close enough']], a:0,
+    why:'Weighing is the most accurate. A cup scooped straight from the bag packs in extra flour, as much as 25% more, which makes dry, tough cookies.',
+    no:['','Scooping packs the flour down: you can end up with far more than the recipe wants.','Shaking a cup settles the flour, so it holds more than it should.','Baking is chemistry: small measuring errors change the texture.']},
+   {t:'weigh', name:'Flour', target:250, tol:5, max:320},
+   {t:'pick', q:'Butter for creaming with sugar should be…',
+    c:[['🧊','Straight from the fridge','hard and cold'],['🧈','Softened, about 65°F','cool, dents when pressed'],['🫕','Melted','warm and liquid'],['☀️','Very soft, 80°F+','shiny and greasy']], a:1,
+    why:'Softened butter, around 65°F, is cool to the touch and holds a dent. It traps tiny air pockets when it’s beaten with sugar.',
+    no:['Cold butter won’t whip with the sugar, so it stays lumpy and can’t hold air.','','Melted butter can’t hold air bubbles at all; it makes flat, dense cookies.','Butter this warm is greasy and the air bubbles collapse: the cookies spread too much.']},
+   {t:'gauge', g:'cream'},
+   {t:'pick', q:'What oven temperature for drop cookies like these?',
+    c:[['🌡️','250°F','low and slow'],['🌡️','350°F','moderate, preheated'],['🌡️','450°F','very hot'],['🔌','Start in a cold oven','heat it up with them inside']], a:1,
+    why:'Most drop cookies bake at about 350°F in a fully preheated oven, usually 9 to 12 minutes.',
+    no:['Too low: they dry out before they brown.','','Too hot: the bottoms burn before the middles set.','Always preheat: a cold start makes the dough spread and bake unevenly.']},
+   {t:'gauge', g:'bake'},
+  ],
+  tip:'Cream softened butter and sugar until pale and fluffy, about 3 to 5 minutes: the sugar crystals cut tiny air pockets into the butter that help cookies rise. Pull cookies when the edges are golden and the centers still look a little soft. They keep setting on the hot sheet (carryover cooking).',
+  safe:'Don’t taste raw cookie dough. Raw flour can carry E. coli, and raw eggs can carry Salmonella. Flour is a raw ingredient, even though it looks ready to eat. Cool cookies on a rack, then store them airtight at room temperature.'},
+ {id:'muffins', name:'Blueberry muffins', icon:'🧁', method:'Muffin method', color:'#e2b46a', kind:'muffin',
+  steps:[
+   {t:'pick', q:'No scale today: the recipe is in cups. How do you measure a cup of flour?',
+    c:[['🥄','Spoon it in, then level it','sweep off with a straight edge'],['🫙','Scoop and pack it down','fill it firmly'],['👊','Tap the cup to settle it','then top it off'],['⛰️','Heap it up','a rounded cup']], a:0,
+    why:'Fluff the flour, spoon it into the cup without pressing, then sweep the top level with the back of a knife. That gets you close to the recipe’s weight.',
+    no:['','Packing pushes extra flour in, so the muffins come out dry and heavy.','Tapping settles the flour, so the cup holds more than it should.','A heaped cup can be a quarter more flour than the recipe means.']},
+   {t:'gauge', g:'level'},
+   {t:'pick', q:'Muffin method: you’ve whisked the dry and wet ingredients separately. Now…',
+    c:[['🥄','Fold wet into dry, just combined','a few lumps are fine'],['🌀','Beat until silky smooth','no lumps at all'],['⚡','Use the mixer on high','for 3 minutes'],['🧈','Cream butter and sugar first','until fluffy']], a:0,
+    why:'Gently fold the wet into the dry only until no dry flour shows. A lumpy batter means tender muffins.',
+    no:['','Beating it smooth builds gluten: the muffins turn out tough with long tunnels inside.','High-speed mixing overworks the batter and builds gluten.','That’s the creaming method, for cakes and cookies. Muffins use the quicker muffin method.']},
+   {t:'gauge', g:'fold'},
+   {t:'pick', q:'Oven for muffins?',
+    c:[['🌡️','300°F','gentle'],['🌡️','375°F','preheated'],['🌡️','500°F','blazing'],['🔥','Broil','top heat only']], a:1,
+    why:'Muffins usually bake at about 375°F to 400°F. The quick burst of heat gives them a domed top.',
+    no:['Too cool: they stay pale and flat, and won’t dome.','','The outside burns long before the middle sets.','Broiling only browns the top and leaves the centers raw.']},
+   {t:'gauge', g:'pick'},
+  ],
+  tip:'For quick breads and muffins, mix wet into dry just until no dry flour shows. Lumps are fine. Overmixing develops gluten, which makes tough muffins with tunnels. They’re done when a toothpick in the center comes out clean or with a few moist crumbs, and the tops spring back when pressed.',
+  safe:'Batter with raw eggs and raw flour isn’t safe to taste. Wash your hands after handling it. Cool muffins in the pan for 5 minutes, then on a rack. Keep them airtight at room temperature for a couple of days, or freeze them for longer.'},
+ {id:'bread', name:'Simple white bread', icon:'🍞', method:'Yeast dough', color:'#e7c48a', kind:'bread',
+  steps:[
+   {t:'pick', q:'You’re blooming active dry yeast in water. How warm should the water be?',
+    c:[['🧊','40°F','ice cold'],['💧','About 105–110°F','warm, like a bath'],['♨️','140°F','hot'],['🫖','Boiling','212°F']], a:1,
+    why:'Active dry yeast likes lukewarm water around 105°F to 110°F. It should foam in about 5 to 10 minutes.',
+    no:['Cold water keeps the yeast sluggish, so the dough barely rises.','','Yeast starts dying around 130°F to 140°F, and then there’s no rise.','Boiling water kills yeast instantly.']},
+   {t:'weigh', name:'Bread flour', target:500, tol:8, max:620},
+   {t:'gauge', g:'knead'},
+   {t:'gauge', g:'proof'},
+   {t:'pick', q:'Oven for a sandwich loaf?',
+    c:[['🌡️','275°F','low'],['🌡️','375°F','preheated'],['🌡️','525°F','very hot'],['🔌','Cold oven','no preheat']], a:1,
+    why:'An enriched sandwich loaf usually bakes at about 350°F to 375°F. Crusty lean breads go hotter.',
+    no:['Too low: it dries out with a pale crust.','','The crust burns before the middle bakes through.','Preheat first, so the loaf gets its oven spring.']},
+   {t:'gauge', g:'probe'},
+  ],
+  tip:'Knead until the dough is smooth and stretchy: a small piece should stretch thin enough to see light through without tearing (the windowpane test). Proof until it’s about doubled. A floured finger poke should spring back slowly and leave a small dent. Bake until it’s golden and about 190°F in the center.',
+  safe:'Don’t taste raw dough, because flour is a raw ingredient. Let bread cool completely on a rack before you slice and wrap it, or trapped steam makes it soggy and moldy. Store it at room temperature for a few days, or freeze it.'},
+];
+/* gauge steps: the bar runs 0..1; green zone [lo, hi]; inputs add to it, or it runs on its own (auto) */
+const BAKE_G = {
+  cream:{icon:'🧈', title:'Cream the butter and sugar', sub:'Mix until pale and fluffy, then tap Done', lab:'Creaming', lo:0.62, hi:0.86, ends:['grainy','light & fluffy','greasy, too warm'],
+    how:'Drag circles in the bowl or tap Mix. Watch it go from yellow and grainy to pale and fluffy. Stop in the green zone: beat too long and the butter warms up and turns greasy.',
+    btns:[['mix','🥄 Mix','olive'],['done','✓ Done','']], add:{mix:0.07}, read:v => v < 0.62 ? 'Grainy' : v <= 0.86 ? 'Light & fluffy' : 'Greasy', unit:''},
+  level:{icon:'🥣', title:'Level off the cup', sub:'Spoon flour in, then sweep it level', lab:'Cup', lo:0.92, hi:1.06, ends:['not full','level','heaped'], max:1.3,
+    how:'Tap Spoon to spoon flour lightly into the cup until it’s just over the top, then tap Level to sweep off the extra with a straight edge. Don’t pack it down.',
+    btns:[['spoon','🥄 Spoon','olive'],['pack','👊 Pack','ghost'],['level','🔪 Level','']], add:{spoon:0.12}, read:v => Math.round(v*125) + ' g', unit:'g'},
+  fold:{icon:'🫐', title:'Fold wet into dry', sub:'Stop when just combined: lumps are fine', lab:'Mixed', lo:0.68, hi:0.88, ends:['dry flour','just combined','overmixed'],
+    how:'Tap Fold for gentle turns with the spatula, or drag across the bowl. Stop as soon as no dry flour shows, then tap Done. Stirring hard builds gluten, which makes tough muffins.',
+    btns:[['fold','🥄 Fold','olive'],['stir','🌀 Stir hard','ghost'],['done','✓ Done','']], add:{fold:0.08, stir:0.15}, read:v => v < 0.68 ? 'Dry streaks' : v <= 0.88 ? 'Just combined' : 'Overmixed', unit:''},
+  knead:{icon:'🤲', title:'Knead the dough', sub:'Knead, then do the windowpane test', lab:'Gluten', lo:0.8, hi:1.01, ends:['shaggy','smooth & stretchy',''],
+    how:'Drag back and forth on the dough or tap Knead to push, fold and turn. When it feels smooth, tap Windowpane: stretch a small piece thin. If light shows through without tearing, it’s ready.',
+    btns:[['knead','🤲 Knead','olive'],['test','🔍 Windowpane','']], add:{knead:0.055}, read:v => v < 0.4 ? 'Shaggy' : v < 0.8 ? 'Getting smoother' : 'Smooth & stretchy', unit:''},
+  proof:{icon:'⏲️', title:'Proof the dough', sub:'Let it rise until about doubled', lab:'Rise', lo:0.72, hi:0.88, ends:['just started','doubled','over-proofed'], auto:0.075,
+    how:'The covered dough rises in a warm spot. Tap Poke test to check it. When a floured finger leaves a dent that springs back slowly, tap Shape & bake. Wait too long and it over-proofs and collapses.',
+    btns:[['test','👆 Poke test','olive'],['done','✓ Shape & bake','']], read:v => Math.round(100 + v*130) + '%', unit:''},
+  bake:{icon:'🔥', title:'Bake at 350°F', sub:'Pull them when the edges are golden', lab:'Doneness', lo:0.62, hi:0.8, ends:['raw','edges golden','burnt'], auto:0.085,
+    how:'Watch the cookies through the oven window. Take them out when the edges are golden and the centers still look a little soft. They finish setting on the hot sheet.',
+    btns:[['done','🧤 Take out','']], read:v => v < 0.35 ? 'Pale & raw' : v < 0.62 ? 'Setting' : v <= 0.8 ? 'Edges golden' : v < 0.92 ? 'Too dark' : 'Burnt', unit:''},
+  pick:{icon:'🪥', title:'Bake at 375°F', sub:'Toothpick test, then take them out', lab:'Doneness', lo:0.64, hi:0.82, ends:['raw','moist crumbs','dry'], auto:0.08,
+    how:'Tap Toothpick to poke the center of a muffin. Wet batter means not yet. A clean pick, or one with a few moist crumbs, means take them out.',
+    btns:[['test','🪥 Toothpick','olive'],['done','🧤 Take out','']], read:v => v < 0.64 ? 'Baking' : v <= 0.82 ? 'Domed & golden' : 'Drying out', unit:''},
+  probe:{icon:'🌡️', title:'Bake at 375°F', sub:'Probe the center: about 190°F', lab:'Inside', lo:0.71, hi:0.86, ends:['raw','190–200°F','dry'], auto:0.07,
+    how:'Tap Probe to check the middle of the loaf with an instant-read thermometer. Take it out at about 190°F to 200°F, when it’s golden and sounds hollow when you tap the bottom.',
+    btns:[['test','🌡️ Probe','olive'],['done','🧤 Take out','']], read:v => Math.round(70 + v*170) + '°F', unit:''},
+};
+const Bake = (() => {
+  let built = false, bs, cam, bowlG, fill, fillM, scaleG, scaleScr, cupG, cupFill, ovenG, ovenWin, winM, trayG, items = [], doughG, dough, doughM, wpp = 0.01;
+  let bk = null, si = 0, st = null, state = 'off', R = null, v = 0, gluten = 0, holding = false, tared = false, tut = false, spin = 0, lastTest = '';
+  const mats = {};
+  const M = (c, o={}) => mats[c+JSON.stringify(o)] || (mats[c+JSON.stringify(o)] = new THREE.MeshStandardMaterial({color:c, roughness:o.r ?? 0.6, metalness:o.m ?? 0, envMapIntensity:o.e ?? 0.5, side:o.side ?? THREE.FrontSide}));
+  const Z = () => window.UIZ || 1;
+  function scrTex(txt){
+    const [c, g] = cnv(256, 96); g.fillStyle = '#cfe0c4'; g.fillRect(0, 0, 256, 96);
+    g.fillStyle = '#26321f'; g.font = 'bold 60px ui-monospace,Menlo,monospace'; g.textAlign = 'right'; g.textBaseline = 'middle'; g.fillText(txt, 236, 52);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+  }
+  function build(){
+    built = true;
+    bs = new THREE.Scene(); bs.background = new THREE.Color('#efe2cc'); bs.environment = scene.environment; bs.environmentIntensity = 0.5;
+    bs.add(new THREE.HemisphereLight('#fff4e6', '#b99a7c', 1.3));
+    const key = new THREE.DirectionalLight('#fff0dc', 2.0); key.position.set(-6, 16, 9); bs.add(key);
+    cam = new THREE.PerspectiveCamera(38, 1, 0.1, 200);
+    // butcher-block counter, tiled back wall
+    const top = new THREE.Mesh(roundBoxGeo(40, 1.2, 24, 0.5, 4), M('#d9b383', {r:0.75})); top.position.y = -0.6; bs.add(top);
+    const wall = new THREE.Mesh(new THREE.PlaneGeometry(60, 30), M('#f6efe3', {r:0.9})); wall.position.set(0, 10, -11); bs.add(wall);
+    // oven on the back right
+    ovenG = new THREE.Group(); ovenG.position.set(9.5, 0, -6.5); bs.add(ovenG);
+    const ob = new THREE.Mesh(roundBoxGeo(11, 9, 6, 0.6, 4), M('#efe3cf', {r:0.5})); ob.position.set(0, 4.5, -0.6); ob.scale.z = 0.8; ovenG.add(ob);
+    [[0, 6.15, 9.4, 1.1], [0, 1.05, 9.4, 1.1], [-4.15, 3.6, 1.1, 6], [4.15, 3.6, 1.1, 6]].forEach(([x, y, w, h]) => { const d = new THREE.Mesh(roundBoxGeo(w, h, 0.5, 0.2, 3), M('#e4d6bf', {r:0.5})); d.position.set(x, y, 3.1); ovenG.add(d); });
+    winM = new THREE.MeshStandardMaterial({color:'#3a2a20', emissive:'#ff9a3c', emissiveIntensity:0.15, roughness:0.2, transparent:true, opacity:0.35, depthWrite:false});
+    const cav = new THREE.Mesh(new THREE.BoxGeometry(8.6, 5.2, 4.6), new THREE.MeshStandardMaterial({color:'#4a3326', emissive:'#ff8a30', emissiveIntensity:0.35, roughness:0.8, side:THREE.BackSide})); cav.position.set(0, 3.8, 0.8); ovenG.add(cav); ovenG.userData.cav = cav;
+    ovenWin = new THREE.Mesh(roundBoxGeo(6.8, 3.4, 0.1, 0.4, 3), winM); ovenWin.position.set(0, 3.8, 3.28); ovenG.add(ovenWin);
+    const hd = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.22, 7, 12), M('#c9ccd1', {m:0.8, r:0.3})); hd.rotation.z = Math.PI/2; hd.position.set(0, 6.9, 3.5); ovenG.add(hd);
+    for (let i=0;i<3;i++){ const k = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.45, 0.4, 20), M('#2c2c30', {r:0.4})); k.rotation.x = Math.PI/2; k.position.set(-3 + i*3, 8.1, 3.1); ovenG.add(k); }
+    // kitchen scale + mixing bowl (front left)
+    scaleG = new THREE.Group(); scaleG.position.set(-2.5, 0, 1.5); bs.add(scaleG);
+    const sb = new THREE.Mesh(roundBoxGeo(8.4, 0.9, 8, 0.4, 4), M('#f4f1ec', {r:0.4})); sb.position.y = 0.45; scaleG.add(sb);
+    const plat = new THREE.Mesh(new THREE.CylinderGeometry(3.4, 3.4, 0.2, 40), M('#d3d7dc', {r:0.3, m:0.8})); plat.position.y = 1.0; scaleG.add(plat);
+    scaleScr = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 1.35), new THREE.MeshBasicMaterial({map:scrTex('0 g'), toneMapped:false}));
+    scaleScr.position.set(0, 0.92, 4.02); scaleScr.rotation.x = -0.35; scaleG.add(scaleScr);
+    bowlG = new THREE.Group(); bs.add(bowlG);
+    const prof = [[0,0],[1.6,0.05],[2.9,0.8],[3.7,2.2],[4.05,3.5],[4.15,3.6],[4.0,3.5]].map(([r,y]) => new THREE.Vector2(r, y));
+    bowlG.add(new THREE.Mesh(new THREE.LatheGeometry(prof, 56), M('#a9c2b4', {r:0.35, side:THREE.DoubleSide})));
+    fillM = new THREE.MeshStandardMaterial({color:'#f5efe2', roughness:0.9});
+    fill = new THREE.Mesh(new THREE.SphereGeometry(1, 40, 20, 0, Math.PI*2, 0, Math.PI/2), fillM); bowlG.add(fill);
+    // measuring cup
+    cupG = new THREE.Group(); bs.add(cupG);
+    const cprof = [[0,0],[1.9,0],[2.05,0.1],[2.2,2.6],[2.28,2.7]].map(([r,y]) => new THREE.Vector2(r, y));
+    cupG.add(new THREE.Mesh(new THREE.LatheGeometry(cprof, 48), M('#d3d7dc', {r:0.3, m:0.85, side:THREE.DoubleSide})));
+    const ch = new THREE.Mesh(roundBoxGeo(3.4, 0.35, 0.9, 0.15, 3), M('#d3d7dc', {r:0.3, m:0.85})); ch.position.set(3.6, 2.4, 0); cupG.add(ch);
+    cupFill = new THREE.Mesh(new THREE.SphereGeometry(1, 36, 16, 0, Math.PI*2, 0, Math.PI/2), M('#f7f2e8', {r:0.95})); cupG.add(cupFill);
+    // dough ball on the floured counter
+    doughG = new THREE.Group(); bs.add(doughG);
+    const flour = new THREE.Mesh(new THREE.CircleGeometry(5, 40), new THREE.MeshBasicMaterial({map:radialTex('rgba(255,255,255,.85)', 'rgba(255,255,255,0)'), transparent:true, depthWrite:false}));
+    flour.rotation.x = -Math.PI/2; flour.position.y = 0.02; doughG.add(flour);
+    doughM = new THREE.MeshStandardMaterial({color:'#f1dfbd', roughness:0.8});
+    dough = new THREE.Mesh(new THREE.SphereGeometry(2.4, 40, 24), doughM); doughG.add(dough);
+    // baking tray (front right) with cookies / muffins / loaf
+    trayG = new THREE.Group(); trayG.position.set(2.5, 0, 2.2); bs.add(trayG);
+    const tr = new THREE.Mesh(roundBoxGeo(12, 0.3, 8, 0.15, 3), M('#b8bcc2', {r:0.35, m:0.7})); tr.position.y = 0.15; trayG.add(tr);
+  }
+  function dressTray(){
+    items.forEach(m => trayG.remove(m)); items = [];
+    const mk = (geo, x, z, sy) => { const m = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({color:'#f2dcb3', roughness:0.75})); m.position.set(x, 0.3, z); m.userData.sy = sy; trayG.add(m); items.push(m); };
+    if (bk.kind === 'cookie'){ const g = new THREE.CylinderGeometry(1.25, 1.35, 0.5, 28); g.translate(0, 0.25, 0); for (let i=0;i<6;i++) mk(g, -3.6 + (i%3)*3.6, -1.8 + Math.floor(i/3)*3.6, 1); }
+    else if (bk.kind === 'muffin'){ const g = new THREE.SphereGeometry(1.35, 28, 16, 0, Math.PI*2, 0, Math.PI/2); for (let i=0;i<6;i++){ mk(g, -3.6 + (i%3)*3.6, -1.8 + Math.floor(i/3)*3.6, 1);
+        const cup = new THREE.Mesh(new THREE.CylinderGeometry(1.35, 1.0, 1.1, 24, 1, true), M('#8fb0d8', {r:0.7, side:THREE.DoubleSide})); cup.position.set(-3.6 + (i%3)*3.6, 0.85, -1.8 + Math.floor(i/3)*3.6); trayG.add(cup); items.push(cup); } }
+    else { const g = roundBoxGeo(7, 2.6, 3.6, 1.1, 4); g.translate(0, 1.3, 0); mk(g, 0, 0, 1); const pan = new THREE.Mesh(roundBoxGeo(7.6, 1.6, 4.2, 0.2, 3), M('#8a8f96', {r:0.35, m:0.75})); pan.position.set(0, 1.0, 0); trayG.add(pan); items.push(pan); }
+  }
+  /* which props show for a step */
+  function stage(){
+    const g = st && st.t === 'gauge' ? st.g : st && st.t === 'weigh' ? 'weigh' : 'pick';
+    const oven = g === 'bake' || g === 'pick' || g === 'probe' || g === 'done';
+    scaleG.visible = g === 'weigh';
+    bowlG.visible = !oven && g !== 'level' && g !== 'knead' && g !== 'proof';
+    bowlG.position.set(scaleG.visible ? -2.5 : -2.5, scaleG.visible ? 1.1 : 0, 1.5);
+    cupG.visible = g === 'level'; cupG.position.set(-1.5, 0, 1.5);
+    doughG.visible = g === 'knead' || g === 'proof'; doughG.position.set(-1.5, 0, 1.5);
+    trayG.visible = oven; trayG.position.set(oven ? 9.5 : 2.5, oven ? 1.6 : 0, oven ? -5.4 : 2.2); trayG.scale.setScalar(oven ? 0.62 : 1);
+    ovenG.visible = true;
+    frameCam();
+  }
+  function focusPt(){ return trayG.visible ? new THREE.Vector3(9.5, 3.6, -4) : new THREE.Vector3(-1.8, 1.8, 1.5); }
+  /* ---------- camera ---------- */
+  function frameCam(){
+    if (!built) return;
+    const W = innerWidth, Hh = innerHeight, z = Z();
+    const prompt = $('bPrompt').getBoundingClientRect();
+    let topPx = prompt.bottom + 8*z, botPx = $('bBar').hidden ? 12*z : Hh - $('bBar').getBoundingClientRect().top + 8*z;
+    if (!$('bCard').hidden) botPx = Math.max(botPx, Hh - $('bCard').getBoundingClientRect().top + 8*z);
+    const avail = Math.max(120, Hh - topPx - botPx);
+    cam.aspect = W/Hh; cam.fov = 38; cam.clearViewOffset(); cam.updateProjectionMatrix();
+    const vt = Math.tan(THREE.MathUtils.degToRad(cam.fov)/2), ht = vt*cam.aspect, elev = THREE.MathUtils.degToRad(trayG.visible ? 22 : 50);
+    const ex = trayG.visible ? 13 : 11, ey = trayG.visible ? 10 : 8;
+    const d = Math.max(ex/(2*ht), ey / (2*vt*avail/Hh));
+    const c = focusPt();
+    cam.position.set(c.x, c.y + Math.sin(elev)*d, c.z + Math.cos(elev)*d); cam.lookAt(c);
+    cam.setViewOffset(W, Hh, 0, -(topPx - botPx)/2, W, Hh); cam.updateProjectionMatrix(); cam.updateMatrixWorld();
+    wpp = 2*d*vt/Hh;
+  }
+  function resize(){ if (built && state !== 'off') frameCam(); }
+  /* ---------- UI helpers ---------- */
+  function chips(t, c){ $('bChips').innerHTML = t ? `<span class="${c || ''}">${esc(t)}</span>` : ''; }
+  function pop(big, small, miss){
+    const d = document.createElement('div'); d.className = 'kpop' + (miss ? ' miss' : ''); const r = $('bBar').getBoundingClientRect();
+    d.style.left = (innerWidth/2/Z()) + 'px'; d.style.top = ((r.top || innerHeight*0.6)/Z() - 40) + 'px';
+    d.innerHTML = `<b>${esc(big)}</b>${small ? `<small>${esc(small)}</small>` : ''}`; $('bPops').appendChild(d); setTimeout(() => d.remove(), 1000);
+  }
+  function card(html, noPrompt){ const c = $('bCard'); c.innerHTML = html; c.hidden = false; c.scrollTop = 0; $('bBar').hidden = true; $('bPrompt').style.visibility = noPrompt ? 'hidden' : ''; frameCam(); }
+  function hideCard(){ $('bCard').hidden = true; $('bBar').hidden = false; $('bPrompt').style.visibility = ''; frameCam(); }
+  const total = () => BK.score + (R ? R.score : 0);
+  function hudScore(){ $('bScore').textContent = '⭐ ' + Math.round(total()).toLocaleString(); $('bStep').textContent = `Step ${si + 1}/${bk.steps.length}`; }
+  function setPrompt(icon, title, sub){
+    $('bPic').innerHTML = `<span style="font-size:30px">${icon}</span>`;
+    $('bKick').textContent = `Bake ${BK.idx + 1} of ${BAKES.length} · ${bk.method}`;
+    $('bTitle').textContent = title; $('bSub').textContent = sub;
+  }
+  /* ---------- flow ---------- */
+  function open(){
+    if (!built) build();
+    if (BK.idx >= BAKES.length) BK.idx = 0;
+    mode = 'bake'; document.body.classList.add('mk'); setHUD(false); $('title').hidden = true; $('results').hidden = true; $('prompt').hidden = true; closePanel();
+    $('bakeUI').hidden = false; $('bpad').hidden = false; paintSound();
+    intro();
+  }
+  function close(){ state = 'off'; holding = false; if ($('bakeUI')) { $('bakeUI').hidden = true; $('bpad').hidden = true; } }
+  function toMap(){ close(); MapUI.open(); }
+  function intro(){
+    bk = BAKES[BK.idx]; si = 0; R = {score:0, pts:0, max:0, firstTry:0, picks:0, weighs:[], notes:[]};
+    tut = !meta.tut.bake; dressTray();
+    st = null; stage(); hudScore();
+    setPrompt(bk.icon, bk.name, bk.method);
+    card(`<div class="kick">Level 5 · Baking · Bake ${BK.idx + 1} of ${BAKES.length}</div><h2>${bk.icon} ${esc(bk.name)}</h2>
+      <div class="size">${esc(bk.method)} · ${bk.steps.length} steps</div>
+      <p class="how">${BK.idx === 0 ? 'Baking is about accuracy: measure carefully, mix the right way, and know when it’s done. ' : ''}Pick the right technique, then work each step and stop in the <b style="color:var(--olive)">green zone</b>.</p>
+      <div class="row2"><button class="btn ghost" id="bBack">Map</button><button class="btn" id="bGo">Let’s bake${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`);
+    state = 'intro';
+    $('bGo').onclick = () => { sfx.tap(); runStep(); }; $('bBack').onclick = () => toMap();
+  }
+  function runStep(){
+    st = bk.steps[si]; stage(); hudScore();
+    if (st.t === 'pick') return pickCard();
+    return gaugeIntro();
+  }
+  function nextStep(){ si++; if (si >= bk.steps.length) return finish(); runStep(); }
+  /* ---------- pick steps ---------- */
+  function shuffledIdx(n){ const a = [...Array(n).keys()]; let s = BK.idx*11 + si*5 + 7; for (let i=n-1;i>0;i--){ s = (s*16807) % 2147483647; const j = s % (i+1); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+  function pickCard(){
+    state = 'pick'; R.wrongNow = 0; R.max += 2;
+    setPrompt('🤔', 'Pick the right way', `Step ${si + 1} of ${bk.steps.length}`);
+    const order = shuffledIdx(st.c.length);
+    card(`<div class="kick">${esc(bk.name)} · Step ${si + 1} of ${bk.steps.length}</div>
+      <p class="how" style="margin:6px 0 10px;font-weight:700">${esc(st.q)}</p>
+      <div class="ptiles">${order.map((k, i) => { const [ic, n, s] = st.c[k]; return `<button class="ptile" data-k="${k}"><i>${ic}</i><span><b>${isTouch ? '' : `<kbd>${i+1}</kbd> `}${esc(n)}</b><small>${esc(s)}</small></span></button>`; }).join('')}</div>
+      <div class="pnote" id="bNote"></div>
+      <div class="row2" style="margin-top:10px"><button class="btn ghost" id="bBack">Map</button></div>`);
+    document.querySelectorAll('#bCard .ptile').forEach(b => b.onclick = () => choose(b));
+    $('bBack').onclick = () => toMap();
+  }
+  function choose(b){
+    if (state !== 'pick' || b.disabled) return;
+    const k = +b.dataset.k;
+    if (k === st.a){
+      b.classList.add('ok'); sfx.right(); const first = !R.wrongNow; R.score += first ? 150 : 50; R.pts += first ? 2 : 1; if (first) R.firstTry++; R.picks++; hudScore();
+      document.querySelectorAll('#bCard .ptile').forEach(x => x.disabled = true);
+      $('bNote').innerHTML = `<b class="okt">✓ Right.</b> ${esc(st.why)}`;
+      state = 'pickwait';
+      const nb = document.createElement('div'); nb.className = 'row2'; nb.style.marginTop = '10px'; nb.innerHTML = `<button class="btn" id="bNext">Next →${isTouch ? '' : ' <kbd>Enter</kbd>'}</button>`;
+      $('bCard').appendChild(nb); $('bNext').onclick = () => { sfx.tap(); nextStep(); };
+      $('bCard').scrollTop = 1e5;
+    } else {
+      R.wrongNow++; b.classList.add('bad'); b.disabled = true; sfx.wrong();
+      $('bNote').innerHTML = `<b class="badt">Not quite.</b> ${esc(st.no[k] || '')}`;
+    }
+  }
+  /* ---------- gauge steps (incl. weighing) ---------- */
+  function G(){
+    if (st.t === 'weigh') return {icon:'⚖️', title:`Weigh ${st.target} g of ${st.name.toLowerCase()}`, sub:'Tare the bowl, then hold Pour', lab:'Scale', lo:(st.target - st.tol)/st.max, hi:(st.target + st.tol)/st.max,
+      ends:['0 g', `${st.target} g`, `${st.max} g`], btns:[['tare','0 Tare','ghost'],['pour','🫗 Hold to pour','olive'],['done','✓ Done','']],
+      how:`The empty bowl is on the scale. Tap <b>Tare</b> to zero it, so you only weigh the flour. Then hold <b>Pour</b>${isTouch ? '' : ' (or hold Space)'} and let go near ${st.target} g. It pours faster the longer you hold, so finish with short taps.`,
+      read:() => grams() + ' g'};
+    return BAKE_G[st.g];
+  }
+  const BOWL = 412;  // empty bowl weight in grams
+  const grams = () => Math.round(v*st.max + (tared ? 0 : BOWL));
+  function gaugeIntro(){
+    const g = G(); state = 'ready'; R.max += 2;
+    v = st.t === 'gauge' && st.g === 'level' ? 0 : 0; gluten = 0; tared = false; holding = false; lastTest = ''; R.tests = 0;
+    setPrompt(g.icon, g.title, g.sub); paint();
+    const show = tut || si === 1 || st.t === 'weigh' || g.auto;
+    card(`<div class="kick">${esc(bk.name)} · Step ${si + 1} of ${bk.steps.length}</div><h2>${esc(g.title)}</h2>
+      <p class="how">${g.how}</p>
+      <div class="row2"><button class="btn ghost" id="bBack">Map</button><button class="btn" id="bGo">Start${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`);
+    $('bGo').onclick = () => go(); $('bBack').onclick = () => toMap();
+  }
+  function go(){
+    if (state !== 'ready') return;
+    sfx.tap(); state = 'play'; hideCard();
+    if (tut){ meta.tut.bake = true; save(); tut = false; }
+    const g = G();
+    $('bLab').textContent = g.lab;
+    $('bCtl').innerHTML = g.btns.map(([id, t, c]) => `<button class="btn ${c} sbtn" id="bb-${id}" data-a="${id}">${t}</button>`).join('');
+    document.querySelectorAll('#bCtl .btn').forEach(b => {
+      const a = b.dataset.a;
+      if (a === 'pour'){ b.addEventListener('pointerdown', e => { e.preventDefault(); pourOn(); }); ['pointerup','pointercancel','pointerleave','lostpointercapture'].forEach(ev => b.addEventListener(ev, pourOff)); b.addEventListener('contextmenu', e => e.preventDefault()); }
+      else b.onclick = () => act(a);
+    });
+    $('bGluW').hidden = !(st.t === 'gauge' && st.g === 'fold');
+    const lo = g.lo*100, hi = Math.min(1, g.hi)*100;
+    $('bBand').style.left = lo + '%'; $('bBand').style.width = (hi - lo) + '%';
+    $('bGauge').style.background = `linear-gradient(90deg,#f1e6d3 0%,#f1e6d3 ${lo}%,#dfe9c9 ${lo}%,#dfe9c9 ${hi}%,#f4c3b5 ${hi}%,#f4c3b5 100%)`;
+    $('bGLab').innerHTML = `<span style="left:0">${esc(g.ends[0])}</span><span style="left:${(lo+hi)/2}%">${esc(g.ends[1])}</span><span style="left:100%">${esc(g.ends[2])}</span>`;
+    chips(st.t === 'weigh' ? 'Tare the bowl first' : g.auto ? 'Keep an eye on it' : 'Go!', 'warn');
+    R.t0 = 0; paint();
+  }
+  const inZone = () => { const g = G(); return v >= g.lo && v <= g.hi; };
+  function pourOn(){ if (state !== 'play') return; holding = true; R.pourT = 0; $('bb-pour') && $('bb-pour').classList.add('on'); if (!tared) chips('The reading includes the bowl! Tare first', 'bad'); }
+  function pourOff(){ holding = false; $('bb-pour') && $('bb-pour').classList.remove('on'); }
+  function act(a){
+    if (state !== 'play') return;
+    const g = G();
+    if (a === 'tare'){ if (v > 0.01){ sfx.nope(); chips('Tare before you add the flour', 'warn'); return; } tared = true; sfx.tick(); chips('Zeroed: now hold Pour', ''); paint(); return; }
+    if (a === 'done') return endGauge();
+    if (a === 'test') return test();
+    if (a === 'pack'){ v = Math.min(g.max || 1.3, v + 0.12); R.packed = true; sfx.nope(); chips('Packing squeezes in extra flour!', 'bad'); paint(); return; }
+    if (a === 'level'){ if (v < 0.92){ sfx.nope(); chips('Fill it to just over the top first', 'warn'); return; } v = R.packed ? 1.03 + 0.12*Math.random()*0 + 0.15 : 1.0; spin = 0; sfx.slice(); return endGauge(); }
+    if (g.add && g.add[a] != null){ addMix(g.add[a]*(a === 'stir' ? 1 : 1)); if (a === 'stir') gluten = Math.min(1, gluten + 0.2); if (a === 'fold') gluten = Math.min(1, gluten + 0.02); }
+  }
+  function addMix(d){ const g = G(); v = Math.min(g.max || 1.05, v + d); spin += d*8; sfx.tick(); paint(); }
+  function test(){
+    const g = G(); R.tests++; sfx.tap(); let t;
+    if (st.g === 'knead'){ if (v >= g.lo){ t = 'Light shows through and it doesn’t tear. Ready!'; chips(t, ''); return endGauge(); } t = 'It tears: keep kneading'; v = Math.max(0, v - 0.02); }
+    else if (st.g === 'proof') t = v < 0.5 ? 'It springs right back: needs more time' : v < g.lo ? 'Springs back fairly fast: almost there' : v <= g.hi ? 'Springs back slowly, leaves a small dent: ready!' : 'The dent stays and it sighs: over-proofed';
+    else if (st.g === 'pick') t = v < 0.45 ? 'Wet batter on the pick: not yet' : v < g.lo ? 'Sticky crumbs: a little longer' : v <= g.hi ? 'A few moist crumbs: done!' : 'Totally dry: getting overbaked';
+    else if (st.g === 'probe') t = `Center reads ${Math.round(70 + v*170)}°F` + (v < g.lo ? ': not yet' : v <= g.hi ? ': done!' : ': over');
+    lastTest = t; chips(t, v >= g.lo && v <= g.hi ? '' : 'warn');
+  }
+  function endGauge(){
+    if (state !== 'play') return;
+    pourOff(); state = 'stepdone';
+    const g = G(), ok = inZone();
+    let pts = ok ? 2 : (Math.abs(v - (v < g.lo ? g.lo : g.hi)) < 0.08 ? 1 : 0), msg, good;
+    if (st.t === 'weigh'){
+      const gr = Math.round(v*st.max), off = Math.abs(gr - st.target);
+      pts = tared ? (off <= 2 ? 2 : off <= st.tol ? 2 : off <= st.tol*3 ? 1 : 0) : 0;
+      R.weighs.push(tared ? off : 999);
+      msg = !tared ? `You never tared the bowl, so the reading included the ${BOWL} g bowl. Always zero the scale with the empty container on it.` : off <= st.tol ? `${gr} g: spot on (${off ? off + ' g off' : 'exact'}).` : `${gr} g: ${off} g ${gr > st.target ? 'over' : 'under'}. Too much flour makes it dry; too little and it spreads.`;
+      good = pts === 2;
+    } else if (st.g === 'level'){
+      pts = R.packed ? 0 : 2; good = !R.packed;
+      msg = R.packed ? 'Packing the cup squeezed in about 150 g instead of about 125 g. Spoon it in lightly and level it instead.' : 'Spooned and leveled: about 125 g, right where the recipe wants it.';
+    } else if (st.g === 'fold'){
+      if (ok && gluten > 0.45){ pts = 1; }
+      good = pts === 2;
+      msg = v < g.lo ? 'Dry flour is still showing: you’d get pockets of raw flour.' : v > g.hi ? 'Overmixed: that builds gluten, and the muffins come out tough with tunnels.' : gluten > 0.45 ? 'Just combined, but stirring hard built gluten. Gentle folds keep muffins tender.' : 'Just combined, with a few lumps. Perfect for tender muffins.';
+    } else {
+      good = ok;
+      const L = {cream:['Still grainy: the sugar hasn’t whipped enough air in yet.', 'Pale, light and fluffy. Perfect.', 'Beaten too long: the butter got warm and greasy, so the cookies will spread.'],
+        knead:['', 'Smooth and stretchy: a good windowpane.', ''],
+        proof:['Under-proofed: it will be dense and may split in the oven.', 'About doubled. Ready to shape and bake.', 'Over-proofed: the gluten is overstretched, so it may collapse in the oven.'],
+        bake:['Pulled too early: the centers are raw dough.', 'Golden edges, soft centers. They’ll set on the hot sheet.', v > 0.92 ? 'Burnt: the bottoms are black and bitter.' : 'A bit too far: they’ll be dry and crunchy.'],
+        pick:['Taken out too early: the centers are still raw batter.', 'Domed, golden, with a few moist crumbs on the pick. Done!', 'Overbaked: dry and crumbly.'],
+        probe:['Pulled too early: the middle is gummy.', 'About 190°F to 200°F inside and golden. Done!', 'Overbaked: dry crumb and a thick crust.']}[st.g];
+      msg = L[v < g.lo ? 0 : v <= g.hi ? 1 : 2];
+    }
+    if (g.auto && R.tests === 0 && st.g !== 'bake' && pts === 2){ pts = 1; msg += ' Next time, check it first instead of guessing.'; good = false; }
+    R.pts += pts; R.score += pts*120 + (pts === 2 ? 80 : 0); hudScore();
+    if (pts === 2) sfx.right(); else if (pts === 1) sfx.tick(); else sfx.wrong();
+    pop(pts === 2 ? 'Perfect!' : pts === 1 ? 'Close' : 'Oops', `+${pts*120 + (pts === 2 ? 80 : 0)}`, pts === 0);
+    setTimeout(() => {
+      if (mode !== 'bake' || state !== 'stepdone') return;
+      card(`<div class="kick">${esc(bk.name)} · Step ${si + 1} of ${bk.steps.length}</div><h2>${pts === 2 ? '✓ Nice!' : pts === 1 ? 'Close!' : 'Not quite'}</h2>
+        <p class="how">${esc(msg)}</p>
+        <div class="row2"><button class="btn ghost" id="bRe">↻ Redo step</button><button class="btn" id="bNext">Next →${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`);
+      $('bNext').onclick = () => { sfx.tap(); nextStep(); };
+      $('bRe').onclick = () => { sfx.tap(); R.pts -= pts; R.max -= 2; R.score -= pts*120 + (pts === 2 ? 80 : 0); if (st.t === 'weigh') R.weighs.pop(); R.packed = false; gaugeIntro(); };
+    }, reduce.matches ? 150 : 650);
+  }
+  /* ---------- result ---------- */
+  function finish(){
+    state = 'result';
+    const frac = R.max ? R.pts/R.max : 0, stars = frac >= 0.85 ? 3 : frac >= 0.6 ? 2 : 1;
+    R.stars = stars; R.score += stars*150;
+    BK.score += Math.round(R.score); meta.totalXp += Math.round(R.score);
+    BK.best[bk.id] = Math.max(BK.best[bk.id] || 0, stars);
+    if (R.weighs.length) BK.weigh[bk.id] = Math.min(BK.weigh[bk.id] ?? 999, Math.max(...R.weighs));
+    const nb = [];
+    if (BK.weigh.cookies != null && BK.weigh.bread != null && BK.weigh.cookies <= 2 && BK.weigh.bread <= 2 && award('scale')) nb.push('scale');
+    BK.idx++;
+    const last = BK.idx >= BAKES.length;
+    if (last){ BK.done = true; meta.done.baking = true; if (BAKES.every(b => (BK.best[b.id] || 0) >= 2) && award('baker')) nb.push('baker'); }
+    save(); R.score = 0; hudScore();
+    sfx.win(); if (stars >= 2) setTimeout(() => confetti(stars === 3 ? 50 : 26), 250);
+    const starHtml = [0,1,2].map(i => `<span class="${i < stars ? '' : 'off'}">⭐</span>`).join('');
+    const badgeLine = nb.length ? `<div class="newb"><span style="font-size:22px">🏅</span> New badge: ${nb.map(id => esc(BADGES.find(b => b.id === id).name)).join(', ')}</div>` : '';
+    const next = !last ? BAKES[BK.idx] : null;
+    stage();
+    card(`<div class="kick">Baking · Bake ${BAKES.indexOf(bk) + 1} of ${BAKES.length}</div><h2>${bk.icon} ${esc(bk.name)}: done!</h2>
+      <div class="kstars" aria-label="${stars} of 3 stars">${starHtml}</div>
+      <div class="kstats"><div><b>${R.pts}/${R.max}</b><small>Step points</small></div><div><b>${R.firstTry}/${R.picks}</b><small>First-try picks</small></div><div><b>${R.weighs.length ? (R.weighs[0] > 900 ? 'no tare' : R.weighs[0] + ' g') : '–'}</b><small>Off target</small></div></div>
+      <div class="tip"><b>👨‍🍳 Chef's tip</b>${esc(bk.tip)}</div>
+      <div class="tip safe"><b>🛡️ Food safety</b>${esc(bk.safe)}</div>${badgeLine}
+      <div class="row2"><button class="btn ghost" id="bRetry">↻ Retry</button><button class="btn" id="bNext">${last ? 'Finish' : 'Next: ' + esc(next.name) + ' →'}${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`, true);
+    if (nb.length) setTimeout(() => sfx.badge(), 600);
+    const earned = Math.round((stars*150) + 0);
+    $('bRetry').onclick = () => { BK.idx--; save(); sfx.tap(); intro(); };
+    $('bNext').onclick = () => { sfx.tap(); if (last) summary(); else intro(); };
+  }
+  function summary(){
+    state = 'summary';
+    const tot = BAKES.reduce((n, b) => n + (BK.best[b.id] || 0), 0);
+    card(`<div class="kick">Level 5 complete</div><h2>Out of the oven!</h2>
+      <div class="kstars">🥐</div><div class="size">${tot} of ${BAKES.length*3} stars · ${BK.score.toLocaleString()} points</div>
+      <p class="how">Weighing and leveling, creaming, folding, kneading, proofing and doneness checks: the habits every good baker relies on. More levels are coming soon.</p>
+      <div class="row2"><button class="btn ghost" id="bAgain">Play again</button><button class="btn" id="bMap">Back to the map${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`, true);
+    $('bAgain').onclick = () => { BK.idx = 0; BK.score = 0; save(); intro(); };
+    $('bMap').onclick = () => toMap();
+  }
+  $('bHome').onclick = () => toMap();
+  /* drag on the bowl / dough to mix or knead */
+  const pad = $('bpad'); let drag = null;
+  pad.addEventListener('pointerdown', e => { if (state !== 'play') return; e.preventDefault(); drag = {id:e.pointerId, x:e.clientX, y:e.clientY, acc:0}; pad.setPointerCapture(e.pointerId); });
+  pad.addEventListener('pointermove', e => { if (!drag || e.pointerId !== drag.id || state !== 'play') return; const d = Math.hypot(e.clientX - drag.x, e.clientY - drag.y)/Z(); drag.x = e.clientX; drag.y = e.clientY;
+    const g = G(); if (!g.add) return; const k = Object.keys(g.add).find(x => x !== 'stir' && x !== 'spoon'); if (!k) return;
+    drag.acc += d; if (drag.acc > 70){ drag.acc = 0; act(k); } });
+  const dragEnd = e => { if (drag && e.pointerId === drag.id) drag = null; };
+  ['pointerup','pointercancel','lostpointercapture'].forEach(ev => pad.addEventListener(ev, dragEnd));
+  window.addEventListener('keydown', e => {
+    if (mode !== 'bake' || e.metaKey || e.ctrlKey || e.altKey) return;
+    const k = e.code; e.preventDefault(); e.stopImmediatePropagation();
+    if (k === 'Escape') return toMap();
+    const ae = document.activeElement;
+    if ((k === 'Enter' || k === 'Space') && !e.repeat && ae && ae.tagName === 'BUTTON' && ae.offsetParent && state !== 'play'){ ae.click(); return; }
+    if (state === 'pick'){ const m = k.match(/^(?:Digit|Numpad)([1-4])$/); if (m){ const b = document.querySelectorAll('#bCard .ptile')[+m[1]-1]; if (b) choose(b); } return; }
+    if (e.repeat) return;
+    const enter = k === 'Enter' || k === 'NumpadEnter';
+    if (state !== 'play'){ if (enter || k === 'Space' || k === 'KeyE'){ const b = $('bNext') || $('bGo') || $('bMap'); if (b && b.offsetParent) b.click(); } return; }
+    const g = G();
+    if (k === 'Space'){ if (st.t === 'weigh') return pourOn(); const a = g.btns[0][0]; if (a !== 'done') act(a); return; }
+    if (k === 'KeyT') return act(st.t === 'weigh' ? 'tare' : 'test');
+    if (enter) return act(st.g === 'level' ? 'level' : st.g === 'knead' ? 'test' : 'done');
+  }, true);
+  window.addEventListener('keyup', e => { if (mode !== 'bake') return; if (e.code === 'Space') pourOff(); e.stopImmediatePropagation(); }, true);
+  addEventListener('blur', () => pourOff());
+  /* ---------- sim + paint ---------- */
+  function paint(){
+    if (!st || st.t === 'pick') return;
+    const g = G();
+    $('bNeedle').style.left = (Math.max(0, Math.min(1, v))*100) + '%';
+    $('bVal').textContent = g.read(v);
+    $('bVal').style.color = inZone() ? '' : v > g.hi ? 'var(--red)' : '#4f8fc0';
+    $('bGlu').style.width = (gluten*100) + '%';
+    if (st.t === 'weigh' && scaleScr){ const t = grams() + ' g'; if (scaleScr.userData.t !== t){ scaleScr.userData.t = t; scaleScr.material.map.dispose(); scaleScr.material.map = scrTex(t); } }
+  }
+  function sim(dt){
+    const g = G();
+    if (st.t === 'weigh' && holding){ R.pourT += dt; v = Math.min(1, v + dt*(0.05 + Math.min(R.pourT, 2.5)*0.12)); if (v >= 1){ pourOff(); chips('Way too much! Redo the step', 'bad'); } paint(); }
+    if (g.auto){ v = Math.min(1, v + dt*g.auto*(reduce.matches ? 1 : 1)); paint();
+      if (v >= 1){ chips(st.g === 'proof' ? 'It collapsed!' : 'Burnt!', 'bad'); return endGauge(); }
+      if (!lastTest || R.tests === 0) chips(v < g.lo ? (st.g === 'proof' ? 'Rising…' : 'Baking…') : v <= g.hi ? (st.g === 'bake' ? 'Edges look golden!' : st.g === 'proof' ? 'Looks puffy… check it' : 'Smells great… check it') : 'Hurry!', v > g.hi ? 'bad' : v >= g.lo && st.g === 'bake' ? '' : 'warn'); }
+    else if (st.t === 'gauge' && st.g !== 'level'){ const c = $('bChips').firstElementChild; const want = g.read(v); if (!c || c.textContent !== want) chips(want, inZone() ? '' : v > g.hi ? 'bad' : 'warn'); }
+  }
+  function frame(dt, t){
+    if (!built) return;
+    if (state === 'play') sim(Math.min(dt, 0.25));
+    const rm = reduce.matches, g = st && st.t !== 'pick' ? st : null;
+    // bowl contents
+    if (bowlG.visible){
+      let fv = 0.25, col = '#f5efe2';
+      if (st && st.t === 'weigh') fv = Math.max(0.02, v);
+      else if (st && st.g === 'cream'){ fv = 0.55 + v*0.25; col = new THREE.Color('#f0cf6a').lerp(new THREE.Color('#fbf3dd'), Math.min(1, v/0.75)).getStyle(); if (v > 0.86) col = '#f3d77f'; }
+      else if (st && st.g === 'fold'){ fv = 0.7; col = new THREE.Color('#f7f1e6').lerp(new THREE.Color('#e8c58a'), Math.min(1, v)).getStyle(); }
+      else if (bk) { fv = 0.6; col = '#e8d2a8'; }
+      fill.scale.set(2.2 + fv*1.5, 0.3 + fv*1.6, 2.2 + fv*1.5); fill.position.y = 0.15; fillM.color.set(col);
+      fill.rotation.y += dt*(0.2 + spin)*(rm ? 0.3 : 1); spin = Math.max(0, spin - dt*1.5);
+    }
+    if (cupG.visible){ const f = Math.min(1.3, v); cupFill.visible = f > 0.02; cupFill.scale.set(2.1, Math.max(0.05, (f - 0.9)*6), 2.1); cupFill.position.y = Math.min(2.6, f*2.6); }
+    if (doughG.visible){
+      if (st.g === 'knead'){ const sq = Math.sin(spin*3)*0.12; dough.scale.set(1 + sq, 0.62 - sq*0.5, 1 - sq*0.4); doughM.color.set('#efdcb6'); doughM.roughness = 0.95 - v*0.4; dough.rotation.y += spin*dt*2; spin = Math.max(0, spin - dt*1.5); }
+      else { const r = 1 + Math.min(v, 0.88)*0.75 - (v > 0.95 ? (v - 0.95)*6 : 0); dough.scale.set(r, 0.62*r, r); doughM.roughness = 0.6; }
+      dough.position.y = dough.scale.y*2.4*0.85;
+    }
+    if (trayG.visible && bk){
+      const d = st && st.t === 'gauge' && /bake|pick|probe/.test(st.g) ? v : state === 'result' || state === 'summary' ? 0.72 : 0;
+      const raw = new THREE.Color('#f2dcb3'), gold = new THREE.Color(bk.kind === 'cookie' ? '#c98a44' : '#c9893d'), burnt = new THREE.Color('#4a2e1c');
+      items.forEach(m => { if (m.userData.sy == null) return; const c = raw.clone().lerp(gold, Math.min(1, d/0.72)); if (d > 0.8) c.lerp(burnt, Math.min(1, (d - 0.8)/0.2)); m.material.color.copy(c);
+        const rise = bk.kind === 'cookie' ? 1 - Math.min(d, 0.7)*0.35 : 0.7 + Math.min(d, 0.7)*0.45; m.scale.set(bk.kind === 'cookie' ? 1 + Math.min(d, 0.7)*0.25 : 1, rise, bk.kind === 'cookie' ? 1 + Math.min(d, 0.7)*0.25 : 1); });
+      winM.emissiveIntensity = state === 'play' ? 0.55 + (rm ? 0 : 0.05*Math.sin(t*6)) : 0.25; ovenG.userData.cav.material.emissiveIntensity = state === 'play' ? 0.5 : 0.25;
+    } else winM.emissiveIntensity = 0.12;
+    renderer.render(bs, cam);
+  }
+  return {open, close, frame, resize, get scene(){ return bs; }, get cam(){ return cam; },
+    debug: () => ({state, idx:BK.idx, si, step:st && (st.t === 'gauge' ? st.g : st.t), v, gluten, tared, holding, lo:st && st.t !== 'pick' ? G().lo : null, hi:st && st.t !== 'pick' ? G().hi : null,
+      answer: st && st.t === 'pick' ? st.a : null, pts:R && R.pts, max:R && R.max, stars:R && R.stars, grams: st && st.t === 'weigh' ? Math.round(v*st.max) : null, target: st && st.target})};
+})();
+/* =====================================================================
    LEVEL MAP: a little table-top diorama with a path of stepping stones
    ===================================================================== */
 const MapUI = (() => {
   let built = false, ms, cam, nodesG, ring, sel = 0;
-  const NODES = [[-2.8, 9.0], [2.6, 4.2], [-2.4, -1.0], [2.4, -6.0], [-1.2, -10.6]];
+  const NODES = [[-2.8, 10.0], [2.6, 5.0], [-2.4, 0.0], [2.4, -5.2], [-2.0, -11.0]];
   const mats = {};
   const M = (c, o={}) => mats[c+JSON.stringify(o)] || (mats[c+JSON.stringify(o)] = new THREE.MeshStandardMaterial({color:c, roughness:o.r ?? 0.7, metalness:o.m ?? 0, envMapIntensity:0.5}));
   function build(){
@@ -3009,7 +3524,8 @@ const MapUI = (() => {
   const starsOf = id => id === 'fs' ? (meta.best >= 9 ? 3 : meta.best >= 7 ? 2 : meta.best > 0 ? 1 : 0)
     : id === 'sk2' ? (meta.best3 >= 10 ? 3 : meta.best3 >= 8 ? 2 : meta.best3 > 0 ? 1 : 0)
     : id === 'knife' ? Math.round(CUTS.reduce((n, c) => n + (KS.best[c.id] || 0), 0) / CUTS.length)
-    : id === 'sauces' ? Math.round(SAUCES.reduce((n, c) => n + (SC.best[c.id] || 0), 0) / SAUCES.length) : 0;
+    : id === 'sauces' ? Math.round(SAUCES.reduce((n, c) => n + (SC.best[c.id] || 0), 0) / SAUCES.length)
+    : id === 'baking' ? Math.round(BAKES.reduce((n, c) => n + (BK.best[c.id] || 0), 0) / BAKES.length) : 0;
   function layoutCam(){
     const W = innerWidth, H = innerHeight, a = W/H; cam.aspect = a; cam.fov = 40;
     const tb = document.querySelector('#map .maptop').getBoundingClientRect(), sh = document.querySelector('.mapshelf').getBoundingClientRect();
@@ -3054,7 +3570,7 @@ const MapUI = (() => {
         const sm = new THREE.Mesh(new THREE.ExtrudeGeometry(shp, {depth:0.1, bevelEnabled:true, bevelSize:0.04, bevelThickness:0.04, bevelSegments:2}), k < n ? M('#f2b630', {m:0.4, r:0.35}) : M('#d9d2c6'));
         sm.position.set(x - 0.7 + k*0.7, 1.75 + (k === 1 ? 0.25 : 0), z - 1.35); sm.rotation.x = -0.9; nodesG.add(sm); }
       const [px, py] = project(x, 1.3, z), side = x < 0 ? 1 : -1, [lx, ly] = project(x + side*1.95, 1, z + 0.2);
-      const sub = st === 'soon' ? 'Coming soon' : st === 'lock' ? `${L.sub} · finish ${LEVELS[i-1].name}` : st === 'done' ? `${L.sub} · ${'★'.repeat(n)}${'☆'.repeat(3-n)}` : `${L.sub} · ${L.id === 'knife' && KS.idx > 0 && KS.idx < CUTS.length ? 'cut ' + (KS.idx+1) + ' of 9' : L.id === 'sauces' && SC.idx > 0 && SC.idx < SAUCES.length ? 'sauce ' + (SC.idx+1) + ' of 5' : RUNS[L.id] && RUNS[L.id].step > 0 && !RUNS[L.id].done ? 'in progress' : 'new'}`;
+      const sub = st === 'soon' ? 'Coming soon' : st === 'lock' ? `${L.sub} · finish ${LEVELS[i-1].name}` : st === 'done' ? `${L.sub} · ${'★'.repeat(n)}${'☆'.repeat(3-n)}` : `${L.sub} · ${L.id === 'knife' && KS.idx > 0 && KS.idx < CUTS.length ? 'cut ' + (KS.idx+1) + ' of 9' : L.id === 'sauces' && SC.idx > 0 && SC.idx < SAUCES.length ? 'sauce ' + (SC.idx+1) + ' of 5' : L.id === 'baking' && BK.idx > 0 && BK.idx < BAKES.length ? 'bake ' + (BK.idx+1) + ' of 3' : RUNS[L.id] && RUNS[L.id].step > 0 && !RUNS[L.id].done ? 'in progress' : 'new'}`;
       html += `<button class="mnode" id="lv-${L.id}" data-i="${i}" style="left:${px}px;top:${py}px" aria-label="${esc(L.name)}: ${esc(sub)}"></button>`;
       html += `<div class="mlabel ${st === 'open' ? 'now' : st === 'lock' || st === 'soon' ? 'lock' : ''}" style="${side > 0 ? `left:${lx}px` : `right:${innerWidth/(window.UIZ||1) - lx}px;text-align:right`};top:${ly}px"><b>${esc(L.name)}</b><small>${esc(sub)}</small></div>`;
       if (st === 'lock' || st === 'soon'){ const [qx, qy] = project(x + 0.95, 1.4, z - 0.85); html += `<div class="mlock" style="left:${qx}px;top:${qy}px">${st === 'soon' ? '⏳' : '🔒'}</div>`; }
@@ -3066,7 +3582,7 @@ const MapUI = (() => {
   }
   function placeRing(){ const [x, z] = NODES[sel]; ring.position.set(x, 0.5, z); }
   function open(){
-    Knife.close?.(); Sauce.close?.(); coachHide();
+    Knife.close?.(); Sauce.close?.(); Bake.close?.(); coachHide();
     mode = 'map'; document.body.classList.add('mk'); setHUD(false); closePanel(); $('title').hidden = true; $('results').hidden = true; $('prompt').hidden = true;
     $('map').hidden = false; $('lvSheet').hidden = true;
     // select the next thing to play
@@ -3079,10 +3595,10 @@ const MapUI = (() => {
     if (st === 'soon'){ sfx.nope(); hint(`${L.name} is coming soon!`); return; }
     if (st === 'lock'){ sfx.nope(); hint(`Finish ${LEVELS[i-1].name} to unlock ${L.name}.`); return; }
     sfx.tap();
-    const inProg = L.id === 'knife' ? KS.idx > 0 && KS.idx < CUTS.length : L.id === 'sauces' ? SC.idx > 0 && SC.idx < SAUCES.length : RUNS[L.id].step > 0 && !RUNS[L.id].done;
+    const inProg = L.id === 'knife' ? KS.idx > 0 && KS.idx < CUTS.length : L.id === 'sauces' ? SC.idx > 0 && SC.idx < SAUCES.length : L.id === 'baking' ? BK.idx > 0 && BK.idx < BAKES.length : RUNS[L.id].step > 0 && !RUNS[L.id].done;
     if (!inProg) return startLevel(L.id, false);
     $('lvSheetKick').textContent = L.sub; $('lvSheetH').textContent = L.name;
-    $('lvSheetP').textContent = L.id === 'sauces' ? `You’re on sauce ${SC.idx + 1} of ${SAUCES.length}: ${SAUCES[SC.idx].name}.` : L.id === 'knife' ? `You’re on cut ${KS.idx + 1} of ${CUTS.length}: ${CUTS[KS.idx].name}.` : `You’re at station ${RUNS[L.id].step + 1} of ${L.id === 'sk2' ? QUESTIONS_SK2.length : QUESTIONS_FS.length}.`;
+    $('lvSheetP').textContent = L.id === 'baking' ? `You’re on bake ${BK.idx + 1} of ${BAKES.length}: ${BAKES[BK.idx].name}.` : L.id === 'sauces' ? `You’re on sauce ${SC.idx + 1} of ${SAUCES.length}: ${SAUCES[SC.idx].name}.` : L.id === 'knife' ? `You’re on cut ${KS.idx + 1} of ${CUTS.length}: ${CUTS[KS.idx].name}.` : `You’re at station ${RUNS[L.id].step + 1} of ${L.id === 'sk2' ? QUESTIONS_SK2.length : QUESTIONS_FS.length}.`;
     $('lvSheet').hidden = false; $('lvContinue').focus();
     $('lvContinue').onclick = () => startLevel(L.id, false);
     $('lvRestart').onclick = () => startLevel(L.id, true);
@@ -3111,6 +3627,7 @@ const MapUI = (() => {
 function startLevel(id, restart){
   MapUI.close();
   if (id === 'knife'){ if (restart) { KS.idx = 0; KS.score = 0; save(); } Knife.open(); return; }
+  if (id === 'baking'){ if (restart) { BK.idx = 0; BK.score = 0; save(); } Bake.open(); return; }
   if (id === 'sauces'){ if (restart) { SC.idx = 0; SC.score = 0; save(); } Sauce.open(); return; }
   setLevel(id);
   if (restart || S.done){ S = RUNS[id] = fresh(); }
@@ -3146,7 +3663,7 @@ let viewOff = 0, lastView = 'kitchen';
 function resize(){
   const w = innerWidth, h = innerHeight;
   renderer.setSize(w, h, false); camera.aspect = w/h; camera.updateProjectionMatrix();
-  if (v2Ready){ Knife.resize(); MapUI.resize(); Sauce.resize(); }
+  if (v2Ready){ Knife.resize(); MapUI.resize(); Sauce.resize(); Bake.resize(); }
 }
 addEventListener('resize', resize); resize();
 
@@ -3263,7 +3780,7 @@ function frame(){
   washTick(Math.min(rawDt, 0.25), t);   // real time, so slow frames don't stretch the 15 s scrub
 
   coachTick();
-  if (mode === 'map' || mode === 'knife' || mode === 'sauce'){ (mode === 'map' ? MapUI : mode === 'knife' ? Knife : Sauce).frame(dt, t); lastView = mode; requestAnimationFrame(frame); return; }
+  if (mode === 'map' || mode === 'knife' || mode === 'sauce' || mode === 'bake'){ (mode === 'map' ? MapUI : mode === 'knife' ? Knife : mode === 'bake' ? Bake : Sauce).frame(dt, t); lastView = mode; requestAnimationFrame(frame); return; }
   if (lastView !== 'kitchen'){ lastView = 'kitchen'; renderer.shadowMap.needsUpdate = true; camSnap = true; }
   /* ---- camera ---- */
   const portrait = camera.aspect < 1;
