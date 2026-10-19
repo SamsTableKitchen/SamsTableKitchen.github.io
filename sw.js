@@ -66,6 +66,7 @@ self.addEventListener('fetch', e => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;         // GoatCounter, EchoThread, fonts, maps: straight to network
   if (url.pathname === '/sw.js' || url.pathname.startsWith('/count')) return;
+  if (url.pathname.startsWith('/play/')) return;          // standalone games: always straight from the network, never the app shell or offline page
   if (req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html')) return e.respondWith(page(e));
   if (/\.(css|js|json|xml|webmanifest)$/.test(url.pathname)) return e.respondWith(fresh(e));
   if (/\.(webp|jpe?g|png|gif|svg|ico|avif|woff2?|ttf)$/.test(url.pathname)) return e.respondWith(image(e));

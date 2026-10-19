@@ -1,0 +1,17 @@
+{
+  "id": "/play/culinary-school-preview/",
+  "name": "Culinary School 3D",
+  "short_name": "Kitchen 3D",
+  "description": "Walk a little chef around a cozy 3D kitchen. Level 1: food safety basics.",
+  "start_url": "/play/culinary-school-preview/",
+  "scope": "/play/culinary-school-preview/",
+  "display": "standalone",
+  "orientation": "any",
+  "launch_handler": {"client_mode": ["navigate-existing", "auto"]},
+  "theme_color": "#C4683D",
+  "background_color": "#FAF7F2",
+  "icons": [
+    {"src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}
+  ]
+}
