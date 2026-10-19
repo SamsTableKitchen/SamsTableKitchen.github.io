@@ -174,6 +174,103 @@ body.panel-open #touch,body.panel-open #prompt,body.panel-open .goal{display:non
 @media (min-width:900px){.goal{position:fixed;left:16px;top:calc(64px + env(safe-area-inset-top))}
  #title{background:linear-gradient(90deg,rgba(250,247,242,.96) 0,rgba(250,247,242,.9) 34%,rgba(250,247,242,0) 52%);text-align:left;align-items:flex-start;padding-left:56px}
  #title>div{width:420px} .controls{justify-content:flex-start}}
+
+/* ===== shared ===== */
+.sp{flex:1}
+.card{background:#fff;border-radius:22px;box-shadow:var(--sh)}
+.kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);font-weight:800}
+.btn.small{padding:10px 14px;font-size:15px;width:auto}
+.btoast{position:absolute;left:50%;top:calc(84px + env(safe-area-inset-top));transform:translateX(-50%);z-index:58;display:flex;align-items:center;gap:12px;background:#fff;border-radius:999px;padding:8px 18px 8px 8px;box-shadow:0 8px 26px rgba(60,40,20,.25);animation:btoast 2.6s ease forwards;pointer-events:none;white-space:nowrap}
+.btoast .bi{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:22px;background:radial-gradient(circle at 35% 30%,#ffe7a3,#e2ac3c);box-shadow:0 3px 0 #b8862a}
+.btoast small{display:block;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#9a6a12}
+.btoast b{font-size:16px}
+@keyframes btoast{0%{opacity:0;transform:translate(-50%,-14px) scale(.9)}10%{opacity:1;transform:translate(-50%,0) scale(1)}85%{opacity:1}100%{opacity:0;transform:translate(-50%,-6px)}}
+
+/* ===== level map ===== */
+#map{position:absolute;inset:0;z-index:40;pointer-events:none}
+#map > *{pointer-events:auto}
+#map .maptop{display:flex;align-items:center;gap:8px;padding:calc(12px + env(safe-area-inset-top)) 14px 0;pointer-events:none}
+#map .maptop > *{pointer-events:auto}
+.maptitle{font-family:var(--serif);font-weight:700;font-size:23px;white-space:nowrap}
+#map .pill{font-size:14px;font-weight:800;padding:8px 11px;box-shadow:0 2px 0 var(--line),0 3px 10px rgba(60,40,20,.12);border:0}
+#mapNodes{position:absolute;inset:0;pointer-events:none}
+.mnode{position:absolute;transform:translate(-50%,-50%);width:88px;height:88px;border-radius:50%;pointer-events:auto;background:transparent}
+.mnode:focus-visible{outline:4px solid var(--gold);outline-offset:4px}
+.mlabel{position:absolute;transform:translateY(-50%);pointer-events:none;white-space:nowrap}
+.mlabel b{display:block;font-family:var(--serif);font-size:20px;line-height:1.1}
+.mlabel small{display:block;font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.mlabel.now small{color:var(--terra)} .mlabel.lock b{color:#5f574e} .mlabel.lock small{color:#7b7268}
+.mlock{position:absolute;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#5f574e;color:#fff;font-size:16px;box-shadow:0 2px 0 rgba(0,0,0,.18);pointer-events:none}
+.mplay{position:absolute;transform:translate(-50%,-50%);pointer-events:none;background:var(--terra);color:#fff;font-weight:900;font-size:16px;padding:9px 16px;border-radius:999px;box-shadow:0 3px 0 var(--terra-d),var(--sh);white-space:nowrap}
+.mstars{position:absolute;transform:translate(-50%,-50%);pointer-events:none;font-size:18px;letter-spacing:1px;filter:drop-shadow(0 2px 0 #b8742a);white-space:nowrap}
+.mapshelf{position:absolute;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));padding:12px 12px 10px;max-width:560px;margin:0 auto}
+.shelfhead{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:800;color:var(--muted)}
+.badges{display:grid;grid-template-columns:repeat(6,1fr);gap:8px 4px;margin-top:8px}
+.badge{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10.5px;font-weight:800;line-height:1.1;text-align:center;color:#2b2b2b}
+.badge i{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:20px;background:radial-gradient(circle at 35% 30%,#ffe7a3,#e2ac3c);box-shadow:0 3px 0 #b8862a}
+.badge.off{color:#8d8377} .badge.off i{background:#efe9df;box-shadow:0 3px 0 #ddd3c4;filter:grayscale(1);opacity:.75}
+.badge.sel i{outline:3px solid var(--terra);outline-offset:2px}
+.badgeinfo{font-size:13px;color:var(--muted);text-align:center;margin-top:8px;min-height:18px}
+#lvSheet{position:absolute;inset:0;z-index:5;display:flex;align-items:flex-end;background:rgba(43,30,20,.28);padding:0 12px calc(12px + env(safe-area-inset-bottom))}
+#lvSheet .card{width:100%;max-width:520px;margin:0 auto;padding:18px}
+#lvSheet h3{font-family:var(--serif);font-size:24px;margin:4px 0}
+#lvSheet p{color:var(--muted);margin:0 0 14px;font-size:16px;line-height:1.4}
+
+/* ===== knife skills ===== */
+#kpad{position:absolute;inset:0;z-index:15;touch-action:none;cursor:crosshair}
+#kfx{position:absolute;left:0;top:0;width:100%;height:100%;z-index:16;pointer-events:none}
+#knifeUI{position:absolute;inset:0;z-index:20;pointer-events:none}
+#knifeUI .row{display:flex;align-items:center;gap:8px;padding:calc(12px + env(safe-area-inset-top)) 14px 0}
+#knifeUI .row > *{pointer-events:auto}
+#knifeUI .pill{font-size:15px;font-weight:800;padding:8px 13px;border:0;box-shadow:0 2px 0 var(--line),0 3px 10px rgba(60,40,20,.12)}
+#kTimer.low{color:#c0392b;animation:pulse 1s ease-in-out infinite}
+.kprompt{margin:10px 14px 0;display:flex;gap:12px;align-items:center;padding:12px 14px;max-width:560px}
+.kpic{width:52px;height:52px;border-radius:14px;background:#fdf0e6;display:grid;place-items:center;flex:none}
+.ktitle{font-weight:800;font-size:clamp(18px, 4.8vw, 21px);line-height:1.22;margin-top:2px}
+.ksub{font-size:clamp(14.5px, 3.9vw, 16px);color:var(--muted);margin-top:2px}
+.kcombo{position:absolute;right:14px;top:calc(150px + env(safe-area-inset-top));background:var(--terra);color:#fff;font-weight:900;font-size:18px;padding:8px 14px;border-radius:999px;box-shadow:0 3px 0 var(--terra-d),var(--sh)}
+.kcombo.pop{animation:kpop .35s ease}
+@keyframes kpop{0%{transform:scale(.8)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+.kbar{position:absolute;left:14px;right:14px;bottom:calc(16px + env(safe-area-inset-bottom));padding:12px 16px;max-width:560px;margin:0 auto}
+.kbarrow{display:flex;justify-content:space-between;font-weight:800;font-size:15px}
+.kbarrow b{color:var(--olive)}
+.kmeter{height:12px;border-radius:12px;background:#efe8dc;margin-top:8px;overflow:hidden}
+.kmeter span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--olive),#8ea24f);border-radius:12px;transition:width .3s}
+.kchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;font-size:13px;font-weight:800;min-height:26px}
+.kchips span{background:var(--olive-l);color:var(--olive);padding:4px 10px;border-radius:999px}
+.kchips span.warn{background:#fdf0e6;color:var(--terra)}
+.kchips span.bad{background:var(--red-l);color:var(--red)}
+#kPops{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.kpop{position:absolute;transform:translate(-50%,-50%);text-align:center;pointer-events:none;animation:kpopup 1s ease forwards;white-space:nowrap}
+.kpop b{display:block;font-family:var(--serif);font-weight:900;font-size:30px;color:#fff;text-shadow:0 2px 0 #b8742a,0 3px 10px rgba(0,0,0,.25)}
+.kpop small{display:block;font-weight:900;font-size:18px;color:#fff8e6;text-shadow:0 2px 0 #b8742a}
+.kpop.miss b{color:#fff;text-shadow:0 2px 0 #a2382b,0 3px 10px rgba(0,0,0,.25)} .kpop.miss small{font-size:15px;text-shadow:0 2px 0 #a2382b}
+@keyframes kpopup{0%{opacity:0;transform:translate(-50%,-30%) scale(.7)}15%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}70%{opacity:1}100%{opacity:0;transform:translate(-50%,-90%)}}
+#kGhost{position:absolute;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:rgba(255,255,255,.55);border:3px solid #fff;box-shadow:0 0 0 6px rgba(255,210,122,.35),0 4px 14px rgba(0,0,0,.2);pointer-events:none}
+#kGhost::after{content:'👆';position:absolute;left:12px;top:16px;font-size:30px}
+.kcard{position:absolute;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));padding:16px 16px 14px;max-width:560px;margin:0 auto;pointer-events:auto;max-height:calc(100% - 120px);overflow:auto;text-align:center}
+.kcard h2{font-family:var(--serif);font-size:26px;margin:2px 0 0}
+.kcard .kstars{font-size:42px;letter-spacing:6px;margin:4px 0 0;filter:drop-shadow(0 3px 0 #b8742a)}
+.kcard .kstars .off{filter:grayscale(1);opacity:.35}
+.kstats{display:flex;gap:8px;margin:10px 0 12px}
+.kstats div{flex:1;background:var(--bg);border-radius:14px;padding:8px 4px}
+.kstats b{display:block;font-family:var(--serif);font-size:20px}
+.kstats small{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.kcard .tip{text-align:left;margin:0 0 12px}
+.kcard .size{display:inline-block;background:#fdf0e6;color:var(--terra-d);font-weight:800;border-radius:999px;padding:5px 12px;font-size:15px;margin:6px 0 10px}
+.kcard .how{font-size:16px;line-height:1.45;color:var(--ink);text-align:left;margin:0 0 12px}
+.kcard .newb{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:800;font-size:15px;color:#9a6a12;margin:0 0 10px}
+.kcard .claw{display:flex;gap:12px;align-items:center;text-align:left;background:#fff8ec;border:1px dashed #e8c98f;border-radius:16px;padding:10px 12px;margin:0 0 12px;font-size:15.5px;line-height:1.4}
+.kcard .row2{display:flex;gap:10px}
+.kcard .row2 .btn{flex:1}
+.kcard .row2 .btn:last-child{flex:1.6}
+/* ===== coach (start tutorial) ===== */
+#coach{position:absolute;left:12px;right:12px;top:calc(124px + env(safe-area-inset-top));z-index:26;pointer-events:none}
+#coach .card{max-width:520px;margin:0 auto;padding:12px 14px;display:flex;gap:12px;align-items:center;pointer-events:auto;border:2px solid #f3d9b8}
+.coachtxt{flex:1;font-size:16px;line-height:1.38;font-weight:700}
+.coachtxt small{display:block;font-weight:700;color:var(--muted);font-size:14px;margin-top:2px}
+@media (min-width:700px){ .kprompt{margin:10px auto 0} #knifeUI .row{max-width:900px;margin:0 auto} }
+body.mk #joy,body.mk #useBtn{display:none!important}
 </style>
 </head>
 <body>
@@ -186,11 +283,11 @@ body.panel-open #touch,body.panel-open #prompt,body.panel-open .goal{display:non
  <div>
  <div class="top">
   <span class="pill" id="t-xp">⭐ 0 XP</span>
-  <button class="icon-btn" id="soundBtn" aria-pressed="false" aria-label="Sound off">🔇</button>
+  <button class="icon-btn sndBtn" id="soundBtn" aria-pressed="true" aria-label="Sound on">🔊</button>
  </div>
   <div class="kicker" style="margin-top:6px">Sam's Table presents</div>
   <h1 id="t-h">Culinary School <span class="badge3d">3D</span></h1>
-  <p class="sub">Help a brand-new student work up from dishwasher to graduation, one kitchen skill at a time.</p>
+  <p class="sub">Help a brand-new student work up from dishwasher to graduation, one kitchen skill at a time: quizzes, a handwashing challenge and a knife-skills cutting board.</p>
  </div>
  <div>
   <div class="ladder" aria-label="Career path">
@@ -198,14 +295,14 @@ body.panel-open #touch,body.panel-open #prompt,body.panel-open .goal{display:non
   </div>
   <div class="level-card">
    <div class="num">1</div>
-   <div><b>First Day: Food Safety Basics</b><small id="t-status">10 stations + a handwashing challenge · ~5 min</small></div>
+   <div><b id="t-level">Food Safety · Knife Skills · Safe Kitchen II</b><small id="t-status">3 levels to play, more coming soon</small></div>
   </div>
   <div class="btns">
-   <button class="btn" id="startBtn">Start Level 1</button>
+   <button class="btn" id="startBtn">Play</button>
    <button class="btn ghost" id="resetBtn" hidden>Start over</button>
   </div>
   <div class="controls" id="controlsHint"></div>
-  <p class="fine">Sample level. Facts follow the FDA Food Code. Questions are original practice for learning, not an official exam.</p>
+  <p class="fine">Facts follow the FDA Food Code and standard culinary cut sizes. Questions are original practice for learning, not an official exam.</p>
  </div>
 </section>
 
@@ -216,7 +313,7 @@ body.panel-open #touch,body.panel-open #prompt,body.panel-open .goal{display:non
    <button class="icon-btn" id="homeBtn" aria-label="Back to title">✕</button>
    <div class="bar" role="progressbar" aria-label="Level progress" aria-valuemin="0" aria-valuemax="100" id="bar"><span></span></div>
    <div class="xp" id="hxp">⭐ 0</div>
-   <button class="icon-btn" id="soundBtn2" aria-label="Sound off">🔇</button>
+   <button class="icon-btn sndBtn" id="soundBtn2" aria-label="Sound on">🔊</button>
   </div>
   <div class="goal" id="goal" aria-live="polite"><span class="star">★</span><div><span id="goalText">Next: Prep table</span><small id="goalSub">Question 1 of 10</small></div><span class="streak" id="streak"></span></div>
  </div>
@@ -235,7 +332,7 @@ body.panel-open #touch,body.panel-open #prompt,body.panel-open .goal{display:non
 <!-- ============ RESULTS ============ -->
 <section id="results" hidden>
  <div class="wrap">
- <div class="kicker" style="margin-top:4px">Level 1 complete</div>
+ <div class="kicker" style="margin-top:4px" id="r-kick">Level 1 complete</div>
  <h2 style="font-size:28px;margin-top:4px" id="r-h">Food Safety Rookie!</h2>
  <div class="medal" id="medal">
   <svg viewBox="0 0 150 150" aria-hidden="true">
@@ -255,13 +352,58 @@ body.panel-open #touch,body.panel-open #prompt,body.panel-open .goal{display:non
   <div class="stat"><b id="r-xp">0</b><small>XP</small></div>
   <div class="stat"><b id="r-streak">0</b><small>Best streak</small></div>
  </div>
- <div class="teaser"><div class="lock">🔒</div><div><b>Next level: Prep Cook</b><small>Coming soon · knife skills, thawing and prep safety</small></div></div>
+ <div class="teaser"><div class="lock" id="r-nextIc">🔪</div><div><b id="r-next">Next level: Knife Skills</b><small id="r-nextSub">Swipe to julienne, dice and mince on the cutting board</small></div></div>
  <div class="btns">
   <button class="btn olive" id="retryBtn">Play again</button>
-  <button class="btn ghost" id="resHome">Back to title</button>
+  <button class="btn ghost" id="resHome">Back to the map</button>
  </div>
  </div>
 </section>
+
+<!-- ============ LEVEL MAP ============ -->
+<section id="map" hidden aria-label="Level map">
+ <div class="row maptop">
+  <button class="icon-btn" id="mapBack" aria-label="Back to title">✕</button>
+  <div class="maptitle">Chef School</div>
+  <span class="sp"></span>
+  <span class="pill" id="mapXp">⭐ 0</span>
+  <span class="pill" id="mapStreak" title="Best answer streak">🔥 0</span>
+  <button class="icon-btn sndBtn" aria-label="Sound on">🔊</button>
+ </div>
+ <div id="mapNodes"></div>
+ <div class="mapshelf card">
+  <div class="shelfhead"><span class="kick">Badges</span><span id="badgeCount">0 of 12</span></div>
+  <div class="badges" id="badgeShelf"></div>
+  <div class="badgeinfo" id="badgeInfo">Tap a badge to see how to earn it.</div>
+ </div>
+ <div id="lvSheet" hidden><div class="card"><div class="kick" id="lvSheetKick"></div><h3 id="lvSheetH"></h3><p id="lvSheetP"></p>
+  <div class="btns"><button class="btn" id="lvContinue">Continue</button><button class="btn ghost" id="lvRestart">Start over</button></div></div></div>
+</section>
+
+<!-- ============ KNIFE SKILLS ============ -->
+<div id="kpad" hidden></div>
+<canvas id="kfx" hidden></canvas>
+<div id="knifeUI" hidden>
+ <div class="row">
+  <button class="icon-btn" id="kHome" aria-label="Back to the map">✕</button>
+  <span class="pill" id="kTimer">⏱ 0:00</span>
+  <span class="sp"></span>
+  <span class="pill" id="kScore">⭐ 0</span>
+  <button class="icon-btn sndBtn" aria-label="Sound on">🔊</button>
+ </div>
+ <div class="kprompt card" id="kPrompt"><div class="kpic" id="kPic"></div><div style="flex:1;min-width:0"><div class="kick" id="kKick">Cut 1 of 9 · Knife Skills</div><div class="ktitle" id="kTitle"></div><div class="ksub" id="kSub"></div></div></div>
+ <div class="kcombo" id="kCombo" hidden>Combo ×2 🔥</div>
+ <div class="kbar card" id="kBar">
+  <div class="kbarrow"><span>Accuracy <b id="kAcc">–</b></span><span id="kCuts">Cuts 0 / 0</span></div>
+  <div class="kmeter"><span id="kMeter"></span></div>
+  <div class="kchips" id="kChips"></div>
+ </div>
+ <div id="kPops"></div>
+ <div id="kGhost" hidden></div>
+ <div class="kcard card" id="kCard" hidden></div>
+</div>
+
+<div id="coach" hidden><div class="card"><div class="coachtxt" id="coachTxt"></div><button class="btn ghost small" id="coachSkip">Skip tutorial</button></div></div>
 
 <div class="fx" id="fx"></div>
 <div id="fallback" hidden><div><h2>3D isn’t available here</h2><p style="color:var(--muted)">This browser or device couldn’t start the 3D graphics. <a href="../culinary-school-2d/">Play the 2D version of the level</a>, which works everywhere.</p><p style="color:var(--muted);font-size:13px;margin-top:10px">Tip: close this tab, reopen the link, and try again. Chrome can pause 3D for a site after a graphics hiccup until the tab is closed.</p><p id="fbErr" style="color:var(--muted);font-size:11px;margin-top:14px;word-break:break-word"></p></div></div>
@@ -274,7 +416,7 @@ import * as THREE from './vendor/three.module.min.js';
 import { RoomEnvironment } from './vendor/RoomEnvironment.js';
 'use strict';
 /* ---------------- Level data (identical to the 2D sample) ---------------- */
-const QUESTIONS = [
+const QUESTIONS_FS = [
  {topic:'Temperature danger zone',
   q:"First day! Chef points at a pan of rice left out on the counter. Where is the temperature “danger zone” where germs grow fastest?",
   c:['0°F to 32°F','41°F to 135°F','135°F to 165°F','165°F to 212°F'], a:1,
@@ -317,14 +459,91 @@ const QUESTIONS = [
   c:['0°F','32°F','41°F','212°F'], a:1,
   tip:'Fill a glass with crushed ice and water, submerge the probe at least 2 inches, wait about 30 seconds and adjust it to 32°F. Recalibrate if it gets dropped, and clean and sanitize the probe between foods.'}
 ];
-const NQ = QUESTIONS.filter(s => !s.type).length;
-const XP_RIGHT = 100, XP_STREAK = 25, XP_WASH = 150, PASS = 7;
+/* ---------------- Level 3: Safe Kitchen II (harder, original practice questions; FDA Food Code based) ---------------- */
+const QUESTIONS_SK2 = [
+ {topic:'Time as a control',
+  q:'The server window has a tray of hot sandwiches held without temperature control (time only). Once it leaves temperature control, how long do you have to serve it or throw it out?',
+  c:['2 hours','4 hours','6 hours','8 hours'], a:1,
+  tip:'Hot or cold food held with time as the only control has a 4-hour limit. Label it with the time it left temperature control and when it must be thrown out. Anything left at 4 hours goes in the trash.'},
+ {topic:'Cross-contamination',
+  q:'Fresh fish arrived packed in crushed ice. A server asks to scoop some of that ice for a guest’s drink. What’s the rule?',
+  c:['Fine if the ice still looks clean','Fine if you rinse it first','No: ice used to chill or store food can never go into drinks or food','Only if it was delivered today'], a:2,
+  tip:'Ice used as a coolant (around fish, in an ice bath, packed around bottles) can’t be used as food. Ice for drinks comes from its own clean bin with a clean scoop, and the scoop never sits in the ice.'},
+ {topic:'Receiving temperatures',
+  q:'You probe a case of fresh raw chicken as it’s delivered. What’s the warmest it can be for you to accept it?',
+  c:['32°F','41°F','45°F','50°F'], a:1,
+  tip:'Cold TCS food like raw meat, poultry and fish should arrive at 41°F or colder. Probe the thickest part, or between two packages without opening them. Reject it if it’s too warm and write it down.'},
+ {topic:'Thawing',
+  q:'You need to thaw a frozen turkey breast for tomorrow. Which method is NOT safe?',
+  c:['In the walk-in at 41°F or lower','Fully under cold running water at 70°F or lower','In the microwave, if you cook it right away','On the prep counter at room temperature overnight'], a:3,
+  tip:'Thaw in the fridge, under cold running water (70°F or lower), in the microwave if it’s cooked right after, or as part of cooking. Never on the counter: the outside sits in the danger zone while the inside is still frozen.'},
+ {topic:'Cooking temperatures',
+  q:'Scrambled eggs from raw shell eggs will sit in the hot-holding well for the breakfast buffet. What must they reach first?',
+  c:['135°F for 15 seconds','145°F for 15 seconds','155°F for 17 seconds','165°F for 1 second'], a:2,
+  tip:'Eggs cooked to order and served right away need 145°F for 15 seconds. Eggs that will be hot-held for service, like a buffet tray, must reach 155°F for 17 seconds.'},
+ {topic:'Temperature danger zone',
+  q:'A pan of chili has been sitting between 41°F and 135°F, and you can’t tell for how long. It could be over 4 hours. What do you do?',
+  c:['Reheat it to 165°F and serve it','Chill it quickly to 41°F','Serve it right away','Throw it out'], a:3,
+  tip:'TCS food that has spent 4 hours or more in the danger zone, or that you can’t prove hasn’t, must be thrown out. Reheating won’t fix it, because some bacteria leave behind toxins that cooking can’t destroy.'},
+ {topic:'Allergens',
+  q:'A guest with a shellfish allergy orders fries. Earlier today the fryer oil was used for breaded shrimp. What’s the right call?',
+  c:['Fry them anyway, since hot oil kills allergens','Skim the oil first, then fry them','Use a dedicated fryer or fresh oil, or tell the guest you can’t make them safely','Fry them, but serve them on a separate plate'], a:2,
+  tip:'Heat does not destroy allergens. Shared fryer oil is a classic cross-contact risk. Use a dedicated fryer or fresh oil, and if you can’t, tell the guest honestly.'},
+ {topic:'Allergens',
+  q:'You just made peanut butter sandwiches. Next ticket: a turkey sandwich for a guest with a peanut allergy. What do you do first?',
+  c:['Wipe the knife on a towel and keep going','Wash your hands, change gloves, and use clean, sanitized tools and surfaces','Make it on the same spot, but double-check there’s no visible peanut butter','Just use a fresh slice of bread'], a:1,
+  tip:'Allergen cross-contact happens through hands, gloves, tools and surfaces. Wash your hands, put on fresh gloves, and use washed, rinsed and sanitized utensils and prep areas. Some kitchens keep special allergen-safe tools for this.'},
+ {topic:'Cleaning & sanitizing',
+  q:'You trimmed raw chicken on this prep table. Next you’ll chop lettuce for salads here. What has to happen to the table in between?',
+  c:['Wipe it with a damp cloth','Spray sanitizer over the chicken juices','Scrape off food, wash, rinse, sanitize, then let it air-dry','Rinse it with very hot water'], a:2,
+  tip:'Cleaning and sanitizing are two different jobs: first remove food bits, wash with detergent, and rinse; then sanitize and let it air-dry. Sanitizer can’t work through dirt or raw meat juice.'},
+ {topic:'Handwashing',
+  q:'Where are you allowed to wash your hands in the kitchen?',
+  c:['The prep sink, if it’s empty','Only at a sink set aside for handwashing','The three-compartment dish sink','The mop sink'], a:1,
+  tip:'Use only the handwashing sink, stocked with soap, paper towels or a hand dryer, and a trash can. Never wash your hands where you prep food or wash dishes, and never block the handwashing sink.'},
+ {topic:'Handwashing',
+  q:'Your manager explains hand sanitizer (hand antiseptic). Where does it fit?',
+  c:['Use it instead of washing when your hands look clean','Only after washing your hands properly, never instead of it','Use it between raw meat and salad prep instead of going to the sink','Rub it on your gloves between tasks'], a:1,
+  tip:'Hand antiseptic is extra protection, not a shortcut. Wash your hands first, every time, then use sanitizer if you like. Never use it in place of handwashing, and never on gloves.'},
+];
+/* which station each Level 3 question happens at (same kitchen, new route) */
+const SK2_ROUTE = [
+ {id:'pass', verb:'Check the sandwich tray'}, {id:'cooler', verb:'Unpack the fish delivery'}, {id:'thermo', verb:'Probe the chicken delivery'},
+ {id:'ice', verb:'Thaw the turkey'}, {id:'stove', verb:'Cook the buffet eggs'}, {id:'steam', verb:'Check the chili'},
+ {id:'grill', verb:'Fry some fries'}, {id:'sand', verb:'Make the turkey sandwich'}, {id:'prep', verb:'Switch prep tasks'},
+ {id:'sink', verb:'Wash your hands'}, {id:'office', verb:'Talk to the manager'},
+];
+const LEVELS = [
+ {id:'fs',     name:'Food Safety',     icon:'🧼', kind:'kitchen', sub:'Level 1'},
+ {id:'knife',  name:'Knife Skills',    icon:'🔪', kind:'knife',   sub:'Level 2'},
+ {id:'sk2',    name:'Safe Kitchen II', icon:'🌡️', kind:'kitchen', sub:'Level 3'},
+ {id:'sauces', name:'Sauces',          icon:'🍲', soon:true, sub:'Coming soon'},
+ {id:'baking', name:'Baking',          icon:'🥐', soon:true, sub:'Coming soon'},
+];
+const BADGES = [
+ {id:'clean',    name:'Clean Hands',      icon:'🧼', how:'Finish the handwashing challenge'},
+ {id:'temp',     name:'Temp Pro',         icon:'🌡️', how:'Get every temperature question right in Food Safety'},
+ {id:'rookie',   name:'Safety Rookie',    icon:'🏅', how:'Pass Food Safety (7 of 10)'},
+ {id:'match',    name:'Matchstick Maker', icon:'🥕', how:'2 or more stars on the julienne'},
+ {id:'dicer',    name:'Fine Dicer',       icon:'🎲', how:'2 or more stars on the brunoise'},
+ {id:'ribbon',   name:'Ribbon Roller',    icon:'🌿', how:'2 or more stars on the chiffonade'},
+ {id:'combo',    name:'Combo Chef',       icon:'🔥', how:'Reach a ×8 combo on the cutting board'},
+ {id:'sharp',    name:'Sharp Student',    icon:'🔪', how:'Finish all 9 knife cuts'},
+ {id:'perfect',  name:'Perfect Board',    icon:'⭐', how:'3 stars on every knife cut'},
+ {id:'sk2',      name:'Safe Kitchen Pro', icon:'🛡️', how:'Pass Safe Kitchen II (8 of 11)'},
+ {id:'allergen', name:'Allergen Ace',     icon:'🥜', how:'Get both allergen questions right in Safe Kitchen II'},
+ {id:'roll',     name:'On a Roll',        icon:'🎯', how:'Answer 5 questions in a row correctly'},
+];
+let QUESTIONS = QUESTIONS_FS;
+let NQ = QUESTIONS.filter(s => !s.type).length;
+const XP_RIGHT = 100, XP_STREAK = 25, XP_WASH = 150;
+let PASS = 7;
 const KEY = 'stk-culinary-school-3d-v1';
 const reduce = matchMedia('(prefers-reduced-motion: reduce)');
 const START = [-0.3, 2.9];
 
 /* One station per step, in the same order as QUESTIONS. spot = where the chef stands. */
-const STATIONS = [
+const STATIONS_FS = [
  {id:'prep',   name:'Prep table',        verb:'Check the rice',        pos:[-1.6, 0.4], spot:[-1.6, 1.55]},
  {id:'stove',  name:'Oven',              verb:'Check the chicken',     pos:[-1.6,-5.35], spot:[-1.6,-4.15]},
  {id:'grill',  name:'Flat-top grill',    verb:'Check the burgers',     pos:[ 1.6,-5.35], spot:[ 1.6,-4.15]},
@@ -338,36 +557,95 @@ const STATIONS = [
  {id:'thermo', name:'Thermometer check', verb:'Calibrate the probe',   pos:[ 0.9, 5.45], spot:[ 0.9, 4.35]},
 ];
 
-/* ---------------- State ---------------- */
+let STATIONS = STATIONS_FS;
+const STATIONS_SK2 = SK2_ROUTE.map(o => ({...STATIONS_FS.find(s => s.id === o.id), verb:o.verb}));
+
+/* ---------------- State (one save slot: both kitchen runs, knife progress, badges, settings) ---------------- */
 const fresh = () => ({step:0, answers:{}, xp:0, streak:0, bestStreak:0, washDone:false, done:false, pos:null});
 let saved = {};
 try { saved = JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e) {}
-let S = Object.assign(fresh(), saved.run || {});
-let meta = Object.assign({sound:false, best:0, badge:false, totalXp:0}, saved.meta || {});
-const save = () => { try { localStorage.setItem(KEY, JSON.stringify({run:S, meta})); } catch(e) {} };
+const RUNS = {fs: Object.assign(fresh(), saved.run || {}), sk2: Object.assign(fresh(), saved.run3 || {})};
+let curLevel = 'fs';
+let S = RUNS.fs;
+let meta = Object.assign({muted:false, best:0, badge:false, totalXp:0, best3:0, done:{}, badges:[], tut:{}, bestCombo:0}, saved.meta || {});
+if (!meta.done || typeof meta.done !== 'object') meta.done = {};
+if (!Array.isArray(meta.badges)) meta.badges = [];
+if (!meta.tut || typeof meta.tut !== 'object') meta.tut = {};
+if ((meta.best > 0 || meta.badge || RUNS.fs.done) && !meta.done.fs) meta.done.fs = true;      // older saves: Level 1 already played
+if (meta.badge && !meta.badges.includes('rookie')) meta.badges.push('rookie');
+if (RUNS.fs.washDone && !meta.badges.includes('clean')) meta.badges.push('clean');
+const KS = Object.assign({idx:0, best:{}, score:0, done:false}, saved.knife || {});
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify({run:RUNS.fs, run3:RUNS.sk2, meta, knife:KS})); } catch(e) {} };
+function setLevel(id){
+  curLevel = id;
+  QUESTIONS = id === 'sk2' ? QUESTIONS_SK2 : QUESTIONS_FS;
+  STATIONS = id === 'sk2' ? STATIONS_SK2 : STATIONS_FS;
+  NQ = QUESTIONS.filter(s => !s.type).length; PASS = id === 'sk2' ? 8 : 7;
+  S = RUNS[id];
+}
 
 const $ = id => document.getElementById(id);
 const isTouch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
 if (isTouch) document.body.classList.add('touch');
+let v2Ready = false;
 let mode = 'title';   // title | walk | quiz | tip | wash | results
 
-/* ---------------- Sound (off by default) ---------------- */
-let actx;
-function tone(freqs, dur=.12, type='sine', gap=.09){
-  if (!meta.sound) return;
+/* ---------------- Sound: everything synthesized with WebAudio (no audio files). On by default, mute is remembered. ---------------- */
+let actx, noiseBuf;
+function AC(){
+  if (meta.muted) return null;
   try {
     actx = actx || new (window.AudioContext || window.webkitAudioContext)();
-    freqs.forEach((f,i) => {
-      const o = actx.createOscillator(), g = actx.createGain(), t = actx.currentTime + i*gap;
-      o.type = type; o.frequency.value = f; g.gain.setValueAtTime(.0001,t);
-      g.gain.exponentialRampToValueAtTime(.18,t+.02); g.gain.exponentialRampToValueAtTime(.0001,t+dur);
-      o.connect(g).connect(actx.destination); o.start(t); o.stop(t+dur+.02);
-    });
-  } catch(e) {}
+    if (actx.state === 'suspended') actx.resume();
+    if (!noiseBuf){ noiseBuf = actx.createBuffer(1, actx.sampleRate * 0.5, actx.sampleRate); const d = noiseBuf.getChannelData(0); for (let i=0;i<d.length;i++) d[i] = Math.random()*2 - 1; }
+    return actx;
+  } catch(e){ return null; }
 }
-const sfx = { right:()=>tone([660,880,1320]), wrong:()=>tone([300,220],.18,'triangle',.12), tap:()=>tone([520],.06), win:()=>tone([523,659,784,1047,1319],.2,'sine',.12), nope:()=>tone([240],.08,'triangle') };
-function paintSound(){ ['soundBtn','soundBtn2'].forEach(id => { const b=$(id); b.textContent = meta.sound ? '🔊' : '🔇'; b.setAttribute('aria-pressed', meta.sound); b.setAttribute('aria-label', meta.sound ? 'Sound on' : 'Sound off'); }); }
-['soundBtn','soundBtn2'].forEach(id => $(id).onclick = e => { e.currentTarget.blur(); meta.sound = !meta.sound; save(); paintSound(); sfx.tap(); });
+function env(g, t, peak, dur, att=0.008){ g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + att); g.gain.exponentialRampToValueAtTime(0.0001, t + dur); }
+function tone(freqs, dur=.12, type='sine', gap=.09, vol=.18){
+  const a = AC(); if (!a) return;
+  freqs.forEach((f,i) => { const o = a.createOscillator(), g = a.createGain(), t = a.currentTime + i*gap;
+    o.type = type; o.frequency.value = f; env(g, t, vol, dur, .02); o.connect(g).connect(a.destination); o.start(t); o.stop(t+dur+.03); });
+}
+function noise(t, dur, f0, f1, q=1.2, vol=.3, type='bandpass'){
+  const a = actx, src = a.createBufferSource(), bp = a.createBiquadFilter(), g = a.createGain();
+  src.buffer = noiseBuf; bp.type = type; bp.Q.value = q; bp.frequency.setValueAtTime(f0, t); bp.frequency.exponentialRampToValueAtTime(f1, t + dur);
+  env(g, t, vol, dur, .004); src.connect(bp).connect(g).connect(a.destination); src.start(t); src.stop(t + dur + .02);
+}
+function sweep(t, f0, f1, dur, type='sine', vol=.2){
+  const a = actx, o = a.createOscillator(), g = a.createGain();
+  o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+  env(g, t, vol, dur, .004); o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + .02);
+}
+const SCALE = [523, 587, 659, 784, 880, 1047, 1175, 1319, 1568, 1760];
+const sfx = {
+  right: () => tone([660,880,1320]),
+  wrong: () => tone([300,220],.18,'triangle',.12),
+  tap:   () => tone([520],.06),
+  win:   () => tone([523,659,784,1047,1319],.2,'sine',.12),
+  nope:  () => tone([240],.08,'triangle'),
+  slice: () => { const a = AC(); if (!a) return; const t = a.currentTime; noise(t, .13, 7000, 1800, 1.4, .32); sweep(t, 2600, 1500, .09, 'sine', .05); },
+  thunk: () => { const a = AC(); if (!a) return; const t = a.currentTime + .03; sweep(t, 150, 55, .14, 'sine', .45); noise(t, .05, 900, 300, .8, .18, 'lowpass'); },
+  miss:  () => { const a = AC(); if (!a) return; const t = a.currentTime; noise(t, .16, 500, 200, .7, .2, 'lowpass'); sweep(t, 220, 140, .18, 'triangle', .12); },
+  combo: n => { const i = Math.min(SCALE.length - 2, Math.max(0, n - 2)); tone([SCALE[i], SCALE[i+1]], .09, 'triangle', .06, .14); },
+  badge: () => { tone([784, 988, 1175, 1568], .22, 'triangle', .1, .16); setTimeout(() => tone([2093, 2637], .3, 'sine', .07, .06), 420); },
+  tick:  () => tone([1200], .03, 'square', .05, .04),
+};
+function paintSound(){ document.querySelectorAll('.sndBtn').forEach(b => { b.textContent = meta.muted ? '🔇' : '🔊'; b.setAttribute('aria-pressed', !meta.muted); b.setAttribute('aria-label', meta.muted ? 'Sound off' : 'Sound on'); }); }
+document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('.sndBtn'); if (!b) return; b.blur(); meta.muted = !meta.muted; save(); paintSound(); sfx.tap(); });
+
+/* ---------------- Badges ---------------- */
+function award(id){
+  if (meta.badges.includes(id)) return false;
+  const b = BADGES.find(x => x.id === id); if (!b) return false;
+  meta.badges.push(id); save();
+  setTimeout(() => { sfx.badge(); badgeToast(b); }, 250);
+  return true;
+}
+function badgeToast(b){
+  const t = document.createElement('div'); t.className = 'btoast'; t.innerHTML = `<span class="bi">${b.icon}</span><span><small>New badge</small><b>${b.name}</b></span>`;
+  $('app').appendChild(t); setTimeout(() => t.remove(), 2600);
+}
 
 /* ---------------- DOM FX ---------------- */
 function confetti(n=26){
@@ -1018,6 +1296,10 @@ function sph(color, parent, x, y, z, sx, sy=sx, sz=sx, seg=20, o={}){
   const m = new THREE.Mesh(g, cmat(color, o)); m.position.set(x, y, z); m.scale.set(sx, sy, sz); parent.add(m); return m;
 }
 // smooth tapered limb: lathe with rounded ends, radius r1 at the top, r2 at the bottom (no cylinders)
+function sleeve(key, prof, parent){
+  const g = G(key, () => { const c = new THREE.SplineCurve(prof.map(([r, y]) => new THREE.Vector2(r, y))); const pts = c.getSpacedPoints(36); pts[0].x = Math.max(pts[0].x, 0); pts[pts.length-1].x = 0; return new THREE.LatheGeometry(pts, 20); });
+  const m = new THREE.Mesh(g, cmat(CH.jacket, {r:0.8})); parent.add(m); return m;
+}
 function limb(r1, r2, len, color, parent, x, y, z, o={}){
   const g = G(`limb${r1}_${r2}_${len}`, () => { const pts = [], N = 6;
     for (let i=0;i<=N;i++){ const a = -Math.PI/2 + (i/N)*Math.PI/2; pts.push(new THREE.Vector2(Math.cos(a)*r2, -len/2 + Math.sin(a)*r2)); }
@@ -1068,27 +1350,28 @@ function makeChef(){
   const colProf = [[0.062,0],[0.065,0.002],[0.064,0.032],[0.06,0.038],[0.056,0.036],[0.058,0.004]].map(([r,y]) => new THREE.Vector2(r, y));
   const collar = new THREE.Mesh(G('collar2', () => new THREE.LatheGeometry(colProf, 48, 0.2, Math.PI*2 - 0.4)), cmat(CH.jacket, {r:0.8, side:1}));
   collar.position.y = 0.548; collar.scale.z = 0.92; upper.add(collar);
-  limb(0.042, 0.048, 0.06, CH.skinSh, upper, 0, 0.6, 0);
+  limb(0.043, 0.049, 0.026, CH.skinSh, upper, 0, 0.592, 0);           // short neck: just a hint above the collar
   /* arms: sleeves that widen a little at a folded cuff, mitten hands */
   const arms = [];
   const mittGeo = G('mitt', () => new THREE.CapsuleGeometry(0.03, 0.04, 6, 18));
   const thumbGeo = G('thumb', () => new THREE.CapsuleGeometry(0.0125, 0.025, 4, 12));
   for (const s of [-1, 1]){
     const sh = pivot(upper, s*0.158, 0.445);
-    limb(0.047, 0.04, 0.2, CH.jacket, sh, 0, -0.14, 0, {r:0.8});              // upper sleeve (its rounded top forms the shoulder)
+    // tapered sleeves: one smooth lathe each (broad at the shoulder, a soft bicep, narrowing into the elbow, slim wrist, small cuff flare)
+    sleeve('upSleeve2', [[0.0385,-0.292],[0.039,-0.262],[0.0415,-0.222],[0.047,-0.162],[0.0515,-0.102],[0.0535,-0.052],[0.051,-0.012],[0.044,0.014],[0.03,0.027],[0,0.031]], sh);
     const el = pivot(sh, 0, -0.28);
-    sph(CH.jacket, el, 0, 0, 0, 0.041, 0.041, 0.041, 20, {r:0.8});            // elbow
-    limb(0.04, 0.037, 0.15, CH.jacket, el, 0, -0.1, 0, {r:0.8});               // forearm sleeve, flaring a little to the cuff
+    sph(CH.jacket, el, 0, 0, 0, 0.0388, 0.0388, 0.0388, 20, {r:0.8});        // elbow, the same width as both sleeves meeting it
+    sleeve('foreSleeve2', [[0,-0.207],[0.0398,-0.205],[0.0378,-0.193],[0.0322,-0.17],[0.031,-0.14],[0.0335,-0.09],[0.037,-0.04],[0.0388,-0.005],[0.034,0.02],[0.018,0.033],[0,0.036]], el);
     const cuff = new THREE.Mesh(G('cuffT', () => new THREE.TorusGeometry(0.037, 0.008, 8, 24)), cmat('#eef0f1', {r:0.75})); cuff.rotation.x = Math.PI/2; cuff.scale.z = 2.2; cuff.position.y = -0.205; el.add(cuff);
-    const cuffEdge = new THREE.Mesh(G('cuffEdge', () => new THREE.TorusGeometry(0.045, 0.0028, 4, 24)), cmat(CH.piping)); cuffEdge.rotation.x = Math.PI/2; cuffEdge.position.y = -0.188; el.add(cuffEdge);
+    const cuffEdge = new THREE.Mesh(G('cuffEdge', () => new THREE.TorusGeometry(0.0408, 0.0028, 4, 24)), cmat(CH.piping)); cuffEdge.rotation.x = Math.PI/2; cuffEdge.position.y = -0.19; el.add(cuffEdge);
     const hand = new THREE.Mesh(mittGeo, cmat(CH.skin, {r:0.6})); hand.position.set(0, -0.282, 0.004); hand.scale.set(1.3, 1.25, 0.82); el.add(hand);
     const thumb = new THREE.Mesh(thumbGeo, cmat(CH.skin, {r:0.6})); thumb.position.set(-s*0.035, -0.262, 0.016); thumb.scale.setScalar(1.25); thumb.rotation.set(0.3, 0, -s*0.55); el.add(thumb);
-    sh.rotation.z = s*0.1;
+    sh.rotation.z = s*0.12;
     arms.push({sh, el, hand});
   }
 
   /* head: rounded, a slightly narrower chin; the face is painted on a canvas texture */
-  const head = pivot(upper, 0, 0.745);
+  const head = pivot(upper, 0, 0.722);
   const HX = 0.118, HY = 0.128, HZ = 0.124;
   const headGeo = new THREE.SphereGeometry(1, 40, 30);
   { const p = headGeo.attributes.position;
@@ -1328,6 +1611,7 @@ window.addEventListener('keydown', e => {
   const k = e.code;
   const act = k === 'KeyE' || k === 'Space' || k === 'Enter' || k === 'NumpadEnter';
   if (MOVE[k] || act || /^(Digit|Numpad)[1-4]$/.test(k)) e.preventDefault();
+  if ((mode === 'map' || mode === 'knife') && !e.repeat && (MOVE[k] || k === 'Escape')) { (mode === 'map' ? MapUI : Knife).key(k); return; }
   if (MOVE[k]) { keys.add(k); return; }
   if (e.repeat) return;
   const ae = document.activeElement;
@@ -1336,7 +1620,9 @@ window.addEventListener('keydown', e => {
     if (mode === 'wash' && W.hold) { scrubStart(); return; }
     ae.click(); return;
   }
-  if (mode === 'title' && act) return startGame();
+  if (mode === 'title' && act) return MapUI.open();
+  if (mode === 'map' && act) return MapUI.key(k);
+  if (mode === 'knife' && act) return Knife.key(k);
   if (mode === 'walk' && act) return interact();
   if (mode === 'quiz'){ const m = k.match(/^(?:Digit|Numpad)([1-4])$/); if (m) return pick(+m[1]-1); }
   if (mode === 'tip' && act) return nextStep();
@@ -1361,7 +1647,7 @@ function progress(){
   $('goalSub').textContent = !s ? '' : s.type === 'wash' ? 'Handwashing challenge' : `Question ${qNumber(S.step)} of ${NQ} · ${s.topic}`;
   $('streak').textContent = S.streak >= 2 ? `🔥 ${S.streak}` : '';
   labels.forEach(l => {
-    const hot = l.userData.st === st;
+    const hot = l.userData.st.id === st.id;
     if (hot !== l.userData.hot){ l.userData.hot = hot; if (hot && !l.userData.hotMap) l.userData.hotMap = labelTex(l.userData.st.name, true); l.material.map = hot ? l.userData.hotMap : l.userData.cold; l.material.needsUpdate = true; }
   });
   const [mx, mz] = st.pos;
@@ -1372,31 +1658,33 @@ function setHUD(on){ $('hud').hidden = !on; }
 
 function renderTitle(){
   mode = 'title'; closePanel(); setHUD(false); $('results').hidden = true; $('title').hidden = false; $('prompt').hidden = true;
+  MapUI.close(); Knife.close(); coachHide();
   paintSound();
-  $('t-xp').textContent = '⭐ ' + meta.totalXp + ' XP' + (meta.badge ? ' · 🏅' : '');
-  const inProgress = S.step > 0 && !S.done;
-  $('startBtn').innerHTML = (inProgress ? `Continue (station ${S.step+1} of ${QUESTIONS.length})` : (meta.best ? 'Play Level 1 again' : 'Start Level 1')) + (isTouch ? '' : ' <kbd>Enter</kbd>');
-  $('resetBtn').hidden = !inProgress;
-  $('t-status').textContent = meta.best ? `Best score: ${meta.best}/${NQ}${meta.badge ? ' · Food Safety Rookie 🏅' : ''}` : `${NQ} stations + a handwashing challenge · ~5 min`;
-  const r = document.querySelectorAll('.rung'); r[0].className = meta.badge ? 'rung done' : 'rung now'; r[1].className = meta.badge ? 'rung now' : 'rung';
+  $('t-xp').textContent = '⭐ ' + (meta.totalXp || 0).toLocaleString() + ' XP' + (meta.badges.length ? ` · 🏅 ${meta.badges.length}` : '');
+  const nDone = ['fs', 'knife', 'sk2'].filter(id => meta.done[id]).length;
+  $('startBtn').innerHTML = (nDone ? 'Continue' : 'Play') + (isTouch ? '' : ' <kbd>Enter</kbd>');
+  $('resetBtn').hidden = true;
+  $('t-status').textContent = nDone ? `${nDone} of 3 levels done · ${meta.badges.length} of ${BADGES.length} badges` : 'Quizzes, a handwashing challenge and a cutting-board game · Sauces and Baking coming soon';
+  const r = document.querySelectorAll('.rung'); r.forEach((el, i) => el.className = i < nDone ? 'rung done' : i === nDone ? 'rung now' : 'rung');
   $('controlsHint').innerHTML = document.body.classList.contains('touch')
-    ? '<span>🕹️ Joystick to walk</span><span>✋ Use button at a station</span><span>Tap an answer</span>'
-    : '<span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or <kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> walk</span><span><kbd>E</kbd> / <kbd>Space</kbd> use</span><span><kbd>1</kbd>–<kbd>4</kbd> answer</span>';
+    ? '<span>🕹️ Joystick to walk</span><span>✋ Use button at a station</span><span>👆 Swipe to cut</span>'
+    : '<span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or arrows walk</span><span><kbd>E</kbd> / <kbd>Space</kbd> use</span><span><kbd>1</kbd>–<kbd>4</kbd> answer</span><span>🖱️ drag to cut</span>';
 }
 function startGame(){
   sfx.tap();
-  if (S.done) { S = fresh(); P.x = START[0]; P.z = START[1]; P.rot = Math.PI; }
+  if (S.done) { S = RUNS[curLevel] = fresh(); P.x = START[0]; P.z = START[1]; P.rot = Math.PI; }
   if (S.step === 0 && !S.pos) { P.x = START[0]; P.z = START[1]; }
   save();
-  $('title').hidden = true; $('results').hidden = true; setHUD(true);
-  mode = 'walk'; progress(); camSnap = true;
+  document.body.classList.remove('mk'); $('title').hidden = true; $('results').hidden = true; setHUD(true);
+  mode = 'walk'; progress(); camSnap = true; renderer.shadowMap.needsUpdate = true;
   if (S.step >= QUESTIONS.length) return results();
+  coachShow();
 }
-$('startBtn').onclick = startGame;
-$('resetBtn').onclick = () => { S = fresh(); P.x = START[0]; P.z = START[1]; P.rot = Math.PI; save(); startGame(); };
-$('homeBtn').onclick = e => { e.currentTarget.blur(); S.pos = [P.x, P.z]; save(); renderTitle(); };
-$('resHome').onclick = renderTitle;
-$('retryBtn').onclick = () => { S = fresh(); P.x = START[0]; P.z = START[1]; P.rot = Math.PI; save(); startGame(); };
+$('startBtn').onclick = () => MapUI.open();
+$('resetBtn').onclick = () => { S = RUNS[curLevel] = fresh(); P.x = START[0]; P.z = START[1]; P.rot = Math.PI; save(); startGame(); };
+$('homeBtn').onclick = e => { e.currentTarget.blur(); S.pos = [P.x, P.z]; save(); MapUI.open(); };
+$('resHome').onclick = () => MapUI.open();
+$('retryBtn').onclick = () => { S = RUNS[curLevel] = fresh(); P.x = START[0]; P.z = START[1]; P.rot = Math.PI; save(); startGame(); };
 
 function distTo(st){ return Math.hypot(P.x - st.spot[0], P.z - st.spot[1]); }
 function nearStation(){
@@ -1454,6 +1742,7 @@ function pick(i){
     S.streak++; S.bestStreak = Math.max(S.bestStreak, S.streak);
     gain = XP_RIGHT + (S.streak >= 3 ? XP_STREAK : 0);
     S.xp += gain; bumpXP(); sfx.right(); confetti();
+    if (S.streak >= 5) award('roll');
     toast(['Nice!','Yes, Chef!','Nailed it!','Perfect!'][S.step % 4]);
     chefJump = 1;
   } else { S.streak = 0; sfx.wrong(); chefShake = 1; }
@@ -1554,7 +1843,7 @@ function finishWash(){
   const total = Math.max(20, Math.round((performance.now() - W.t0)/1000));
   $('totalT').textContent = total;
   [...$('steps').children].forEach(el => el.className = 'step done');
-  S.xp += XP_WASH; S.washDone = true; S.step++; S.pos = [P.x, P.z]; save(); bumpXP();
+  S.xp += XP_WASH; S.washDone = true; S.step++; S.pos = [P.x, P.z]; save(); bumpXP(); award('clean');
   sfx.win(); confetti(40); toast('Clean hands!'); chefJump = 1;
   $('washMsg').textContent = `All 5 steps done, about ${total} seconds total. +${XP_WASH} XP`;
   const b = $('washBtn'); b.className = 'btn olive'; b.innerHTML = 'Back to class →' + (isTouch ? '' : ' <kbd>E</kbd>');
@@ -1573,20 +1862,33 @@ function spawnBubble(){
 }
 
 /* ---------------- Results ---------------- */
+const LVR = {
+  fs: {kick:'Level 1 complete', pass:'Food Safety Rookie!', badge:'rookie', badgeName:'Safety Rookie', three:9,
+       msg:'Badge earned! You know the basics that keep every guest safe.', next:['🔪', 'Next level: Knife Skills', 'Unlocked! Swipe to julienne, dice and mince on the cutting board']},
+  sk2:{kick:'Level 3 complete', pass:'Safe Kitchen Pro!', badge:'sk2', badgeName:'Safe Kitchen Pro', three:10,
+       msg:'Badge earned! Time limits, receiving, thawing, allergens and sanitizing: handled like a pro.', next:['🍲', 'Next up: Sauces', 'Coming soon, along with Baking']},
+};
+const TEMP_TOPICS = ['Temperature danger zone', 'Cooking temperatures', 'Cooling food', 'Reheating', 'Thermometers'];
 function results(){
-  mode = 'results'; setHUD(false); closePanel();
+  mode = 'results'; setHUD(false); closePanel(); coachHide();
+  const C = LVR[curLevel];
   const right = QUESTIONS.reduce((n,s,i) => n + (!s.type && S.answers[i] === s.a ? 1 : 0), 0);
-  const stars = right >= 9 ? 3 : right >= PASS ? 2 : 1;
+  const stars = right >= C.three ? 3 : right >= PASS ? 2 : 1;
   const passed = right >= PASS;
   if (!S.done){
-    S.done = true; meta.best = Math.max(meta.best, right); meta.totalXp += S.xp;
-    if (passed) meta.badge = true;
+    S.done = true; meta.done[curLevel] = true; meta.totalXp += S.xp;
+    if (curLevel === 'fs'){ meta.best = Math.max(meta.best, right); if (passed){ meta.badge = true; award('rookie'); }
+      if (QUESTIONS.every((q, i) => q.type || !TEMP_TOPICS.includes(q.topic) || S.answers[i] === q.a)) award('temp'); }
+    else { meta.best3 = Math.max(meta.best3 || 0, right); if (passed) award('sk2');
+      if (QUESTIONS.every((q, i) => q.topic !== 'Allergens' || S.answers[i] === q.a)) award('allergen'); }
     save();
   }
   $('results').hidden = false;
-  $('r-h').textContent = passed ? 'Food Safety Rookie!' : 'So close, Chef!';
-  $('r-msg').textContent = passed ? 'Badge earned! You know the basics that keep every guest safe. Prep Cook is next.' : `Get ${PASS} or more right to earn the Food Safety Rookie badge. The tips will help!`;
-  $('badgePill').textContent = passed ? '🏅 Badge earned: Food Safety Rookie' : `🔒 Food Safety Rookie badge: get ${PASS}/${NQ} to unlock`;
+  $('r-kick').textContent = C.kick;
+  $('r-h').textContent = passed ? C.pass : 'So close, Chef!';
+  $('r-msg').textContent = passed ? C.msg : `Get ${PASS} or more right to earn the ${C.badgeName} badge. The tips will help!`;
+  $('badgePill').textContent = passed ? `🏅 Badge earned: ${C.badgeName}` : `🔒 ${C.badgeName} badge: get ${PASS}/${NQ} to unlock`;
+  $('r-nextIc').textContent = C.next[0]; $('r-next').textContent = C.next[1]; $('r-nextSub').textContent = C.next[2];
   $('medal').style.filter = passed ? '' : 'grayscale(1) opacity(.5)';
   $('medal').classList.remove('shine'); void $('medal').offsetWidth; $('medal').classList.add('shine');
   [...$('stars').children].forEach((el,i) => el.className = i < stars ? 'on' : '');
@@ -1595,14 +1897,706 @@ function results(){
   $('retryBtn').innerHTML = 'Play again' + (isTouch ? '' : ' <kbd>Enter</kbd>');
   if (passed){ sfx.win(); setTimeout(() => confetti(60), 300); }
 }
+/* =====================================================================
+   LEVEL 2 · KNIFE SKILLS: swipe along the gold guide on a cutting board.
+   1 world unit = 1 inch. Sizes follow standard culinary cuts.
+   ===================================================================== */
+const CUTS = [
+ {id:'julienne', name:'Julienne', short:'thin matchsticks', size:'⅛ × ⅛ × 2 in', step:'⅛ in', food:'carrot', type:'block', w:1, l:2, h:0.125, nx:8, nz:1, passes:['x'],
+  how:'A ⅛ in carrot plank is on the board. Swipe straight down each gold guide to cut it into ⅛ in matchsticks.',
+  tip:'A julienne is about ⅛ × ⅛ × 2 in. Square off the carrot first so it sits flat and can’t roll, cut ⅛ in planks, then stack them and slice.'},
+ {id:'batonnet', name:'Batonnet', short:'thick sticks', size:'¼ × ¼ × 2½ in', step:'¼ in', food:'potato', type:'block', w:1, l:2.5, h:0.25, nx:4, nz:1, passes:['x'],
+  how:'A ¼ in potato plank. Swipe down each guide to cut ¼ in sticks, the classic size for thick-cut fries.',
+  tip:'Batonnet is ¼ × ¼ × 2 to 2½ in. Cut ¼ in planks, then cut those into ¼ in sticks. It’s also the starting point for a small dice.'},
+ {id:'brunoise', name:'Brunoise', short:'tiny cubes', size:'⅛ in cubes', step:'⅛ in', food:'carrot', type:'block', w:1, l:1, h:0.125, nx:8, nz:8, pre:'x', passes:['z'],
+  how:'Your julienne sticks are lined up. Swipe across each guide, every ⅛ in, to turn them into tiny cubes.',
+  tip:'Brunoise is a ⅛ in cube, the smallest standard dice. Gather julienne sticks into a neat bundle and cut straight across them every ⅛ in.'},
+ {id:'smalldice', name:'Small dice', short:'¼ in cubes', size:'¼ × ¼ × ¼ in', step:'¼ in', food:'potato', type:'block', w:1, l:1, h:0.25, nx:4, nz:4, pre:'x', passes:['z'],
+  how:'Batonnet sticks are bundled up. Swipe across each guide to cut them into ¼ in cubes.',
+  tip:'Small dice is a ¼ in cube: cut batonnet sticks straight across every ¼ in. Even pieces cook evenly, so take your time on the first few.'},
+ {id:'meddice', name:'Medium dice', short:'½ in cubes', size:'½ × ½ × ½ in', step:'½ in', food:'potato', type:'block', w:1.5, l:1.5, h:0.5, nx:3, nz:3, passes:['x','z'],
+  how:'Cut this ½ in thick slab into ½ in sticks (down), then cut across them (sideways) for ½ in cubes.',
+  tip:'Medium dice is a ½ in cube. Cut ½ in planks, then ½ in sticks, then cut across. Use it for soups, hash and sautéed vegetables.'},
+ {id:'largedice', name:'Large dice', short:'¾ in cubes', size:'¾ × ¾ × ¾ in', step:'¾ in', food:'potato', type:'block', w:2.25, l:2.25, h:0.75, nx:3, nz:3, passes:['x','z'],
+  how:'Same idea, bigger pieces: cut ¾ in sticks, then cut across for ¾ in cubes.',
+  tip:'Large dice is a ¾ in cube, good for stews, stocks and roasting. The same size every time means everything finishes cooking together.'},
+ {id:'rondelle', name:'Rondelle', short:'round coins', size:'¼ in thick disks', step:'¼ in', food:'carrot', type:'roll', w:2, r:0.42, nx:8, passes:['x'],
+  how:'Cut straight across the peeled carrot every ¼ in to make even coins (rondelles).',
+  tip:'Rondelles are disks cut straight across round foods like carrots, cucumbers or zucchini, usually ⅛ to ½ in thick. Cut at an angle instead and you get ovals (a bias cut).'},
+ {id:'chiffonade', name:'Chiffonade', short:'thin herb ribbons', size:'about 1/16 in ribbons', step:'1/16 in', food:'basil', type:'roll', w:0.75, r:0.2, nx:12, passes:['x'],
+  how:'Basil leaves are stacked and rolled into a tight cigar. Slice across the roll along each guide for thin ribbons.',
+  tip:'For chiffonade, stack leafy herbs or greens, roll them up tightly and slice across the roll into very thin ribbons, about 1/16 in. A sharp knife keeps basil from bruising and turning black.'},
+ {id:'mince', name:'Mince', short:'very fine bits', size:'smaller than ⅛ in', step:'', food:'garlic', type:'pile', r:0.62, steps:6, passes:['p'],
+  how:'Rock-chop the garlic: swipe all the way across the pile along the gold guide. Each pass makes it finer.',
+  tip:'Mincing makes very fine, even pieces, smaller than a brunoise. Keep the knife tip on the board, rock the blade over the pile, gather it back together, and repeat until it’s fine.'},
+];
+const SAFETY_CHIPS = ['Claw grip: curl your fingertips', 'Knuckles guide the blade', 'Keep the knife tip down', 'Cut away from your fingers'];
 
+const Knife = (() => {
+  const TOP = 0.9, GAP = 0.022;
+  let dashM, built = false, ks, cam, pieceG, guideG, goldG, glowM, coreM, chev = [], kbMark, decoG, shadowP;
+  let cut = null, cells = [], guides = [], gi = 0, cutLines = {x:new Set(), z:new Set()}, spread = 1;
+  let state = 'off', R = null, tStart = 0, tPaused = 0, pauseAt = 0, limit = 30, lastTick = 0, tut = false, kb = false, wpp = 0.004;
+  const ray = new THREE.Raycaster(), plane = new THREE.Plane(new THREE.Vector3(0,1,0), -TOP), v2 = new THREE.Vector2();
+  const FOOD = {
+    carrot:{c:'#ec7a2c', r:0.5, cap:'#f59b49', core:'#f7b267'},
+    potato:{c:'#f2dd9c', r:0.62, cap:'#f6e6b4'},
+    basil: {c:'#3d7a32', r:0.7, cap:'#4f8f3f'},
+    garlic:{c:'#f3ead2', r:0.55},
+  };
+  const mats = {};
+  const M = (c, o={}) => mats[c+JSON.stringify(o)] || (mats[c+JSON.stringify(o)] = new THREE.MeshStandardMaterial({color:c, roughness:o.r ?? 0.6, metalness:o.m ?? 0, envMapIntensity:0.5, ...(o.map ? {map:o.map} : {})}));
+  function capTex(food){
+    const [c, g] = cnv(128, 128), F = FOOD[food];
+    g.fillStyle = F.cap; g.fillRect(0, 0, 128, 128);
+    if (food === 'carrot'){ const gr = g.createRadialGradient(64,64,6,64,64,64); gr.addColorStop(0, '#f9c27c'); gr.addColorStop(.42, '#f7ad5a'); gr.addColorStop(.5, '#e9822f'); gr.addColorStop(1, '#ec7a2c'); g.fillStyle = gr; g.fillRect(0,0,128,128); }
+    if (food === 'basil'){ g.strokeStyle = '#2f6326'; g.lineWidth = 5; g.beginPath(); for (let a=0;a<6*Math.PI;a+=0.1){ const r = 4 + a*3.1; g.lineTo(64 + Math.cos(a)*r, 64 + Math.sin(a)*r); } g.stroke(); g.strokeStyle = '#7fb36a'; g.lineWidth = 1.5; g.stroke(); }
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+  }
+  function build(){
+    built = true;
+    ks = new THREE.Scene(); ks.background = new THREE.Color('#e7d9c3');
+    ks.environment = scene.environment; ks.environmentIntensity = 0.45;
+    ks.add(new THREE.HemisphereLight('#fff4e6', '#c9a98a', 1.3));
+    const key = new THREE.DirectionalLight('#fff0dc', 2.0); key.position.set(-4, 14, 7); ks.add(key);
+    const fl = new THREE.DirectionalLight('#e4ecff', 0.45); fl.position.set(6, 6, 10); ks.add(fl);
+    cam = new THREE.PerspectiveCamera(36, 1, 0.05, 120);
+    // counter + natural wood board (one board, no colour coding)
+    const [cc, cg] = cnv(256, 256); cg.fillStyle = '#efe6d8'; cg.fillRect(0,0,256,256);
+    for (let i=0;i<1400;i++){ cg.fillStyle = `rgba(${rnd()<.5?'170,150,125':'255,255,255'},${rnd()*.12})`; cg.fillRect(rnd()*256, rnd()*256, 2, 2); }
+    const counter = new THREE.Mesh(roundBoxGeo(60, 2, 44, 0.5, 4), M('#ffffff', {r:0.85, map:tex(cc, 6, 5)})); counter.position.y = -1; ks.add(counter);
+    const [wc, wg] = cnv(1024, 1024); wg.fillStyle = '#d9a774'; wg.fillRect(0, 0, 1024, 1024);
+    for (let i=0;i<130;i++){ const y = rnd()*1024; wg.strokeStyle = `rgba(${150+rnd()*30|0},${95+rnd()*25|0},55,${0.05+rnd()*0.1})`; wg.lineWidth = 1 + rnd()*5;
+      wg.beginPath(); wg.moveTo(0, y); for (let x=0;x<=1024;x+=32) wg.lineTo(x, y + Math.sin(x/140 + i)*6 + Math.sin(x/37 + i*3)*1.5); wg.stroke(); }
+    const wood = new THREE.CanvasTexture(wc); wood.colorSpace = THREE.SRGBColorSpace; wood.anisotropy = 4;
+    const board = new THREE.Mesh(roundBoxGeo(13, 0.9, 17, 0.4, 6), M('#ffffff', {r:0.72, map:wood})); board.position.y = 0.45; ks.add(board);
+    const groove = new THREE.Mesh(new THREE.TorusGeometry(1, 0.05, 6, 80), M('#c08c58', {r:0.8})); groove.rotation.x = Math.PI/2; groove.scale.set(5.8, 7.8, 1); groove.position.y = 0.905; ks.add(groove);
+    shadowP = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({map:radialTex('rgba(80,50,25,.42)', 'rgba(80,50,25,0)'), transparent:true, depthWrite:false, toneMapped:false}));
+    shadowP.rotation.x = -Math.PI/2; shadowP.position.y = TOP + 0.002; ks.add(shadowP);
+    pieceG = new THREE.Group(); ks.add(pieceG);
+    decoG = new THREE.Group(); ks.add(decoG);
+    guideG = new THREE.Group(); ks.add(guideG);
+    dashM = new THREE.MeshBasicMaterial({color:'#ffffff', transparent:true, opacity:.8, depthTest:false, toneMapped:false});
+    // the gold "next cut" guide: bright core + soft additive glow + travel chevrons, drawn on top of everything
+    const [gc, gg] = cnv(64, 8); const gr = gg.createLinearGradient(0, 0, 64, 0);
+    gr.addColorStop(0, 'rgba(255,190,70,0)'); gr.addColorStop(.5, 'rgba(255,200,90,1)'); gr.addColorStop(1, 'rgba(255,190,70,0)'); gg.fillStyle = gr; gg.fillRect(0, 0, 64, 8);
+    const gtex = new THREE.CanvasTexture(gc); gtex.colorSpace = THREE.SRGBColorSpace;
+    goldG = new THREE.Group(); ks.add(goldG);
+    glowM = new THREE.MeshBasicMaterial({map:gtex, transparent:true, blending:THREE.AdditiveBlending, depthWrite:false, depthTest:false, toneMapped:false});
+    coreM = new THREE.MeshBasicMaterial({color:'#ffd35c', transparent:true, depthTest:false, toneMapped:false});
+    const pl = new THREE.PlaneGeometry(1, 1); pl.rotateX(-Math.PI/2);
+    const glow = new THREE.Mesh(pl, glowM); glow.name = 'glow'; glow.renderOrder = 5; goldG.add(glow);
+    const core = new THREE.Mesh(pl, coreM); core.name = 'core'; core.renderOrder = 6; goldG.add(core);
+    const edge = new THREE.Mesh(pl, new THREE.MeshBasicMaterial({color:'#a8641b', transparent:true, opacity:.55, depthTest:false, toneMapped:false})); edge.name = 'edge'; edge.renderOrder = 5.5; goldG.add(edge);
+    const tri = new THREE.Shape(); tri.moveTo(-0.5, 0.35); tri.lineTo(0.5, 0.35); tri.lineTo(0, -0.45); tri.closePath();
+    const tg = new THREE.ShapeGeometry(tri); tg.rotateX(-Math.PI/2);
+    for (let i=0;i<3;i++){ const m = new THREE.Mesh(tg, new THREE.MeshBasicMaterial({color:'#fff6dc', transparent:true, depthTest:false, toneMapped:false})); m.renderOrder = 7; goldG.add(m); chev.push(m); }
+    // keyboard knife: a dark blade line that sweeps across the gold guide; press Space when it lines up
+    kbMark = new THREE.Mesh(pl, new THREE.MeshBasicMaterial({color:'#2b2b2b', transparent:true, opacity:.7, depthTest:false, toneMapped:false})); kbMark.renderOrder = 8; kbMark.visible = false; ks.add(kbMark);
+  }
+  /* ---------- the piece ---------- */
+  function clearGroup(g){ while (g.children.length){ const o = g.children.pop(); if (o.geometry && !o.userData.keepGeo) o.geometry.dispose(); } }
+  function buildPiece(){
+    clearGroup(pieceG); clearGroup(guideG); clearGroup(decoG); cells = []; guides = []; gi = 0; spread = 1;
+    cutLines = {x:new Set(), z:new Set()};
+    const F = FOOD[cut.food];
+    if (cut.type === 'block'){
+      const cw = cut.w/cut.nx, cl = cut.l/cut.nz, geo = new THREE.BoxGeometry(cw, cut.h, cl);
+      for (let i=0;i<cut.nx;i++) for (let j=0;j<cut.nz;j++){
+        const m = new THREE.Mesh(geo, M(F.c, {r:F.r})); m.userData.keepGeo = true;
+        m.userData.base = new THREE.Vector3(-cut.w/2 + cw*(i+0.5), TOP + cut.h/2, -cut.l/2 + cl*(j+0.5)); m.userData.ix = i; m.userData.iz = j; m.userData.b = 0;
+        m.position.copy(m.userData.base); pieceG.add(m); cells.push(m);
+      }
+      if (cut.pre === 'x') for (let i=1;i<cut.nx;i++) cutLines.x.add(i);
+    } else if (cut.type === 'roll'){
+      const cw = cut.w/cut.nx, geo = new THREE.CylinderGeometry(cut.r, cut.r, cw, 28); geo.rotateZ(Math.PI/2);
+      const capM = M('#ffffff', {r:F.r, map:capTex(cut.food)});
+      for (let i=0;i<cut.nx;i++){
+        const m = new THREE.Mesh(geo, [M(F.c, {r:F.r}), capM, capM]); m.userData.keepGeo = true;
+        m.userData.base = new THREE.Vector3(-cut.w/2 + cw*(i+0.5), TOP + cut.r*0.92, 0); m.userData.ix = i; m.userData.iz = 0; m.userData.b = 0;
+        m.position.copy(m.userData.base); pieceG.add(m); cells.push(m);
+      }
+      // rounded ends so it reads as a carrot / rolled leaves
+      for (const s of [-1, 1]){ const e = new THREE.Mesh(new THREE.SphereGeometry(cut.r, 24, 16, 0, Math.PI*2, 0, Math.PI/2), M(F.c, {r:F.r}));
+        e.rotation.z = -s*Math.PI/2; e.scale.y = cut.food === 'basil' ? 0.5 : 0.9; e.position.set(s*(cut.w/2 + 0.002), TOP + cut.r*0.92, 0); e.userData.end = s; pieceG.add(e); }
+    } else {
+      buildPile(0);
+    }
+    // guides
+    const ext = Math.max(0.12, 18*wpp);
+    if (cut.type === 'pile'){
+      const angs = [90, 0, 45, 135, 90, 0];
+      angs.forEach((a, k) => { const r = cut.r + ext, d = new THREE.Vector3(Math.sin(a*Math.PI/180), 0, Math.cos(a*Math.PI/180));
+        guides.push({axis:'p', k, a: d.clone().multiplyScalar(-r).setY(pileTop()), b: d.clone().multiplyScalar(r).setY(pileTop()), ext, sp:cut.r*0.55}); });
+    } else {
+      for (const pass of cut.passes){
+        if (pass === 'x') for (let i=1;i<cut.nx;i++) guides.push({axis:'x', i, ext, sp:cut.w/cut.nx});
+        if (pass === 'z') for (let j=1;j<cut.nz;j++) guides.push({axis:'z', i:j, ext, sp:cut.l/cut.nz});
+      }
+    }
+    // white dashed guides for the cuts still to come
+    guides.forEach(g => { g.dash = new THREE.Group(); guideG.add(g.dash); });
+    layoutGuides();
+    // food on the side, like a real station
+    deco();
+    const fw = cut.type === 'pile' ? cut.r*2 : cut.w, fl = cut.type === 'pile' ? cut.r*2 : cut.type === 'roll' ? cut.r*2 : cut.l;
+    shadowP.scale.set(fw*1.5 + 0.3, fl*1.5 + 0.3, 1);
+  }
+  let pileMesh = null, pileStep = 0;
+  const pileTop = () => TOP + 0.09;
+  function buildPile(step){
+    pileStep = step;
+    if (pileMesh){ pieceG.remove(pileMesh); pileMesh.dispose?.(); }
+    const n = Math.min(220, Math.round(18 * Math.pow(1.55, step))), size = 0.24 * Math.pow(0.72, step);
+    pileMesh = new THREE.InstancedMesh(new THREE.DodecahedronGeometry(0.5, 0), M(FOOD.garlic.c, {r:0.55}), n);
+    const o = new THREE.Object3D(); let s = 11 + step*7;
+    const R = () => (s = (s*16807) % 2147483647) / 2147483647;
+    for (let i=0;i<n;i++){ const a = R()*Math.PI*2, d = Math.sqrt(R())*cut.r*0.92; const h = (1 - d/cut.r);
+      o.position.set(Math.cos(a)*d, TOP + size*0.4 + h*0.12*R(), Math.sin(a)*d*0.9); o.rotation.set(R()*3, R()*3, R()*3);
+      o.scale.set(size*(0.7+R()*0.6), size*(0.5+R()*0.4), size*(0.7+R()*0.6)); o.updateMatrix(); pileMesh.setMatrixAt(i, o.matrix); }
+    pileMesh.instanceMatrix.needsUpdate = true; pieceG.add(pileMesh);
+  }
+  function boundaryX(i){        // world x of the boundary before column i, including the gaps already opened
+    const cw = cut.w/cut.nx; let x = -cut.w/2 + cw*i; let before = 0; cutLines.x.forEach(k => { if (k < i) before++; });
+    return x + GAP*spread*(before + (cutLines.x.has(i) ? 0.5 : 0)) - GAP*spread*cutLines.x.size/2;
+  }
+  function boundaryZ(j){
+    const cl = cut.l/cut.nz; let z = -cut.l/2 + cl*j; let before = 0; cutLines.z.forEach(k => { if (k < j) before++; });
+    return z + GAP*spread*(before + (cutLines.z.has(j) ? 0.5 : 0)) - GAP*spread*cutLines.z.size/2;
+  }
+  function extentX(){ return cut.w/2 + GAP*spread*cutLines.x.size/2; }
+  function extentZ(){ return (cut.type === 'roll' ? cut.r : cut.l/2) + GAP*spread*cutLines.z.size/2; }
+  function guideTop(){ return cut.type === 'roll' ? TOP + cut.r*1.84 + 0.004 : cut.type === 'pile' ? pileTop() : TOP + cut.h + 0.004; }
+  function layoutGuides(){
+    const y = guideTop();
+    guides.forEach((g, k) => {
+      if (g.axis === 'x'){ const x = boundaryX(g.i), e = extentZ() + g.ext; g.a = new THREE.Vector3(x, y, -e); g.b = new THREE.Vector3(x, y, e); }
+      if (g.axis === 'z'){ const z = boundaryZ(g.i), e = extentX() + g.ext; g.a = new THREE.Vector3(-e, y, z); g.b = new THREE.Vector3(e, y, z); }
+      // white dashes (only for cuts still to make)
+      clearGroup(g.dash);
+      if (k <= gi || g.done) return;
+      const L = g.a.distanceTo(g.b), n = Math.max(3, Math.round(L / (16*wpp*2.2))), dir = g.b.clone().sub(g.a).normalize();
+      const dm = dashM;
+      for (let q=0;q<n;q++){ if (q % 2) continue; const t0 = q/n, t1 = (q+1)/n;
+        const m = new THREE.Mesh(new THREE.PlaneGeometry(1, 1).rotateX(-Math.PI/2), dm); m.renderOrder = 4;
+        const c = g.a.clone().lerp(g.b, (t0+t1)/2); m.position.copy(c); m.scale.set(g.axis === 'z' ? L/n : 3*wpp, 1, g.axis === 'z' ? 3*wpp : L/n);
+        if (g.axis === 'p'){ m.rotation.y = Math.atan2(dir.x, dir.z); m.scale.set(3*wpp, 1, L/n); }
+        g.dash.add(m); }
+    });
+    placeGold();
+  }
+  function placeGold(){
+    const g = guides[gi]; goldG.visible = !!g && (state === 'play' || state === 'intro');
+    if (!g) return;
+    const L = g.a.distanceTo(g.b), dir = g.b.clone().sub(g.a).normalize(), mid = g.a.clone().lerp(g.b, 0.5);
+    goldG.position.copy(mid); goldG.rotation.set(0, Math.atan2(dir.x, dir.z), 0);
+    goldG.getObjectByName('glow').scale.set(30*wpp, 1, L + 10*wpp);
+    goldG.getObjectByName('core').scale.set(5*wpp, 1, L);
+    goldG.getObjectByName('edge').scale.set(8*wpp, 1, L);
+    chev.forEach((c, i) => { c.scale.set(16*wpp, 1, 14*wpp); c.userData.L = L; });
+  }
+  function deco(){
+    const F = FOOD[cut.food], ex = (cut.type === 'pile' ? cut.r : cut.w/2), ez = (cut.type === 'block' ? cut.l/2 : cut.type === 'roll' ? cut.r : cut.r);
+    const x0 = -ex - 0.55 - Math.max(0.6, ex*0.6), z0 = -ez*0.2;
+    if (cut.food === 'carrot'){
+      const pts = []; for (let i=0;i<=20;i++){ const t = i/20; pts.push(new THREE.Vector2(Math.max(0.02, 0.48*(1 - Math.pow(t, 1.6)*0.85)), t*4)); }
+      const c = new THREE.Mesh(new THREE.LatheGeometry(pts, 24), M(F.c, {r:0.5})); c.rotation.z = Math.PI/2; c.rotation.y = 0.5; c.position.set(x0, TOP + 0.46, z0 - 1.2); decoG.add(c);
+    } else if (cut.food === 'potato'){
+      const p = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 16), M('#c79a5b', {r:0.85})); p.scale.set(1.25, 0.75, 0.9); p.position.set(x0 - 0.4, TOP + 0.6, z0 - 0.6); decoG.add(p);
+      const h = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 12, 0, Math.PI*2, 0, Math.PI/2), M(F.c, {r:0.6})); h.scale.set(0.95, 0.5, 0.75); h.position.set(x0 + 0.15, TOP, z0 + 1.4); decoG.add(h);
+    } else if (cut.food === 'basil'){
+      for (let i=0;i<4;i++){ const lf = new THREE.Mesh(new THREE.SphereGeometry(1, 20, 10), M(i % 2 ? '#4a8a3c' : '#3d7a32', {r:0.6})); lf.scale.set(0.38, 0.03, 0.75); lf.position.set(x0 + i*0.25 - 0.2, TOP + 0.03 + i*0.02, z0 - 0.5 + i*0.4); lf.rotation.y = 0.6 - i*0.5; decoG.add(lf); }
+    } else {
+      const bulb = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 16), M('#f6efdc', {r:0.6})); bulb.scale.set(0.75, 0.62, 0.75); bulb.position.set(x0, TOP + 0.55, z0 - 0.4); decoG.add(bulb);
+      for (let i=0;i<5;i++){ const s = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([new THREE.Vector3(Math.sin(i*1.25)*0.62, -0.2, Math.cos(i*1.25)*0.62), new THREE.Vector3(Math.sin(i*1.25)*0.72, 0.15, Math.cos(i*1.25)*0.72), new THREE.Vector3(0, 0.65, 0)]), 8, 0.012, 4), M('#e4d6b4')); s.position.copy(bulb.position); decoG.add(s); }
+      const clove = new THREE.Mesh(new THREE.SphereGeometry(1, 16, 12), M(FOOD.garlic.c, {r:0.55})); clove.scale.set(0.22, 0.17, 0.36); clove.position.set(x0 + 0.5, TOP + 0.16, z0 + 1.1); decoG.add(clove);
+    }
+  }
+  /* ---------- camera ---------- */
+  let topPx = 160, botPx = 130;
+  function frameCam(){
+    if (!cut) return;
+    const W = innerWidth, H = innerHeight, Z = window.UIZ || 1;
+    const prompt = $('kPrompt').getBoundingClientRect(), bar = $('kBar').getBoundingClientRect();
+    $('kCombo').style.top = (prompt.bottom/Z + 8) + 'px';
+    topPx = prompt.bottom + 8*Z; botPx = $('kBar').hidden ? 12*Z : H - bar.top + 8*Z;
+    const card = $('kCard'); if (!card.hidden){ botPx = Math.max(botPx, H - card.getBoundingClientRect().top + 8*Z); }
+    const avail = Math.max(120, H - topPx - botPx);
+    cam.aspect = W/H; cam.fov = 36; cam.clearViewOffset(); cam.updateProjectionMatrix();
+    const ex = cut.type === 'roll' ? (cut.w + cut.r*2) * 1.32 : Math.max(1.3, cut.type === 'pile' ? cut.r*2 : cut.w) * 1.4, ez = Math.max(1.0, cut.type === 'pile' ? cut.r*2 : cut.type === 'roll' ? cut.r*2 : cut.l) * 1.35;
+    const vt = Math.tan(THREE.MathUtils.degToRad(cam.fov)/2), ht = vt * cam.aspect, elev = THREE.MathUtils.degToRad(64);
+    const d = Math.max(ex / (2*ht), (ez*Math.sin(elev) + 0.3) / (2*vt*avail/H));
+    const c = new THREE.Vector3(0, TOP + 0.1, 0);
+    cam.position.set(c.x, c.y + Math.sin(elev)*d, c.z + Math.cos(elev)*d); cam.lookAt(c);
+    // shift the image so the piece sits in the middle of the free area between the prompt and the bottom bar
+    const off = (topPx - botPx)/2;
+    cam.setViewOffset(W, H, 0, -off, W, H); cam.updateProjectionMatrix(); cam.updateMatrixWorld();
+    wpp = 2*d*vt/H;
+  }
+  function resize(){ if (!built || !cut) return; frameCam(); layoutGuides(); sizeFx(); }
+  const fx = $('kfx'), fxc = fx.getContext('2d');
+  function sizeFx(){ const dpr = Math.min(2, devicePixelRatio || 1); fx.width = Math.round(innerWidth*dpr); fx.height = Math.round(innerHeight*dpr); fxc.setTransform(dpr, 0, 0, dpr, 0, 0); }
+  function project(v){ const p = v.clone().project(cam); return [(p.x + 1)/2*innerWidth, (1 - p.y)/2*innerHeight]; }
+  function toWorld(x, y){ v2.set(x/innerWidth*2 - 1, -(y/innerHeight)*2 + 1); ray.setFromCamera(v2, cam); plane.constant = -guideTop(); const p = new THREE.Vector3(); return ray.ray.intersectPlane(plane, p) ? p : null; }
+
+  /* ---------- UI ---------- */
+  const Z = () => window.UIZ || 1;
+  function pic(c){
+    const col = FOOD[c.food].c, s = (x) => `<svg width="38" height="38" viewBox="0 0 38 38">${x}</svg>`;
+    if (c.id === 'julienne' || c.id === 'batonnet'){ const n = c.id === 'julienne' ? 6 : 4, w = c.id === 'julienne' ? 3 : 5; return s(Array.from({length:n}, (_,i) => `<rect x="${5 + i*(28/n)}" y="${5 + (i%2)*2}" width="${w}" height="26" rx="1.4" fill="${col}"/>`).join('')); }
+    if (c.type === 'block'){ const n = c.id === 'brunoise' ? 5 : c.id === 'smalldice' ? 4 : 3, cs = 28/n; let r = ''; for (let i=0;i<n;i++) for (let j=0;j<n;j++) r += `<rect x="${5 + i*cs}" y="${5 + j*cs}" width="${cs-2}" height="${cs-2}" rx="1.5" fill="${col}"/>`; return s(r); }
+    if (c.id === 'rondelle') return s([8,19,30].map((x,i) => `<circle cx="${x}" cy="${12 + (i%2)*12}" r="6.5" fill="${col}"/><circle cx="${x}" cy="${12 + (i%2)*12}" r="2.8" fill="#f9c27c"/>`).join(''));
+    if (c.id === 'chiffonade') return s([8,15,22,29].map(x => `<path d="M${x} 5 q5 7 0 14 q-5 7 0 14" stroke="${col}" stroke-width="3" fill="none" stroke-linecap="round"/>`).join(''));
+    return s(Array.from({length:22}, (_,i) => `<circle cx="${19 + Math.cos(i*2.4)*Math.sqrt(i)*3}" cy="${19 + Math.sin(i*2.4)*Math.sqrt(i)*3}" r="1.6" fill="#d8c79c"/>`).join(''));
+  }
+  const CLAW = `<svg width="64" height="54" viewBox="0 0 64 54" aria-hidden="true"><rect x="46" y="2" width="6" height="50" rx="2" fill="#cfd5db"/><rect x="46" y="2" width="2" height="50" fill="#e9edf0"/>
+    <path d="M8 44 C6 30 10 14 22 10 C30 7 40 10 44 18 L45 40 C45 47 38 50 30 50 L14 50 C10 50 8 48 8 44Z" fill="#f2c7a5"/>
+    ${[14,24,34].map(y => `<path d="M44 ${y} c-6 0 -8 4 -8 7" stroke="#d9a383" stroke-width="2.2" fill="none" stroke-linecap="round"/>`).join('')}
+    <path d="M18 40 c4 2 8 2 12 0" stroke="#d9a383" stroke-width="2" fill="none" stroke-linecap="round"/></svg>`;
+  function setPrompt(){
+    $('kPic').innerHTML = pic(cut);
+    $('kKick').textContent = `Cut ${KS.idx + 1} of ${CUTS.length} · Knife Skills`;
+    $('kTitle').textContent = `${cut.name}: ${cut.short}`;
+    $('kSub').textContent = `${cut.size} · ${cut.type === 'pile' ? 'swipe across the pile' : 'swipe along the gold guide'}${isTouch ? '' : ' (or press Space)'}`;
+  }
+  function chips(list){ $('kChips').innerHTML = list.map(([t, c]) => `<span class="${c || ''}">${esc(t)}</span>`).join(''); }
+  function hud(){
+    const att = R.cuts + R.miss, acc = att ? R.val/att : 0;
+    $('kAcc').textContent = att ? Math.round(acc*100) + '%' : '–';
+    $('kCuts').textContent = `Cuts ${R.cuts} / ${guides.length}`;
+    $('kMeter').style.width = (R.cuts/guides.length*100) + '%';
+    $('kScore').textContent = '⭐ ' + (KS.score + (state === 'play' ? R.score : 0)).toLocaleString();
+    const cb = $('kCombo'); cb.hidden = R.combo < 2 || state !== 'play'; if (R.combo >= 2 && state === 'play'){ cb.textContent = `Combo ×${R.combo} 🔥`; cb.classList.remove('pop'); void cb.offsetWidth; cb.classList.add('pop'); }
+  }
+  function timerText(){
+    const el = state === 'play' && !tut ? (performance.now() - tStart - tPaused)/1000 : (R ? R.time : 0);
+    const left = Math.max(0, limit - el), m = Math.floor(left/60), s = Math.floor(left % 60);
+    $('kTimer').textContent = `⏱ ${m}:${String(s).padStart(2, '0')}`; $('kTimer').classList.toggle('low', state === 'play' && left < 6);
+    return left;
+  }
+  function pop(x, y, big, small, miss){
+    const d = document.createElement('div'); d.className = 'kpop' + (miss ? ' miss' : ''); d.style.left = (x/Z()) + 'px'; d.style.top = (y/Z()) + 'px';
+    d.innerHTML = `<b>${esc(big)}</b>${small ? `<small>${esc(small)}</small>` : ''}`; $('kPops').appendChild(d); setTimeout(() => d.remove(), 1000);
+  }
+  function card(html){ const c = $('kCard'); c.innerHTML = html; c.hidden = false; c.scrollTop = 0; $('kBar').hidden = true; frameCam(); layoutGuides(); }
+  function hideCard(){ $('kCard').hidden = true; $('kBar').hidden = false; frameCam(); layoutGuides(); }
+
+  /* ---------- flow ---------- */
+  function open(){
+    if (!built) build();
+    if (KS.idx >= CUTS.length) KS.idx = 0;
+    mode = 'knife'; document.body.classList.add('mk'); setHUD(false); $('title').hidden = true; $('results').hidden = true; $('prompt').hidden = true; closePanel();
+    $('knifeUI').hidden = false; $('kpad').hidden = false; fx.hidden = false; sizeFx(); paintSound();
+    intro();
+  }
+  function close(){
+    state = 'off'; $('knifeUI').hidden = true; $('kpad').hidden = true; fx.hidden = true; $('kGhost').hidden = true; if (kbMark) kbMark.visible = false; stroke = null;
+  }
+  function intro(){
+    cut = CUTS[KS.idx]; state = 'intro'; kb = false;
+    R = {cuts:0, miss:0, val:0, combo:0, best:0, score:0, pg:0, time:0, timedOut:false};
+    limit = Math.round(8 + 2.6*(cut.type === 'pile' ? cut.steps : (cut.passes.length === 2 ? (cut.nx - 1 + cut.nz - 1) : cut.passes[0] === 'x' ? cut.nx - 1 : cut.nz - 1)));
+    setPrompt(); $('kCombo').hidden = true; chips([]);
+    $('kCard').hidden = true; frameCam(); buildPiece(); hud(); timerText();
+    tut = !meta.tut.knife;
+    const first = KS.idx === 0;
+    card(`<div class="kick">Cut ${KS.idx + 1} of ${CUTS.length}${first ? ' · Knife Skills' : ''}</div><h2>${esc(cut.name)}</h2>
+      <div class="size">${esc(cut.size)}</div>
+      <p class="how">${esc(cut.how)}</p>
+      ${tut ? `<div class="claw">${CLAW}<div><b>Claw grip.</b> Curl the fingertips of the hand holding the food under, so your knuckles guide the blade and your fingertips stay safe.</div></div>` : ''}
+      <div class="row2">${tut ? '<button class="btn ghost" id="kSkip">Skip tutorial</button>' : '<button class="btn ghost" id="kBack">Map</button>'}<button class="btn" id="kGo">${tut ? 'Try a guided cut' : 'Start cutting'}${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`);
+    $('kGo').onclick = () => go();
+    if ($('kSkip')) $('kSkip').onclick = () => { meta.tut.knife = true; save(); tut = false; go(); };
+    if ($('kBack')) $('kBack').onclick = () => toMap();
+  }
+  function go(){
+    if (state !== 'intro') return;
+    sfx.tap(); hideCard(); state = 'play'; tStart = performance.now(); tPaused = 0; lastTick = 0;
+    chips(tut ? [['Follow the hand: swipe down the gold line', 'warn']] : [[SAFETY_CHIPS[KS.idx % SAFETY_CHIPS.length], 'warn']]);
+    $('kGhost').hidden = !tut; if (tut) pauseAt = performance.now();
+  }
+  function toMap(){ close(); MapUI.open(); }
+  /* ---------- swipes ---------- */
+  let stroke = null;
+  const pad = $('kpad');
+  function addPt(x, y){
+    const s = stroke, last = s.px[s.px.length - 1], t = performance.now();
+    if (last){ const dx = x - last[0], dy = y - last[1], l = Math.hypot(dx, dy); const n = Math.min(40, Math.floor(l/4));
+      for (let k=1;k<=n;k++){ const fx_ = last[0] + dx*k/(n+1), fy_ = last[1] + dy*k/(n+1); const w = toWorld(fx_, fy_); if (w) s.w.push(w); }
+      s.len += l; }
+    s.px.push([x, y, t]); trail.push([x, y, t]); const w = toWorld(x, y); if (w) s.w.push(w);
+  }
+  pad.addEventListener('pointerdown', e => {
+    if (mode !== 'knife' || state !== 'play') return;
+    e.preventDefault(); kb = false; kbMark.visible = false;
+    try { pad.setPointerCapture(e.pointerId); } catch(_){}
+    stroke = {id:e.pointerId, px:[], w:[], len:0, done:false}; addPt(e.clientX, e.clientY);
+  });
+  pad.addEventListener('pointermove', e => {
+    if (!stroke || e.pointerId !== stroke.id || stroke.done) return;
+    const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
+    for (const ev of (evs.length ? evs : [e])) addPt(ev.clientX, ev.clientY);
+    const g = guides[gi]; if (!g) return;
+    const m = measure(stroke.w, g);
+    if (m.cov >= 0.94){ stroke.done = true; judge(m); }
+  });
+  const endStroke = e => {
+    if (!stroke || e.pointerId !== stroke.id) return;
+    const s = stroke; stroke = null;
+    if (s.done || state !== 'play') return;
+    if (s.len < 24){ return; }
+    const g = guides[gi]; if (g) judge(measure(s.w, g));
+  };
+  pad.addEventListener('pointerup', endStroke); pad.addEventListener('pointercancel', endStroke);
+  function measure(pts, g){
+    const ux = g.b.x - g.a.x, uz = g.b.z - g.a.z, L = Math.hypot(ux, uz), dx = ux/L, dz = uz/L, s0 = g.ext, s1 = L - g.ext;
+    let smin = Infinity, smax = -Infinity, n = 0, sd = 0, ss = 0, sss = 0, ssd = 0, sad = 0;
+    for (const p of pts){ const rx = p.x - g.a.x, rz = p.z - g.a.z, s = rx*dx + rz*dz, d = -rx*dz + rz*dx;
+      if (s < s0 - g.ext*0.6 || s > s1 + g.ext*0.6) continue;
+      smin = Math.min(smin, s); smax = Math.max(smax, s); n++; sd += d; ss += s; sss += s*s; ssd += s*d; sad += Math.abs(d); }
+    if (n < 2) return {cov:0, off:Infinity, ang:90};
+    const cov = Math.max(0, Math.min(1, (Math.min(smax, s1) - Math.max(smin, s0)) / (s1 - s0)));
+    const den = n*sss - ss*ss, m = den > 1e-9 ? (n*ssd - ss*sd)/den : 0;
+    return {cov, off: sad/n, ang: Math.atan(Math.abs(m))*180/Math.PI};
+  }
+  function judge(m, viaKey){
+    const g = guides[gi]; if (!g || state !== 'play') return;
+    const sp = Math.max(g.sp, 26*wpp), angTol = g.axis === 'p' ? 1.8 : 1;
+    let grade, why = '';
+    if (m.cov < 0.65){ grade = 'miss'; why = 'Swipe all the way across'; }
+    else if (m.ang > 22*angTol){ grade = 'miss'; why = 'Keep the knife straight'; }
+    else if (m.off > 0.85*sp){ grade = 'miss'; why = 'Stay on the gold line'; }
+    else if (m.off <= 0.28*sp && m.ang <= 6*angTol) grade = 'perfect';
+    else if (m.off <= 0.5*sp && m.ang <= 11*angTol) grade = 'great';
+    else grade = 'good';
+    const mid = project(g.a.clone().lerp(g.b, 0.5));
+    if (grade === 'miss'){
+      R.miss++; R.combo = 0; sfx.miss(); pop(mid[0] + 70, mid[1] - 20, 'Missed', why, true);
+      chips([[why, 'bad'], ...(m.ang <= 10 ? [['Straight ✓']] : []), [SAFETY_CHIPS[(R.cuts + R.miss) % SAFETY_CHIPS.length], 'warn']]);
+      hud(); return;
+    }
+    const base = {perfect:150, great:100, good:50}[grade], val = {perfect:1, great:0.85, good:0.65}[grade];
+    if (grade !== 'good') R.combo++;
+    R.best = Math.max(R.best, R.combo);
+    const pts = Math.round(base * (1 + Math.min(R.combo, 10)*0.1));
+    R.cuts++; R.val += val; R.score += pts; if (grade !== 'good') R.pg++;
+    sfx.slice(); setTimeout(() => sfx.thunk(), 40); if (R.combo >= 2 && grade !== 'good') setTimeout(() => sfx.combo(R.combo), 110);
+    if (R.combo >= 8) award('combo');
+    meta.bestCombo = Math.max(meta.bestCombo || 0, R.combo);
+    flash(g);
+    pop(mid[0] + 70, mid[1] - 26, {perfect:'Perfect!', great:'Great!', good:'Good'}[grade], '+' + pts);
+    const c = [];
+    c.push(m.ang <= 8*angTol ? ['Straight ✓'] : ['A little crooked', 'warn']);
+    c.push(m.off <= 0.5*sp ? [cut.type === 'pile' ? 'Right through the middle ✓' : 'Even width ✓'] : ['Closer to the gold line', 'warn']);
+    if (R.cuts % 3 === 0) c.push([SAFETY_CHIPS[(R.cuts/3) % SAFETY_CHIPS.length], 'warn']);
+    chips(c);
+    // apply the cut
+    g.done = true;
+    if (g.axis === 'x') cutLines.x.add(g.i); else if (g.axis === 'z') cutLines.z.add(g.i);
+    else buildPile(pileStep + 1);
+    cells.forEach(cl => { if ((g.axis === 'x' && Math.abs(cl.userData.ix - g.i + 0.5) < 1) || (g.axis === 'z' && Math.abs(cl.userData.iz - g.i + 0.5) < 1)) cl.userData.b = 1; });
+    if (tut){ tut = false; meta.tut.knife = true; save(); $('kGhost').hidden = true; tPaused += performance.now() - pauseAt; tStart = performance.now(); tPaused = 0;
+      chips([['Nice cut! Now the clock is running', ''], [SAFETY_CHIPS[0], 'warn']]); }
+    gi++;
+    layoutGuides(); hud();
+    if (gi >= guides.length) finish(false);
+  }
+  /* trail + cut flash on the 2D overlay */
+  const trail = []; const flashes = []; const sparks = [];
+  function flash(g){
+    const a = project(g.a), b = project(g.b);
+    flashes.push({a, b, t:performance.now()});
+    trail.length = 0;                                   // the raw finger trail is replaced by a clean slash exactly on the guide
+    if (!reduce.matches) for (let i=0;i<14;i++){ const t = Math.random(); sparks.push({x:a[0] + (b[0]-a[0])*t, y:a[1] + (b[1]-a[1])*t, vx:(Math.random()-.5)*160, vy:-Math.random()*160 - 30, t:performance.now()}); }
+  }
+  function drawFx(){
+    const W = innerWidth, H = innerHeight, now = performance.now(); fxc.clearRect(0, 0, W, H);
+    while (trail.length && now - trail[0][2] > 220) trail.shift();
+    if (trail.length > 1){
+      fxc.lineCap = 'round'; fxc.lineJoin = 'round';
+      for (let i=1;i<trail.length;i++){ const p0 = trail[i-1], p1 = trail[i], a = 1 - (now - p1[2])/220, w = 2 + 9*a*(i/trail.length);
+        fxc.strokeStyle = `rgba(255,214,140,${0.45*a})`; fxc.lineWidth = w + 10; fxc.beginPath(); fxc.moveTo(p0[0], p0[1]); fxc.lineTo(p1[0], p1[1]); fxc.stroke();
+        fxc.strokeStyle = `rgba(255,255,255,${0.95*a})`; fxc.lineWidth = w; fxc.stroke(); }
+    }
+    for (let i=flashes.length-1;i>=0;i--){ const f = flashes[i], k = (now - f.t)/380; if (k >= 1){ flashes.splice(i, 1); continue; }
+      const a = 1 - k, ex = 1 + k*0.08, mx = (f.a[0] + f.b[0])/2, my = (f.a[1] + f.b[1])/2;
+      const A = [mx + (f.a[0]-mx)*ex, my + (f.a[1]-my)*ex], B = [mx + (f.b[0]-mx)*ex, my + (f.b[1]-my)*ex];
+      fxc.lineCap = 'round';
+      fxc.strokeStyle = `rgba(255,190,80,${0.5*a})`; fxc.lineWidth = 22*a + 4; fxc.beginPath(); fxc.moveTo(A[0], A[1]); fxc.lineTo(B[0], B[1]); fxc.stroke();
+      fxc.strokeStyle = `rgba(255,255,255,${a})`; fxc.lineWidth = 5*a + 1.5; fxc.stroke(); }
+    for (let i=sparks.length-1;i>=0;i--){ const s = sparks[i], k = (now - s.t)/600; if (k >= 1){ sparks.splice(i, 1); continue; }
+      const x = s.x + s.vx*k*0.6, y = s.y + s.vy*k*0.6 + 120*k*k; fxc.fillStyle = `rgba(255,${200 + 40*(1-k)|0},120,${1-k})`; fxc.beginPath(); fxc.arc(x, y, 3.2*(1-k) + 0.8, 0, 7); fxc.fill(); }
+  }
+  /* ---------- round end ---------- */
+  function finish(timedOut){
+    if (state !== 'play') return;
+    state = 'result'; goldG.visible = false; kbMark.visible = false; $('kGhost').hidden = true; stroke = null;
+    R.time = (performance.now() - tStart - tPaused)/1000; R.timedOut = timedOut;
+    const att = R.cuts + R.miss, acc = att ? R.val/att : 0, done = R.cuts >= guides.length;
+    const stars = done ? (acc >= 0.85 ? 3 : acc >= 0.6 ? 2 : 1) : (R.cuts >= guides.length/2 ? 1 : 0);
+    const bonus = done ? Math.round(Math.max(0, limit - R.time) * 10) : 0;
+    R.score += bonus; R.stars = stars;
+    KS.score += R.score; meta.totalXp += R.score;
+    KS.best[cut.id] = Math.max(KS.best[cut.id] || 0, stars);
+    const nb = [];
+    const want = {julienne:'match', brunoise:'dicer', chiffonade:'ribbon'}[cut.id];
+    if (want && stars >= 2 && award(want)) nb.push(want);
+    KS.idx++;
+    const last = KS.idx >= CUTS.length;
+    if (last){ KS.done = true; meta.done.knife = true; if (award('sharp')) nb.push('sharp'); if (CUTS.every(c => (KS.best[c.id] || 0) >= 3) && award('perfect')) nb.push('perfect'); }
+    save();
+    spread = 3.2; layoutGuides();
+    if (cut.type === 'roll') pieceG.children.forEach(o => { if (o.userData.end) o.userData.endOff = o.userData.end*GAP*spread*cut.nx*0.5; });
+    if (stars >= 2){ sfx.win(); setTimeout(() => confetti(stars === 3 ? 50 : 26), 250); } else sfx.wrong();
+    hud(); timerText();
+    setTimeout(() => {
+      if (mode !== 'knife') return;
+      const starHtml = [0,1,2].map(i => `<span class="${i < stars ? '' : 'off'}">⭐</span>`).join('');
+      const badgeLine = nb.length ? `<div class="newb"><span style="font-size:22px">🏅</span> New badge: ${nb.map(id => esc(BADGES.find(b => b.id === id).name)).join(', ')}</div>` : '';
+      const next = !last ? CUTS[KS.idx] : null;
+      card(`<div class="kick">Knife Skills · Cut ${KS.idx} of ${CUTS.length}</div><h2>${timedOut ? 'Time’s up!' : esc(cut.name) + (stars >= 2 ? ' complete!' : ' done')}</h2>
+        <div class="kstars" aria-label="${stars} of 3 stars">${starHtml}</div>
+        <div class="kstats"><div><b>${att ? Math.round(acc*100) : 0}%</b><small>Accuracy</small></div><div><b>${R.pg}/${guides.length}</b><small>Even size</small></div><div><b>×${R.best}</b><small>Best combo</small></div><div><b>${Math.floor(R.time/60)}:${String(Math.floor(R.time % 60)).padStart(2,'0')}</b><small>Time</small></div></div>
+        <div class="tip"><b>👨‍🍳 Chef's tip</b>${esc(cut.tip)}</div>${badgeLine}
+        <div class="row2"><button class="btn ghost" id="kRetry">↻ Retry</button><button class="btn" id="kNext">${last ? 'Finish' : 'Next: ' + esc(next.name) + ' →'}${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`);
+      $('kRetry').onclick = () => { KS.idx--; KS.score = Math.max(0, KS.score - R.score); save(); sfx.tap(); intro(); };
+      $('kNext').onclick = () => { sfx.tap(); if (last) summary(); else intro(); };
+    }, reduce.matches ? 200 : 750);
+  }
+  function summary(){
+    state = 'summary'; goldG.visible = false; hud();
+    const total = CUTS.reduce((n, c) => n + (KS.best[c.id] || 0), 0);
+    card(`<div class="kick">Level 2 complete</div><h2>Knife Skills complete!</h2>
+      <div class="kstars">⭐</div><div class="size">${total} of ${CUTS.length*3} stars · ${KS.score.toLocaleString()} points</div>
+      <p class="how">You can julienne, batonnet, brunoise, dice small, medium and large, cut rondelles, chiffonade herbs and mince garlic. Safe Kitchen II is unlocked on the map.</p>
+      <div class="newb"><span style="font-size:22px">🔪</span> Badge: Sharp Student</div>
+      <div class="row2"><button class="btn ghost" id="kAgain">Play again</button><button class="btn" id="kMap">Back to the map${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`);
+    $('kAgain').onclick = () => { KS.idx = 0; KS.score = 0; save(); intro(); };
+    $('kMap').onclick = () => toMap();
+  }
+  /* ---------- keyboard ---------- */
+  let kbT = 0;
+  function key(k){
+    if (k === 'Escape'){ toMap(); return; }
+    const act = k === 'Space' || k === 'Enter' || k === 'NumpadEnter' || k === 'KeyE';
+    if (!act) return;
+    if (state === 'intro') return go();
+    if (state === 'result'){ const b = $('kNext'); if (b) b.click(); return; }
+    if (state === 'summary'){ $('kMap').click(); return; }
+    if (state !== 'play') return;
+    if (!kb){ kb = true; kbT = 0; kbMark.visible = true; chips([['Press Space when the dark blade lines up with the gold guide', 'warn']]); return; }
+    const g = guides[gi]; if (!g) return;
+    judge({cov:1, off:Math.abs(kbOff(g)), ang:0}, true);
+  }
+  const kbOff = g => Math.sin(kbT*2.4) * Math.max(g.sp, 26*wpp) * 1.05;
+  /* ---------- per frame ---------- */
+  function frame(dt, t){
+    if (!built) return;
+    const rm = reduce.matches, k = Math.min(1, dt*14);
+    cells.forEach(c => { const b = c.userData.base, ix = c.userData.ix, iz = c.userData.iz;
+      let x = b.x, z = b.z;
+      if (cut.type !== 'pile'){ let bx = 0; cutLines.x.forEach(q => { if (q <= ix) bx++; }); let bz = 0; cutLines.z.forEach(q => { if (q <= iz) bz++; });
+        x += GAP*spread*bx - GAP*spread*cutLines.x.size/2; z += GAP*spread*bz - GAP*spread*cutLines.z.size/2; }
+      c.position.x += (x - c.position.x)*k; c.position.z += (z - c.position.z)*k;
+      c.userData.b = Math.max(0, c.userData.b - dt*4); c.position.y = b.y + (rm ? 0 : Math.sin(c.userData.b*Math.PI)*0.05); });
+    pieceG.children.forEach(o => { if (o.userData.end){ const want = o.userData.end*(cut.w/2 + GAP*spread*cutLines.x.size/2 + 0.002); o.position.x += (want - o.position.x)*k; } });
+    if (goldG.visible){ const p = rm ? 0.5 : 0.5 + Math.sin(t*5)*0.5; glowM.opacity = 0.55 + 0.45*p; coreM.opacity = 0.85 + 0.15*p;
+      chev.forEach((c, i) => { const L = c.userData.L || 1, u = rm ? (i+0.5)/3 : ((t*0.55 + i/3) % 1); c.position.set(0, 0.001, -L/2 + L*u); c.material.opacity = Math.sin(u*Math.PI)*0.95; c.rotation.y = 0; }); }
+    if (kb && kbMark.visible && state === 'play'){ kbT += dt; const g = guides[gi]; if (g){ const dir = g.b.clone().sub(g.a).normalize(), n = new THREE.Vector3(-dir.z, 0, dir.x), o = kbOff(g);
+      kbMark.position.copy(g.a.clone().lerp(g.b, 0.5)).addScaledVector(n, o); kbMark.position.y += 0.002; kbMark.rotation.y = Math.atan2(dir.x, dir.z); kbMark.scale.set(3*wpp, 1, g.a.distanceTo(g.b)); } }
+    if (state === 'play' && tut && guides[gi]){ const g = guides[gi], u = rm ? 0.5 : ((t*0.7) % 1.25)/1.25, a = project(g.a), b = project(g.b), gh = $('kGhost');
+      gh.style.left = ((a[0] + (b[0]-a[0])*u)/Z()) + 'px'; gh.style.top = ((a[1] + (b[1]-a[1])*u)/Z()) + 'px'; gh.style.opacity = String(Math.sin(Math.min(1, u)*Math.PI)); }
+    if (state === 'play' && !tut){ const left = timerText(); if (left < 5.5 && Math.ceil(left) !== lastTick){ lastTick = Math.ceil(left); sfx.tick(); } if (left <= 0) finish(true); }
+    drawFx();
+    renderer.render(ks, cam);
+  }
+  return {open, close, frame, key, resize, get scene(){ return ks; }, get cam(){ return cam; },
+    debug: () => ({state, idx:KS.idx, cut:cut && cut.id, gi, n:guides.length, tut, kb, cuts:R && R.cuts, miss:R && R.miss, score:R && R.score, stars:R && R.stars, kbOff: guides[gi] ? kbOff(guides[gi]) / Math.max(guides[gi].sp, 26*wpp) : 0,
+      guide: guides[gi] ? {a:project(guides[gi].a), b:project(guides[gi].b), sp:guides[gi].sp/wpp} : null})};
+})();
+/* =====================================================================
+   LEVEL MAP: a little table-top diorama with a path of stepping stones
+   ===================================================================== */
+const MapUI = (() => {
+  let built = false, ms, cam, nodesG, ring, sel = 0;
+  const NODES = [[-2.8, 9.0], [2.6, 4.2], [-2.4, -1.0], [2.4, -6.0], [-1.2, -10.6]];
+  const mats = {};
+  const M = (c, o={}) => mats[c+JSON.stringify(o)] || (mats[c+JSON.stringify(o)] = new THREE.MeshStandardMaterial({color:c, roughness:o.r ?? 0.7, metalness:o.m ?? 0, envMapIntensity:0.5}));
+  function build(){
+    built = true;
+    ms = new THREE.Scene(); ms.background = new THREE.Color('#f3ead9'); ms.environment = scene.environment; ms.environmentIntensity = 0.45;
+    ms.add(new THREE.HemisphereLight('#fff4e6', '#c9a98a', 1.25));
+    const key = new THREE.DirectionalLight('#fff0dc', 2.0); key.position.set(-8, 22, 10); ms.add(key);
+    cam = new THREE.PerspectiveCamera(40, 1, 0.1, 200);
+    const tbl = new THREE.Mesh(roundBoxGeo(60, 1, 70, 0.4, 3), M('#e9dcc4', {r:0.9})); tbl.position.y = -0.5; ms.add(tbl);
+    const grass = new THREE.Mesh(new THREE.CylinderGeometry(9.5, 9.8, 0.4, 64), M('#cfd9a8', {r:0.95})); grass.scale.z = 1.55; grass.position.set(0, 0.2, -1); ms.add(grass);
+    const sh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({map:radialTex('rgba(90,70,40,.25)', 'rgba(90,70,40,0)'), transparent:true, depthWrite:false, toneMapped:false}));
+    sh.rotation.x = -Math.PI/2; sh.scale.set(23, 34, 1); sh.position.set(0.4, 0.01, -0.4); ms.add(sh);
+    const curve = new THREE.CatmullRomCurve3(NODES.map(([x, z]) => new THREE.Vector3(x, 0.45, z)));
+    const stoneG = new THREE.CylinderGeometry(0.42, 0.48, 0.16, 20), stoneM = M('#faf3e6', {r:0.8});
+    for (let i=1;i<44;i++){ const p = curve.getPointAt(i/44); if (NODES.some(([x, z]) => Math.hypot(p.x - x, p.z - z) < 1.9)) continue; const m = new THREE.Mesh(stoneG, stoneM); m.position.set(p.x, 0.47, p.z); ms.add(m); }
+    let s = 5; const R = () => (s = (s*16807) % 2147483647) / 2147483647;
+    [[6.6, 7.5], [-6.4, -6.5], [6.8, -9.2]].forEach(([x, z]) => { const pot = new THREE.Mesh(new THREE.CylinderGeometry(0.75, 0.6, 1.1, 20), M('#d88b5f')); pot.position.set(x, 1.0, z); ms.add(pot);
+      for (let k=0;k<6;k++){ const b = new THREE.Mesh(new THREE.SphereGeometry(0.55, 14, 10), M('#7da24a', {r:0.85})); b.position.set(x + (R()-.5)*.9, 1.9 + R()*.5, z + (R()-.5)*.9); ms.add(b); } });
+    [[-6.8, 3.2], [6.3, 0.5]].forEach(([x, z]) => { for (let k=0;k<5;k++){ const b = new THREE.Mesh(new THREE.SphereGeometry(0.7, 14, 10), M('#9cb865', {r:0.9})); b.position.set(x + (R()-.5)*1.6, 0.75, z + (R()-.5)*1.6); ms.add(b); } });
+    nodesG = new THREE.Group(); ms.add(nodesG);
+    ring = new THREE.Mesh(new THREE.TorusGeometry(2.05, 0.1, 8, 56), new THREE.MeshBasicMaterial({color:'#ffc06a', transparent:true, toneMapped:false})); ring.rotation.x = Math.PI/2; ring.position.y = 0.5; ms.add(ring);
+  }
+  function coinTex(bg, rim, icon, dim){
+    const [c, g] = cnv(256, 256);
+    g.fillStyle = rim; g.beginPath(); g.arc(128, 128, 126, 0, 7); g.fill();
+    g.fillStyle = bg; g.beginPath(); g.arc(128, 128, 104, 0, 7); g.fill();
+    g.font = '150px "Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
+    if (dim) g.filter = 'grayscale(1) brightness(.62) contrast(1.5)';
+    g.fillText(icon, 128, 140); g.filter = 'none';
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t;
+  }
+  const status = id => {
+    const L = LEVELS.find(l => l.id === id);
+    if (L.soon) return 'soon';
+    if (meta.done[id]) return 'done';
+    const i = LEVELS.indexOf(L);
+    return i === 0 || meta.done[LEVELS[i-1].id] ? 'open' : 'lock';
+  };
+  const starsOf = id => id === 'fs' ? (meta.best >= 9 ? 3 : meta.best >= 7 ? 2 : meta.best > 0 ? 1 : 0)
+    : id === 'sk2' ? (meta.best3 >= 10 ? 3 : meta.best3 >= 8 ? 2 : meta.best3 > 0 ? 1 : 0)
+    : id === 'knife' ? Math.round(CUTS.reduce((n, c) => n + (KS.best[c.id] || 0), 0) / CUTS.length) : 0;
+  function layoutCam(){
+    const W = innerWidth, H = innerHeight, a = W/H; cam.aspect = a; cam.fov = 40;
+    const tb = document.querySelector('#map .maptop').getBoundingClientRect(), sh = document.querySelector('.mapshelf').getBoundingClientRect();
+    const top = tb.bottom + 14, bot = (sh.height ? sh.top : H) - 34;
+    const dir = (a < 1 ? new THREE.Vector3(0, 37, 22.1) : new THREE.Vector3(0, 26, 15.2)).normalize(), T = new THREE.Vector3(0, 0, -0.8);
+    const pts = []; NODES.forEach(([x, z]) => pts.push([x - 2.3, z], [x + 2.3, z], [x, z - 2.5], [x, z + 3.1]));
+    const v = new THREE.Vector3(); let box;
+    const measure = () => { let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
+      for (const [x, z] of pts){ v.set(x, 1, z).project(cam); const px = (v.x + 1)/2*W, py = (1 - v.y)/2*H; x0 = Math.min(x0, px); x1 = Math.max(x1, px); y0 = Math.min(y0, py); y1 = Math.max(y1, py); }
+      return {x0, x1, y0, y1}; };
+    for (let d = 18; d <= 120; d += 1.5){
+      cam.position.copy(T).addScaledVector(dir, d); cam.lookAt(T); cam.clearViewOffset(); cam.updateProjectionMatrix(); cam.updateMatrixWorld();
+      box = measure(); if (box.x1 - box.x0 <= W - 24 && box.y1 - box.y0 <= bot - top) break;
+    }
+    const dx = (box.x0 + box.x1)/2 - W/2, dy = (box.y0 + box.y1)/2 - (top + bot)/2;
+    cam.setViewOffset(W, H, dx, dy, W, H); cam.updateProjectionMatrix(); cam.updateMatrixWorld();
+  }
+  function project(x, y, z){ const p = new THREE.Vector3(x, y, z).project(cam); return [(p.x + 1)/2*innerWidth/(window.UIZ || 1), (1 - p.y)/2*innerHeight/(window.UIZ || 1)]; }
+  function render(){
+    if (!built) build();
+    // shelf + top bar
+    $('mapXp').textContent = '⭐ ' + (meta.totalXp || 0).toLocaleString();
+    $('mapStreak').textContent = '🔥 ' + Math.max(RUNS.fs.bestStreak || 0, RUNS.sk2.bestStreak || 0, meta.bestCombo || 0);
+    $('badgeCount').textContent = `${meta.badges.length} of ${BADGES.length}`;
+    $('badgeShelf').innerHTML = BADGES.map(b => `<button class="badge ${meta.badges.includes(b.id) ? '' : 'off'}" data-b="${b.id}" aria-label="${esc(b.name)}${meta.badges.includes(b.id) ? ' (earned)' : ' (locked)'}"><i>${b.icon}</i>${esc(b.name)}</button>`).join('');
+    document.querySelectorAll('.badge').forEach(el => el.onclick = () => { document.querySelectorAll('.badge').forEach(x => x.classList.remove('sel')); el.classList.add('sel');
+      const b = BADGES.find(x => x.id === el.dataset.b); $('badgeInfo').textContent = `${b.icon} ${b.name}: ${meta.badges.includes(b.id) ? 'earned! ' : ''}${b.how}.`; sfx.tap(); });
+    $('badgeInfo').textContent = 'Tap a badge to see how to earn it.';
+    layoutCam();
+    while (nodesG.children.length) nodesG.remove(nodesG.children[0]);
+    let html = '';
+    LEVELS.forEach((L, i) => {
+      const [x, z] = NODES[i], st = status(L.id);
+      const col = st === 'done' ? '#e9c56a' : st === 'open' ? '#e48a5c' : '#d8d0c4';
+      const ped = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.7, 0.7, 36), M(st === 'lock' || st === 'soon' ? '#eee7dc' : '#fffaf1'));
+      ped.position.set(x, 0.75, z); nodesG.add(ped);
+      const top = new THREE.MeshStandardMaterial({map:coinTex(st === 'lock' || st === 'soon' ? '#f4efe7' : '#fffaf0', st === 'done' ? '#d9a13b' : st === 'open' ? '#c4683d' : '#a79d90', L.icon, st === 'lock'), roughness:0.55, envMapIntensity:0.4});
+      const coin = new THREE.Mesh(new THREE.CylinderGeometry(1.25, 1.25, 0.28, 44), [M(col, {m:st === 'done' ? 0.45 : 0, r:0.4}), top, M(col)]);
+      coin.position.set(x, 1.25, z); nodesG.add(coin);
+      const n = starsOf(L.id);
+      if (st === 'done') for (let k=0;k<3;k++){ const shp = new THREE.Shape(); for (let j=0;j<10;j++){ const r = j % 2 ? 0.16 : 0.36, a = j/10*Math.PI*2 - Math.PI/2; j ? shp.lineTo(Math.cos(a)*r, Math.sin(a)*r) : shp.moveTo(Math.cos(a)*r, Math.sin(a)*r); }
+        const sm = new THREE.Mesh(new THREE.ExtrudeGeometry(shp, {depth:0.1, bevelEnabled:true, bevelSize:0.04, bevelThickness:0.04, bevelSegments:2}), k < n ? M('#f2b630', {m:0.4, r:0.35}) : M('#d9d2c6'));
+        sm.position.set(x - 0.7 + k*0.7, 1.75 + (k === 1 ? 0.25 : 0), z - 1.35); sm.rotation.x = -0.9; nodesG.add(sm); }
+      const [px, py] = project(x, 1.3, z), side = x < 0 ? 1 : -1, [lx, ly] = project(x + side*1.95, 1, z + 0.2);
+      const sub = st === 'soon' ? 'Coming soon' : st === 'lock' ? `${L.sub} · finish ${LEVELS[i-1].name}` : st === 'done' ? `${L.sub} · ${'★'.repeat(n)}${'☆'.repeat(3-n)}` : `${L.sub} · ${L.id === 'knife' && KS.idx > 0 && KS.idx < CUTS.length ? 'cut ' + (KS.idx+1) + ' of 9' : RUNS[L.id] && RUNS[L.id].step > 0 && !RUNS[L.id].done ? 'in progress' : 'new'}`;
+      html += `<button class="mnode" id="lv-${L.id}" data-i="${i}" style="left:${px}px;top:${py}px" aria-label="${esc(L.name)}: ${esc(sub)}"></button>`;
+      html += `<div class="mlabel ${st === 'open' ? 'now' : st === 'lock' || st === 'soon' ? 'lock' : ''}" style="${side > 0 ? `left:${lx}px` : `right:${innerWidth/(window.UIZ||1) - lx}px;text-align:right`};top:${ly}px"><b>${esc(L.name)}</b><small>${esc(sub)}</small></div>`;
+      if (st === 'lock' || st === 'soon'){ const [qx, qy] = project(x + 0.95, 1.4, z - 0.85); html += `<div class="mlock" style="left:${qx}px;top:${qy}px">${st === 'soon' ? '⏳' : '🔒'}</div>`; }
+      if (st === 'open'){ const [bx, by] = project(x, 1.6, z + 2.55); html += `<div class="mplay" style="left:${bx}px;top:${by}px">▶ Play</div>`; }
+    });
+    $('mapNodes').innerHTML = html;
+    document.querySelectorAll('.mnode').forEach(b => b.onclick = () => { b.blur(); choose(+b.dataset.i); });
+    placeRing();
+  }
+  function placeRing(){ const [x, z] = NODES[sel]; ring.position.set(x, 0.5, z); }
+  function open(){
+    Knife.close?.(); coachHide();
+    mode = 'map'; document.body.classList.add('mk'); setHUD(false); closePanel(); $('title').hidden = true; $('results').hidden = true; $('prompt').hidden = true;
+    $('map').hidden = false; $('lvSheet').hidden = true;
+    // select the next thing to play
+    const i = LEVELS.findIndex(L => status(L.id) === 'open'); sel = i >= 0 ? i : 0;
+    render(); paintSound();
+  }
+  function close(){ $('map').hidden = true; $('lvSheet').hidden = true; }
+  function choose(i){
+    const L = LEVELS[i], st = status(L.id); sel = i; placeRing();
+    if (st === 'soon'){ sfx.nope(); hint(`${L.name} is coming soon!`); return; }
+    if (st === 'lock'){ sfx.nope(); hint(`Finish ${LEVELS[i-1].name} to unlock ${L.name}.`); return; }
+    sfx.tap();
+    const inProg = L.id === 'knife' ? KS.idx > 0 && KS.idx < CUTS.length : RUNS[L.id].step > 0 && !RUNS[L.id].done;
+    if (!inProg) return startLevel(L.id, false);
+    $('lvSheetKick').textContent = L.sub; $('lvSheetH').textContent = L.name;
+    $('lvSheetP').textContent = L.id === 'knife' ? `You’re on cut ${KS.idx + 1} of ${CUTS.length}: ${CUTS[KS.idx].name}.` : `You’re at station ${RUNS[L.id].step + 1} of ${L.id === 'sk2' ? QUESTIONS_SK2.length : QUESTIONS_FS.length}.`;
+    $('lvSheet').hidden = false; $('lvContinue').focus();
+    $('lvContinue').onclick = () => startLevel(L.id, false);
+    $('lvRestart').onclick = () => startLevel(L.id, true);
+  }
+  $('lvSheet').addEventListener('click', e => { if (e.target.id === 'lvSheet') $('lvSheet').hidden = true; });
+  $('mapBack').onclick = () => { close(); renderTitle(); };
+  function key(k){
+    if (!$('lvSheet').hidden){ if (k === 'Escape') $('lvSheet').hidden = true; else if (k === 'Enter' || k === 'Space' || k === 'KeyE' || k === 'NumpadEnter') $('lvContinue').click(); return; }
+    if (k === 'Escape'){ close(); renderTitle(); return; }
+    const playable = LEVELS.map((L, i) => i).filter(i => !LEVELS[i].soon);
+    if (k === 'ArrowUp' || k === 'KeyW' || k === 'ArrowRight' || k === 'KeyD'){ sel = Math.min(LEVELS.length - 1, sel + 1); placeRing(); sfx.tap(); return; }
+    if (k === 'ArrowDown' || k === 'KeyS' || k === 'ArrowLeft' || k === 'KeyA'){ sel = Math.max(0, sel - 1); placeRing(); sfx.tap(); return; }
+    if (k === 'Enter' || k === 'Space' || k === 'KeyE' || k === 'NumpadEnter') choose(sel);
+  }
+  function frame(dt, t){
+    if (!built) return;
+    const rm = reduce.matches;
+    ring.material.opacity = rm ? 0.9 : 0.6 + 0.4*Math.sin(t*4); ring.scale.setScalar(rm ? 1 : 1 + Math.sin(t*4)*0.03);
+    renderer.render(ms, cam);
+  }
+  function resize(){ if (built && mode === 'map') render(); }
+  return {open, close, frame, key, resize, status, get scene(){ return ms; }, get cam(){ return cam; }};
+})();
+
+/* ---------------- starting a level from the map ---------------- */
+function startLevel(id, restart){
+  MapUI.close();
+  if (id === 'knife'){ if (restart) { KS.idx = 0; KS.score = 0; save(); } Knife.open(); return; }
+  setLevel(id);
+  if (restart || S.done){ S = RUNS[id] = fresh(); }
+  if (Array.isArray(S.pos)) { P.x = S.pos[0]; P.z = S.pos[1]; } else { P.x = START[0]; P.z = START[1]; P.rot = Math.PI; }
+  save(); startGame();
+}
+
+/* ---------------- start tutorial (shown once, skippable): how to walk ---------------- */
+const coach = {on:false, step:0, x:0, z:0};
+function coachShow(){
+  if (meta.tut.walk) return;
+  coach.on = true; coach.step = 0; coach.x = P.x; coach.z = P.z;
+  const touch = document.body.classList.contains('touch');
+  $('coachTxt').innerHTML = touch ? '👋 Drag the joystick to walk.<small>Follow the ★ to the glowing ring, then tap ✋ Use.</small>'
+    : '👋 Walk with <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or the arrow keys.<small>Follow the ★ to the glowing ring, then press <kbd>E</kbd>.</small>';
+  $('coach').hidden = false;
+}
+function coachHide(){ coach.on = false; $('coach').hidden = true; }
+function coachDone(){ meta.tut.walk = true; save(); coachHide(); }
+$('coachSkip').onclick = () => { sfx.tap(); coachDone(); };
+function coachTick(){
+  if (!coach.on) return;
+  if (mode !== 'walk'){ if (mode === 'quiz' || mode === 'wash') coachDone(); else coachHide(); return; }
+  if (coach.step === 0 && Math.hypot(P.x - coach.x, P.z - coach.z) > 1.2){
+    coach.step = 1; const touch = document.body.classList.contains('touch');
+    $('coachTxt').innerHTML = `Nice walking! 🎉<small>At the ring, ${touch ? 'tap ✋ Use' : 'press <kbd>E</kbd>'} to answer a question.</small>`;
+  }
+}
 /* ---------------- Loop ---------------- */
 let titleAngle = 0, chefJump = 0, chefShake = 0, camSnap = true, saveT = 0, debugCam = null;
 const camPos = new THREE.Vector3(), camLook = new THREE.Vector3(), tmpV = new THREE.Vector3(), tmpL = new THREE.Vector3(), tmpA = new THREE.Vector3(), tmpB = new THREE.Vector3();
-let viewOff = 0;
+let viewOff = 0, lastView = 'kitchen';
 function resize(){
   const w = innerWidth, h = innerHeight;
   renderer.setSize(w, h, false); camera.aspect = w/h; camera.updateProjectionMatrix();
+  if (v2Ready){ Knife.resize(); MapUI.resize(); }
 }
 addEventListener('resize', resize); resize();
 
@@ -1652,7 +2646,7 @@ function frame(){
   Rl.knee.rotation.x = lerp(Rl.knee.rotation.x, walking ? Math.max(0, Math.sin(ph + 1.4 + Math.PI)) * 0.75 * amp : 0, k);
   const scrubbing = mode === 'wash' && (W.holding || (W.phase >= 1 && W.phase <= 3 && !W.finished));
   const celebrating = chefJump > 0 && !rm;
-  let shX = [sw*0.85, -sw*0.85], shZ = [-0.05, 0.05], elX = [-0.25 - amp*0.15, -0.25 - amp*0.15];
+  let shX = [sw*0.85, -sw*0.85], shZ = [-0.1, 0.1], elX = [-0.25 - amp*0.15, -0.25 - amp*0.15];
   if (scrubbing){
     const s = W.holding && !rm ? Math.sin(t*15) * 0.12 : 0;
     shX = [-0.85 + s, -0.85 - s]; shZ = [0.3, -0.3]; elX = [-1.05, -1.05];
@@ -1718,6 +2712,9 @@ function frame(){
   steamTick(dt, rm);
   washTick(Math.min(rawDt, 0.25), t);   // real time, so slow frames don't stretch the 15 s scrub
 
+  coachTick();
+  if (mode === 'map' || mode === 'knife'){ (mode === 'map' ? MapUI : Knife).frame(dt, t); lastView = mode; requestAnimationFrame(frame); return; }
+  if (lastView !== 'kitchen'){ lastView = 'kitchen'; renderer.shadowMap.needsUpdate = true; camSnap = true; }
   /* ---- camera ---- */
   const portrait = camera.aspect < 1;
   const panelOn = $('panel').classList.contains('on');
@@ -1760,11 +2757,12 @@ function frame(){
   renderer.render(scene, camera);
   requestAnimationFrame(frame);
 }
+v2Ready = true;
 renderTitle(); progress();
 camSnap = true;
 requestAnimationFrame(frame);
 $('loading').hidden = true;
-addEventListener('pagehide', () => { if (mode !== 'title' && mode !== 'results') S.pos = [P.x, P.z]; save(); });
+addEventListener('pagehide', () => { if (mode === 'walk' || mode === 'quiz' || mode === 'tip' || mode === 'wash') S.pos = [P.x, P.z]; save(); });
 reduce.addEventListener?.('change', () => { camSnap = true; });
 
 // ?debug=1 : small on-screen readout so a screenshot tells us what the device is doing
