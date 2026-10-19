@@ -26,3 +26,11 @@
   document.addEventListener('keydown',function(e){if(e.key==='/'&&!/input|textarea|select/i.test(document.activeElement.tagName)&&(!box||box.hidden)){open(e)}});
   window.siteSearch={load:function(){return load()},find:function(q){return find(q)}};
 })();
+
+/* img-retry: if a photo fails to load (flaky mobile connection), try it once more */
+(function(){
+  function retry(i){if(!i||i.tagName!=='IMG'||i.dataset.retried)return;i.dataset.retried='1';var s=i.getAttribute('src');if(!s)return;setTimeout(function(){i.src=s+(s.indexOf('?')<0?'?':'&')+'r=1';},800);}
+  window.addEventListener('error',function(e){retry(e.target)},true);
+  function sweep(){[].forEach.call(document.images,function(i){if(i.complete&&i.naturalWidth===0&&i.getAttribute('src'))retry(i)});}
+  if(document.readyState==='complete')sweep();else window.addEventListener('load',sweep);
+})();

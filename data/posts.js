@@ -325,7 +325,7 @@ const POSTS=[
 "type": "Review",
 "kicker": "Restaurant Review · Sitka, AK",
 "title": "Thai Alaska Kitchen",
-"desc": "Some of the best Thai food in Alaska: rich panaang curry with beautiful butterfly pea flower rice.",
+"desc": "Some of the best Thai food in Alaska: rich panang curry with beautiful butterfly pea flower rice.",
 "img": "",
 "alt": "",
 "o": 8
