@@ -205,7 +205,7 @@ body.panel-open #touch,body.panel-open #prompt,body.panel-open .goal{display:non
 .mstars{position:absolute;transform:translate(-50%,-50%);pointer-events:none;font-size:18px;letter-spacing:1px;filter:drop-shadow(0 2px 0 #b8742a);white-space:nowrap}
 .mapshelf{position:absolute;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));padding:12px 12px 10px;max-width:560px;margin:0 auto}
 .shelfhead{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:800;color:var(--muted)}
-.badges{display:grid;grid-template-columns:repeat(6,1fr);gap:8px 4px;margin-top:8px}
+.badges{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px 4px;margin-top:8px}
 .badge{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10.5px;font-weight:800;line-height:1.1;text-align:center;color:#2b2b2b}
 .badge i{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:20px;background:radial-gradient(circle at 35% 30%,#ffe7a3,#e2ac3c);box-shadow:0 3px 0 #b8862a}
 .badge.off{color:#8d8377} .badge.off i{background:#efe9df;box-shadow:0 3px 0 #ddd3c4;filter:grayscale(1);opacity:.75}
@@ -219,10 +219,10 @@ body.panel-open #touch,body.panel-open #prompt,body.panel-open .goal{display:non
 /* ===== knife skills ===== */
 #kpad{position:absolute;inset:0;z-index:15;touch-action:none;cursor:crosshair}
 #kfx{position:absolute;left:0;top:0;width:100%;height:100%;z-index:16;pointer-events:none}
-#knifeUI{position:absolute;inset:0;z-index:20;pointer-events:none}
-#knifeUI .row{display:flex;align-items:center;gap:8px;padding:calc(12px + env(safe-area-inset-top)) 14px 0}
-#knifeUI .row > *{pointer-events:auto}
-#knifeUI .pill{font-size:15px;font-weight:800;padding:8px 13px;border:0;box-shadow:0 2px 0 var(--line),0 3px 10px rgba(60,40,20,.12)}
+#knifeUI,#sauceUI{position:absolute;inset:0;z-index:20;pointer-events:none}
+#knifeUI .row,#sauceUI .row{display:flex;align-items:center;gap:8px;padding:calc(12px + env(safe-area-inset-top)) 14px 0}
+#knifeUI .row > *,#sauceUI .row > *{pointer-events:auto}
+#knifeUI .pill,#sauceUI .pill{font-size:15px;font-weight:800;padding:8px 13px;border:0;box-shadow:0 2px 0 var(--line),0 3px 10px rgba(60,40,20,.12)}
 #kTimer.low{color:#c0392b;animation:pulse 1s ease-in-out infinite}
 .kprompt{margin:10px 14px 0;display:flex;gap:12px;align-items:center;padding:12px 14px;max-width:560px}
 .kpic{width:52px;height:52px;border-radius:14px;background:#fdf0e6;display:grid;place-items:center;flex:none}
@@ -269,8 +269,42 @@ body.panel-open #touch,body.panel-open #prompt,body.panel-open .goal{display:non
 #coach .card{max-width:520px;margin:0 auto;padding:12px 14px;display:flex;gap:12px;align-items:center;pointer-events:auto;border:2px solid #f3d9b8}
 .coachtxt{flex:1;font-size:16px;line-height:1.38;font-weight:700}
 .coachtxt small{display:block;font-weight:700;color:var(--muted);font-size:14px;margin-top:2px}
-@media (min-width:700px){ .kprompt{margin:10px auto 0} #knifeUI .row{max-width:900px;margin:0 auto} }
+@media (min-width:700px){ .kprompt{margin:10px auto 0} #knifeUI .row,#sauceUI .row{max-width:900px;margin:0 auto} }
 body.mk #joy,body.mk #useBtn{display:none!important}
+#spad{position:absolute;inset:0;z-index:15;touch-action:none;cursor:grab}
+#sauceUI .kbar{pointer-events:auto;padding:10px 14px 12px}
+#sauceUI .kbarrow{align-items:center;gap:8px}
+#sauceUI .kbarrow .kchips{margin:0;min-height:0;justify-content:flex-end;font-size:12.5px}
+.gauge{position:relative;height:18px;border-radius:10px;margin-top:8px;border:1px solid #e3d9c8}
+.gband{position:absolute;top:-4px;bottom:-4px;border:3px solid var(--olive);border-radius:8px}
+.gneedle{position:absolute;top:-7px;bottom:-7px;width:6px;margin-left:-3px;border-radius:4px;background:#2b2b2b;box-shadow:0 0 0 2px #fff;transition:left .15s linear}
+.glabels{position:relative;height:16px;font-size:11.5px;font-weight:800;color:var(--muted);margin-top:4px}
+.glabels span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.glabels span:first-child{transform:none} .glabels span:last-child{transform:translateX(-100%)}
+.smeters{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:6px}
+.smeters small{font-size:11.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+.smeters .kmeter{margin-top:3px;height:10px}
+.kmeter span.blue{background:linear-gradient(90deg,#4f8fc0,#7fb6dd)} .kmeter span.red{background:linear-gradient(90deg,#e08a3c,#c0392b)}
+.sctl{display:flex;align-items:center;gap:8px;margin-top:10px}
+.hbtn{width:56px;height:56px;flex:none;border-radius:50%;background:#fff;border:2px solid var(--line);font-size:30px;font-weight:900;color:var(--ink);box-shadow:0 3px 0 var(--line);touch-action:manipulation}
+.hbtn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}
+.heatv{width:52px;text-align:center;flex:none} .heatv small{display:block;font-size:10.5px;font-weight:800;color:var(--muted);text-transform:uppercase} .heatv b{font-family:var(--serif);font-size:26px}
+.sbtn{flex:1;min-height:56px;padding:10px 12px;font-size:17px;touch-action:manipulation}
+#sPour.on{background:#d9a13b;box-shadow:0 1px 0 #a87a1f;transform:translateY(3px)}
+.ptiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:left}
+.ptile{display:flex;gap:10px;align-items:center;min-height:68px;padding:10px 12px;border-radius:16px;background:#fff;border:2px solid var(--line);box-shadow:0 3px 0 var(--line);font-size:16px;color:var(--ink);text-align:left}
+.ptile i{font-style:normal;font-size:28px;flex:none} .ptile b{display:block;font-weight:800;line-height:1.2} .ptile small{display:block;font-size:12.5px;color:var(--muted);line-height:1.25;margin-top:2px}
+.ptile .swatch{width:30px;height:30px;border-radius:50%;flex:none;border:2px solid rgba(0,0,0,.12)}
+.ptile.ok{border-color:var(--olive);background:var(--olive-l);box-shadow:0 3px 0 #b7c79a}
+.ptile.bad{border-color:var(--red);background:var(--red-l);opacity:.7;animation:pshake .3s}
+.ptile:disabled{cursor:default}
+@keyframes pshake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.pnote{min-height:22px;margin-top:10px;font-size:15px;line-height:1.4;text-align:left}
+.pnote .okt{color:var(--olive)} .pnote .badt{color:var(--red)}
+.howto{text-align:left;display:grid;gap:8px;margin:0 0 12px;background:#fff8ec;border:1px dashed #e8c98f;border-radius:16px;padding:10px 12px;font-size:15px;line-height:1.35}
+.howto > div{display:flex;gap:10px;align-items:flex-start} .howto span{font-size:20px;line-height:1.2;flex:none}
+.tip.safe{background:#eef3e4;border-color:#b7c79a} .tip.safe b{color:var(--olive)}
+.kcard .tip{margin:0 0 10px}
 </style>
 </head>
 <body>
@@ -295,7 +329,7 @@ body.mk #joy,body.mk #useBtn{display:none!important}
   </div>
   <div class="level-card">
    <div class="num">1</div>
-   <div><b id="t-level">Food Safety · Knife Skills · Safe Kitchen II</b><small id="t-status">3 levels to play, more coming soon</small></div>
+   <div><b id="t-level">Food Safety · Knife Skills · Safe Kitchen II · Sauces</b><small id="t-status">4 levels to play, more coming soon</small></div>
   </div>
   <div class="btns">
    <button class="btn" id="startBtn">Play</button>
@@ -401,6 +435,39 @@ body.mk #joy,body.mk #useBtn{display:none!important}
  <div id="kPops"></div>
  <div id="kGhost" hidden></div>
  <div class="kcard card" id="kCard" hidden></div>
+</div>
+
+<!-- ============ SAUCES ============ -->
+<div id="spad" hidden></div>
+<div id="sauceUI" hidden>
+ <div class="row">
+  <button class="icon-btn" id="sHome" aria-label="Back to the map">✕</button>
+  <span class="pill" id="sTimer">⏱ 0:00</span>
+  <span class="sp"></span>
+  <span class="pill" id="sScore">⭐ 0</span>
+  <button class="icon-btn sndBtn" aria-label="Sound on">🔊</button>
+ </div>
+ <div class="kprompt card" id="sPrompt"><div class="kpic" id="sPic"></div><div style="flex:1;min-width:0"><div class="kick" id="sKick"></div><div class="ktitle" id="sTitle"></div><div class="ksub" id="sSub"></div></div></div>
+ <div class="kcombo" id="sCombo" hidden></div>
+ <div class="kbar card sbar" id="sBar">
+  <div class="kbarrow"><span>Heat <b id="sTemp">–</b></span><span class="kchips" id="sChips"></span></div>
+  <div class="gauge" id="sGauge"><div class="gband" id="sBand"></div><div class="gneedle" id="sNeedle"></div></div>
+  <div class="glabels" id="sGLab"></div>
+  <div class="smeters">
+   <div><small id="sProgL">Thickening</small><div class="kmeter"><span id="sProg"></span></div></div>
+   <div><small>Stirring</small><div class="kmeter"><span id="sStirM" class="blue"></span></div></div>
+   <div><small id="sRiskL">Scorching</small><div class="kmeter"><span id="sRisk" class="red"></span></div></div>
+  </div>
+  <div class="sctl">
+   <button class="hbtn" id="sDown" aria-label="Lower the heat">−</button>
+   <div class="heatv"><small>Burner</small><b id="sHeat">3</b></div>
+   <button class="hbtn" id="sUp" aria-label="Raise the heat">+</button>
+   <button class="btn olive sbtn" id="sStirBtn">🥄 Stir</button>
+   <button class="btn sbtn" id="sPour" hidden>🧈 Pour</button>
+  </div>
+ </div>
+ <div id="sPops"></div>
+ <div class="kcard card" id="sCard" hidden></div>
 </div>
 
 <div id="coach" hidden><div class="card"><div class="coachtxt" id="coachTxt"></div><button class="btn ghost small" id="coachSkip">Skip tutorial</button></div></div>
@@ -517,7 +584,7 @@ const LEVELS = [
  {id:'fs',     name:'Food Safety',     icon:'🧼', kind:'kitchen', sub:'Level 1'},
  {id:'knife',  name:'Knife Skills',    icon:'🔪', kind:'knife',   sub:'Level 2'},
  {id:'sk2',    name:'Safe Kitchen II', icon:'🌡️', kind:'kitchen', sub:'Level 3'},
- {id:'sauces', name:'Sauces',          icon:'🍲', soon:true, sub:'Coming soon'},
+ {id:'sauces', name:'Sauces',          icon:'🍲', kind:'sauce',   sub:'Level 4'},
  {id:'baking', name:'Baking',          icon:'🥐', soon:true, sub:'Coming soon'},
 ];
 const BADGES = [
@@ -533,6 +600,8 @@ const BADGES = [
  {id:'sk2',      name:'Safe Kitchen Pro', icon:'🛡️', how:'Pass Safe Kitchen II (8 of 11)'},
  {id:'allergen', name:'Allergen Ace',     icon:'🥜', how:'Get both allergen questions right in Safe Kitchen II'},
  {id:'roll',     name:'On a Roll',        icon:'🎯', how:'Answer 5 questions in a row correctly'},
+ {id:'saucier',  name:'Saucier',          icon:'🥄', how:'Make all five mother sauces'},
+ {id:'emulsion', name:'Emulsion Expert',  icon:'🍳', how:'2 or more stars on the hollandaise without breaking it'},
 ];
 let QUESTIONS = QUESTIONS_FS;
 let NQ = QUESTIONS.filter(s => !s.type).length;
@@ -575,7 +644,8 @@ if ((meta.best > 0 || meta.badge || RUNS.fs.done) && !meta.done.fs) meta.done.fs
 if (meta.badge && !meta.badges.includes('rookie')) meta.badges.push('rookie');
 if (RUNS.fs.washDone && !meta.badges.includes('clean')) meta.badges.push('clean');
 const KS = Object.assign({idx:0, best:{}, score:0, done:false}, saved.knife || {});
-const save = () => { try { localStorage.setItem(KEY, JSON.stringify({run:RUNS.fs, run3:RUNS.sk2, meta, knife:KS})); } catch(e) {} };
+const SC = Object.assign({idx:0, best:{}, score:0, done:false}, saved.sauce || {});
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify({run:RUNS.fs, run3:RUNS.sk2, meta, knife:KS, sauce:SC})); } catch(e) {} };
 function setLevel(id){
   curLevel = id;
   QUESTIONS = id === 'sk2' ? QUESTIONS_SK2 : QUESTIONS_FS;
@@ -1658,13 +1728,13 @@ function setHUD(on){ $('hud').hidden = !on; }
 
 function renderTitle(){
   mode = 'title'; closePanel(); setHUD(false); $('results').hidden = true; $('title').hidden = false; $('prompt').hidden = true;
-  MapUI.close(); Knife.close(); coachHide();
+  MapUI.close(); Knife.close(); Sauce.close(); coachHide();
   paintSound();
   $('t-xp').textContent = '⭐ ' + (meta.totalXp || 0).toLocaleString() + ' XP' + (meta.badges.length ? ` · 🏅 ${meta.badges.length}` : '');
-  const nDone = ['fs', 'knife', 'sk2'].filter(id => meta.done[id]).length;
+  const nDone = ['fs', 'knife', 'sk2', 'sauces'].filter(id => meta.done[id]).length;
   $('startBtn').innerHTML = (nDone ? 'Continue' : 'Play') + (isTouch ? '' : ' <kbd>Enter</kbd>');
   $('resetBtn').hidden = true;
-  $('t-status').textContent = nDone ? `${nDone} of 3 levels done · ${meta.badges.length} of ${BADGES.length} badges` : 'Quizzes, a handwashing challenge and a cutting-board game · Sauces and Baking coming soon';
+  $('t-status').textContent = nDone ? `${nDone} of 4 levels done · ${meta.badges.length} of ${BADGES.length} badges` : 'Quizzes, handwashing, a cutting-board game and a stovetop sauce game · Baking coming soon';
   const r = document.querySelectorAll('.rung'); r.forEach((el, i) => el.className = i < nDone ? 'rung done' : i === nDone ? 'rung now' : 'rung');
   $('controlsHint').innerHTML = document.body.classList.contains('touch')
     ? '<span>🕹️ Joystick to walk</span><span>✋ Use button at a station</span><span>👆 Swipe to cut</span>'
@@ -1866,7 +1936,7 @@ const LVR = {
   fs: {kick:'Level 1 complete', pass:'Food Safety Rookie!', badge:'rookie', badgeName:'Safety Rookie', three:9,
        msg:'Badge earned! You know the basics that keep every guest safe.', next:['🔪', 'Next level: Knife Skills', 'Unlocked! Swipe to julienne, dice and mince on the cutting board']},
   sk2:{kick:'Level 3 complete', pass:'Safe Kitchen Pro!', badge:'sk2', badgeName:'Safe Kitchen Pro', three:10,
-       msg:'Badge earned! Time limits, receiving, thawing, allergens and sanitizing: handled like a pro.', next:['🍲', 'Next up: Sauces', 'Coming soon, along with Baking']},
+       msg:'Badge earned! Time limits, receiving, thawing, allergens and sanitizing: handled like a pro.', next:['🍲', 'Next level: Sauces', 'Unlocked! Make the five mother sauces on the stovetop']},
 };
 const TEMP_TOPICS = ['Temperature danger zone', 'Cooking temperatures', 'Cooling food', 'Reheating', 'Thermometers'];
 function results(){
@@ -2415,6 +2485,484 @@ const Knife = (() => {
       guide: guides[gi] ? {a:project(guides[gi].a), b:project(guides[gi].b), sp:guides[gi].sp/wpp} : null})};
 })();
 /* =====================================================================
+   LEVEL 4 · SAUCES: the five French mother sauces on the stovetop.
+   Step 1: pick the base and the thickener. Step 2: keep the heat in the
+   zone and keep stirring (whisking + a slow butter drizzle for hollandaise).
+   ===================================================================== */
+const SAUCE_BASES = {
+  milk:   {n:'Milk',             s:'whole milk',             i:'🥛'},
+  wstock: {n:'White stock',      s:'chicken, veal or fish',  i:'🍗'},
+  bstock: {n:'Brown stock',      s:'from roasted bones',     i:'🦴'},
+  tomato: {n:'Tomatoes',         s:'with aromatics',         i:'🍅'},
+  butter: {n:'Clarified butter', s:'warm, with lemon juice', i:'🧈'},
+};
+const SAUCE_THICK = {
+  white:    {n:'White roux',        s:'cooked briefly, still pale', sw:'#f4ecd6'},
+  blond:    {n:'Blond roux',        s:'light golden, nutty',        sw:'#e2bb72'},
+  brown:    {n:'Brown roux',        s:'nut-brown and toasty',       sw:'#94562a'},
+  emulsion: {n:'Egg-yolk emulsion', s:'yolks whisked with fat',     i:'🥚'},
+  reduce:   {n:'Simmer and reduce', s:'no roux; purée at the end',  i:'♨️'},
+};
+const SAUCES = [
+ {id:'bechamel', name:'Béchamel', short:'milk + white roux', icon:'🥛', color:'#f6f0e2', base:'milk', thick:'white', kind:'roux', need:12, event:'skin', scorchK:1.3,
+  bases:['milk','wstock','bstock','butter'], thicks:['white','blond','brown','reduce'],
+  how:'Milk whisked into a white roux. Hold a gentle simmer and keep the bottom moving: milk scorches easily.',
+  tip:'Béchamel is milk thickened with a white roux: equal weights of butter and flour, cooked for just a couple of minutes so it stays pale. Add the milk a little at a time while whisking to avoid lumps, then simmer gently for about 15 to 30 minutes, stirring the bottom and corners, until it no longer tastes of raw flour.',
+  safe:'Béchamel is a TCS food. Hold it hot at 135°F or higher, or cool it fast: from 135°F to 70°F within 2 hours, then to 41°F or lower within the next 4 hours.'},
+ {id:'veloute', name:'Velouté', short:'white stock + blond roux', icon:'🍗', color:'#eedbad', base:'wstock', thick:'blond', kind:'roux', need:12, event:'skim', scorchK:1,
+  bases:['wstock','milk','bstock','tomato'], thicks:['blond','white','brown','emulsion'],
+  how:'A light stock thickened with a blond roux. Keep it at a gentle simmer, stir now and then, and tap the foam to skim it.',
+  tip:'Velouté (French for “velvety”) is a white stock, such as chicken, veal or fish, thickened with a blond roux that has cooked until it is light golden and smells nutty. Simmer it gently and skim often for a clean, smooth sauce. It is the base for sauces like suprême and allemande.',
+  safe:'Taste with a clean spoon every time, never the stirring spoon, and don’t double-dip. If you hold the sauce for service, keep it at 135°F or higher.'},
+ {id:'espagnole', name:'Espagnole', short:'brown stock + brown roux', icon:'🥩', color:'#713c1e', base:'bstock', thick:'brown', kind:'roux', need:14, event:'skim', scorchK:1,
+  bases:['bstock','wstock','milk','butter'], thicks:['brown','white','blond','reduce'],
+  how:'Brown stock with brown roux, browned mirepoix and tomato purée. A long, gentle simmer: stay in the zone and skim the surface.',
+  tip:'Espagnole (brown sauce) is brown stock thickened with brown roux and flavoured with browned mirepoix and tomato purée. It simmers for a long time and is skimmed often before it is strained. Brown roux thickens less than white roux, because browning breaks down some of the flour’s starch. Simmer espagnole with more brown stock and reduce it by half to make demi-glace.'},
+ {id:'tomat', name:'Sauce tomat', short:'tomatoes, simmered down', icon:'🍅', color:'#c43a22', base:'tomato', thick:'reduce', kind:'reduce', need:13, event:'splatter', scorchK:1.25,
+  bases:['tomato','bstock','milk','wstock'], thicks:['reduce','white','brown','emulsion'],
+  how:'Tomatoes and aromatics, simmered until they cook down and thicken. Tomato sugars scorch easily, so keep stirring the bottom.',
+  tip:'Classic tomato sauce simmers tomatoes with aromatics; some versions add salt pork and stock, and older recipes also used a little roux. Today it is usually thickened just by simmering it down and puréeing it. Tomatoes are acidic, so cook them in stainless steel or another non-reactive pan, not bare aluminum or cast iron.',
+  safe:'Cooling a big batch? Split it into shallow pans or use an ice paddle so it moves through the temperature danger zone (41°F to 135°F) quickly.'},
+ {id:'hollandaise', name:'Hollandaise', short:'egg yolks + butter emulsion', icon:'🍳', color:'#f2cd5a', base:'butter', thick:'emulsion', kind:'emulsion', need:7, pourNeed:7, event:'none',
+  bases:['butter','milk','wstock','tomato'], thicks:['emulsion','white','blond','reduce'],
+  how:'Whisk the yolks over barely simmering water until thick and foamy, then hold Pour to drizzle in warm butter slowly while you keep whisking.',
+  tip:'Hollandaise is an emulsion: egg yolks hold warm clarified butter in tiny droplets, and lemon juice adds brightness. Cook the yolks gently until they thicken, then add the butter slowly while whisking. If it breaks, whisk a fresh yolk (or a spoonful of warm water) in a clean bowl and slowly whisk the broken sauce back in.',
+  safe:'Hollandaise is held warm: keep it at 135°F or higher, but not much above 160°F or the yolks curdle. Make small batches and never add an old batch to a new one. Raw-egg dishes served to high-risk guests, as in hospitals and nursing homes, need pasteurized eggs. If you hold it using time instead of temperature, throw it out after 4 hours.'},
+];
+
+const Sauce = (() => {
+  const RT = 0;                               // range top
+  let built = false, ss, cam, panG, potG, surf, surfM, skinM, skin, flames = [], knob, spoonG, whiskG, steam = [], bubbles = [], scum = [], drip, wpp = 0.01;
+  let sc = null, state = 'off', step = 'base', R = null, tStart = 0, limit = 40, H = 3, L = 0.25, T = 125, stir = 0.5, pouring = false, pourRun = 0;
+  let spoonA = 0, evtT = 0, evt = null, skimT = 0, lastStar = 0, tut = false;
+  const mats = {};
+  const M = (c, o={}) => mats[c+JSON.stringify(o)] || (mats[c+JSON.stringify(o)] = new THREE.MeshStandardMaterial({color:c, roughness:o.r ?? 0.6, metalness:o.m ?? 0, envMapIntensity:o.e ?? 0.5, side:o.side ?? THREE.FrontSide}));
+  const ROUX_BAND = [0.42, 0.66], HOT = 0.8, HB = [140, 155], CURDLE = 160;
+  const isE = () => sc && sc.kind === 'emulsion';
+  function surfTex(col){
+    const [c, g] = cnv(256, 256); g.fillStyle = col; g.fillRect(0, 0, 256, 256);
+    for (let i=0;i<26;i++){ g.strokeStyle = `rgba(255,255,255,${0.05 + rnd()*0.08})`; g.lineWidth = 2 + rnd()*5; g.beginPath(); const r = 20 + rnd()*100, a = rnd()*6.28; g.arc(128, 128, r, a, a + 0.8 + rnd()*1.6); g.stroke(); }
+    for (let i=0;i<40;i++){ g.fillStyle = `rgba(0,0,0,${rnd()*0.05})`; g.beginPath(); g.arc(rnd()*256, rnd()*256, 2 + rnd()*6, 0, 7); g.fill(); }
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+  }
+  function foamTex(){
+    const [c, g] = cnv(128, 128);
+    for (let i=0;i<34;i++){ const x = 64 + (rnd()-.5)*70, y = 64 + (rnd()-.5)*70, r = 6 + rnd()*14; const gr = g.createRadialGradient(x, y, 0, x, y, r);
+      gr.addColorStop(0, 'rgba(250,242,222,.95)'); gr.addColorStop(.7, 'rgba(236,222,190,.8)'); gr.addColorStop(1, 'rgba(236,222,190,0)'); g.fillStyle = gr; g.beginPath(); g.arc(x, y, r, 0, 7); g.fill(); }
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+  }
+  function build(){
+    built = true;
+    ss = new THREE.Scene(); ss.background = new THREE.Color('#e9dcc7'); ss.environment = scene.environment; ss.environmentIntensity = 0.5;
+    ss.add(new THREE.HemisphereLight('#fff4e6', '#b99a7c', 1.25));
+    const key = new THREE.DirectionalLight('#fff0dc', 2.1); key.position.set(-5, 16, 8); ss.add(key);
+    const fl = new THREE.DirectionalLight('#e4ecff', 0.5); fl.position.set(7, 6, 10); ss.add(fl);
+    cam = new THREE.PerspectiveCamera(38, 1, 0.1, 200);
+    // cream enamel range with a dark cooktop, one burner and a front knob
+    const range = new THREE.Mesh(roundBoxGeo(34, 4, 26, 0.6, 4), M('#efe3cf', {r:0.55})); range.position.y = RT - 2; ss.add(range);
+    const top = new THREE.Mesh(roundBoxGeo(30, 0.3, 21, 0.3, 3), M('#2c2c30', {r:0.45, m:0.2})); top.position.set(0, RT + 0.05, -1); ss.add(top);
+    const cap = new THREE.Mesh(new THREE.CylinderGeometry(1.25, 1.35, 0.35, 32), M('#1e1e21', {r:0.5, m:0.4})); cap.position.y = RT + 0.3; ss.add(cap);
+    const gm = M('#18181a', {r:0.5, m:0.5});
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(3.6, 0.14, 8, 48), gm); ring.rotation.x = Math.PI/2; ring.position.y = RT + 0.75; ss.add(ring);
+    for (let i=0;i<4;i++){ const b = new THREE.Mesh(new THREE.BoxGeometry(7.4, 0.24, 0.26), gm); b.position.y = RT + 0.78; b.rotation.y = i*Math.PI/4 + Math.PI/8; ss.add(b); }
+    const fg = new THREE.ConeGeometry(0.13, 0.6, 6); fg.translate(0, 0.3, 0);
+    const fm = new THREE.MeshBasicMaterial({color:'#5d9bff', transparent:true, opacity:0.85, blending:THREE.AdditiveBlending, depthWrite:false, toneMapped:false});
+    for (let i=0;i<16;i++){ const a = i/16*Math.PI*2, f = new THREE.Mesh(fg, fm); f.position.set(Math.cos(a)*1.32, RT + 0.42, Math.sin(a)*1.32); f.rotation.set(Math.sin(a)*0.5, 0, -Math.cos(a)*0.5); ss.add(f); flames.push(f); }
+    knob = new THREE.Group(); knob.position.set(0, RT - 1.2, 13.1); ss.add(knob);
+    const kb = new THREE.Mesh(new THREE.CylinderGeometry(1.0, 1.1, 0.8, 28), M('#2c2c30', {r:0.4, m:0.3})); kb.rotation.x = Math.PI/2; knob.add(kb);
+    const kt = new THREE.Mesh(new THREE.BoxGeometry(0.22, 1.5, 0.4), M('#e6dccb')); kt.position.z = 0.45; knob.add(kt);
+    // saucepan (stainless) and, for hollandaise, a bowl over a pot of barely simmering water
+    panG = new THREE.Group(); panG.position.y = RT + 0.9; ss.add(panG);
+    const prof = [[0,0.02],[2.95,0.02],[3.18,0.14],[3.26,0.45],[3.26,2.55],[3.36,2.66],[3.4,2.6]].map(([r,y]) => new THREE.Vector2(r, y));
+    const steel = M('#d3d7dc', {r:0.28, m:0.85, e:0.9, side:THREE.DoubleSide});
+    panG.add(new THREE.Mesh(new THREE.LatheGeometry(prof, 56), steel));
+    const handle = new THREE.Mesh(roundBoxGeo(6.2, 0.5, 0.9, 0.22, 3), M('#2b2b2e', {r:0.5, m:0.3})); handle.position.set(6.3, 2.25, 1.2); handle.rotation.y = -0.2; handle.rotation.z = 0.12; panG.add(handle);
+    potG = new THREE.Group(); potG.position.y = RT + 0.9; potG.visible = false; ss.add(potG);
+    potG.add(new THREE.Mesh(new THREE.CylinderGeometry(3.1, 3.0, 2.2, 48, 1, true), steel)); potG.children[0].position.y = 1.1;
+    const bowlProf = [[0,1.5],[1.4,1.58],[2.4,1.95],[3.1,2.6],[3.55,3.5],[3.75,3.95],[3.82,3.9]].map(([r,y]) => new THREE.Vector2(r, y));
+    potG.add(new THREE.Mesh(new THREE.LatheGeometry(bowlProf, 56), steel));
+    // sauce surface + skin / curdle overlay
+    surfM = new THREE.MeshStandardMaterial({color:'#ffffff', roughness:0.35, envMapIntensity:0.6});
+    surf = new THREE.Mesh(new THREE.CircleGeometry(1, 56), surfM); surf.rotation.x = -Math.PI/2; ss.add(surf);
+    skinM = new THREE.MeshStandardMaterial({color:'#f3ead6', roughness:0.95, transparent:true, opacity:0});
+    skin = new THREE.Mesh(new THREE.CircleGeometry(1, 40), skinM); skin.rotation.x = -Math.PI/2; ss.add(skin);
+    // wooden spoon and balloon whisk
+    spoonG = new THREE.Group(); ss.add(spoonG);
+    const wood = M('#c99a62', {r:0.7});
+    const sh = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.16, 4.6, 10), wood); sh.position.set(1.05, 2.2, 0); sh.rotation.z = -0.42; spoonG.add(sh);
+    const bowl = new THREE.Mesh(new THREE.SphereGeometry(0.62, 16, 10), wood); bowl.scale.set(0.75, 0.25, 1); bowl.position.set(0.25, 0.25, 0); spoonG.add(bowl);
+    whiskG = new THREE.Group(); ss.add(whiskG); whiskG.visible = false;
+    const wire = M('#e1e4e8', {r:0.25, m:0.9});
+    for (let i=0;i<5;i++){ const w = new THREE.Mesh(new THREE.TorusGeometry(0.75, 0.035, 5, 28), wire); w.scale.set(0.8, 1.9, 1); w.rotation.y = i/5*Math.PI; w.position.y = 1.2; whiskG.add(w); }
+    const wh = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.2, 3.4, 12), M('#3a3a3e', {r:0.4})); wh.position.y = 4.4; whiskG.add(wh);
+    // bubbles, steam, foam to skim, butter stream
+    const bm = new THREE.MeshStandardMaterial({color:'#ffffff', roughness:0.2, transparent:true, opacity:0.55});
+    for (let i=0;i<12;i++){ const b = new THREE.Mesh(new THREE.SphereGeometry(0.16, 10, 6, 0, Math.PI*2, 0, Math.PI/2), bm); b.userData = {ph:rnd()*6, x:0, z:0}; ss.add(b); bubbles.push(b); }
+    const stex = radialTex('rgba(255,255,255,.85)', 'rgba(255,255,255,0)');
+    for (let i=0;i<9;i++){ const s = new THREE.Sprite(new THREE.SpriteMaterial({map:stex, transparent:true, opacity:0, depthWrite:false})); s.userData.ph = i/9; ss.add(s); steam.push(s); }
+    const ft = foamTex();
+    for (let i=0;i<3;i++){ const f = new THREE.Mesh(new THREE.CircleGeometry(0.75, 24), new THREE.MeshStandardMaterial({map:ft, transparent:true, roughness:0.9, depthWrite:false}));
+      f.rotation.x = -Math.PI/2; f.visible = false; f.userData = {on:false, t:0}; ss.add(f); scum.push(f); }
+    drip = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.06, 4, 8), new THREE.MeshStandardMaterial({color:'#f4cf62', roughness:0.25, transparent:true, opacity:0.9}));
+    drip.visible = false; ss.add(drip);
+  }
+  const surfY = () => isE() ? RT + 0.9 + 2.55 : RT + 0.9 + 1.55;
+  const surfR = () => isE() ? 2.95 : 3.18;
+  function dress(){
+    const e = isE(); panG.visible = !e; potG.visible = e; spoonG.visible = !e; whiskG.visible = e;
+    const y = surfY(), r = surfR();
+    surf.position.y = y; surf.scale.setScalar(r); skin.position.y = y + 0.01; skin.scale.setScalar(r * 0.96);
+    scum.forEach(f => { f.position.y = y + 0.02; });
+    if (surfM.map) surfM.map.dispose(); surfM.map = surfTex(sc.color); surfM.needsUpdate = true;
+    surf.visible = false;
+  }
+  /* ---------- camera ---------- */
+  function frameCam(){
+    if (!built) return;
+    const W = innerWidth, Hh = innerHeight, Z = window.UIZ || 1;
+    const prompt = $('sPrompt').getBoundingClientRect();
+    $('sCombo').style.top = (prompt.bottom/Z + 8) + 'px';
+    let topPx = prompt.bottom + 8*Z, botPx = $('sBar').hidden ? 12*Z : Hh - $('sBar').getBoundingClientRect().top + 8*Z;
+    if (!$('sCard').hidden) botPx = Math.max(botPx, Hh - $('sCard').getBoundingClientRect().top + 8*Z);
+    const avail = Math.max(120, Hh - topPx - botPx);
+    cam.aspect = W/Hh; cam.fov = 38; cam.clearViewOffset(); cam.updateProjectionMatrix();
+    const vt = Math.tan(THREE.MathUtils.degToRad(cam.fov)/2), ht = vt*cam.aspect, elev = THREE.MathUtils.degToRad(56);
+    const ex = 10.5, ez = 7.6;
+    const d = Math.max(ex/(2*ht), (ez*Math.sin(elev) + 3.6*Math.cos(elev)) / (2*vt*avail/Hh));
+    const c = new THREE.Vector3(0.9, RT + 2.0, 0);
+    cam.position.set(c.x, c.y + Math.sin(elev)*d, c.z + Math.cos(elev)*d); cam.lookAt(c);
+    cam.setViewOffset(W, Hh, 0, -(topPx - botPx)/2, W, Hh); cam.updateProjectionMatrix(); cam.updateMatrixWorld();
+    wpp = 2*d*vt/Hh;
+  }
+  function resize(){ if (built && state !== 'off') frameCam(); }
+  function project(v){ const p = v.clone().project(cam); return [(p.x + 1)/2*innerWidth, (1 - p.y)/2*innerHeight]; }
+  /* ---------- UI helpers ---------- */
+  const Z = () => window.UIZ || 1;
+  function chips(list){ $('sChips').innerHTML = list.map(([t, c]) => `<span class="${c || ''}">${esc(t)}</span>`).join(''); }
+  function pop(x, y, big, small, miss){
+    const d = document.createElement('div'); d.className = 'kpop' + (miss ? ' miss' : ''); d.style.left = (x/Z()) + 'px'; d.style.top = (y/Z()) + 'px';
+    d.innerHTML = `<b>${esc(big)}</b>${small ? `<small>${esc(small)}</small>` : ''}`; $('sPops').appendChild(d); setTimeout(() => d.remove(), 1000);
+  }
+  function card(html, noPrompt){ const c = $('sCard'); c.innerHTML = html; c.hidden = false; c.scrollTop = 0; $('sBar').hidden = true; $('sPrompt').style.visibility = noPrompt ? 'hidden' : ''; frameCam(); }
+  function hideCard(){ $('sCard').hidden = true; $('sBar').hidden = false; $('sPrompt').style.visibility = ''; frameCam(); }
+  function setPrompt(){
+    $('sPic').innerHTML = `<span style="font-size:30px">${sc.icon}</span>`;
+    $('sKick').textContent = `Sauce ${SC.idx + 1} of ${SAUCES.length} · Mother sauces`;
+    $('sTitle').textContent = `${sc.name}: ${sc.short}`;
+    $('sSub').textContent = state === 'pick' ? (step === 'base' ? 'Step 1: pick the base liquid' : 'Step 2: pick the thickener')
+      : isE() ? `Hold ${HB[0]}–${HB[1]}°F and keep whisking` : 'Hold a gentle simmer and keep stirring';
+  }
+  function timerText(){
+    const el = state === 'play' ? (performance.now() - tStart)/1000 : (R ? R.time : 0), left = Math.max(0, limit - el);
+    $('sTimer').textContent = `⏱ ${Math.floor(left/60)}:${String(Math.floor(left % 60)).padStart(2, '0')}`; $('sTimer').classList.toggle('low', state === 'play' && left < 6);
+    return left;
+  }
+  const score = () => SC.score + (state === 'play' || state === 'pick' ? R.score : 0);
+  function hudScore(){ $('sScore').textContent = '⭐ ' + Math.round(score()).toLocaleString(); }
+  /* ---------- flow ---------- */
+  function open(){
+    if (!built) build();
+    if (SC.idx >= SAUCES.length) SC.idx = 0;
+    mode = 'sauce'; document.body.classList.add('mk'); setHUD(false); $('title').hidden = true; $('results').hidden = true; $('prompt').hidden = true; closePanel();
+    $('sauceUI').hidden = false; $('spad').hidden = false; paintSound();
+    intro();
+  }
+  function close(){ state = 'off'; pouring = false; if ($('sauceUI')) { $('sauceUI').hidden = true; $('spad').hidden = true; } }
+  function toMap(){ close(); MapUI.open(); }
+  function intro(){
+    sc = SAUCES[SC.idx]; state = 'pick'; step = 'base';
+    R = {score:0, wrong:{base:0, thick:0}, time:0, cook:0, inBand:0, steady:0, best:0, risk:0, prog:0, pour:0, skimmed:0, spawned:0, fail:null, stars:0};
+    H = 3; L = 0.22; T = 122; stir = 0.6; pouring = false; pourRun = 0; evtT = 4; evt = null; skimT = 3;
+    limit = isE() ? 55 : sc.need + 26;
+    tut = !meta.tut.sauce;
+    dress(); scum.forEach(f => { f.visible = false; f.userData.on = false; }); skinM.opacity = 0; surfM.color.set('#ffffff');
+    $('sCombo').hidden = true; setPrompt(); timerText(); hudScore(); paintHeat();
+    pickCard();
+  }
+  function tile(kind, id, i){
+    const o = kind === 'base' ? SAUCE_BASES[id] : SAUCE_THICK[id];
+    const ic = o.sw ? `<span class="swatch" style="background:${o.sw}"></span>` : `<i>${o.i}</i>`;
+    return `<button class="ptile" data-k="${kind}" data-id="${id}">${ic}<span><b>${isTouch ? '' : `<kbd>${i+1}</kbd> `}${esc(o.n)}</b><small>${esc(o.s)}</small></span></button>`;
+  }
+  function shuffled(list){ const a = list.slice(); let s = SC.idx*7 + 3 + (R.wrong.base + R.wrong.thick); for (let i=a.length-1;i>0;i--){ s = (s*16807) % 2147483647; const j = s % (i+1); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+  function pickCard(note){
+    const kind = step, ids = shuffled(kind === 'base' ? sc.bases : sc.thicks);
+    const first = SC.idx === 0 && kind === 'base';
+    card(`<div class="kick">Sauce ${SC.idx + 1} of ${SAUCES.length}${first ? ' · Mother sauces' : ''}</div><h2>${esc(sc.name)}</h2>
+      <p class="how" style="margin:6px 0 10px">${kind === 'base' ? 'What liquid is this sauce built on?' : 'What thickens it?'}</p>
+      <div class="ptiles">${ids.map((id, i) => tile(kind, id, i)).join('')}</div>
+      <div class="pnote" id="pNote">${note || ''}</div>
+      <div class="row2" style="margin-top:10px"><button class="btn ghost" id="sBack">Map</button></div>`);
+    document.querySelectorAll('.ptile').forEach(b => b.onclick = () => choose(b));
+    $('sBack').onclick = () => toMap();
+  }
+  function choose(b){
+    if (state !== 'pick' || b.disabled) return;
+    const kind = b.dataset.k, id = b.dataset.id, want = kind === 'base' ? sc.base : sc.thick;
+    if (id === want){
+      b.classList.add('ok'); sfx.right(); R.score += R.wrong[kind] ? 50 : 150; hudScore();
+      document.querySelectorAll('.ptile').forEach(x => x.disabled = true);
+      const o = kind === 'base' ? SAUCE_BASES[id] : SAUCE_THICK[id];
+      $('pNote').innerHTML = `<b class="okt">✓ ${esc(o.n)}.</b> ${esc(pickWhy(kind))}`;
+      if (kind === 'base'){ surf.visible = true; surfM.color.set(sc.id === 'tomat' ? '#ffffff' : '#ffffff'); }
+      setTimeout(() => { if (state !== 'pick') return; if (kind === 'base'){ step = 'thick'; setPrompt(); pickCard(); } else readyCard(); }, reduce.matches ? 500 : 1500);
+    } else {
+      R.wrong[kind]++; b.classList.add('bad'); b.disabled = true; sfx.wrong();
+      const o = kind === 'base' ? SAUCE_BASES[id] : SAUCE_THICK[id];
+      $('pNote').innerHTML = `<b class="badt">Not this one.</b> ${esc(wrongWhy(kind, id))}`;
+    }
+  }
+  function pickWhy(kind){
+    if (kind === 'base') return {bechamel:'Béchamel is the milk-based mother sauce.', veloute:'Velouté starts from a light (white) stock: chicken, veal or fish.', espagnole:'Espagnole gets its deep flavour from brown stock made with roasted bones.', tomat:'Tomatoes, simmered with aromatics, are the base.', hollandaise:'Warm clarified butter is the fat the yolks hold in the emulsion.'}[sc.id];
+    return {white:'A white roux is cooked only a couple of minutes so the sauce stays pale.', blond:'A blond roux cooks a little longer, until light golden and nutty.', brown:'Brown roux cooks until nut-brown for a deep, toasty flavour.', reduce:'No roux needed: it thickens as it simmers down, then gets puréed.', emulsion:'Egg yolks emulsify the butter into a thick, smooth sauce.'}[sc.thick];
+  }
+  function wrongWhy(kind, id){
+    if (kind === 'base'){
+      const o = SAUCE_BASES[id].n.toLowerCase();
+      return {milk:`Milk is the base of béchamel, not ${sc.name.toLowerCase()}.`, wstock:`White stock is the base of velouté.`, bstock:`Brown stock is the base of espagnole.`, tomato:`Tomatoes are the base of sauce tomat.`, butter:`Clarified butter is the base of hollandaise.`}[id] || `Not ${o}.`;
+    }
+    return {white:'White roux is for the pale, milk-based sauce (béchamel).', blond:'Blond roux goes with light stocks (velouté).', brown:'Brown roux goes with brown stock (espagnole).', emulsion:'An egg-yolk emulsion is how hollandaise thickens, not this sauce.', reduce:'This one needs more than reducing to thicken.'}[id];
+  }
+  function readyCard(){
+    const e = isE(), touch = document.body.classList.contains('touch');
+    const ctl = e ? [['🔥', `Keep the needle in the green zone, ${HB[0]}–${HB[1]}°F, with <b>−</b> and <b>+</b>${touch ? '' : ' (or ← →)'}.`], ['🥄', `Drag circles on the bowl${touch ? '' : ', press Space,'} or tap Whisk to keep whisking.`], ['🧈', `When the yolks are thick, hold <b>Pour</b>${touch ? '' : ' (or hold B)'} in short bursts. Too fast, or without whisking, and it breaks.`]]
+      : [['🔥', `Keep the needle in the green “gentle simmer” zone with <b>−</b> and <b>+</b>${touch ? '' : ' (or ← →)'}.`], ['🥄', `Drag circles on the pan${touch ? '' : ', press Space,'} or tap Stir so the bottom can’t scorch.`], ...(sc.event === 'skim' ? [['🫧', `Tap the foam to skim it${touch ? '' : ' (or press K)'}.`]] : [])];
+    card(`<div class="kick">Sauce ${SC.idx + 1} of ${SAUCES.length} · Ready to cook</div><h2>${esc(sc.name)}</h2>
+      <div class="size">${esc(SAUCE_BASES[sc.base].n)} + ${esc(SAUCE_THICK[sc.thick].n.toLowerCase())}</div>
+      <p class="how">${esc(sc.how)}</p>
+      ${tut || SC.idx === 0 || e ? `<div class="howto">${ctl.map(([i, t]) => `<div><span>${i}</span><div>${t}</div></div>`).join('')}</div>` : ''}
+      <div class="row2"><button class="btn ghost" id="sBack2">Map</button><button class="btn" id="sGo">Start cooking${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`);
+    state = 'ready';
+    $('sGo').onclick = () => go(); $('sBack2').onclick = () => toMap();
+  }
+  function go(){
+    if (state !== 'ready') return;
+    sfx.tap(); state = 'play'; tStart = performance.now(); hideCard(); setPrompt();
+    if (tut){ meta.tut.sauce = true; save(); tut = false; }
+    $('sPour').hidden = !isE(); $('sStirBtn').innerHTML = isE() ? '🥄 Whisk' : '🥄 Stir';
+    $('sProgL').textContent = isE() ? 'Yolks thickening' : 'Thickening';
+    $('sRiskL').textContent = isE() ? 'Breaking' : 'Scorching';
+    paintGauge(); paintHeat();
+    chips([[isE() ? 'Barely simmering water under the bowl' : 'Bring it up to a gentle simmer', 'warn']]);
+  }
+  /* ---------- controls ---------- */
+  function heat(dv){ if (state !== 'play') return; const n = Math.max(0, Math.min(10, H + dv)); if (n === H) return sfx.nope(); H = n; sfx.tick(); paintHeat(); }
+  function addStir(a){ if (state !== 'play') return; stir = Math.min(1, stir + a); spoonA += a*6; }
+  function paintHeat(){ $('sHeat').textContent = H; if (knob) knob.rotation.z = -H/10*Math.PI*1.4; }
+  function paintGauge(){
+    const e = isE(), lab = $('sGLab'), band = $('sBand');
+    if (e){ const lo = (HB[0]-110)/70*100, hi = (HB[1]-110)/70*100, cu = (CURDLE-110)/70*100; band.style.left = lo + '%'; band.style.width = (hi - lo) + '%';
+      $('sGauge').style.background = `linear-gradient(90deg,#cfe3f2 0%,#cfe3f2 ${lo}%,#dfe9c9 ${lo}%,#dfe9c9 ${hi}%,#f8e3c8 ${hi}%,#f8e3c8 ${cu}%,#f4c3b5 ${cu}%,#f4c3b5 100%)`;
+      lab.innerHTML = `<span style="left:0">too cool</span><span style="left:${(lo+hi)/2}%">${HB[0]}–${HB[1]}°F</span><span style="left:100%">curdles ${CURDLE}°F+</span>`; }
+    else { const lo = ROUX_BAND[0]*100, hi = ROUX_BAND[1]*100, ho = HOT*100; band.style.left = lo + '%'; band.style.width = (hi - lo) + '%';
+      $('sGauge').style.background = `linear-gradient(90deg,#cfe3f2 0%,#cfe3f2 ${lo}%,#dfe9c9 ${lo}%,#dfe9c9 ${hi}%,#f8e3c8 ${hi}%,#f8e3c8 ${ho}%,#f4c3b5 ${ho}%,#f4c3b5 100%)`;
+      lab.innerHTML = `<span style="left:0">too cool</span><span style="left:${(lo+hi)/2}%">gentle simmer</span><span style="left:100%">boiling hard</span>`; }
+  }
+  $('sDown').onclick = () => heat(-1); $('sUp').onclick = () => heat(1);
+  $('sStirBtn').onclick = () => { addStir(0.18); };
+  const pourOn = e => { if (e) e.preventDefault(); if (state === 'play' && isE() && R.prog >= 1){ pouring = true; $('sPour').classList.add('on'); } else if (state === 'play' && isE()) { chips([['Whisk the yolks until thick first', 'warn']]); sfx.nope(); } };
+  const pourOff = () => { pouring = false; pourRun = 0; $('sPour').classList.remove('on'); };
+  $('sPour').addEventListener('pointerdown', pourOn); ['pointerup','pointercancel','pointerleave','lostpointercapture'].forEach(ev => $('sPour').addEventListener(ev, pourOff));
+  $('sPour').addEventListener('contextmenu', e => e.preventDefault());
+  $('sHome').onclick = () => toMap();
+  // drag circles on the pan to stir; tap the foam to skim
+  const pad = $('spad'); let drag = null;
+  function trySkim(x, y){
+    let best = null, bd = 46*Z();
+    scum.forEach(f => { if (!f.userData.on) return; const [sx, sy] = project(f.position); const d = Math.hypot(sx - x, sy - y); if (d < bd){ bd = d; best = f; } });
+    if (!best) return false;
+    skimOne(best); return true;
+  }
+  function skimOne(f){
+    f.userData.on = false; f.visible = false; R.skimmed++; R.score += 60; hudScore(); sfx.slice();
+    const [sx, sy] = project(f.position); pop(sx, sy, 'Skimmed!', '+60');
+  }
+  pad.addEventListener('pointerdown', e => { if (state !== 'play') return; e.preventDefault(); if (trySkim(e.clientX, e.clientY)) return; drag = {id:e.pointerId, x:e.clientX, y:e.clientY}; pad.setPointerCapture(e.pointerId); });
+  pad.addEventListener('pointermove', e => { if (!drag || e.pointerId !== drag.id) return; const d = Math.hypot(e.clientX - drag.x, e.clientY - drag.y); drag.x = e.clientX; drag.y = e.clientY;
+    const rpx = Math.max(60, 3.2/wpp); addStir(Math.min(0.08, d/(rpx*9))); });
+  const dragEnd = e => { if (drag && e.pointerId === drag.id) drag = null; };
+  ['pointerup','pointercancel','lostpointercapture'].forEach(ev => pad.addEventListener(ev, dragEnd));
+  // keyboard (only while this level is open; runs before the kitchen's own key handler)
+  window.addEventListener('keydown', e => {
+    if (mode !== 'sauce' || e.metaKey || e.ctrlKey || e.altKey) return;
+    const k = e.code; e.preventDefault(); e.stopImmediatePropagation();
+    if (k === 'Escape') return toMap();
+    const ae = document.activeElement;
+    if ((k === 'Enter' || k === 'Space') && !e.repeat && ae && ae.tagName === 'BUTTON' && ae.offsetParent && state !== 'play'){ ae.click(); return; }
+    if (state === 'pick'){ const m = k.match(/^(?:Digit|Numpad)([1-4])$/); if (m){ const b = document.querySelectorAll('.ptile')[+m[1]-1]; if (b) choose(b); } return; }
+    if (e.repeat && !(state === 'play' && /Arrow|Key[AD]/.test(k))) return;
+    const act = k === 'Enter' || k === 'NumpadEnter' || k === 'Space' || k === 'KeyE';
+    if (state === 'ready' && act) return go();
+    if (state === 'result' && act){ const b = $('sNext'); if (b) b.click(); return; }
+    if (state === 'summary' && act){ $('sMap').click(); return; }
+    if (state !== 'play') return;
+    if (k === 'ArrowLeft' || k === 'KeyA' || k === 'ArrowDown' || k === 'KeyS') return heat(-1);
+    if (k === 'ArrowRight' || k === 'KeyD' || k === 'ArrowUp' || k === 'KeyW') return heat(1);
+    if (k === 'Space' || k === 'KeyE') return addStir(0.18);
+    if (k === 'KeyB' || k === 'Enter') return pourOn();
+    if (k === 'KeyK'){ const f = scum.filter(f => f.userData.on).sort((a, b) => a.userData.t - b.userData.t)[0]; if (f) skimOne(f); }
+  }, true);
+  window.addEventListener('keyup', e => { if (mode !== 'sauce') return; if (e.code === 'KeyB' || e.code === 'Enter') pourOff(); e.stopImmediatePropagation(); }, true);
+  addEventListener('blur', () => pourOff());
+  /* ---------- simulation ---------- */
+  function setChip(text, cls){ const c = $('sChips').firstElementChild; if (!c || c.textContent !== text) chips([[text, cls]]); }
+  function sim(dt){
+    const e = isE(), now = performance.now();
+    R.cook += dt;
+    // heat follows the burner with a little lag, plus the odd flare-up or cool-down
+    evtT -= dt;
+    if (evtT <= 0){ evtT = 6 + rnd()*4; evt = {k: rnd() < 0.6 ? 'flare' : 'cool', t:1.2}; sfx.nope(); }
+    let push = 0; if (evt){ evt.t -= dt; push = evt.k === 'flare' ? 1 : -1; if (evt.t <= 0) evt = null; }
+    let inBand;
+    if (e){
+      const eq = 110 + H*7 - (pouring ? 6 : 0) + push*10;
+      T += (eq - T) * Math.min(1, dt/1.5);
+      inBand = T >= HB[0] && T <= HB[1];
+    } else {
+      const eq = H/10 + push*0.16;
+      L += (eq - L) * Math.min(1, dt/1.4); L = Math.max(0, Math.min(1, L));
+      inBand = L >= ROUX_BAND[0] && L <= ROUX_BAND[1];
+    }
+    stir = Math.max(0, stir - dt*(e ? 0.2 : 0.12));
+    // risk: scorching (roux, tomato) or breaking (hollandaise)
+    let risk = 0, why = '';
+    if (e){
+      if (T > CURDLE){ risk += 0.5; why = 'Too hot! The yolks are curdling'; }
+      if (stir < 0.25 && R.prog < 1){ risk += 0.12; why = why || 'Keep whisking!'; }
+      if (pouring){ pourRun += dt; if (stir < 0.4){ risk += 0.35; why = 'Whisk while you pour!'; } if (pourRun > 3){ risk += 0.3; why = why || 'Pour in short bursts: too fast'; } }
+    } else {
+      if (L > HOT){ risk += 0.22; why = 'Boiling hard: it will scorch!'; } else if (L > ROUX_BAND[1]){ risk += 0.06; why = 'A little too hot'; }
+      if (stir < 0.25 && L > 0.3){ risk += 0.08; why = why || 'Stir the bottom!'; }
+      risk *= sc.scorchK || 1;
+    }
+    R.risk = Math.min(1, R.risk + risk*dt);
+    // skin on béchamel
+    if (sc.event === 'skin'){ const on = stir < 0.15 && L > 0.3; skinM.opacity = Math.max(0, Math.min(0.85, skinM.opacity + (on ? 0.35 : -1.2)*dt)); if (skinM.opacity > 0.4) why = why || 'A skin is forming: stir!'; }
+    // progress
+    const blocked = skinM.opacity > 0.4;
+    if (inBand && !blocked){
+      R.inBand += dt; R.steady += dt;
+      R.score += dt*20*(1 + Math.min(Math.floor(R.steady/2), 10)*0.1);
+      if (e && R.prog >= 1){ if (pouring){ R.pour = Math.min(1, R.pour + dt/sc.pourNeed); } }
+      else R.prog = Math.min(1, R.prog + dt/sc.need);
+      const c = Math.floor(R.steady/2);
+      if (c >= 2 && c !== lastStar){ lastStar = c; R.best = Math.max(R.best, c); sfx.combo(c); const cb = $('sCombo'); cb.hidden = false; cb.textContent = `Steady ×${c} 🔥`; cb.classList.remove('pop'); void cb.offsetWidth; cb.classList.add('pop'); }
+    } else { if (R.steady > 0){ R.steady = 0; lastStar = 0; $('sCombo').hidden = true; } }
+    if (e && pouring && !inBand && R.prog >= 1) R.pour = Math.min(1, R.pour + dt/sc.pourNeed*0.5);   // still adds butter, just not as well
+    // foam to skim
+    if (sc.event === 'skim'){ skimT -= dt; if (skimT <= 0){ skimT = 3.5 + rnd()*2; const f = scum.find(f => !f.userData.on); if (f){ const a = rnd()*6.28, r = 0.6 + rnd()*1.6; f.position.x = Math.cos(a)*r; f.position.z = Math.sin(a)*r; f.userData.on = true; f.userData.t = now; f.visible = true; f.scale.setScalar(0.01); R.spawned++; } } }
+    // messages
+    const left = timerText();
+    if (R.risk >= 1){ return finish(e ? 'broken' : 'scorched'); }
+    if (!e && R.prog >= 1) return finish(null);
+    if (e && R.pour >= 1) return finish(null);
+    if (left <= 0) return finish('time');
+    if (evt && evt.k === 'flare') why = why || 'Burner flare-up: turn it down a notch';
+    if (evt && evt.k === 'cool') why = why || 'It cooled off a little';
+    if (why) setChip(why, risk > 0.2 ? 'bad' : 'warn');
+    else if (e && R.prog >= 1 && R.pour < 1) setChip(pouring ? 'Pouring… keep whisking' : 'Yolks are thick: hold Pour in short bursts', 'warn');
+    else if (inBand) setChip(e ? 'Perfect: gentle heat' : 'Gentle simmer ✓', '');
+    else setChip(e ? (T < HB[0] ? 'Too cool: turn it up' : 'A bit too hot') : 'Too cool: turn it up', 'warn');
+    // meters
+    const val = e ? (T - 110)/70 : L;
+    $('sNeedle').style.left = (Math.max(0, Math.min(1, val))*100) + '%';
+    $('sTemp').textContent = e ? Math.round(T) + '°F' : (inBand ? 'Simmering' : L < ROUX_BAND[0] ? 'Too cool' : L > HOT ? 'Boiling hard' : 'Bubbling');
+    $('sTemp').style.color = inBand ? '' : (e ? T > HB[1] : L > ROUX_BAND[1]) ? 'var(--red)' : '#4f8fc0';
+    $('sProg').style.width = ((e && R.prog >= 1 ? R.pour : R.prog)*100) + '%';
+    $('sProgL').textContent = e ? (R.prog >= 1 ? 'Butter added' : 'Yolks thickening') : 'Thickening';
+    $('sStirM').style.width = (stir*100) + '%';
+    $('sRisk').style.width = (R.risk*100) + '%';
+    hudScore();
+  }
+  function finish(fail){
+    if (state !== 'play') return;
+    state = 'result'; pourOff(); $('sCombo').hidden = true;
+    R.time = (performance.now() - tStart)/1000; R.fail = fail;
+    const ok = !fail, frac = R.cook ? R.inBand/R.cook : 0, picks = !R.wrong.base && !R.wrong.thick;
+    const skimOK = sc.event !== 'skim' || R.spawned === 0 || R.skimmed/R.spawned >= 0.7;
+    let stars = ok ? (picks && frac >= 0.6 && R.risk < 0.5 && skimOK ? 3 : frac >= 0.4 ? 2 : 1) : (fail === 'time' && (isE() ? R.prog >= 1 : R.prog >= 0.5) ? 1 : 0);
+    const bonus = ok ? Math.round(timerText()*10) : 0;
+    R.score += bonus; R.stars = stars;
+    SC.score += Math.round(R.score); meta.totalXp += Math.round(R.score);
+    SC.best[sc.id] = Math.max(SC.best[sc.id] || 0, stars);
+    meta.bestCombo = Math.max(meta.bestCombo || 0, R.best);
+    const nb = [];
+    if (sc.id === 'hollandaise' && stars >= 2 && award('emulsion')) nb.push('emulsion');
+    if (ok) SC.idx++;
+    const last = ok && SC.idx >= SAUCES.length;
+    if (last){ SC.done = true; meta.done.sauces = true; if (award('saucier')) nb.push('saucier'); }
+    save(); hudScore();
+    if (ok){ sfx.win(); if (stars >= 2) setTimeout(() => confetti(stars === 3 ? 50 : 26), 250); } else sfx.wrong();
+    setTimeout(() => {
+      if (mode !== 'sauce') return;
+      const starHtml = [0,1,2].map(i => `<span class="${i < stars ? '' : 'off'}">⭐</span>`).join('');
+      const badgeLine = nb.length ? `<div class="newb"><span style="font-size:22px">🏅</span> New badge: ${nb.map(id => esc(BADGES.find(b => b.id === id).name)).join(', ')}</div>` : '';
+      const h = fail === 'scorched' ? 'Scorched!' : fail === 'broken' ? 'It broke!' : fail === 'time' ? 'Time’s up!' : `${sc.name} done!`;
+      const failTip = fail === 'scorched' ? 'Scorched sauce tastes bitter and can’t be saved by stirring the burnt bits in. Start again with gentler heat and keep the spoon moving across the bottom and corners. ' :
+        fail === 'broken' ? 'A broken hollandaise looks greasy and curdled. Heat that’s too high, or butter added too fast, breaks the emulsion. ' : '';
+      const next = ok && !last ? SAUCES[SC.idx] : null;
+      card(`<div class="kick">Mother sauces · Sauce ${SAUCES.indexOf(sc) + 1} of ${SAUCES.length}</div><h2>${esc(h)}</h2>
+        <div class="kstars" aria-label="${stars} of 3 stars">${starHtml}</div>
+        <div class="kstats"><div><b>${Math.round(frac*100)}%</b><small>In the zone</small></div><div><b>${picks ? '2/2' : (2 - (R.wrong.base ? 1 : 0) - (R.wrong.thick ? 1 : 0)) + '/2'}</b><small>First-try picks</small></div>
+          <div><b>${sc.event === 'skim' ? `${R.skimmed}/${R.spawned}` : '×' + R.best}</b><small>${sc.event === 'skim' ? 'Skimmed' : 'Steady'}</small></div><div><b>${Math.floor(R.time/60)}:${String(Math.floor(R.time % 60)).padStart(2,'0')}</b><small>Time</small></div></div>
+        <div class="tip"><b>👨‍🍳 Chef's tip</b>${esc(failTip + sc.tip)}</div>
+        ${sc.safe ? `<div class="tip safe"><b>🛡️ Food safety</b>${esc(sc.safe)}</div>` : ''}${badgeLine}
+        <div class="row2"><button class="btn ghost" id="sRetry">↻ Retry</button><button class="btn" id="sNext">${ok ? (last ? 'Finish' : 'Next: ' + esc(next.name) + ' →') : 'Try again'}${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`, true);
+      $('sRetry').onclick = () => { if (ok) SC.idx--; SC.score = Math.max(0, SC.score - Math.round(R.score)); save(); sfx.tap(); intro(); };
+      $('sNext').onclick = () => { sfx.tap(); if (!ok){ SC.score = Math.max(0, SC.score - Math.round(R.score)); save(); intro(); } else if (last) summary(); else intro(); };
+    }, reduce.matches ? 200 : 800);
+  }
+  function summary(){
+    state = 'summary'; hudScore();
+    const total = SAUCES.reduce((n, s) => n + (SC.best[s.id] || 0), 0);
+    card(`<div class="kick">Level 4 complete</div><h2>Mother sauces mastered!</h2>
+      <div class="kstars">🍲</div><div class="size">${total} of ${SAUCES.length*3} stars · ${SC.score.toLocaleString()} points</div>
+      <p class="how">Béchamel, velouté, espagnole, sauce tomat and hollandaise: the five mother sauces that hundreds of other sauces are built from. Baking is coming soon.</p>
+      <div class="newb"><span style="font-size:22px">🥄</span> Badge: Saucier</div>
+      <div class="row2"><button class="btn ghost" id="sAgain">Play again</button><button class="btn" id="sMap">Back to the map${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`, true);
+    $('sAgain').onclick = () => { SC.idx = 0; SC.score = 0; save(); intro(); };
+    $('sMap').onclick = () => toMap();
+  }
+  /* ---------- per frame ---------- */
+  function frame(dt, t){
+    if (!built) return;
+    const rm = reduce.matches;
+    if (state === 'play') sim(Math.min(dt, 0.25));
+    const heatV = state === 'play' || state === 'result' ? H/10 : 0.3;
+    flames.forEach((f, i) => { f.visible = H > 0; const fl = rm ? 1 : 0.85 + 0.25*Math.sin(t*18 + i*1.7); f.scale.set(0.7 + heatV*0.6, (0.25 + heatV*1.25)*fl, 0.7 + heatV*0.6); });
+    const lvl = isE() ? Math.max(0, (T - 110)/70) : L;
+    // surface colour: deepens as it thickens, browns if scorched; curdled look if broken
+    if (sc){ const base = new THREE.Color(sc.color), burnt = new THREE.Color('#5a3a22');
+      surfM.color.copy(new THREE.Color('#ffffff')).lerp(burnt.clone().multiply(new THREE.Color('#ffffff')).lerp(new THREE.Color('#ffffff'), 0.2), isE() ? 0 : R.risk*0.55);
+      if (isE() && R) surfM.color.lerp(new THREE.Color('#d9a838'), R.risk*0.6);
+      surfM.roughness = 0.45 - (R ? R.prog : 0)*0.2;
+      surf.rotation.z += dt*(0.3 + stir*2.4) * (rm ? 0.3 : 1); }
+    // spoon / whisk circle with the stirring
+    spoonA += dt*(state === 'play' ? stir*4 : 0.4);
+    const sy = surfY(), rr = isE() ? 1.4 : 1.6;
+    if (spoonG.visible){ spoonG.position.set(Math.cos(spoonA)*rr*0.6, sy - 0.25, Math.sin(spoonA)*rr*0.6); spoonG.rotation.y = -spoonA; }
+    if (whiskG.visible){ whiskG.position.set(Math.cos(spoonA)*rr*0.5, sy - 0.4, Math.sin(spoonA)*rr*0.5); whiskG.rotation.set(Math.sin(spoonA)*0.25, spoonA*2, Math.cos(spoonA)*0.25); }
+    // bubbles near a simmer, more when boiling hard
+    const bub = isE() ? 0 : Math.max(0, (L - 0.3)/0.7);
+    bubbles.forEach((b, i) => { const u = b.userData; u.ph += dt*(1 + bub*3);
+      if (u.ph > 1){ u.ph = 0; const a = rnd()*6.28, r = rnd()*2.6; u.x = Math.cos(a)*r; u.z = Math.sin(a)*r; }
+      b.visible = surf.visible && i < bub*bubbles.length; b.position.set(u.x, sy, u.z); b.scale.setScalar(0.4 + Math.sin(u.ph*Math.PI)*0.9*(rm ? 0.6 : 1)); });
+    // steam
+    const stm = Math.max(0, Math.min(1, isE() ? 0.35 : (lvl - 0.25)/0.6));
+    steam.forEach(s => { s.userData.ph = (s.userData.ph + dt*0.22) % 1; const p = s.userData.ph, a = p*5 + s.userData.ph*20;
+      s.position.set(Math.cos(a)*1.2*(1 - p*0.3), sy + 0.6 + p*5.5, Math.sin(a)*0.9); s.scale.setScalar(1.8 + p*3.2); s.material.opacity = surf.visible ? stm*0.32*Math.sin(p*Math.PI) : 0; });
+    // foam grows in; butter stream while pouring
+    scum.forEach(f => { if (f.userData.on) f.scale.setScalar(Math.min(1, f.scale.x + dt*2.5)); });
+    drip.visible = pouring; if (pouring){ drip.position.set(-1.0, sy + 2.0, 0.6); drip.scale.y = rm ? 1 : 0.9 + 0.1*Math.sin(t*30); }
+    renderer.render(ss, cam);
+  }
+  return {open, close, frame, resize, get scene(){ return ss; }, get cam(){ return cam; },
+    debug: () => ({state, step, idx:SC.idx, id:sc && sc.id, kind:sc && sc.kind, base:sc && sc.base, thick:sc && sc.thick, H, L, T, stir, pouring,
+      prog:R && R.prog, pour:R && R.pour, risk:R && R.risk, inBand:R && R.inBand, cook:R && R.cook, stars:R && R.stars, fail:R && R.fail, score:R && Math.round(R.score),
+      band: sc && sc.kind === 'emulsion' ? HB : ROUX_BAND, curdle:CURDLE, hot:HOT,
+      scum: scum.filter(f => f.userData.on).map(f => project(f.position)), pan: built && sc ? project(new THREE.Vector3(0, surfY(), 0)) : null})};
+})();
+/* =====================================================================
    LEVEL MAP: a little table-top diorama with a path of stepping stones
    ===================================================================== */
 const MapUI = (() => {
@@ -2460,7 +3008,8 @@ const MapUI = (() => {
   };
   const starsOf = id => id === 'fs' ? (meta.best >= 9 ? 3 : meta.best >= 7 ? 2 : meta.best > 0 ? 1 : 0)
     : id === 'sk2' ? (meta.best3 >= 10 ? 3 : meta.best3 >= 8 ? 2 : meta.best3 > 0 ? 1 : 0)
-    : id === 'knife' ? Math.round(CUTS.reduce((n, c) => n + (KS.best[c.id] || 0), 0) / CUTS.length) : 0;
+    : id === 'knife' ? Math.round(CUTS.reduce((n, c) => n + (KS.best[c.id] || 0), 0) / CUTS.length)
+    : id === 'sauces' ? Math.round(SAUCES.reduce((n, c) => n + (SC.best[c.id] || 0), 0) / SAUCES.length) : 0;
   function layoutCam(){
     const W = innerWidth, H = innerHeight, a = W/H; cam.aspect = a; cam.fov = 40;
     const tb = document.querySelector('#map .maptop').getBoundingClientRect(), sh = document.querySelector('.mapshelf').getBoundingClientRect();
@@ -2488,7 +3037,7 @@ const MapUI = (() => {
     $('badgeShelf').innerHTML = BADGES.map(b => `<button class="badge ${meta.badges.includes(b.id) ? '' : 'off'}" data-b="${b.id}" aria-label="${esc(b.name)}${meta.badges.includes(b.id) ? ' (earned)' : ' (locked)'}"><i>${b.icon}</i>${esc(b.name)}</button>`).join('');
     document.querySelectorAll('.badge').forEach(el => el.onclick = () => { document.querySelectorAll('.badge').forEach(x => x.classList.remove('sel')); el.classList.add('sel');
       const b = BADGES.find(x => x.id === el.dataset.b); $('badgeInfo').textContent = `${b.icon} ${b.name}: ${meta.badges.includes(b.id) ? 'earned! ' : ''}${b.how}.`; sfx.tap(); });
-    $('badgeInfo').textContent = 'Tap a badge to see how to earn it.';
+    $('badgeInfo').textContent = 'Tap a badge to see its name and how to earn it.';
     layoutCam();
     while (nodesG.children.length) nodesG.remove(nodesG.children[0]);
     let html = '';
@@ -2505,7 +3054,7 @@ const MapUI = (() => {
         const sm = new THREE.Mesh(new THREE.ExtrudeGeometry(shp, {depth:0.1, bevelEnabled:true, bevelSize:0.04, bevelThickness:0.04, bevelSegments:2}), k < n ? M('#f2b630', {m:0.4, r:0.35}) : M('#d9d2c6'));
         sm.position.set(x - 0.7 + k*0.7, 1.75 + (k === 1 ? 0.25 : 0), z - 1.35); sm.rotation.x = -0.9; nodesG.add(sm); }
       const [px, py] = project(x, 1.3, z), side = x < 0 ? 1 : -1, [lx, ly] = project(x + side*1.95, 1, z + 0.2);
-      const sub = st === 'soon' ? 'Coming soon' : st === 'lock' ? `${L.sub} · finish ${LEVELS[i-1].name}` : st === 'done' ? `${L.sub} · ${'★'.repeat(n)}${'☆'.repeat(3-n)}` : `${L.sub} · ${L.id === 'knife' && KS.idx > 0 && KS.idx < CUTS.length ? 'cut ' + (KS.idx+1) + ' of 9' : RUNS[L.id] && RUNS[L.id].step > 0 && !RUNS[L.id].done ? 'in progress' : 'new'}`;
+      const sub = st === 'soon' ? 'Coming soon' : st === 'lock' ? `${L.sub} · finish ${LEVELS[i-1].name}` : st === 'done' ? `${L.sub} · ${'★'.repeat(n)}${'☆'.repeat(3-n)}` : `${L.sub} · ${L.id === 'knife' && KS.idx > 0 && KS.idx < CUTS.length ? 'cut ' + (KS.idx+1) + ' of 9' : L.id === 'sauces' && SC.idx > 0 && SC.idx < SAUCES.length ? 'sauce ' + (SC.idx+1) + ' of 5' : RUNS[L.id] && RUNS[L.id].step > 0 && !RUNS[L.id].done ? 'in progress' : 'new'}`;
       html += `<button class="mnode" id="lv-${L.id}" data-i="${i}" style="left:${px}px;top:${py}px" aria-label="${esc(L.name)}: ${esc(sub)}"></button>`;
       html += `<div class="mlabel ${st === 'open' ? 'now' : st === 'lock' || st === 'soon' ? 'lock' : ''}" style="${side > 0 ? `left:${lx}px` : `right:${innerWidth/(window.UIZ||1) - lx}px;text-align:right`};top:${ly}px"><b>${esc(L.name)}</b><small>${esc(sub)}</small></div>`;
       if (st === 'lock' || st === 'soon'){ const [qx, qy] = project(x + 0.95, 1.4, z - 0.85); html += `<div class="mlock" style="left:${qx}px;top:${qy}px">${st === 'soon' ? '⏳' : '🔒'}</div>`; }
@@ -2517,7 +3066,7 @@ const MapUI = (() => {
   }
   function placeRing(){ const [x, z] = NODES[sel]; ring.position.set(x, 0.5, z); }
   function open(){
-    Knife.close?.(); coachHide();
+    Knife.close?.(); Sauce.close?.(); coachHide();
     mode = 'map'; document.body.classList.add('mk'); setHUD(false); closePanel(); $('title').hidden = true; $('results').hidden = true; $('prompt').hidden = true;
     $('map').hidden = false; $('lvSheet').hidden = true;
     // select the next thing to play
@@ -2530,10 +3079,10 @@ const MapUI = (() => {
     if (st === 'soon'){ sfx.nope(); hint(`${L.name} is coming soon!`); return; }
     if (st === 'lock'){ sfx.nope(); hint(`Finish ${LEVELS[i-1].name} to unlock ${L.name}.`); return; }
     sfx.tap();
-    const inProg = L.id === 'knife' ? KS.idx > 0 && KS.idx < CUTS.length : RUNS[L.id].step > 0 && !RUNS[L.id].done;
+    const inProg = L.id === 'knife' ? KS.idx > 0 && KS.idx < CUTS.length : L.id === 'sauces' ? SC.idx > 0 && SC.idx < SAUCES.length : RUNS[L.id].step > 0 && !RUNS[L.id].done;
     if (!inProg) return startLevel(L.id, false);
     $('lvSheetKick').textContent = L.sub; $('lvSheetH').textContent = L.name;
-    $('lvSheetP').textContent = L.id === 'knife' ? `You’re on cut ${KS.idx + 1} of ${CUTS.length}: ${CUTS[KS.idx].name}.` : `You’re at station ${RUNS[L.id].step + 1} of ${L.id === 'sk2' ? QUESTIONS_SK2.length : QUESTIONS_FS.length}.`;
+    $('lvSheetP').textContent = L.id === 'sauces' ? `You’re on sauce ${SC.idx + 1} of ${SAUCES.length}: ${SAUCES[SC.idx].name}.` : L.id === 'knife' ? `You’re on cut ${KS.idx + 1} of ${CUTS.length}: ${CUTS[KS.idx].name}.` : `You’re at station ${RUNS[L.id].step + 1} of ${L.id === 'sk2' ? QUESTIONS_SK2.length : QUESTIONS_FS.length}.`;
     $('lvSheet').hidden = false; $('lvContinue').focus();
     $('lvContinue').onclick = () => startLevel(L.id, false);
     $('lvRestart').onclick = () => startLevel(L.id, true);
@@ -2562,6 +3111,7 @@ const MapUI = (() => {
 function startLevel(id, restart){
   MapUI.close();
   if (id === 'knife'){ if (restart) { KS.idx = 0; KS.score = 0; save(); } Knife.open(); return; }
+  if (id === 'sauces'){ if (restart) { SC.idx = 0; SC.score = 0; save(); } Sauce.open(); return; }
   setLevel(id);
   if (restart || S.done){ S = RUNS[id] = fresh(); }
   if (Array.isArray(S.pos)) { P.x = S.pos[0]; P.z = S.pos[1]; } else { P.x = START[0]; P.z = START[1]; P.rot = Math.PI; }
@@ -2596,7 +3146,7 @@ let viewOff = 0, lastView = 'kitchen';
 function resize(){
   const w = innerWidth, h = innerHeight;
   renderer.setSize(w, h, false); camera.aspect = w/h; camera.updateProjectionMatrix();
-  if (v2Ready){ Knife.resize(); MapUI.resize(); }
+  if (v2Ready){ Knife.resize(); MapUI.resize(); Sauce.resize(); }
 }
 addEventListener('resize', resize); resize();
 
@@ -2713,7 +3263,7 @@ function frame(){
   washTick(Math.min(rawDt, 0.25), t);   // real time, so slow frames don't stretch the 15 s scrub
 
   coachTick();
-  if (mode === 'map' || mode === 'knife'){ (mode === 'map' ? MapUI : Knife).frame(dt, t); lastView = mode; requestAnimationFrame(frame); return; }
+  if (mode === 'map' || mode === 'knife' || mode === 'sauce'){ (mode === 'map' ? MapUI : mode === 'knife' ? Knife : Sauce).frame(dt, t); lastView = mode; requestAnimationFrame(frame); return; }
   if (lastView !== 'kitchen'){ lastView = 'kitchen'; renderer.shadowMap.needsUpdate = true; camSnap = true; }
   /* ---- camera ---- */
   const portrait = camera.aspect < 1;
