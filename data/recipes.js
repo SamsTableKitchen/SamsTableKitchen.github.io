@@ -2,6 +2,466 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
  {
+  "url": "posts/recipes/vegan-lentil-meatballs-swedish-sauce.html",
+  "title": "Vegan Lentil Meatballs with Swedish Sauce",
+  "category": "Mains",
+  "tags": [
+   "vegan",
+   "vegetarian",
+   "lentils",
+   "meatballs",
+   "meal prep",
+   "dinner",
+   "dairy free",
+   "freezer friendly"
+  ],
+  "ingredients": [
+   "lentils",
+   "panko",
+   "red onion",
+   "parsley",
+   "flax seed",
+   "vegan butter",
+   "mushroom broth",
+   "coconut cream",
+   "vegan Worcestershire",
+   "Dijon mustard",
+   "flour",
+   "allspice",
+   "nutmeg"
+  ],
+  "desc": "Lentil meatballs in a creamy Swedish-style gravy, all in one skillet. Recipe by Andrew Bernard at Make It Dairy Free."
+ },
+ {
+  "url": "posts/recipes/adobo-chicken-tacos.html",
+  "title": "Adobo Fire Chicken Tacos",
+  "category": "Mains",
+  "tags": [
+   "tacos",
+   "Mexican",
+   "chicken",
+   "grilled",
+   "charcoal",
+   "BBQ",
+   "marinade"
+  ],
+  "ingredients": [
+   "chicken thighs",
+   "ancho chilies",
+   "chipotles in adobo",
+   "orange juice",
+   "apple cider vinegar",
+   "achiote",
+   "tortillas",
+   "salsa verde",
+   "cotija",
+   "pickled red onions"
+  ],
+  "desc": "Charcoal-grilled chicken thighs in an ancho-chipotle adobo marinade. Recipe by Meat Church."
+ },
+ {
+  "url": "posts/recipes/quick-dumpling-laksa.html",
+  "title": "Quick Dumpling Laksa",
+  "category": "Mains",
+  "tags": [
+   "soup",
+   "dumplings",
+   "coconut curry",
+   "quick",
+   "one pot",
+   "Asian",
+   "weeknight"
+  ],
+  "ingredients": [
+   "frozen dumplings",
+   "red curry paste",
+   "coconut milk",
+   "chicken stock",
+   "fish sauce",
+   "bok choy",
+   "bean sprouts",
+   "lime",
+   "cilantro"
+  ],
+  "desc": "Frozen dumplings in a coconut red curry broth with bok choy, in about 20 minutes. Recipe by Nicole at Simple Home Edit."
+ },
+ {
+  "url": "posts/recipes/one-pan-dumpling-dinner.html",
+  "title": "One Pan Dumpling Dinner",
+  "category": "Mains",
+  "tags": [
+   "dumplings",
+   "one pan",
+   "baked",
+   "coconut curry",
+   "bok choy",
+   "weeknight",
+   "Asian"
+  ],
+  "ingredients": [
+   "frozen dumplings",
+   "coconut milk",
+   "soy sauce",
+   "red curry paste",
+   "rice vinegar",
+   "sesame oil",
+   "bok choy",
+   "green onion",
+   "chili crunch"
+  ],
+  "desc": "Frozen dumplings baked over bok choy in a coconut red curry sauce. Recipe by Nicole McLaughlin at Allrecipes."
+ },
+ {
+  "url": "posts/recipes/all-butter-pie-crust.html",
+  "title": "All Butter Pie Crust",
+  "category": "Baking",
+  "tags": [
+   "pie crust",
+   "pie",
+   "baking",
+   "dessert",
+   "make ahead",
+   "freezer friendly",
+   "vegetarian"
+  ],
+  "ingredients": [
+   "flour",
+   "sugar",
+   "salt",
+   "unsalted butter",
+   "ice water"
+  ],
+  "desc": "Flaky, buttery pie dough with 5 ingredients. Makes 2 crusts. Recipe by Sally McKenney at Sally's Baking."
+ },
+ {
+  "url": "posts/recipes/bevs-chocolate-pie.html",
+  "title": "Bev's Chocolate Pie",
+  "category": "Desserts",
+  "tags": [
+   "pie",
+   "chocolate",
+   "meringue",
+   "dessert",
+   "holiday",
+   "vegetarian"
+  ],
+  "ingredients": [
+   "sugar",
+   "cocoa powder",
+   "flour",
+   "evaporated milk",
+   "vanilla",
+   "eggs",
+   "butter",
+   "pie crust"
+  ],
+  "desc": "Old-fashioned baked chocolate pie with a golden meringue. Recipe by Diana Barnes at Allrecipes."
+ },
+ {
+  "url": "posts/recipes/copycat-style-waffles.html",
+  "title": "Waffle House-Style Waffles (Copycat)",
+  "category": "Breakfast",
+  "tags": [
+   "waffles",
+   "breakfast",
+   "brunch",
+   "copycat",
+   "buttermilk",
+   "vegetarian"
+  ],
+  "ingredients": [
+   "flour",
+   "cornstarch",
+   "baking soda",
+   "baking powder",
+   "egg",
+   "sugar",
+   "butter",
+   "vanilla",
+   "milk",
+   "buttermilk"
+  ],
+  "desc": "Fluffy, crispy diner-style waffles with buttermilk. Recipe by Brendan Cunningham at I'm Hungry For That."
+ },
+ {
+  "url": "posts/recipes/homemade-salsa.html",
+  "title": "Homemade Salsa",
+  "category": "Sauces",
+  "tags": [
+   "salsa",
+   "dip",
+   "Mexican",
+   "no cook",
+   "vegan",
+   "vegetarian",
+   "tacos",
+   "make ahead"
+  ],
+  "ingredients": [
+   "tomatoes",
+   "onion",
+   "green onion",
+   "garlic",
+   "jalapeño",
+   "cilantro",
+   "lime",
+   "cumin"
+  ],
+  "desc": "Fresh tomato salsa made in the blender, chunky or smooth. Recipe by Monique Volz at Ambitious Kitchen."
+ },
+ {
+  "url": "posts/recipes/candied-almonds.html",
+  "title": "Candied Almonds",
+  "category": "Snacks",
+  "tags": [
+   "snack",
+   "almonds",
+   "nuts",
+   "air fryer",
+   "cinnamon",
+   "holiday",
+   "gift",
+   "vegetarian"
+  ],
+  "ingredients": [
+   "almonds",
+   "brown sugar",
+   "sugar",
+   "egg white",
+   "cinnamon",
+   "vanilla",
+   "nutmeg"
+  ],
+  "desc": "Crunchy cinnamon-sugar almonds in the air fryer or oven. Recipe by Lisa MarcAurele at Little Bit Recipes."
+ },
+ {
+  "url": "posts/recipes/bacon-jam.html",
+  "title": "Bacon Jam with Onion, Balsamic, and Thyme",
+  "category": "Sauces",
+  "tags": [
+   "bacon",
+   "spread",
+   "condiment",
+   "appetizer",
+   "burger topping",
+   "make ahead",
+   "holiday",
+   "Southern"
+  ],
+  "ingredients": [
+   "bacon",
+   "sweet onions",
+   "brown sugar",
+   "balsamic vinegar",
+   "thyme",
+   "black pepper"
+  ],
+  "desc": "Sweet, smoky bacon and caramelized onion spread. Recipe by Kari at Southern Bytes."
+ },
+ {
+  "url": "posts/recipes/instant-pot-tuscan-chicken.html",
+  "title": "Instant Pot Tuscan Chicken",
+  "category": "Mains",
+  "tags": [
+   "Instant Pot",
+   "chicken",
+   "creamy",
+   "Italian",
+   "weeknight",
+   "pressure cooker"
+  ],
+  "ingredients": [
+   "chicken breasts",
+   "butter",
+   "garlic",
+   "chicken stock",
+   "Italian seasoning",
+   "sun-dried tomatoes",
+   "heavy cream",
+   "parmesan",
+   "spinach"
+  ],
+  "desc": "Chicken in a garlic parmesan cream sauce with sun-dried tomatoes and spinach. Recipe by Diana at Little Sunny Kitchen."
+ },
+ {
+  "url": "posts/recipes/bread-machine-thin-crust-pizza-dough.html",
+  "title": "Bread Machine Thin Crust Pizza Dough",
+  "category": "Baking",
+  "tags": [
+   "pizza",
+   "dough",
+   "bread machine",
+   "vegan",
+   "vegetarian",
+   "pizza night"
+  ],
+  "ingredients": [
+   "flour",
+   "yeast",
+   "salt",
+   "sugar",
+   "olive oil",
+   "water"
+  ],
+  "desc": "Thin, crisp pizza crust made on the dough setting. Recipe by Healthy Boy at Allrecipes."
+ },
+ {
+  "url": "posts/recipes/parmesan-zucchini-fritters.html",
+  "title": "Crispy Parmesan Zucchini Fritters",
+  "category": "Sides",
+  "tags": [
+   "zucchini",
+   "fritters",
+   "side",
+   "snack",
+   "vegetarian",
+   "summer"
+  ],
+  "ingredients": [
+   "zucchini",
+   "carrots",
+   "garlic",
+   "flour",
+   "parmesan",
+   "eggs",
+   "scallions",
+   "olive oil",
+   "sour cream",
+   "Greek yogurt"
+  ],
+  "desc": "Pan-fried zucchini and carrot fritters with parmesan. Recipe by Christina Cherrier at Eatwell101."
+ },
+ {
+  "url": "posts/recipes/tzatziki-potato-salad.html",
+  "title": "Tzatziki Potato Salad",
+  "category": "Sides",
+  "tags": [
+   "potato salad",
+   "Greek",
+   "yogurt",
+   "side",
+   "cookout",
+   "vegetarian",
+   "summer"
+  ],
+  "ingredients": [
+   "potatoes",
+   "cucumbers",
+   "Greek yogurt",
+   "olive oil",
+   "lemon",
+   "honey",
+   "garlic",
+   "olives",
+   "dill",
+   "mint"
+  ],
+  "desc": "Potatoes in a garlicky cucumber yogurt dressing with dill and mint. Recipe by Hetty Lui McKinnon at NYT Cooking."
+ },
+ {
+  "url": "posts/recipes/portokalopita-greek-orange-cake.html",
+  "title": "Portokalopita (Greek Orange Cake with Syrup)",
+  "category": "Desserts",
+  "tags": [
+   "Greek",
+   "cake",
+   "orange",
+   "phyllo",
+   "dessert",
+   "make ahead",
+   "vegetarian"
+  ],
+  "ingredients": [
+   "phyllo dough",
+   "yogurt",
+   "vegetable oil",
+   "sugar",
+   "orange juice",
+   "orange zest",
+   "eggs",
+   "baking powder",
+   "vanilla",
+   "cinnamon"
+  ],
+  "desc": "Syrupy Greek orange cake made with torn phyllo and yogurt. Recipe by Eli K. Giannopoulos at My Greek Dish."
+ },
+ {
+  "url": "posts/recipes/filipino-spaghetti.html",
+  "title": "Filipino Spaghetti",
+  "category": "Mains",
+  "tags": [
+   "Filipino",
+   "pasta",
+   "spaghetti",
+   "pork",
+   "party food",
+   "kid friendly"
+  ],
+  "ingredients": [
+   "ground pork",
+   "hot dogs",
+   "tomato sauce",
+   "banana ketchup",
+   "brown sugar",
+   "fish sauce",
+   "spaghetti",
+   "onion",
+   "garlic",
+   "cheese"
+  ],
+  "desc": "Sweet banana ketchup sauce with ground pork and hot dogs over spaghetti. Recipe by MG Sanchez at Hungry Huy."
+ },
+ {
+  "url": "posts/recipes/copycat-style-mac-and-cheese.html",
+  "title": "Bob Evans-Style Mac and Cheese (Copycat)",
+  "category": "Sides",
+  "tags": [
+   "mac and cheese",
+   "pasta",
+   "comfort food",
+   "copycat",
+   "side",
+   "kid friendly",
+   "vegetarian"
+  ],
+  "ingredients": [
+   "elbow macaroni",
+   "cheddar",
+   "Velveeta",
+   "milk",
+   "paprika",
+   "dry mustard"
+  ],
+  "desc": "Extra creamy stovetop mac and cheese with Velveeta and cheddar. Recipe by Audrey Wood at Two Pink Peonies."
+ },
+ {
+  "url": "posts/recipes/cheesecake-factory-style-miso-salmon.html",
+  "title": "Cheesecake Factory-Style Miso Salmon (Copycat)",
+  "category": "Mains",
+  "tags": [
+   "salmon",
+   "fish",
+   "seafood",
+   "miso",
+   "copycat",
+   "dinner",
+   "favorite"
+  ],
+  "ingredients": [
+   "salmon",
+   "red miso",
+   "brown sugar",
+   "soy sauce",
+   "rice vinegar",
+   "snow peas",
+   "sake",
+   "shallot",
+   "butter",
+   "chives"
+  ],
+  "desc": "Sweet miso-glazed salmon with snow peas and sake butter. One of my favorites to make. Recipe by Brendan Cunningham at I'm Hungry For That."
+ },
+ {
   "url": "posts/recipes/easy-cheesy-crispy-vegan-black-bean-tacos.html",
   "title": "Easy Cheesy Crispy Vegan Black Bean Tacos",
   "category": "Mains",
@@ -481,15 +941,12 @@ const RECIPES=[
   "ingredients": [
    "mayonnaise",
    "ketchup",
-   "Worcestershire",
-   "garlic powder",
+   "Worcestershire sauce",
    "black pepper",
-   "creole seasoning",
-   "Tony Chachere's",
-   "paprika",
-   "salt"
+   "garlic powder",
+   "Creole seasoning"
   ],
-  "desc": "Tangy, peppery dipping sauce just like the chicken-finger chain's. Recipe from The Country Cook."
+  "desc": "Tangy, peppery copycat-style dipping sauce for tenders and fries. Recipe by Kari at Southern Bytes."
  },
  {
   "url": "posts/recipes/oven-roasted-corn-on-the-cob.html",

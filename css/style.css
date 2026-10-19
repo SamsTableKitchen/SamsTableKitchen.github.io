@@ -176,3 +176,5 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .pin-btn:hover{background:#ad081b}
 .pin-btn svg{width:1.1em;height:1.1em;fill:currentColor}
 .recipe-photo.portrait{aspect-ratio:auto;max-width:620px;height:auto;object-fit:contain}.steps-with-photos li{margin-bottom:14px}.step-photo{margin:10px 0 6px;max-width:360px}.step-photo img{display:block;width:100%;height:auto;border-radius:4px}@media print{.step-photo{display:none}}
+
+.rec-fav{background:#F4EBDD;border-left:4px solid var(--terra);padding:18px 20px;margin:0 0 24px;border-radius:8px}.rec-fav h2{margin:6px 0 8px;font-size:1.35rem}.rec-fav a{color:inherit;text-decoration:none}.rec-fav .btn{color:#fff;margin-top:6px;display:inline-block}

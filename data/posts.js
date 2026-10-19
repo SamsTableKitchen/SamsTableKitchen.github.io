@@ -215,7 +215,7 @@ const POSTS=[
 "type": "Recipe",
 "kicker": "Recipe · Sauces",
 "title": "Raising Cane's Copycat Sauce",
-"desc": "Tangy, peppery dipping sauce just like the chicken-finger chain's. Recipe from The Country Cook.",
+"desc": "Tangy, peppery copycat-style dipping sauce for tenders and fries. Recipe by Kari at Southern Bytes.",
 "img": "",
 "alt": "",
 "o": 19
