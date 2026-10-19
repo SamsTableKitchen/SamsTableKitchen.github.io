@@ -2,6 +2,61 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
  {
+  "url": "posts/recipes/vegan-tofu-egg-salad.html",
+  "title": "Vegan Tofu Egg Salad",
+  "category": "Mains",
+  "tags": [
+   "vegan",
+   "vegetarian",
+   "tofu",
+   "sandwich",
+   "lunch",
+   "high protein",
+   "no cook",
+   "meal prep",
+   "egg free"
+  ],
+  "ingredients": [
+   "tofu",
+   "vegan mayo",
+   "green onions",
+   "dill",
+   "celery",
+   "Dijon mustard",
+   "black salt",
+   "kala namak",
+   "turmeric",
+   "lemon",
+   "nutritional yeast"
+  ],
+  "desc": "Creamy, high-protein tofu salad for sandwiches. Recipe by Sarah Sullivan at Sarah's Vegan Kitchen."
+ },
+ {
+  "url": "posts/recipes/vegan-mayonnaise.html",
+  "title": "Vegan Mayonnaise",
+  "category": "Sauces",
+  "tags": [
+   "vegan",
+   "vegetarian",
+   "egg free",
+   "dairy free",
+   "mayo",
+   "condiment",
+   "spread",
+   "sandwich"
+  ],
+  "ingredients": [
+   "soy milk",
+   "vinegar",
+   "Dijon mustard",
+   "lemon juice",
+   "neutral oil",
+   "salt",
+   "aquafaba"
+  ],
+  "desc": "Thick, creamy egg-free mayo made with soy milk. Recipe by Joanne Gallagher at Inspired Taste."
+ },
+ {
   "url": "posts/recipes/bourbon-chicken.html",
   "title": "Bourbon Chicken",
   "category": "Mains",
