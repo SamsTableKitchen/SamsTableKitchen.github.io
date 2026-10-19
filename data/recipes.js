@@ -2,6 +2,67 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
  {
+  "url": "posts/recipes/grandmas-sweet-party-meatballs.html",
+  "title": "Grandma's Sweet Party Meatballs",
+  "category": "Appetizers",
+  "tags": [
+   "appetizer",
+   "party food",
+   "meatballs",
+   "family recipe",
+   "sweet and sour",
+   "grape jelly",
+   "chili sauce",
+   "ground beef",
+   "ground turkey",
+   "Swedish meatballs"
+  ],
+  "ingredients": [
+   "ground beef",
+   "ground turkey",
+   "Ritz crackers",
+   "onion soup mix",
+   "Heinz chili sauce",
+   "grape jelly",
+   "onions"
+  ],
+  "desc": "Party appetizer meatballs in a sweet grape jelly and chili sauce. A family recipe from my grandma."
+ },
+ {
+  "url": "posts/recipes/fried-yardbird-chicken-shake.html",
+  "title": "Fried Yardbird and Chicken Shake",
+  "category": "Mains",
+  "tags": [
+   "fried chicken",
+   "chicken thighs",
+   "drumsticks",
+   "buttermilk",
+   "berbere",
+   "spice blend",
+   "southern",
+   "Red Rooster",
+   "dinner"
+  ],
+  "ingredients": [
+   "chicken thighs",
+   "chicken drumsticks",
+   "buttermilk",
+   "coconut milk",
+   "garlic",
+   "peanut oil",
+   "flour",
+   "semolina",
+   "cornstarch",
+   "white pepper",
+   "berbere",
+   "smoked paprika",
+   "cumin",
+   "celery salt",
+   "kosher salt"
+  ],
+  "desc": "Brined, buttermilk-marinated fried chicken with a berbere spice blend. Recipe by Marcus Samuelsson from The Red Rooster Cookbook."
+ },
+ {
   "url": "posts/recipes/vegan-lentil-meatballs-swedish-sauce.html",
   "title": "Vegan Lentil Meatballs with Swedish Sauce",
   "category": "Mains",
