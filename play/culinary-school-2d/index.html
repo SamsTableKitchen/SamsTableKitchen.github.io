@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#C4683D">
+<title>Culinary School · Level 1: Food Safety Basics</title>
+<meta name="description" content="A tiny chef starts culinary school. Level 1: food safety basics everyone should know.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<style>
+:root{--bg:#FAF7F2;--card:#fff;--ink:#2B2B2B;--muted:#6d655b;--line:#E6DFD3;--terra:#C4683D;--terra-d:#a9532b;--olive:#6B7F3A;--olive-l:#e9eedc;--gold:#D9A13B;--red:#c0392b;--red-l:#fbe9e6;
+--serif:'Playfair Display',Georgia,'Times New Roman',serif;--sans:Lato,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--r:18px;--sh:0 6px 20px rgba(60,40,20,.10)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:#efe8dc}
+body{font-family:var(--sans);color:var(--ink);display:flex;justify-content:center;overscroll-behavior:none}
+#app{position:relative;width:100%;max-width:480px;height:100dvh;min-height:100%;background:var(--bg);overflow:hidden;
+ background-image:radial-gradient(circle at 20% 0%,#fff7ea 0,transparent 55%),radial-gradient(circle at 100% 100%,#f4e9da 0,transparent 50%)}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.screen{position:absolute;inset:0;display:none;flex-direction:column;padding:calc(14px + env(safe-area-inset-top)) 20px calc(18px + env(safe-area-inset-bottom))}
+.screen.on{display:flex;animation:fadeUp .35s ease both}
+h1,h2,h3{font-family:var(--serif);margin:0;line-height:1.15}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:16px 18px;border-radius:999px;font-weight:700;font-size:17px;
+ background:var(--terra);color:#fff;box-shadow:0 4px 0 var(--terra-d),var(--sh);transition:transform .08s,box-shadow .08s}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--terra-d)}
+.btn.ghost{background:#fff;color:var(--ink);box-shadow:0 3px 0 var(--line),var(--sh)}
+.btn.olive{background:var(--olive);box-shadow:0 4px 0 #4f5f29,var(--sh)}
+.icon-btn{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#fff;box-shadow:0 2px 0 var(--line);font-size:18px}
+.pill{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700}
+
+/* ---------- Title ---------- */
+#title{align-items:center;text-align:center}
+#title .top{width:100%;display:flex;justify-content:space-between;align-items:center}
+.kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);font-weight:700}
+#title h1{font-size:34px;margin-top:6px}
+#title .sub{color:var(--muted);margin:8px 18px 0;font-size:15px;line-height:1.45}
+.stage-wrap{position:relative;flex:1;width:100%;display:flex;align-items:center;justify-content:center;min-height:0}
+.halo{position:absolute;width:230px;height:230px;border-radius:50%;background:radial-gradient(circle,#fde9cf 0,#f6dcc0 55%,transparent 70%)}
+.chef{position:relative;width:150px;height:auto;filter:drop-shadow(0 8px 10px rgba(80,50,20,.15))}
+#title .chef{width:170px;animation:bob 3s ease-in-out infinite}
+.ladder{display:flex;gap:4px;width:100%;margin:6px 0 14px}
+.rung{flex:1;text-align:center;font-size:10.5px;font-weight:700;color:#a99c8b}
+.rung i{display:block;height:6px;border-radius:6px;background:var(--line);margin-bottom:5px}
+.rung.now{color:var(--terra)} .rung.now i{background:var(--terra)}
+.rung.done{color:var(--olive)} .rung.done i{background:var(--olive)}
+.level-card{width:100%;background:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:14px 16px;display:flex;gap:12px;align-items:center;text-align:left;margin-bottom:14px}
+.level-card .num{width:46px;height:46px;border-radius:14px;background:var(--olive-l);color:var(--olive);display:grid;place-items:center;font-family:var(--serif);font-size:22px;font-weight:700;flex:none}
+.level-card b{display:block;font-size:16px}
+.level-card small{color:var(--muted)}
+.btns{width:100%;display:grid;gap:10px}
+.fine{font-size:11.5px;color:var(--muted);margin-top:12px;line-height:1.4}
+
+/* ---------- HUD ---------- */
+.hud{display:flex;align-items:center;gap:10px}
+.bar{flex:1;height:12px;border-radius:12px;background:#ece4d6;overflow:hidden;position:relative}
+.bar>span{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,var(--olive),#8ea24f);border-radius:12px;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.bar>span::after{content:"";position:absolute;inset:2px 6px auto 6px;height:3px;border-radius:3px;background:rgba(255,255,255,.45)}
+.xp{font-weight:800;font-size:14px;color:var(--gold);display:flex;align-items:center;gap:4px;min-width:64px;justify-content:flex-end}
+.xp.pop{animation:pop .45s ease}
+.meta{display:flex;justify-content:space-between;align-items:center;margin:12px 0 6px;font-size:13px;color:var(--muted);font-weight:700}
+.streak{color:var(--terra)}
+
+/* ---------- Question ---------- */
+.q-head{display:flex;align-items:flex-end;gap:10px;margin-top:4px}
+.q-head .chef{width:96px;flex:none}
+.bubble{position:relative;background:#fff;border-radius:18px 18px 18px 4px;padding:14px 15px;box-shadow:var(--sh);font-size:17px;line-height:1.38;font-weight:700;flex:1;margin-bottom:22px}
+.bubble .topic{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:5px}
+.choices{display:grid;gap:10px;margin-top:6px}
+.choice{display:flex;align-items:center;gap:12px;text-align:left;width:100%;background:#fff;border:2px solid var(--line);border-radius:16px;padding:13px 14px;font-size:15.5px;line-height:1.3;font-weight:700;box-shadow:0 3px 0 var(--line);transition:transform .08s,border-color .15s,background .15s}
+.choice:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}
+.choice .k{flex:none;width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);font-size:13px;color:var(--muted)}
+.choice.right{border-color:var(--olive);background:var(--olive-l);box-shadow:0 3px 0 #b9c79a}
+.choice.right .k{background:var(--olive);color:#fff;border-color:var(--olive)}
+.choice.wrong{border-color:var(--red);background:var(--red-l);box-shadow:0 3px 0 #efc2bb;animation:shake .4s}
+.choice.wrong .k{background:var(--red);color:#fff;border-color:var(--red)}
+.choice[disabled]{cursor:default}
+.choice.dim{opacity:.55}
+
+/* ---------- Tip sheet ---------- */
+.sheet{position:absolute;left:0;right:0;bottom:0;z-index:20;background:#fff;border-radius:26px 26px 0 0;box-shadow:0 -10px 30px rgba(60,40,20,.18);padding:18px 20px calc(18px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .38s cubic-bezier(.2,.9,.25,1.05)}
+.sheet.on{transform:none}
+.sheet .verdict{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:24px;font-weight:700}
+.sheet .verdict .badge-ic{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:20px;font-family:var(--sans)}
+.sheet.good .verdict{color:var(--olive)} .sheet.good .badge-ic{background:var(--olive)}
+.sheet.bad .verdict{color:var(--red)} .sheet.bad .badge-ic{background:var(--red)}
+.sheet .gain{margin-left:auto;font-family:var(--sans);font-size:15px;color:var(--gold);font-weight:800}
+.sheet .answer{margin:8px 0 0;font-size:14px;color:var(--muted)}
+.tip{margin:12px 0 14px;background:#fff8ec;border:1px dashed #e8c98f;border-radius:16px;padding:12px 14px 12px 14px;font-size:15px;line-height:1.45}
+.tip b{display:flex;align-items:center;gap:6px;color:var(--terra);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.shade{position:absolute;inset:0;background:rgba(43,30,15,.18);opacity:0;pointer-events:none;transition:opacity .3s;z-index:15}
+.shade.on{opacity:1;pointer-events:auto}
+
+/* ---------- Mini-game ---------- */
+#wash .intro{display:flex;gap:10px;align-items:flex-end;margin-top:12px}
+#wash .intro .chef{width:76px;flex:none}
+.sink{position:relative;margin:4px auto 0;width:100%;max-width:340px;aspect-ratio:1/0.82;border-radius:26px;background:linear-gradient(#e7f2f6,#d5e8ef);box-shadow:inset 0 -12px 0 #c2dbe4,var(--sh);overflow:hidden}
+.sink svg{position:absolute;inset:0;width:100%;height:100%}
+.stream{opacity:0;transition:opacity .3s}
+.sink.water .stream{opacity:1}
+.foam circle{opacity:0;transition:opacity .4s}
+.sink.soap .foam circle.s1{opacity:1}
+.sink.scrubbing .hands{animation:scrub .35s ease-in-out infinite alternate}
+.towel{opacity:0;transition:opacity .4s}
+.sink.dry .towel{opacity:1}
+.bubbles{position:absolute;inset:0;pointer-events:none}
+.bubbles span{position:absolute;bottom:40%;width:12px;height:12px;border-radius:50%;border:2px solid rgba(255,255,255,.95);background:rgba(255,255,255,.35);animation:rise 1.4s ease-out forwards}
+.steps{display:flex;justify-content:space-between;margin:14px 2px 8px}
+.step{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;font-weight:700;color:#a99c8b;flex:1}
+.step i{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#fff;border:2px solid var(--line);font-style:normal;font-size:16px}
+.step.now{color:var(--terra)} .step.now i{border-color:var(--terra);box-shadow:0 0 0 4px #f7dccd}
+.step.done{color:var(--olive)} .step.done i{background:var(--olive);border-color:var(--olive);color:#fff}
+.wash-msg{text-align:center;font-weight:700;font-size:15.5px;min-height:44px;line-height:1.35;margin:4px 6px 10px}
+.timer{display:flex;justify-content:center;gap:14px;font-size:13px;color:var(--muted);font-weight:700;margin-bottom:10px}
+.timer b{color:var(--ink);font-variant-numeric:tabular-nums}
+.ring{width:22px;height:22px;transform:rotate(-90deg)}
+.holdbtn{position:relative;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none}
+.holdbtn .fill{position:absolute;inset:0 auto 0 0;width:0;background:rgba(255,255,255,.25)}
+.holdbtn span{position:relative}
+
+/* ---------- Results ---------- */
+#results{align-items:center;text-align:center}
+.medal{position:relative;width:150px;height:150px;margin:16px auto 6px}
+.medal svg{width:100%;height:100%}
+.medal.shine{animation:medalIn .8s cubic-bezier(.2,.9,.25,1.3) both}
+.stars{display:flex;gap:6px;justify-content:center;font-size:34px;margin:6px 0}
+.stars span{color:#e3d9c8;transition:color .3s}
+.stars span.on{color:var(--gold);animation:pop .5s ease both}
+.stars span.on:nth-child(2){animation-delay:.15s}.stars span.on:nth-child(3){animation-delay:.3s}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;width:100%;margin:10px 0 12px}
+.stat{background:#fff;border-radius:14px;padding:10px 4px;box-shadow:var(--sh)}
+.stat b{display:block;font-size:20px;font-family:var(--serif)}
+.stat small{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.teaser{width:100%;display:flex;gap:12px;align-items:center;text-align:left;background:repeating-linear-gradient(135deg,#fff,#fff 10px,#fbf6ee 10px,#fbf6ee 20px);border:2px dashed var(--line);border-radius:var(--r);padding:12px 14px;margin-bottom:12px}
+.teaser .lock{width:44px;height:44px;border-radius:14px;background:#f1ebe1;display:grid;place-items:center;font-size:20px;flex:none}
+.teaser b{display:block}
+.teaser small{color:var(--muted)}
+
+/* ---------- FX ---------- */
+.fx{position:absolute;inset:0;pointer-events:none;z-index:30;overflow:hidden}
+.fx i{position:absolute;width:9px;height:14px;border-radius:2px;animation:confetti 1.1s ease-out forwards}
+.toast{position:absolute;left:50%;top:38%;z-index:31;transform:translate(-50%,-50%);font-family:var(--serif);font-weight:700;font-size:34px;color:var(--olive);text-shadow:0 3px 0 #fff;pointer-events:none;animation:toast 1s ease forwards}
+.chef.jump{animation:jump .6s ease}
+.chef.sad{animation:wobble .5s ease}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes bob{50%{transform:translateY(-8px)}}
+@keyframes pop{0%{transform:scale(.6)}60%{transform:scale(1.25)}100%{transform:scale(1)}}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+@keyframes jump{30%{transform:translateY(-16px) rotate(-4deg)}60%{transform:translateY(0)}80%{transform:translateY(-4px)}}
+@keyframes wobble{25%{transform:rotate(-5deg)}75%{transform:rotate(5deg)}}
+@keyframes scrub{from{transform:translateX(-7px) rotate(-3deg)}to{transform:translateX(7px) rotate(3deg)}}
+@keyframes rise{from{transform:translateY(0) scale(.6);opacity:1}to{transform:translateY(-120px) scale(1.2);opacity:0}}
+@keyframes confetti{from{transform:translate(0,0) rotate(0);opacity:1}to{transform:translate(var(--dx),var(--dy)) rotate(var(--rot));opacity:0}}
+@keyframes toast{0%{opacity:0;transform:translate(-50%,-30%) scale(.7)}25%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}75%{opacity:1}100%{opacity:0;transform:translate(-50%,-80%)}}
+@keyframes medalIn{from{transform:scale(.3) rotate(-25deg);opacity:0}to{transform:none;opacity:1}}
+
+@media (prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+ .fx,.bubbles{display:none}
+}
+@media (max-height:700px){#title .chef{width:130px}.halo{width:180px;height:180px}#title h1{font-size:29px}.bubble{font-size:16px}.choice{padding:11px 12px}}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- Reusable chef SVG -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <defs>
+  <symbol id="chef-body" viewBox="0 0 120 170">
+   <ellipse cx="60" cy="164" rx="30" ry="5" fill="#000" opacity=".08"/>
+   <!-- legs -->
+   <rect x="47" y="128" width="10" height="30" rx="5" fill="#3d3a36"/>
+   <rect x="63" y="128" width="10" height="30" rx="5" fill="#3d3a36"/>
+   <rect x="43" y="154" width="16" height="7" rx="3.5" fill="#2b2b2b"/>
+   <rect x="61" y="154" width="16" height="7" rx="3.5" fill="#2b2b2b"/>
+   <!-- arms -->
+   <rect x="30" y="86" width="11" height="34" rx="5.5" fill="#fff" stroke="#e3dccf" stroke-width="1.5" transform="rotate(12 35 88)"/>
+   <rect x="79" y="86" width="11" height="34" rx="5.5" fill="#fff" stroke="#e3dccf" stroke-width="1.5" transform="rotate(-12 85 88)"/>
+   <circle cx="31" cy="121" r="5.5" fill="#D9A07A"/>
+   <circle cx="89" cy="121" r="5.5" fill="#D9A07A"/>
+   <!-- jacket -->
+   <path d="M42 84 q18 -8 36 0 l4 46 q-22 6 -44 0z" fill="#fff" stroke="#e3dccf" stroke-width="1.5"/>
+   <path d="M60 84 v44" stroke="#efe9df" stroke-width="1.5"/>
+   <circle cx="54" cy="98" r="2" fill="#C4683D"/><circle cx="66" cy="98" r="2" fill="#C4683D"/>
+   <circle cx="54" cy="110" r="2" fill="#C4683D"/><circle cx="66" cy="110" r="2" fill="#C4683D"/>
+   <!-- neckerchief -->
+   <path d="M49 82 q11 8 22 0 l-4 8 q-7 4 -14 0z" fill="#C4683D"/>
+   <!-- neck + head -->
+   <rect x="55" y="72" width="10" height="12" rx="4" fill="#D9A07A"/>
+   <ellipse cx="60" cy="58" rx="19" ry="21" fill="#E6B48C"/>
+   <ellipse cx="41.5" cy="60" rx="3.5" ry="5" fill="#D9A07A"/>
+   <ellipse cx="78.5" cy="60" rx="3.5" ry="5" fill="#D9A07A"/>
+   <path d="M42 50 q4 -14 18 -14 q14 0 18 14 q-6 -6 -18 -6 q-12 0 -18 6z" fill="#5a3b28"/>
+   <!-- toque -->
+   <rect x="43" y="34" width="34" height="11" rx="3" fill="#fff" stroke="#e3dccf" stroke-width="1.5"/>
+   <path d="M44 36 q-10 -6 -6 -16 q4 -9 14 -6 q4 -10 14 -8 q10 2 10 10 q10 -2 12 8 q2 10 -10 12z" fill="#fff" stroke="#e3dccf" stroke-width="1.5"/>
+   <path d="M53 34 v-8 M67 34 v-8" stroke="#efe9df" stroke-width="1.5"/>
+   <!-- cheeks -->
+   <circle cx="48" cy="66" r="3.4" fill="#f09a86" opacity=".55"/>
+   <circle cx="72" cy="66" r="3.4" fill="#f09a86" opacity=".55"/>
+  </symbol>
+ </defs>
+</svg>
+
+<!-- ============ TITLE ============ -->
+<section id="title" class="screen on" aria-labelledby="t-h">
+ <div class="top">
+  <span class="pill" id="t-xp">⭐ 0 XP</span>
+  <button class="icon-btn" id="soundBtn" aria-pressed="false" aria-label="Sound off">🔇</button>
+ </div>
+ <div style="margin-top:14px">
+  <div class="kicker">Sam's Table presents</div>
+  <h1 id="t-h">Culinary School</h1>
+  <p class="sub">Help a brand-new student work up from dishwasher to graduation, one kitchen skill at a time.</p>
+ </div>
+ <div class="stage-wrap"><div class="halo"></div><span id="titleChef"></span></div>
+ <div class="ladder" aria-label="Career path">
+  <div class="rung now"><i></i>Dishwasher</div><div class="rung"><i></i>Prep Cook</div><div class="rung"><i></i>Line Cook</div><div class="rung"><i></i>Sous Chef</div><div class="rung"><i></i>🎓 Grad</div>
+ </div>
+ <div class="level-card">
+  <div class="num">1</div>
+  <div><b>First Day: Food Safety Basics</b><small id="t-status">10 questions + a handwashing challenge · ~4 min</small></div>
+ </div>
+ <div class="btns">
+  <button class="btn" id="startBtn">Start Level 1</button>
+  <button class="btn ghost" id="resetBtn" hidden>Start over</button>
+ </div>
+ <p class="fine">Sample level. Facts follow the FDA Food Code. Questions are original practice for learning, not an official exam.</p>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section id="quiz" class="screen" aria-live="polite">
+ <div class="hud">
+  <button class="icon-btn" id="homeBtn" aria-label="Back to title">✕</button>
+  <div class="bar" role="progressbar" aria-label="Level progress" aria-valuemin="0" aria-valuemax="100" id="qbar"><span></span></div>
+  <div class="xp" id="qxp">⭐ 0</div>
+ </div>
+ <div class="meta"><span id="qcount">Question 1 of 10</span><span class="streak" id="qstreak"></span></div>
+ <div class="q-head">
+  <span id="quizChef"></span>
+  <div class="bubble"><span class="topic" id="qtopic"></span><span id="qtext"></span></div>
+ </div>
+ <div class="choices" id="choices"></div>
+</section>
+
+<!-- ============ MINI-GAME ============ -->
+<section id="wash" class="screen">
+ <div class="hud">
+  <button class="icon-btn" data-home aria-label="Back to title">✕</button>
+  <div class="bar" id="wbar"><span></span></div>
+  <div class="xp" id="wxp">⭐ 0</div>
+ </div>
+ <div class="intro">
+  <span id="washChef"></span>
+  <div class="bubble" style="margin-bottom:14px"><span class="topic">Mini-game · Handwashing</span>Before you touch food, wash like a pro: the whole thing should take at least 20 seconds.</div>
+ </div>
+ <div class="sink" id="sink">
+  <svg viewBox="0 0 340 280" aria-hidden="true">
+   <rect x="150" y="0" width="40" height="34" rx="6" fill="#b9c4c9"/>
+   <path d="M150 26 h70 a14 14 0 0 1 14 14 v12 h-20 v-6 h-64z" fill="#cfd8dc"/>
+   <rect class="stream" x="216" y="52" width="14" height="150" rx="7" fill="#8fd0ea" opacity=".85"/>
+   <ellipse cx="170" cy="250" rx="140" ry="22" fill="#bcd6df"/>
+   <defs>
+    <g id="hand">
+     <rect x="-6" y="-58" width="11" height="34" rx="5.5"/>
+     <rect x="7" y="-64" width="11" height="40" rx="5.5"/>
+     <rect x="20" y="-60" width="11" height="36" rx="5.5"/>
+     <rect x="33" y="-50" width="10" height="28" rx="5"/>
+     <rect x="-20" y="-34" width="11" height="30" rx="5.5" transform="rotate(-32 -14 -10)"/>
+     <rect x="-7" y="-32" width="50" height="46" rx="16"/>
+    </g>
+   </defs>
+   <g class="hands">
+    <g transform="translate(106 168)" fill="#E6B48C"><use href="#hand"/><rect x="-4" y="12" width="44" height="40" rx="10" fill="#fff" stroke="#e3dccf" stroke-width="2"/></g>
+    <g transform="translate(234 168) scale(-1 1)" fill="#D9A07A"><use href="#hand"/><rect x="-4" y="12" width="44" height="40" rx="10" fill="#fff" stroke="#e3dccf" stroke-width="2"/></g>
+    <g class="foam">
+     <circle class="s1" cx="128" cy="140" r="13" fill="#fff"/><circle class="s1" cx="150" cy="118" r="11" fill="#fff"/><circle class="s1" cx="212" cy="140" r="13" fill="#fff"/><circle class="s1" cx="190" cy="118" r="11" fill="#fff"/><circle class="s1" cx="170" cy="150" r="9" fill="#fff"/><circle class="s1" cx="134" cy="166" r="8" fill="#fff"/><circle class="s1" cx="206" cy="166" r="8" fill="#fff"/>
+    </g>
+   </g>
+   <g class="towel"><rect x="30" y="40" width="70" height="90" rx="10" fill="#fff" stroke="#e3dccf" stroke-width="2"/><path d="M42 62h46M42 76h46M42 90h46" stroke="#ece4d6" stroke-width="3"/></g>
+  </svg>
+  <div class="bubbles" id="bubbles"></div>
+ </div>
+ <div class="steps" id="steps">
+  <div class="step"><i>💧</i>Wet</div><div class="step"><i>🧴</i>Soap</div><div class="step"><i>👐</i>Scrub</div><div class="step"><i>🚿</i>Rinse</div><div class="step"><i>🧻</i>Dry</div>
+ </div>
+ <div class="wash-msg" id="washMsg"></div>
+ <div class="timer"><span>Scrub <b id="scrubT">0.0</b>s / 15s</span><span>Total <b id="totalT">0</b>s</span></div>
+ <div style="margin-top:auto"><button class="btn" id="washBtn">Turn on warm water</button></div>
+</section>
+
+<!-- ============ RESULTS ============ -->
+<section id="results" class="screen">
+ <div class="kicker" style="margin-top:6px">Level 1 complete</div>
+ <h2 style="font-size:28px;margin-top:4px" id="r-h">Food Safety Rookie!</h2>
+ <div class="medal" id="medal">
+  <svg viewBox="0 0 150 150" aria-hidden="true">
+   <path d="M48 6 l20 46 h-24 l-20 -46z" fill="#C4683D"/><path d="M102 6 l-20 46 h24 l20 -46z" fill="#6B7F3A"/>
+   <circle cx="75" cy="92" r="52" fill="#D9A13B"/><circle cx="75" cy="92" r="43" fill="#f3c766"/><circle cx="75" cy="92" r="43" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="4 5" opacity=".7"/>
+   <g transform="translate(75 92)">
+    <path d="M-14 -8 h28 l-3 26 h-22z" fill="#fff"/><circle cx="-10" cy="-14" r="8" fill="#fff"/><circle cx="10" cy="-14" r="8" fill="#fff"/><circle cx="0" cy="-20" r="10" fill="#fff"/>
+    <path d="M-8 4 l6 6 l11 -12" stroke="#6B7F3A" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+   </g>
+  </svg>
+ </div>
+ <div class="pill" id="badgePill" style="margin:2px auto 0">🏅 Badge earned: Food Safety Rookie</div>
+ <div class="stars" id="stars" aria-label=""><span>★</span><span>★</span><span>★</span></div>
+ <p id="r-msg" style="margin:2px 10px 0;color:var(--muted);line-height:1.4;font-size:15px"></p>
+ <div class="stats">
+  <div class="stat"><b id="r-score">0/10</b><small>Correct</small></div>
+  <div class="stat"><b id="r-xp">0</b><small>XP</small></div>
+  <div class="stat"><b id="r-streak">0</b><small>Best streak</small></div>
+ </div>
+ <div class="teaser">
+  <div class="lock">🔒</div>
+  <div><b>Next level: Prep Cook</b><small>Coming soon · knife skills, thawing and prep safety</small></div>
+ </div>
+ <div class="btns" style="margin-top:auto">
+  <button class="btn olive" id="retryBtn">Play again</button>
+  <button class="btn ghost" data-home>Back to title</button>
+ </div>
+</section>
+
+<div class="shade" id="shade"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sv">
+ <div class="verdict" id="sv"><span class="badge-ic" id="sicon">✓</span><span id="stext">Nice work!</span><span class="gain" id="sgain"></span></div>
+ <p class="answer" id="sanswer"></p>
+ <div class="tip"><b><svg width="18" height="16" viewBox="0 0 36 32" aria-hidden="true"><path d="M8 20c-6-1-8-8-3-11 2-1 4-1 5 0 1-5 6-8 10-7 4 1 6 4 6 7 2-2 5-2 7 0 4 4 1 11-5 11z" fill="#C4683D"/><rect x="9" y="21" width="18" height="8" rx="2" fill="#C4683D"/></svg>Chef's tip</b><span id="stip"></span></div>
+ <button class="btn" id="nextBtn">Continue</button>
+</div>
+<div class="fx" id="fx"></div>
+</div>
+
+<script>
+(() => {
+'use strict';
+/* ---------------- Level data (original questions) ---------------- */
+const QUESTIONS = [
+ {topic:'Temperature danger zone',
+  q:"First day! Chef points at a pan of rice left out on the counter. Where is the temperature “danger zone” where germs grow fastest?",
+  c:['0°F to 32°F','41°F to 135°F','135°F to 165°F','165°F to 212°F'], a:1,
+  tip:'Bacteria multiply fastest between 41°F and 135°F. Keep cold food at 41°F or colder and hot food at 135°F or hotter, so it spends as little time in between as possible.'},
+ {topic:'Cooking temperatures',
+  q:'You’re roasting chicken thighs for staff meal. What’s the lowest safe internal temperature?',
+  c:['135°F','145°F','155°F','165°F'], a:3,
+  tip:'All poultry (chicken, turkey, duck, plus stuffing made with it) must reach 165°F. Check the thickest part with a probe thermometer; color alone can fool you.'},
+ {topic:'Cooking temperatures',
+  q:'Ground beef burgers are sizzling on the flat-top. What internal temperature does the restaurant Food Code require?',
+  c:['135°F','145°F','155°F','165°F'], a:2,
+  tip:'Grinding mixes surface germs all through the meat, so restaurants cook ground meat to 155°F for 17 seconds. Steaks, chops and fish need 145°F for 15 seconds. (USDA’s home-cooking advice for ground beef is 160°F.)'},
+ {type:'wash'},
+ {topic:'Cooling food',
+  q:'You made a big pot of chili and need to cool it for tomorrow. Which plan is safe?',
+  c:['Cool it from 135°F to 70°F within 2 hours, then to 41°F or lower within the next 4 hours','Leave it on the counter until it reaches room temperature, then refrigerate','Any method is fine, as long as it’s cold within 8 hours','Put the whole hot stockpot in the walk-in with the lid on'], a:0,
+  tip:'Cool in two stages, 6 hours max: 135°F to 70°F in 2 hours, then 70°F to 41°F in the next 4. Speed it up with shallow pans, smaller portions, an ice bath or ice paddle, and stirring.'},
+ {topic:'Reheating',
+  q:'Yesterday’s cooled chili is going back into the hot-holding well. How should you reheat it?',
+  c:['Heat it to 135°F, however long that takes','Heat it until it bubbles, then turn the heat off','Heat it to 145°F within 4 hours','Heat it to 165°F within 2 hours, then hold it at 135°F or hotter'], a:3,
+  tip:'Food that was cooked, cooled and reheated for hot holding must reach 165°F for 15 seconds within 2 hours. After that, hold it at 135°F or above.'},
+ {topic:'Storage',
+  q:'You’re putting away a delivery in the walk-in cooler. Which shelf does raw chicken go on?',
+  c:['The top shelf, so it’s easy to grab','The middle, next to the salad greens','The bottom shelf, below everything else','Anywhere, as long as it’s covered'], a:2,
+  tip:'Store by cooking temperature, top to bottom: ready-to-eat food, seafood, whole cuts of beef and pork, ground meat, then poultry at the very bottom. If anything drips, it only lands on food that gets cooked hotter.'},
+ {topic:'Allergens',
+  q:'A guest tells the server they have a serious food allergy. Which of these is one of the “Big 9” major food allergens?',
+  c:['Garlic','Sesame','Corn','Black pepper'], a:1,
+  tip:'The Big 9 are milk, eggs, fish, crustacean shellfish, tree nuts, peanuts, wheat, soybeans and sesame (added in 2023). Tell the chef, and use clean, sanitized tools and surfaces so allergens don’t sneak in.'},
+ {topic:'Gloves',
+  q:'You’re wearing gloves while trimming raw chicken. Next you’ll slice tomatoes for sandwiches. What do you do?',
+  c:['Keep the same gloves, since they look clean','Rinse your gloves under hot water','Wipe your gloves on your apron','Take the gloves off, wash your hands, then put on a fresh pair'], a:3,
+  tip:'Single-use gloves are for one task only. Change them when you switch tasks, when they rip or get dirty, when you get interrupted, and always between raw meat and ready-to-eat food. Never wash and reuse them.'},
+ {topic:'Staying healthy',
+  q:'You wake up vomiting with diarrhea on the morning of your shift. What’s the right move?',
+  c:['Call your manager and stay home until 24 hours after the symptoms stop','Go in, but wear gloves the whole shift','Take some medicine and work the line','Work, but only wash dishes'], a:0,
+  tip:'Vomiting, diarrhea, jaundice (yellow skin or eyes) and a sore throat with fever must all be reported to the person in charge. With vomiting or diarrhea, stay out of the kitchen until you’ve been symptom-free for at least 24 hours.'},
+ {topic:'Thermometers',
+  q:'To check your probe thermometer with the ice-point method, you dip it in a glass of ice water. What should it read?',
+  c:['0°F','32°F','41°F','212°F'], a:1,
+  tip:'Fill a glass with crushed ice and water, submerge the probe at least 2 inches, wait about 30 seconds and adjust it to 32°F. Recalibrate if it gets dropped, and clean and sanitize the probe between foods.'}
+];
+const NQ = QUESTIONS.filter(s => !s.type).length;
+const XP_RIGHT = 100, XP_STREAK = 25, XP_WASH = 150, PASS = 7;
+const KEY = 'stk-culinary-school-v1';
+const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+
+/* ---------------- State ---------------- */
+const fresh = () => ({step:0, answers:{}, xp:0, streak:0, bestStreak:0, washDone:false, done:false});
+let saved = {};
+try { saved = JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e) {}
+let S = Object.assign(fresh(), saved.run || {});
+let meta = Object.assign({sound:false, best:0, badge:false, totalXp:0}, saved.meta || {});
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify({run:S, meta})); } catch(e) {} };
+
+/* ---------------- Helpers ---------------- */
+const $ = id => document.getElementById(id);
+const chefSVG = mood => {
+  const mouths = {
+    happy:'<path d="M53 66 q7 7 14 0" stroke="#3a2a20" stroke-width="2.4" fill="none" stroke-linecap="round"/>',
+    big:'<path d="M52 65 q8 10 16 0z" fill="#7a3324"/>',
+    think:'<path d="M55 68 h10" stroke="#3a2a20" stroke-width="2.4" stroke-linecap="round"/>',
+    oops:'<ellipse cx="60" cy="68" rx="3.5" ry="4" fill="#7a3324"/>'
+  };
+  const eyes = mood === 'big'
+    ? '<path d="M49 58 q3 -4 6 0 M65 58 q3 -4 6 0" stroke="#2b2b2b" stroke-width="2.4" fill="none" stroke-linecap="round"/>'
+    : '<circle cx="52" cy="57" r="2.6" fill="#2b2b2b"/><circle cx="68" cy="57" r="2.6" fill="#2b2b2b"/><circle cx="53" cy="56" r=".9" fill="#fff"/><circle cx="69" cy="56" r=".9" fill="#fff"/>';
+  const brows = mood === 'think' ? '<path d="M48 51 l7 -1 M65 49 l7 2" stroke="#5a3b28" stroke-width="2" stroke-linecap="round"/>' : '';
+  return `<svg class="chef" viewBox="0 0 120 170" role="img" aria-label="Little chef"><use href="#chef-body"/>${eyes}${brows}${mouths[mood]||mouths.happy}</svg>`;
+};
+const setChef = (slot, mood, anim) => {
+  $(slot).innerHTML = chefSVG(mood);
+  if (anim && !reduce.matches) { const el = $(slot).firstChild; el.classList.add(anim); }
+};
+function show(id){ document.querySelectorAll('.screen').forEach(s => s.classList.toggle('on', s.id === id)); }
+function bumpXP(){ ['qxp','wxp'].forEach(id => { const el=$(id); el.textContent='⭐ '+S.xp; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }); }
+function progress(){
+  const pct = Math.round(S.step / QUESTIONS.length * 100);
+  ['qbar','wbar'].forEach(id => { $(id).firstElementChild.style.width = pct + '%'; $(id).setAttribute('aria-valuenow', pct); });
+}
+
+/* ---------------- Sound (off by default) ---------------- */
+let ctx;
+function tone(freqs, dur=.12, type='sine', gap=.09){
+  if (!meta.sound) return;
+  try {
+    ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();
+    freqs.forEach((f,i) => {
+      const o = ctx.createOscillator(), g = ctx.createGain(), t = ctx.currentTime + i*gap;
+      o.type = type; o.frequency.value = f; g.gain.setValueAtTime(.0001,t);
+      g.gain.exponentialRampToValueAtTime(.18,t+.02); g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+      o.connect(g).connect(ctx.destination); o.start(t); o.stop(t+dur+.02);
+    });
+  } catch(e) {}
+}
+const sfx = { right:()=>tone([660,880,1320]), wrong:()=>tone([300,220],.18,'triangle',.12), tap:()=>tone([520],.06), win:()=>tone([523,659,784,1047,1319],.2,'sine',.12) };
+function paintSound(){ const b=$('soundBtn'); b.textContent = meta.sound ? '🔊' : '🔇'; b.setAttribute('aria-pressed', meta.sound); b.setAttribute('aria-label', meta.sound ? 'Sound on' : 'Sound off'); }
+$('soundBtn').onclick = () => { meta.sound = !meta.sound; save(); paintSound(); sfx.tap(); };
+
+/* ---------------- FX ---------------- */
+function confetti(n=26){
+  if (reduce.matches) return;
+  const fx = $('fx'), cols = ['#C4683D','#6B7F3A','#D9A13B','#f09a86','#8fd0ea'];
+  for (let i=0;i<n;i++){
+    const p = document.createElement('i');
+    p.style.left = (35 + Math.random()*30) + '%'; p.style.top = '40%';
+    p.style.background = cols[i % cols.length];
+    p.style.setProperty('--dx', (Math.random()*360-180)+'px');
+    p.style.setProperty('--dy', (Math.random()*-260-40)+'px');
+    p.style.setProperty('--rot', (Math.random()*720-360)+'deg');
+    p.style.animationDelay = (Math.random()*.12)+'s';
+    fx.appendChild(p); setTimeout(()=>p.remove(), 1400);
+  }
+}
+function toast(txt){
+  if (reduce.matches) return;
+  const t = document.createElement('div'); t.className='toast'; t.textContent = txt;
+  $('app').appendChild(t); setTimeout(()=>t.remove(), 1050);
+}
+
+/* ---------------- Title ---------------- */
+function renderTitle(){
+  setChef('titleChef','big');
+  paintSound();
+  $('t-xp').textContent = '⭐ ' + meta.totalXp + ' XP' + (meta.badge ? ' · 🏅' : '');
+  const inProgress = S.step > 0 && !S.done;
+  $('startBtn').textContent = inProgress ? `Continue (step ${S.step+1} of ${QUESTIONS.length})` : (meta.best ? 'Play Level 1 again' : 'Start Level 1');
+  $('resetBtn').hidden = !inProgress;
+  $('t-status').textContent = meta.best ? `Best score: ${meta.best}/${NQ}${meta.badge ? ' · Food Safety Rookie 🏅' : ''}` : `${NQ} questions + a handwashing challenge · ~4 min`;
+  if (meta.badge) document.querySelectorAll('.rung')[0].className = 'rung done', document.querySelectorAll('.rung')[1].className = 'rung now';
+  show('title');
+}
+$('startBtn').onclick = () => { sfx.tap(); if (S.done) S = fresh(); save(); go(); };
+$('resetBtn').onclick = () => { S = fresh(); save(); go(); };
+document.querySelectorAll('[data-home]').forEach(b => b.onclick = renderTitle);
+$('homeBtn').onclick = renderTitle;
+
+/* ---------------- Flow ---------------- */
+function go(){
+  progress();
+  if (S.step >= QUESTIONS.length) return results();
+  const s = QUESTIONS[S.step];
+  if (s.type === 'wash') return startWash();
+  renderQuestion(s);
+}
+function qNumber(step){ return QUESTIONS.slice(0, step+1).filter(s => !s.type).length; }
+
+function renderQuestion(s){
+  show('quiz');
+  setChef('quizChef','think');
+  $('qxp').textContent = '⭐ ' + S.xp;
+  $('qcount').textContent = `Question ${qNumber(S.step)} of ${NQ}`;
+  $('qstreak').textContent = S.streak >= 2 ? `🔥 ${S.streak} in a row` : '';
+  $('qtopic').textContent = s.topic;
+  $('qtext').textContent = s.q;
+  const box = $('choices'); box.innerHTML = '';
+  s.c.forEach((txt, i) => {
+    const b = document.createElement('button');
+    b.className = 'choice'; b.innerHTML = `<span class="k">${'ABCD'[i]}</span><span></span>`;
+    b.lastChild.textContent = txt;
+    b.onclick = () => answer(i, s);
+    box.appendChild(b);
+  });
+}
+
+function answer(i, s){
+  const btns = [...document.querySelectorAll('.choice')];
+  btns.forEach(b => b.disabled = true);
+  const ok = i === s.a;
+  btns[s.a].classList.add('right');
+  if (!ok) btns[i].classList.add('wrong');
+  btns.forEach((b,j) => { if (j!==s.a && j!==i) b.classList.add('dim'); });
+  S.answers[S.step] = i;
+  let gain = 0;
+  if (ok){
+    S.streak++; S.bestStreak = Math.max(S.bestStreak, S.streak);
+    gain = XP_RIGHT + (S.streak >= 3 ? XP_STREAK : 0);
+    S.xp += gain; bumpXP(); sfx.right(); confetti();
+    toast(['Nice!','Yes, Chef!','Nailed it!','Perfect!'][S.step % 4]);
+    setChef('quizChef','big','jump');
+  } else {
+    S.streak = 0; sfx.wrong(); setChef('quizChef','oops','sad');
+  }
+  S.step++; save(); progress();
+  openSheet(ok, s, gain);
+}
+
+function openSheet(ok, s, gain){
+  const sh = $('sheet');
+  sh.className = 'sheet ' + (ok ? 'good' : 'bad');
+  $('sicon').textContent = ok ? '✓' : '✕';
+  $('stext').textContent = ok ? (S.streak >= 3 ? 'On fire!' : 'Nice work!') : 'Not quite';
+  $('sgain').textContent = ok ? `+${gain} XP` : '';
+  $('sanswer').textContent = ok ? '' : 'Correct answer: ' + s.c[s.a];
+  $('sanswer').hidden = ok;
+  $('stip').textContent = s.tip;
+  $('nextBtn').textContent = S.step >= QUESTIONS.length ? 'See my results' : 'Continue';
+  setTimeout(() => { $('shade').classList.add('on'); sh.classList.add('on'); $('nextBtn').focus({preventScroll:true}); }, ok && !reduce.matches ? 650 : 250);
+}
+$('nextBtn').onclick = () => { sfx.tap(); $('sheet').classList.remove('on'); $('shade').classList.remove('on'); setTimeout(go, reduce.matches ? 0 : 200); };
+
+/* ---------------- Mini-game: handwashing ---------------- */
+const W = { phase:0, scrub:0, t0:0, holding:false, raf:0, clock:0 };
+const PHASES = [
+ {btn:'Turn on warm water', msg:'Step 1: Wet hands and arms with warm running water (at least 100°F).'},
+ {btn:'Add soap', msg:'Step 2: Add enough soap to build a good lather.'},
+ {btn:'Hold to scrub 👐', msg:'Step 3: Press and hold to scrub hands, between fingers and under nails for 10 to 15 seconds.', hold:true},
+ {btn:'Rinse', msg:'Step 4: Rinse everything off under warm running water.'},
+ {btn:'Dry with a paper towel', msg:'Step 5: Dry with a single-use paper towel or a hand dryer.'},
+];
+function startWash(){
+  show('wash'); setChef('washChef','happy');
+  $('wxp').textContent = '⭐ ' + S.xp;
+  Object.assign(W, {phase:0, scrub:0, t0:0, holding:false});
+  $('sink').className = 'sink';
+  $('scrubT').textContent = '0.0'; $('totalT').textContent = '0';
+  paintWash();
+}
+function paintWash(){
+  const p = PHASES[W.phase];
+  [...$('steps').children].forEach((el,i) => el.className = 'step' + (i < W.phase ? ' done' : i === W.phase ? ' now' : ''));
+  if (!p) return;
+  $('washMsg').textContent = p.msg;
+  const b = $('washBtn');
+  b.className = 'btn' + (p.hold ? ' holdbtn' : '');
+  b.innerHTML = p.hold ? `<span class="fill" id="holdFill"></span><span>${p.btn}</span>` : p.btn;
+}
+function tickClock(){
+  if (!W.t0) return;
+  $('totalT').textContent = Math.floor((performance.now() - W.t0)/1000);
+  W.clock = requestAnimationFrame(tickClock);
+}
+function addBubble(){
+  if (reduce.matches) return;
+  const b = document.createElement('span');
+  b.style.left = (30 + Math.random()*40) + '%';
+  const s = 8 + Math.random()*14; b.style.width = b.style.height = s+'px';
+  $('bubbles').appendChild(b); setTimeout(()=>b.remove(), 1500);
+}
+let last = 0, bubbleT = 0;
+function scrubLoop(ts){
+  if (!W.holding) return;
+  const dt = last ? (ts - last)/1000 : 0; last = ts;
+  W.scrub = Math.min(15, W.scrub + dt);
+  $('scrubT').textContent = W.scrub.toFixed(1);
+  const f = $('holdFill'); if (f) f.style.width = (W.scrub/15*100) + '%';
+  if ((bubbleT += dt) > .18){ bubbleT = 0; addBubble(); }
+  if (W.scrub >= 15){ stopHold(); sfx.right(); W.phase++; $('sink').classList.remove('scrubbing'); paintWash(); $('washMsg').textContent = 'Squeaky clean! ' + PHASES[3].msg.replace('Step 4: ',''); return; }
+  W.raf = requestAnimationFrame(scrubLoop);
+}
+function startHold(e){
+  if (!PHASES[W.phase] || !PHASES[W.phase].hold) return;
+  e.preventDefault(); W.holding = true; last = 0;
+  $('sink').classList.add('scrubbing');
+  W.raf = requestAnimationFrame(scrubLoop);
+}
+function stopHold(){
+  if (!W.holding) return;
+  W.holding = false; cancelAnimationFrame(W.raf);
+  $('sink').classList.remove('scrubbing');
+  if (W.scrub < 15) $('washMsg').textContent = `Keep scrubbing! ${Math.ceil(15 - W.scrub)}s to go. Hold the button down.`;
+}
+const wb = $('washBtn');
+wb.addEventListener('pointerdown', startHold);
+['pointerup','pointerleave','pointercancel'].forEach(ev => wb.addEventListener(ev, stopHold));
+wb.addEventListener('keydown', e => { if ((e.key===' '||e.key==='Enter') && PHASES[W.phase]?.hold && !e.repeat) startHold(e); });
+wb.addEventListener('keyup', e => { if (e.key===' '||e.key==='Enter') stopHold(); });
+wb.addEventListener('contextmenu', e => e.preventDefault());
+wb.addEventListener('click', () => {
+  const p = PHASES[W.phase]; if (!p || p.hold) return;
+  sfx.tap();
+  const sink = $('sink');
+  if (W.phase === 0){ W.t0 = performance.now(); tickClock(); sink.classList.add('water'); }
+  if (W.phase === 1){ sink.classList.remove('water'); sink.classList.add('soap'); }
+  if (W.phase === 3){ sink.classList.add('water'); sink.classList.remove('soap'); }
+  if (W.phase === 4){ sink.classList.remove('water'); sink.classList.add('dry'); }
+  W.phase++;
+  if (W.phase >= PHASES.length) return finishWash();
+  paintWash();
+});
+function finishWash(){
+  cancelAnimationFrame(W.clock);
+  const total = Math.max(20, Math.round((performance.now() - W.t0)/1000));
+  $('totalT').textContent = total;
+  [...$('steps').children].forEach(el => el.className = 'step done');
+  S.xp += XP_WASH; S.washDone = true; S.step++; save(); progress(); bumpXP();
+  sfx.win(); confetti(40); toast('Clean hands!'); setChef('washChef','big','jump');
+  $('washMsg').textContent = `All 5 steps done, about ${total} seconds total. +${XP_WASH} XP`;
+  const b = $('washBtn'); b.className = 'btn olive'; b.textContent = 'Back to class →';
+  b.onclick = () => { b.onclick = null; go(); };
+}
+
+/* ---------------- Results ---------------- */
+function results(){
+  const right = QUESTIONS.reduce((n,s,i) => n + (!s.type && S.answers[i] === s.a ? 1 : 0), 0);
+  const stars = right >= 9 ? 3 : right >= PASS ? 2 : 1;
+  const passed = right >= PASS;
+  if (!S.done){
+    S.done = true;
+    meta.best = Math.max(meta.best, right);
+    meta.totalXp += S.xp;
+    if (passed) meta.badge = true;
+    save();
+  }
+  show('results');
+  $('r-h').textContent = passed ? 'Food Safety Rookie!' : 'So close, Chef!';
+  $('r-msg').textContent = passed
+    ? 'Badge earned! You know the basics that keep every guest safe. Prep Cook is next.'
+    : `Get ${PASS} or more right to earn the Food Safety Rookie badge. The tips will help!`;
+  $('badgePill').textContent = passed ? '🏅 Badge earned: Food Safety Rookie' : `🔒 Food Safety Rookie badge: get ${PASS}/${NQ} to unlock`;
+  $('medal').style.filter = passed ? '' : 'grayscale(1) opacity(.5)';
+  $('medal').classList.remove('shine'); void $('medal').offsetWidth; $('medal').classList.add('shine');
+  [...$('stars').children].forEach((el,i) => el.className = i < stars ? 'on' : '');
+  $('stars').setAttribute('aria-label', `${stars} of 3 stars`);
+  $('r-score').textContent = `${right}/${NQ}`;
+  $('r-xp').textContent = S.xp;
+  $('r-streak').textContent = S.bestStreak;
+  if (passed){ sfx.win(); setTimeout(() => confetti(60), 300); }
+}
+$('retryBtn').onclick = () => { S = fresh(); save(); go(); };
+
+renderTitle();
+// Expose a tiny hook for automated tests only.
+})();
+</script>
+</body>
+</html>

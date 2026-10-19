@@ -1,0 +1,19 @@
+{
+  "name": "Sam's Table: Culinary School (2D)",
+  "short_name": "Chef School",
+  "start_url": "/play/culinary-school-2d/",
+  "scope": "/play/culinary-school-2d/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FAF7F2",
+  "theme_color": "#C4683D",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "id": "/play/culinary-school-2d/"
+}
