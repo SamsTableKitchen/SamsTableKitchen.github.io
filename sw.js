@@ -1,7 +1,7 @@
 /* Sam's Table service worker.
    VERSION matches the CSS version (?v=) and is set by tools/pwa.py on every build,
    so each deploy gets fresh caches and old ones are deleted. */
-const VERSION = '20261019b';
+const VERSION = '20261019c';
 /* Visited pages live in st-pages and survive deploys, so saved recipes keep working offline. */
 const SHELL = 'st-shell-' + VERSION, PAGES = 'st-pages', ASSETS = 'st-assets-' + VERSION, IMAGES = 'st-images';
 const PRECACHE = [
