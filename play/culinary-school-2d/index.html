@@ -9,6 +9,15 @@
 <meta name="description" content="A tiny chef starts culinary school. Level 1: food safety basics everyone should know.">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
+<script>
+/* Chrome's "Desktop site" mode ignores the viewport tag and lays the page out ~980px wide on a phone, which shrinks the whole UI.
+   Detect it (touch screen, layout far wider than the physical screen) and scale the HUD back up with CSS zoom. */
+(function(){ try {
+  var sw = Math.min(screen.width || 0, screen.height || 0) || screen.width, touch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
+  var k = sw ? innerWidth / (innerWidth > innerHeight ? Math.max(screen.width, screen.height) : sw) : 1;
+  if (touch && innerWidth >= 700 && k > 1.4){ k = Math.min(3.5, Math.round(k*100)/100); document.documentElement.style.setProperty('--uiz', k); document.documentElement.classList.add('uiz'); window.UIZ = k; }
+} catch(e){} })();
+</script>
 <style>
 :root{--bg:#FAF7F2;--card:#fff;--ink:#2B2B2B;--muted:#6d655b;--line:#E6DFD3;--terra:#C4683D;--terra-d:#a9532b;--olive:#6B7F3A;--olive-l:#e9eedc;--gold:#D9A13B;--red:#c0392b;--red-l:#fbe9e6;
 --serif:'Playfair Display',Georgia,'Times New Roman',serif;--sans:Lato,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--r:18px;--sh:0 6px 20px rgba(60,40,20,.10)}
@@ -19,6 +28,7 @@ body{font-family:var(--sans);color:var(--ink);display:flex;justify-content:cente
  background-image:radial-gradient(circle at 20% 0%,#fff7ea 0,transparent 55%),radial-gradient(circle at 100% 100%,#f4e9da 0,transparent 50%)}
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
 button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.uiz #app{zoom:var(--uiz);width:calc(100vw / var(--uiz));max-width:480px;height:calc(100vh / var(--uiz));min-height:0}
 .screen{position:absolute;inset:0;display:none;flex-direction:column;padding:calc(14px + env(safe-area-inset-top)) 20px calc(18px + env(safe-area-inset-bottom))}
 .screen.on{display:flex;animation:fadeUp .35s ease both}
 h1,h2,h3{font-family:var(--serif);margin:0;line-height:1.15}
@@ -65,10 +75,10 @@ h1,h2,h3{font-family:var(--serif);margin:0;line-height:1.15}
 /* ---------- Question ---------- */
 .q-head{display:flex;align-items:flex-end;gap:10px;margin-top:4px}
 .q-head .chef{width:96px;flex:none}
-.bubble{position:relative;background:#fff;border-radius:18px 18px 18px 4px;padding:14px 15px;box-shadow:var(--sh);font-size:17px;line-height:1.38;font-weight:700;flex:1;margin-bottom:22px}
-.bubble .topic{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:5px}
+.bubble{position:relative;background:#fff;border-radius:18px 18px 18px 4px;padding:14px 15px;box-shadow:var(--sh);font-size:clamp(17px, 4.7vw, 21px);line-height:1.38;font-weight:700;flex:1;margin-bottom:22px}
+.bubble .topic{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:5px}
 .choices{display:grid;gap:10px;margin-top:6px}
-.choice{display:flex;align-items:center;gap:12px;text-align:left;width:100%;background:#fff;border:2px solid var(--line);border-radius:16px;padding:13px 14px;font-size:15.5px;line-height:1.3;font-weight:700;box-shadow:0 3px 0 var(--line);transition:transform .08s,border-color .15s,background .15s}
+.choice{display:flex;align-items:center;gap:12px;text-align:left;width:100%;background:#fff;border:2px solid var(--line);border-radius:16px;min-height:52px;padding:13px 14px;font-size:clamp(16px, 4.2vw, 18px);line-height:1.3;font-weight:700;box-shadow:0 3px 0 var(--line);transition:transform .08s,border-color .15s,background .15s}
 .choice:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}
 .choice .k{flex:none;width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);font-size:13px;color:var(--muted)}
 .choice.right{border-color:var(--olive);background:var(--olive-l);box-shadow:0 3px 0 #b9c79a}
@@ -86,8 +96,8 @@ h1,h2,h3{font-family:var(--serif);margin:0;line-height:1.15}
 .sheet.good .verdict{color:var(--olive)} .sheet.good .badge-ic{background:var(--olive)}
 .sheet.bad .verdict{color:var(--red)} .sheet.bad .badge-ic{background:var(--red)}
 .sheet .gain{margin-left:auto;font-family:var(--sans);font-size:15px;color:var(--gold);font-weight:800}
-.sheet .answer{margin:8px 0 0;font-size:14px;color:var(--muted)}
-.tip{margin:12px 0 14px;background:#fff8ec;border:1px dashed #e8c98f;border-radius:16px;padding:12px 14px 12px 14px;font-size:15px;line-height:1.45}
+.sheet .answer{margin:8px 0 0;font-size:clamp(15px, 4vw, 17px);color:var(--muted)}
+.tip{margin:12px 0 14px;background:#fff8ec;border:1px dashed #e8c98f;border-radius:16px;padding:12px 14px 12px 14px;font-size:clamp(16px, 4.2vw, 18px);line-height:1.45}
 .tip b{display:flex;align-items:center;gap:6px;color:var(--terra);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
 .shade{position:absolute;inset:0;background:rgba(43,30,15,.18);opacity:0;pointer-events:none;transition:opacity .3s;z-index:15}
 .shade.on{opacity:1;pointer-events:auto}
@@ -111,7 +121,7 @@ h1,h2,h3{font-family:var(--serif);margin:0;line-height:1.15}
 .step i{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#fff;border:2px solid var(--line);font-style:normal;font-size:16px}
 .step.now{color:var(--terra)} .step.now i{border-color:var(--terra);box-shadow:0 0 0 4px #f7dccd}
 .step.done{color:var(--olive)} .step.done i{background:var(--olive);border-color:var(--olive);color:#fff}
-.wash-msg{text-align:center;font-weight:700;font-size:15.5px;min-height:44px;line-height:1.35;margin:4px 6px 10px}
+.wash-msg{text-align:center;font-weight:700;font-size:clamp(16px, 4.2vw, 18px);min-height:44px;line-height:1.35;margin:4px 6px 10px}
 .timer{display:flex;justify-content:center;gap:14px;font-size:13px;color:var(--muted);font-weight:700;margin-bottom:10px}
 .timer b{color:var(--ink);font-variant-numeric:tabular-nums}
 .ring{width:22px;height:22px;transform:rotate(-90deg)}
@@ -160,7 +170,7 @@ h1,h2,h3{font-family:var(--serif);margin:0;line-height:1.15}
  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
  .fx,.bubbles{display:none}
 }
-@media (max-height:700px){#title .chef{width:130px}.halo{width:180px;height:180px}#title h1{font-size:29px}.bubble{font-size:16px}.choice{padding:11px 12px}}
+@media (max-height:700px){#title .chef{width:130px}.halo{width:180px;height:180px}#title h1{font-size:29px}.bubble{font-size:17px}.choice{padding:11px 12px;min-height:48px}}
 [hidden]{display:none!important}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 </style>
