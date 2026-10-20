@@ -3947,7 +3947,7 @@ function hubRefresh(){
   $('goalText').textContent = t ? 'Next: ' + (t === nx ? t.name : t.name) : 'Every station done!';
   $('goalSub').textContent = !t ? 'Replay any station for more stars' : t.id === 'carrots' ? 'Knife Skills prep: get the carrots' : t.id === 'wash' ? 'Knife Skills prep: wash the carrots' : t.id === 'knife' ? 'Peel the carrots, then cut' : `${t.sub} · walk to the ★, then ${isTouch ? 'tap ✋ Use' : 'press E'}`;
   $('streak').textContent = '';
-  if (t){ marker.position.set(t.spot[0], 1.75, t.spot[1]);   // star floats over the gold floor ring where you stand, below the signs
+  if (t){ marker.position.set(t.spot[0], 0.7, t.spot[1]); marker.scale.setScalar(0.7);   // star floats over the gold floor ring where you stand, below the signs
     ring.position.set(t.spot[0], 0.012, t.spot[1]); }
   chef.carrots.visible = HUB.on && kp === 1;
 }
