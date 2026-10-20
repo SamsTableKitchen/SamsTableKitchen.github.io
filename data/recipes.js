@@ -2,6 +2,35 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
  {
+  "url": "posts/recipes/italian-meatball-soup.html",
+  "title": "Easy 30 Minute Italian Meatball Soup",
+  "category": "Mains",
+  "tags": [
+   "soup",
+   "meatballs",
+   "Italian",
+   "pasta",
+   "one pot",
+   "weeknight",
+   "comfort food",
+   "spinach"
+  ],
+  "ingredients": [
+   "mini meatballs",
+   "marinara sauce",
+   "chicken broth",
+   "pasta",
+   "onion",
+   "carrots",
+   "celery",
+   "garlic",
+   "spinach",
+   "Parmesan",
+   "heavy cream"
+  ],
+  "desc": "Mini meatballs and small pasta in a marinara broth with spinach and Parmesan, in about 30 minutes. Recipe by Carly's Cookbook on Chefadora."
+ },
+ {
   "url": "posts/recipes/grandmas-sweet-party-meatballs.html",
   "title": "Grandma's Sweet Party Meatballs",
   "category": "Appetizers",
