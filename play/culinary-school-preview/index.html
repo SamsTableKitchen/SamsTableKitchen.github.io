@@ -27,13 +27,6 @@ html,body{margin:0;height:100%;background:#efe4d3;overflow:hidden;overscroll-beh
 body{font-family:var(--sans);color:var(--ink);-webkit-user-select:none;user-select:none;touch-action:none}
 #app{position:fixed;inset:0}
 canvas#gl{position:absolute;inset:0;width:100%;height:100%;display:block;outline:none}
-#card .plist{display:flex;flex-direction:column;gap:6px}
-#card .prow{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:14px;background:#fbf6ee}
-#card .prow.open{background:#fde9dc;box-shadow:inset 0 0 0 2px #e48a5c}#card .prow.lock,#card .prow.soon{opacity:.6}
-#card .prow .pic{font-size:24px;width:30px;text-align:center}#card .prow .pn{flex:1;display:flex;flex-direction:column}#card .prow .pn b{font-size:17px}#card .prow .pn small{font-size:13px;color:var(--muted)}
-#card .prow .pst{color:#e2a32a;font-size:18px;letter-spacing:1px}#card .prow .pst i{font-style:normal;color:#d8cfc2}
-#card .pbadges{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}#card .pb{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:20px;background:#eee8df;filter:grayscale(1);opacity:.5}#card .pb.on{background:#f6deb0;filter:none;opacity:1}
-#vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 85% 75% at 50% 48%, rgba(70,40,15,0) 60%, rgba(70,40,15,.20) 100%)}
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
 button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 h1,h2,h3{font-family:var(--serif);margin:0;line-height:1.15}
@@ -325,7 +318,6 @@ body.mk #joy,body.mk #useBtn{display:none!important}
 <body>
 <div id="app">
 <canvas id="gl" aria-label="3D kitchen. Walk the chef to the glowing star marker." role="img"></canvas>
-<div id="vig" aria-hidden="true"></div>
 <div id="loading">Setting up the kitchen…</div>
 
 <!-- ============ TITLE ============ -->
@@ -363,7 +355,6 @@ body.mk #joy,body.mk #useBtn{display:none!important}
    <button class="icon-btn" id="homeBtn" aria-label="Back to title">✕</button>
    <div class="bar" role="progressbar" aria-label="Level progress" aria-valuemin="0" aria-valuemax="100" id="bar"><span></span></div>
    <div class="xp" id="hxp">⭐ 0</div>
-   <button class="icon-btn" id="progBtn" aria-label="Progress and badges">📋</button>
    <button class="icon-btn sndBtn" id="soundBtn2" aria-label="Sound on">🔊</button>
   </div>
   <div class="goal" id="goal" aria-live="polite"><span class="star">★</span><div><span id="goalText">Next: Prep table</span><small id="goalSub">Question 1 of 10</small></div><span class="streak" id="streak"></span></div>
@@ -406,7 +397,7 @@ body.mk #joy,body.mk #useBtn{display:none!important}
  <div class="teaser"><div class="lock" id="r-nextIc">🔪</div><div><b id="r-next">Next level: Knife Skills</b><small id="r-nextSub">Swipe to julienne, dice and mince on the cutting board</small></div></div>
  <div class="btns">
   <button class="btn olive" id="retryBtn">Play again</button>
-  <button class="btn ghost" id="resHome">Back to the kitchen</button>
+  <button class="btn ghost" id="resHome">Back to the map</button>
  </div>
  </div>
 </section>
@@ -436,7 +427,7 @@ body.mk #joy,body.mk #useBtn{display:none!important}
 <canvas id="kfx" hidden></canvas>
 <div id="knifeUI" hidden>
  <div class="row">
-  <button class="icon-btn" id="kHome" aria-label="Back to the kitchen">✕</button>
+  <button class="icon-btn" id="kHome" aria-label="Back to the map">✕</button>
   <span class="pill" id="kTimer">⏱ 0:00</span>
   <span class="sp"></span>
   <span class="pill" id="kScore">⭐ 0</span>
@@ -458,7 +449,7 @@ body.mk #joy,body.mk #useBtn{display:none!important}
 <div id="spad" hidden></div>
 <div id="sauceUI" hidden>
  <div class="row">
-  <button class="icon-btn" id="sHome" aria-label="Back to the kitchen">✕</button>
+  <button class="icon-btn" id="sHome" aria-label="Back to the map">✕</button>
   <span class="pill" id="sTimer">⏱ 0:00</span>
   <span class="sp"></span>
   <span class="pill" id="sScore">⭐ 0</span>
@@ -491,7 +482,7 @@ body.mk #joy,body.mk #useBtn{display:none!important}
 <div id="bpad" hidden></div>
 <div id="bakeUI" hidden>
  <div class="row">
-  <button class="icon-btn" id="bHome" aria-label="Back to the kitchen">✕</button>
+  <button class="icon-btn" id="bHome" aria-label="Back to the map">✕</button>
   <span class="pill" id="bStep">Step 1/6</span>
   <span class="sp"></span>
   <span class="pill" id="bScore">⭐ 0</span>
@@ -676,7 +667,6 @@ let saved = {};
 try { saved = JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e) {}
 const RUNS = {fs: Object.assign(fresh(), saved.run || {}), sk2: Object.assign(fresh(), saved.run3 || {})};
 let curLevel = 'fs';
-const HUB = {on:false, t:null, list:[], signs:{}};   // kitchen hub state (hub.js)
 let S = RUNS.fs;
 let meta = Object.assign({muted:false, best:0, badge:false, totalXp:0, best3:0, done:{}, badges:[], tut:{}, bestCombo:0}, saved.meta || {});
 if (!meta.done || typeof meta.done !== 'object') meta.done = {};
@@ -867,16 +857,16 @@ scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 pmrem.dispose();
 
 /* warm, soft lighting */
-const hemi = new THREE.HemisphereLight('#fff0d8', '#8f6a4a', 0.95);
+const hemi = new THREE.HemisphereLight('#fff4e4', '#b9987a', 1.35);
 scene.add(hemi);
-const sun = new THREE.DirectionalLight('#ffd6a8', 3.0);
+const sun = new THREE.DirectionalLight('#ffe4c2', 2.2);
 sun.position.set(-6, 12, 7); sun.target.position.set(0, 0, 0);
 sun.castShadow = true;
 sun.shadow.mapSize.set(2048, 2048);
 Object.assign(sun.shadow.camera, {left:-10.5, right:10.5, top:9.5, bottom:-9, near:2, far:32});
 sun.shadow.bias = -0.0008; sun.shadow.normalBias = 0.02; sun.shadow.radius = 5; sun.shadow.blurSamples = 12;
 scene.add(sun, sun.target);
-const fill = new THREE.DirectionalLight('#d6e2ff', 0.55);       // cool bounce from the open side
+const fill = new THREE.DirectionalLight('#dfe8ff', 0.35);       // cool bounce from the open side
 fill.position.set(6, 5, 10); scene.add(fill);
 
 /* ---------- canvas textures ---------- */
@@ -889,35 +879,32 @@ function tex(c, rx=1, ry=1){
 }
 function floorTex(){
   const [c, g] = cnv(512, 512), n = 4, s = 512/n;
-  g.fillStyle = '#a98762'; g.fillRect(0, 0, 512, 512);              // grout
+  g.fillStyle = '#cbb79a'; g.fillRect(0, 0, 512, 512);              // grout
   for (let i=0;i<n;i++) for (let j=0;j<n;j++){
-    const v = rnd()*10 - 5, base = (i+j)%2 ? [240,222,192] : [230,206,170];
+    const v = rnd()*10 - 5, base = (i+j)%2 ? [242,231,212] : [236,222,199];
     g.fillStyle = `rgb(${base[0]+v|0},${base[1]+v|0},${base[2]+v*0.8|0})`;
-    g.beginPath(); g.roundRect(i*s+4, j*s+4, s-8, s-8, 6); g.fill();
+    g.fillRect(i*s+3, j*s+3, s-6, s-6);
     for (let k=0;k<40;k++){ g.fillStyle = `rgba(120,90,60,${rnd()*0.06})`; g.fillRect(i*s+3+rnd()*(s-8), j*s+3+rnd()*(s-8), 2+rnd()*3, 2+rnd()*3); }
     const gr = g.createLinearGradient(i*s, j*s, i*s+s, j*s+s); gr.addColorStop(0,'rgba(255,255,255,.10)'); gr.addColorStop(1,'rgba(0,0,0,.04)');
     g.fillStyle = gr; g.fillRect(i*s+3, j*s+3, s-6, s-6);
   }
   return tex(c, 16.4/2, 14/2);
 }
-function subwayTex(){                // GFX: glazed teal-sage tiles, each slightly different, glossy top edge, cream grout
+function subwayTex(){
   const [c, g] = cnv(256, 128);
-  g.fillStyle = '#e9dcc4'; g.fillRect(0,0,256,128);
+  g.fillStyle = '#d9d6cf'; g.fillRect(0,0,256,128);
   for (let r=0;r<4;r++) for (let k=-1;k<3;k++){
-    const x = k*128 + (r%2)*64, v = rnd()*18 - 9;
-    const gr = g.createLinearGradient(0, r*32, 0, r*32+32); gr.addColorStop(0, `rgb(${112+v|0},${162+v|0},${150+v|0})`); gr.addColorStop(.55, `rgb(${88+v|0},${138+v|0},${128+v|0})`); gr.addColorStop(1, `rgb(${70+v|0},${116+v|0},${108+v|0})`);
-    g.fillStyle = gr; g.beginPath(); g.roundRect(x+2, r*32+2, 124, 28, 5); g.fill();
-    g.fillStyle = 'rgba(255,255,255,.28)'; g.beginPath(); g.roundRect(x+6, r*32+4, 116, 4, 2); g.fill();
+    const x = k*128 + (r%2)*64, v = rnd()*6;
+    const gr = g.createLinearGradient(0, r*32, 0, r*32+32); gr.addColorStop(0, `rgb(${252-v},${250-v},${245-v})`); gr.addColorStop(1, `rgb(${240-v},${237-v},${230-v})`);
+    g.fillStyle = gr; g.beginPath(); g.roundRect(x+2, r*32+2, 124, 28, 4); g.fill();
   }
   return tex(c, 1, 1);
 }
-function woodTex(light){             // GFX: warmer, richer oak/walnut with fine grain and a few knots
+function woodTex(light){
   const [c, g] = cnv(256, 256);
-  g.fillStyle = light ? '#c58a4f' : '#8a5530'; g.fillRect(0,0,256,256);
-  for (let i=0;i<150;i++){ const y = rnd()*256; g.strokeStyle = `rgba(${light?110:55},${light?60:28},${light?22:12},${0.08+rnd()*0.18})`; g.lineWidth = 0.6+rnd()*2.2;
+  g.fillStyle = light ? '#c99a69' : '#9a6b45'; g.fillRect(0,0,256,256);
+  for (let i=0;i<70;i++){ const y = rnd()*256; g.strokeStyle = `rgba(${light?90:60},${light?55:35},20,${0.08+rnd()*0.14})`; g.lineWidth = 1+rnd()*2.5;
     g.beginPath(); g.moveTo(0, y); g.bezierCurveTo(80, y+rnd()*8-4, 170, y+rnd()*8-4, 256, y); g.stroke(); }
-  for (let i=0;i<3;i++){ const x = rnd()*256, y = rnd()*256, gr = g.createRadialGradient(x, y, 0, x, y, 7); gr.addColorStop(0, 'rgba(70,35,12,.5)'); gr.addColorStop(1, 'rgba(70,35,12,0)'); g.fillStyle = gr; g.fillRect(x-8, y-8, 16, 16); }
-  g.fillStyle = 'rgba(255,220,170,.06)'; g.fillRect(0, 0, 256, 128);
   return tex(c, 1, 1);
 }
 function chalkTex(){
@@ -970,29 +957,11 @@ const STD = {steel:{c:'#e4e1dc', metalness:.85, roughness:.34}, steelD:{c:'#c2bd
   iron:{c:'#5a5250', metalness:.5, roughness:.6}, plate:{c:'#2a2c2f', metalness:.7, roughness:.38}, glass:{c:'#d8eef5', metalness:0, roughness:.08, transparent:true, opacity:.35},
   porcelain:{c:'#fbfaf6', metalness:0, roughness:.25}, copper:{c:'#c47a4c', metalness:.85, roughness:.35}, brass:{c:'#d9a13b', metalness:.8, roughness:.35}};
 const TEX = {};
-function brushedTex(){                                  // GFX: fine directional streaks + soft mottling, tiles seamlessly
-  const [c, g] = cnv(256, 256); g.fillStyle = '#ffffff'; g.fillRect(0, 0, 256, 256);
-  for (let i=0;i<900;i++){ const y = rnd()*256, a = 0.03 + rnd()*0.06, l = 40 + rnd()*200, x = rnd()*256;
-    g.strokeStyle = rnd() < 0.5 ? `rgba(120,118,115,${a})` : `rgba(255,255,255,${a*1.4})`; g.lineWidth = 0.6 + rnd();
-    g.beginPath(); g.moveTo(x, y); g.lineTo(x + l, y); g.stroke(); g.beginPath(); g.moveTo(x - 256, y); g.lineTo(x - 256 + l, y); g.stroke(); }
-  for (let i=0;i<14;i++){ const x = rnd()*256, y = rnd()*256, r = 30 + rnd()*60, gr = g.createRadialGradient(x, y, 0, x, y, r);
-    gr.addColorStop(0, 'rgba(140,135,130,.06)'); gr.addColorStop(1, 'rgba(140,135,130,0)'); g.fillStyle = gr; g.fillRect(0, 0, 256, 256); }
-  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(2, 2);
-  t.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy()); return t;
-}
-TEX.brushed = brushedTex();
-TEX.body = (() => { const [c, g] = cnv(64, 256); const gr = g.createLinearGradient(0, 256, 0, 0);       // v=0 bottom
-  gr.addColorStop(0, '#8d877f'); gr.addColorStop(0.35, '#d2cdc6'); gr.addColorStop(0.92, '#ffffff'); gr.addColorStop(1, '#f2efe9');
-  g.fillStyle = gr; g.fillRect(0, 0, 64, 256);
-  for (let i=0;i<120;i++){ const x = rnd()*64; g.strokeStyle = `rgba(110,105,100,${0.03+rnd()*0.05})`; g.lineWidth = 0.6; g.beginPath(); g.moveTo(x, 0); g.lineTo(x + rnd()*2 - 1, 256); g.stroke(); }
-  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; })();
-STD.steelBody = {c:'#d4cfc8', metalness:.7, roughness:.5};
-STD.sageBody = {c:'#9cc2b7', metalness:0, roughness:.7};
 function mat(c, o={}){
   const k = (typeof c === 'string' ? c : '') + JSON.stringify(o);
   if (mats[k]) return mats[k];
   let m;
-  if (STD[c]) { const s = STD[c]; m = new THREE.MeshStandardMaterial({color:s.c, metalness:s.metalness, roughness:s.roughness, map:(c === 'steelBody' || c === 'sageBody') ? TEX.body : ['steel','steelD','brushed'].includes(c) ? TEX.brushed : null, transparent:!!s.transparent, opacity:s.opacity ?? 1, envMapIntensity:1}); if (s.transparent) m.depthWrite = false; }
+  if (STD[c]) { const s = STD[c]; m = new THREE.MeshStandardMaterial({color:s.c, metalness:s.metalness, roughness:s.roughness, transparent:!!s.transparent, opacity:s.opacity ?? 1, envMapIntensity:1}); if (s.transparent) m.depthWrite = false; }
   else if (o.map) m = new THREE.MeshLambertMaterial({color:c || '#ffffff', map:TEX[o.map]});
   else m = new THREE.MeshLambertMaterial({color:c});
   if (o.emissive) m.emissive = new THREE.Color(o.emissive);
@@ -1002,7 +971,7 @@ function mat(c, o={}){
 }
 const geos = {};
 const G = (k, make) => geos[k] || (geos[k] = make());
-const C = {sage:'#86b0a4', sageD:'#6f998d', wood:'#b8743c', woodD:'#7e4c2a', terra:'#C4683D', olive:'#6B7F3A', gold:'#D9A13B', white:'#f6f3ec'};
+const C = {wood:'#b98a5e', woodD:'#8d6542', terra:'#C4683D', olive:'#6B7F3A', gold:'#D9A13B', white:'#f6f3ec'};
 const colliders = [];
 function place(m, x, y, z, parent, opt){
   m.position.set(x, y, z);
@@ -1015,7 +984,7 @@ function box(w,h,d,color,x,y,z,parent=scene,opt={}){
   const mn = Math.min(w, h, d);
   const r = Math.min(opt.round ? opt.round*Math.min(w, d) : Math.max(0.012, Math.min(0.03, Math.max(w, h, d)*0.04)), mn*0.45);
   const big = Math.max(w, h, d);
-  const cheap = !opt.round && (START_TIER === 'low' ? big < 0.4 : START_TIER === 'medium' && big < 0.2);   // GFX: low keeps bevels on furniture too   // medium: only big furniture keeps its bevel; low: none
+  const cheap = !opt.round && (START_TIER === 'low' || (START_TIER === 'medium' && big < 0.4));   // medium: only big furniture keeps its bevel; low: none
   if ((big < 0.09 || cheap) && !opt.round){ const m = new THREE.Mesh(G('box', () => new THREE.BoxGeometry(1,1,1)), mat(color, opt.m||{})); m.scale.set(w,h,d); return place(m, x, y, z, parent, opt); }  // tiny props: edges too small to see
   const n = 3;          // 3x3 grid per face: flat centre + one bevel row (same look as 4x4, ~45% fewer triangles)
   const k = `rb${w.toFixed(3)}_${h.toFixed(3)}_${d.toFixed(3)}_${r.toFixed(4)}_${n}`;
@@ -1058,7 +1027,6 @@ TEX.ao = radialTex('rgba(70,45,25,.55)', 'rgba(70,45,25,0)');
 const aoMat = new THREE.MeshBasicMaterial({map:TEX.ao, transparent:true, depthWrite:false, toneMapped:false});
 function contact(x, z, w, d){ const p = plane(w, d, aoMat, x, 0.006, z, 0, -Math.PI/2); p.receiveShadow = false; return p; }
 function counter(x, z, w, d, top='steel', body='steelD', h=0.9, opt={}){
-  if (body === 'steelD') body = 'sageBody';          // GFX: sage cabinet bases under steel tops
   box(w, 0.05, d, top, x, h-0.025, z);
   box(w-0.06, h-0.16, d-0.1, body, x, (h-0.05)/2 + 0.05, z);
   box(w-0.12, 0.08, d-0.2, 'iron', x, 0.04, z, scene, {cast:false});        // toe kick
@@ -1083,7 +1051,7 @@ const floor = new THREE.Mesh(new THREE.PlaneGeometry(16.4, 14), new THREE.MeshLa
 floor.rotation.x = -Math.PI/2; floor.position.set(0, 0, 0.5); floor.receiveShadow = true; scene.add(floor);
 const outside = new THREE.Mesh(new THREE.PlaneGeometry(80, 80), new THREE.MeshLambertMaterial({color:'#e3d3bb'}));
 outside.rotation.x = -Math.PI/2; outside.position.y = -0.02; outside.receiveShadow = true; scene.add(outside);
-const WALL = '#f1dfc2', BAND = '#c99a6a';
+const WALL = '#f3e5cf', BAND = '#ddc3a1';
 box(16.4, 3.1, 0.2, WALL, 0, 1.55, -6.1, scene, {cast:false});
 box(0.2, 3.1, 13.4, WALL, -8.1, 1.55, 0.6, scene, {cast:false});
 box(0.2, 3.1, 13.4, WALL, 8.1, 1.55, 0.6, scene, {cast:false});
@@ -1353,80 +1321,6 @@ function mergeStatic(){
   }
   return {before, after};
 }
-/* the prep sink (food only: hands go to the hand sink) */
-{
-  box(0.95, 0.9, 1.5, 'steelD', -7.5, 0.45, 1.25); box(1.0, 0.05, 1.56, 'steel', -7.5, 0.92, 1.25);
-  box(0.7, 0.04, 1.1, '#9fb1b8', -7.5, 0.9, 1.25, scene, {cast:false, round:0.1});
-  cyl(0.035, 0.035, 0.45, 12, 'steel', -7.85, 1.15, 1.25); box(0.04, 0.04, 0.3, 'steel', -7.72, 1.36, 1.25, scene, {ry:Math.PI/2});
-  box(0.06, 0.06, 0.06, 'steel', -7.6, 1.34, 1.25);
-  solid(-7.5, 1.25, 0.95, 1.5); contact(-7.45, 1.25, 1.4, 2.0);
-  const s = signTex('PREP SINK', 'FOOD ONLY · NO HANDWASHING'); plane(0.8, 0.36, new THREE.MeshLambertMaterial({map:s}), -7.99, 1.62, 1.25, Math.PI/2);
-}
-/* a few props where play actually looks: herbs, a crock and a fruit bowl on the islands */
-{
-  for (const [x, z] of [[-0.55, 0.05], [3.55, 0.05]]){
-    cyl(0.1, 0.075, 0.16, 16, C.terra, x, 0.98, z);
-    for (let i=0;i<14;i++){ const a = i*2.4, r = 0.03 + (i%4)*0.022, lf = new THREE.Mesh(G('leaf', () => { const g = new THREE.SphereGeometry(1, 10, 6); g.scale(1, 0.18, 0.55); return g; }), mat(i%3 ? '#5f9a3e' : '#477d2f'));
-      lf.position.set(x + Math.cos(a)*r, 1.1 + (i%5)*0.035, z + Math.sin(a)*r); lf.scale.setScalar(0.06 + (i%3)*0.012); lf.rotation.set((i%2 ? 0.5 : -0.4), a, 0.6); scene.add(lf); }
-  }
-  cyl(0.2, 0.12, 0.09, 24, '#7fb0a3', 0.4, 0.95, 5.25);
-  for (const [dx, dz, col, r] of [[-0.07,-0.04,'#d9532c',0.065],[0.07,-0.05,'#e8a33a',0.06],[0,0.06,'#c43a22',0.06],[0.09,0.05,'#7aa83a',0.055]]) ball(r, col, 0.4 + dx, 1.02, 5.25 + dz, scene, 12);
-}
-/* GFX props. All use shared materials, so mergeStatic() folds each material into one draw call. */
-{
-  const shelfOnly = START_TIER === 'low' ? {round:0.04} : {};
-  // sage base cabinet with a butcher-block top, left of the range
-  const cab = (x, w) => {
-    box(w, 0.84, 0.66, C.sage, x, 0.44, -5.62, scene, {round:0.05}); box(w + 0.06, 0.06, 0.72, '#ffffff', x, 0.89, -5.6, scene, {m:{map:'wood'}});
-    const n = Math.max(1, Math.round(w/0.62));
-    for (let i=0;i<n;i++){ const dx = x - w/2 + (i + 0.5)*w/n;
-      box(w/n - 0.07, 0.66, 0.03, C.sageD, dx, 0.46, -5.28, scene, {round:0.1, cast:false});
-      box(0.03, 0.14, 0.03, 'brass', dx + (i%2 ? -1 : 1)*(w/n/2 - 0.1), 0.62, -5.255, scene, {cast:false}); }
-    box(w - 0.04, 0.07, 0.6, '#3b2c22', x, 0.035, -5.62, scene, {cast:false});
-    solid(x, -5.62, w, 0.7); contact(x, -5.55, w + 0.5, 1.1);
-  };
-  cab(-4.45, 2.1); cab(3.3, 1.25);
-  // utensil crock with spoons and a whisk
-  cyl(0.11, 0.09, 0.24, 18, '#e8dcc6', -5.2, 1.04, -5.75); cyl(0.112, 0.112, 0.03, 18, C.sage, -5.2, 1.07, -5.75);
-  for (let i=0;i<5;i++){ const a = i*1.3; const sp = cyl(0.012, 0.012, 0.42, 8, i%2 ? C.wood : 'steel', -5.2 + Math.cos(a)*0.04, 1.27, -5.75 + Math.sin(a)*0.04, scene, {rz:Math.cos(a)*0.22, rx:Math.sin(a)*0.22, cast:false});
-    if (i%2) ball(0.035, C.wood, -5.2 + Math.cos(a)*0.09, 1.5, -5.75 + Math.sin(a)*0.09, scene, 10, {cast:false}); }
-  // cutting boards leaning on the backsplash
-  box(0.62, 0.86, 0.04, '#ffffff', -4.05, 1.33, -5.86, scene, {m:{map:'wood'}, rx:-0.12, round:0.18});
-  box(0.48, 0.66, 0.04, '#ffffff', -3.6, 1.23, -5.84, scene, {m:{map:'woodD'}, rx:-0.15, round:0.2});
-  // herb plants in terracotta pots
-  for (const [x, z, sc] of [[-4.75, -5.6, 1], [-3.35, -5.55, 0.85], [3.75, -5.6, 0.9]]){
-    cyl(0.1*sc, 0.075*sc, 0.16*sc, 16, C.terra, x, 0.92 + 0.08*sc, z); cyl(0.108*sc, 0.108*sc, 0.03*sc, 16, '#b25a32', x, 0.92 + 0.16*sc, z);
-    for (let i=0;i<7;i++){ const a = i*0.9, r = 0.05 + (i%3)*0.03; const lf = ball(1, i%2 ? '#5f8f3a' : '#4c7d33', x + Math.cos(a)*r*sc, 1.1*sc + 0.92*(1-sc) + 0.12 + (i%3)*0.04, z + Math.sin(a)*r*sc, scene, 10); lf.scale.set(0.07*sc, 0.045*sc, 0.07*sc); }
-  }
-  // fruit & veg bowl
-  cyl(0.24, 0.14, 0.1, 24, C.sage, 3.05, 0.97, -5.6); 
-  for (const [dx, dz, col, r] of [[-0.08,-0.05,'#d9532c',0.07],[0.07,-0.06,'#e8a33a',0.068],[0,0.07,'#c43a22',0.065],[0.09,0.05,'#7aa83a',0.06],[-0.1,0.07,'#e8a33a',0.06]]) ball(r, col, 3.05 + dx, 1.05, -5.6 + dz, scene, 12);
-  // jar shelf above the right cabinet
-  box(1.2, 0.05, 0.26, '#ffffff', 3.3, 1.62, -5.88, scene, {m:{map:'woodD'}});
-  for (let i=0;i<4;i++){ const x = 2.85 + i*0.3; cyl(0.075, 0.075, 0.2, 16, 'glass', x, 1.75, -5.86); cyl(0.065, 0.065, 0.13, 14, ['#e8d9b0','#c98d4f','#8c3a22','#e2c27a'][i], x, 1.71, -5.86); cyl(0.078, 0.078, 0.035, 16, i%2 ? C.wood : C.sage, x, 1.87, -5.86); }
-  // hanging ladles + whisk from the pot rail
-  for (const [x, kind] of [[-3.55,'ladle'],[-3.3,'whisk'],[-3.05,'ladle']]){
-    box(0.012, 0.36, 0.012, 'steel', x, 1.95, -5.92, scene, {cast:false});
-    if (kind === 'ladle') ball(0.065, 'steel', x, 1.75, -5.88, scene, 12); else { const w = ball(1, 'steelD', x, 1.73, -5.9, scene, 10); w.scale.set(0.045, 0.1, 0.045); }
-  }
-  // pots and pans on the front burners of the range
-  cyl(0.16, 0.15, 0.16, 20, 'copper', -1.05, 1.01, -5.18); cyl(0.15, 0.15, 0.01, 20, '#b8452a', -1.05, 1.07, -5.18, scene, {cast:false}); cyl(0.165, 0.165, 0.02, 20, 'steelD', -1.05, 1.1, -5.18); box(0.32, 0.025, 0.035, 'iron', -0.75, 1.07, -5.08, scene, {ry:0.4});
-  cyl(0.14, 0.12, 0.04, 20, 'plate', -2.15, 0.95, -5.18); cyl(0.12, 0.12, 0.012, 20, '#c8873a', -2.15, 0.972, -5.18, scene, {cast:false}); box(0.28, 0.025, 0.035, 'iron', -2.45, 0.96, -5.06, scene, {ry:-0.4});
-}
-/* GFX: baked floor ambient occlusion. One soft dark overlay drawn from every collider plus the wall edges.
-   Works in every tier (no shadow maps, no vertex colours), costs one draw call. */
-{
-  const FW = 16.4, FD = 14, FX = 0, FZ = 0.5, [c, g] = cnv(512, 438), sx = 512/FW, sz = 438/FD;
-  const px = x => (x - (FX - FW/2))*sx, pz = z => (z - (FZ - FD/2))*sz;
-  g.filter = 'blur(14px)'; g.fillStyle = 'rgba(55,32,15,.7)';
-  for (const k of colliders) g.fillRect(px(k.minx) - 9, pz(k.minz) - 6, (k.maxx - k.minx)*sx + 18, (k.maxz - k.minz)*sz + 16);
-  g.filter = 'none';
-  const edge = (x0, y0, x1, y1, w, h) => { const gr = g.createLinearGradient(x0, y0, x1, y1); gr.addColorStop(0, 'rgba(60,38,20,.38)'); gr.addColorStop(1, 'rgba(60,38,20,0)'); g.fillStyle = gr; g.fillRect(Math.min(x0,x1), Math.min(y0,y1), w, h); };
-  edge(0, pz(-6.0), 0, pz(-6.0) + 34, 512, 34);  edge(px(-8.0), 0, px(-8.0) + 30, 0, 30, 438);  edge(px(8.0), 0, px(8.0) - 30, 0, 30, 438);
-  const t = new THREE.CanvasTexture(c);
-  const ao = new THREE.Mesh(new THREE.PlaneGeometry(FW, FD), new THREE.MeshBasicMaterial({map:t, transparent:true, depthWrite:false, toneMapped:false, polygonOffset:true, polygonOffsetFactor:-1}));
-  ao.rotation.x = -Math.PI/2; ao.position.set(FX, 0.004, FZ); ao.renderOrder = 1; scene.add(ao);
-}
 const mergeStats = mergeStatic();
 /* Low tier: swap the PBR steel for Lambert + a tiny cube reflection of the same RoomEnvironment (much cheaper per pixel). */
 const cubeRT = new THREE.WebGLCubeRenderTarget(64);
@@ -1435,7 +1329,7 @@ const swappable = [];
 for (const m of scene.children){
   if (!m.isMesh || !m.material.isMeshStandardMaterial) continue;
   const r = m.material;
-  const cheap = new THREE.MeshLambertMaterial({color:r.color, map:r.map, vertexColors:r.vertexColors, transparent:r.transparent, opacity:r.opacity, depthWrite:r.depthWrite,
+  const cheap = new THREE.MeshLambertMaterial({color:r.color, vertexColors:r.vertexColors, transparent:r.transparent, opacity:r.opacity, depthWrite:r.depthWrite,
     envMap: r.metalness > 0.3 ? cubeRT.texture : null, combine:THREE.MixOperation, reflectivity: r.metalness * 0.45, emissive:r.emissive});
   m.userData.rich = r; m.userData.cheap = cheap; swappable.push(m);
 }
@@ -1480,7 +1374,7 @@ function steamTick(dt, rm){
    ===================================================================== */
 const CH = {apron:'#e39a73', apronD:'#c97a55', skin:'#f2bf98', skinSh:'#e3a27c', hair:'#6a4126', hairHi:'#7a4a2b', beard:'#6e4123', glasses:'#1c1c1e', iris:'#4f6f86',
   jacket:'#f3f1ec', piping:'#d5dade', button:'#e9ebee', pants:'#4b4b53', shoe:'#1f1f22', hat:'#ffffff', lip:'#b5584a'};
-const rimColor = {value: new THREE.Color('#ffe6c4').multiplyScalar(0.55)};
+const rimColor = {value: new THREE.Color('#fff0dc').multiplyScalar(0.32)};
 const chefMats = {};
 function cmat(c, o={}){
   const k = c + JSON.stringify(o);
@@ -1537,15 +1431,6 @@ function makeChef(){
   const prof = [[0.0,-0.15],[0.148,-0.15],[0.156,-0.12],[0.152,-0.05],[0.14,0.06],[0.138,0.12],[0.15,0.22],[0.162,0.32],[0.165,0.4],[0.158,0.46],[0.135,0.51],[0.1,0.545],[0.07,0.56],[0,0.565]].map(([r,y]) => new THREE.Vector2(r, y));
   const ZS = 0.74;
   const coatM = cmat(CH.jacket, {r:0.8});
-  { // GFX: cotton twill weave + a few soft folds as a bump map, so the coat reads as fabric instead of plastic
-    const [c, g] = cnv(256, 256); g.fillStyle = '#808080'; g.fillRect(0, 0, 256, 256);
-    for (let y=0;y<256;y+=2) for (let x=0;x<256;x+=2){ const v = 128 + ((x + y) % 8 < 4 ? 14 : -14) + (rnd()*16 - 8); g.fillStyle = `rgb(${v},${v},${v})`; g.fillRect(x, y, 2, 2); }
-    for (let i=0;i<7;i++){ const x = rnd()*256, w = 18 + rnd()*30, gr = g.createLinearGradient(x - w, 0, x + w, 0);
-      gr.addColorStop(0, 'rgba(128,128,128,0)'); gr.addColorStop(.5, `rgba(${rnd()<.5?60:200},${0},${0},0)`); gr.addColorStop(.5, rnd()<.5 ? 'rgba(90,90,90,.35)' : 'rgba(175,175,175,.35)'); gr.addColorStop(1, 'rgba(128,128,128,0)');
-      g.fillStyle = gr; g.fillRect(x - w, 0, w*2, 256); }
-    const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(6, 3);
-    coatM.bumpMap = t; coatM.bumpScale = 0.6; coatM.needsUpdate = true;
-  }
   const torso = new THREE.Mesh(G('torso2', () => new THREE.LatheGeometry(prof, 56)), coatM);
   torso.scale.z = ZS; upper.add(torso);
   const rAt = y => { for (let i=2;i<prof.length;i++) if (prof[i].y >= y){ const a = prof[i-1], b = prof[i], t = (y - a.y)/(b.y - a.y); return a.x + (b.x - a.x)*t; } return 0.06; };
@@ -1738,7 +1623,7 @@ function makeChef(){
   for (let i=0;i<6;i++){ const p = cap(0.004, 0.14, '#eeeeec', hatG, Math.sin(i*1.05)*0.132, 0.13, Math.cos(i*1.05)*0.132, {noRim:true}); }
   g.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = false; } });
   // contact shadow (always on) — real shadows only in the high tier
-  const blob = new THREE.Mesh(new THREE.PlaneGeometry(0.85, 0.85), new THREE.MeshBasicMaterial({map:radialTex('rgba(50,28,12,.78)','rgba(50,28,12,0)'), transparent:true, depthWrite:false, toneMapped:false}));
+  const blob = new THREE.Mesh(new THREE.PlaneGeometry(0.85, 0.85), new THREE.MeshBasicMaterial({map:radialTex('rgba(60,35,15,.6)','rgba(60,35,15,0)'), transparent:true, depthWrite:false, toneMapped:false}));
   blob.rotation.x = -Math.PI/2; blob.position.y = 0.012;
   return {g, upper, legs, arms, head, eyes, blob, setBlink};
 }
@@ -1855,7 +1740,7 @@ window.addEventListener('keyup', e => {
 window.addEventListener('blur', () => { keys.clear(); scrubStop(); });
 
 /* ---------------- Flow ---------------- */
-const target = () => HUB.on ? (HUB.t || HUB_LV[0]) : STATIONS[Math.min(S.step, STATIONS.length-1)];
+const target = () => STATIONS[Math.min(S.step, STATIONS.length-1)];
 const qNumber = step => QUESTIONS.slice(0, step+1).filter(s => !s.type).length;
 function progress(){
   const pct = Math.round(S.step / QUESTIONS.length * 100);
@@ -1908,7 +1793,7 @@ $('retryBtn').onclick = () => { S = RUNS[curLevel] = fresh(); P.x = START[0]; P.
 function distTo(st){ return Math.hypot(P.x - st.spot[0], P.z - st.spot[1]); }
 function nearStation(){
   let best = null, bd = 1.35;
-  for (const st of (HUB.on ? HUB.list : STATIONS)){ const d = Math.min(distTo(st), Math.hypot(P.x - st.pos[0], P.z - st.pos[1]) - 0.6); if (d < bd) { bd = d; best = st; } }
+  for (const st of STATIONS){ const d = Math.min(distTo(st), Math.hypot(P.x - st.pos[0], P.z - st.pos[1]) - 0.6); if (d < bd) { bd = d; best = st; } }
   return best;
 }
 function interact(){
@@ -2153,7 +2038,7 @@ const SAFETY_CHIPS = ['Claw grip: curl your fingertips', 'Knuckles guide the bla
 
 const Knife = (() => {
   const TOP = 0.9, GAP = 0.022;
-  let knifeG, KN = {x:0, z:0, ry:0, y:1, press:0, rock:0, have:false}, dashM, built = false, ks, cam, pieceG, guideG, goldG, glowM, coreM, chev = [], kbMark, decoG, shadowP;
+  let dashM, built = false, ks, cam, pieceG, guideG, goldG, glowM, coreM, chev = [], kbMark, decoG, shadowP;
   let cut = null, cells = [], guides = [], gi = 0, cutLines = {x:new Set(), z:new Set()}, spread = 1;
   let state = 'off', R = null, tStart = 0, tPaused = 0, pauseAt = 0, limit = 30, lastTick = 0, tut = false, kb = false, wpp = 0.004;
   const ray = new THREE.Raycaster(), plane = new THREE.Plane(new THREE.Vector3(0,1,0), -TOP), v2 = new THREE.Vector2();
@@ -2164,20 +2049,7 @@ const Knife = (() => {
     garlic:{c:'#f3ead2', r:0.55},
   };
   const mats = {};
-  let carrotSkin = null;
-  function carrotTex(){        // GFX: light-to-deep orange gradient, fine growth ridges and a few root-hair specks (multiplies the carrot colour)
-    const [c, g] = cnv(256, 256), gr = g.createLinearGradient(0, 0, 0, 256);
-    gr.addColorStop(0, '#fff3e4'); gr.addColorStop(.5, '#ffffff'); gr.addColorStop(1, '#f0d2b8'); g.fillStyle = gr; g.fillRect(0, 0, 256, 256);
-    for (let i=0;i<46;i++){ const x = rnd()*256, a = 0.08 + rnd()*0.16; g.strokeStyle = `rgba(150,60,10,${a})`; g.lineWidth = 0.8 + rnd()*1.6;
-      g.beginPath(); g.moveTo(x, 0); for (let y=0;y<=256;y+=16) g.lineTo(x + Math.sin(y/30 + i)*2, y); g.stroke();
-      g.strokeStyle = `rgba(255,235,210,${a*0.9})`; g.lineWidth = 0.8; g.beginPath(); g.moveTo(x + 2, 0); g.lineTo(x + 2, 256); g.stroke(); }
-    for (let i=0;i<60;i++){ g.fillStyle = `rgba(120,50,10,${0.1 + rnd()*0.15})`; g.fillRect(rnd()*256, rnd()*256, 1 + rnd()*2, 4 + rnd()*6); }
-    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; return t;
-  }
-  const M = (c, o={}) => {
-    if (c === '#ec7a2c' && !o.map){ carrotSkin = carrotSkin || carrotTex(); o = {...o, map:carrotSkin}; }
-    return mats[c+JSON.stringify(o.map ? {...o, map:o.map.uuid} : o)] || (mats[c+JSON.stringify(o.map ? {...o, map:o.map.uuid} : o)] = new THREE.MeshStandardMaterial({color:c, roughness:o.r ?? 0.6, metalness:o.m ?? 0, envMapIntensity:0.5, ...(o.map ? {map:o.map} : {})}));
-  };
+  const M = (c, o={}) => mats[c+JSON.stringify(o)] || (mats[c+JSON.stringify(o)] = new THREE.MeshStandardMaterial({color:c, roughness:o.r ?? 0.6, metalness:o.m ?? 0, envMapIntensity:0.5, ...(o.map ? {map:o.map} : {})}));
   function capTex(food){
     const [c, g] = cnv(128, 128), F = FOOD[food];
     g.fillStyle = F.cap; g.fillRect(0, 0, 128, 128);
@@ -2198,9 +2070,8 @@ const Knife = (() => {
     for (let i=0;i<1400;i++){ cg.fillStyle = `rgba(${rnd()<.5?'170,150,125':'255,255,255'},${rnd()*.12})`; cg.fillRect(rnd()*256, rnd()*256, 2, 2); }
     const counter = new THREE.Mesh(roundBoxGeo(60, 2, 44, 0.5, 4), M('#ffffff', {r:0.85, map:tex(cc, 6, 5)})); counter.position.y = -1; ks.add(counter);
     const [wc, wg] = cnv(1024, 1024); wg.fillStyle = '#d9a774'; wg.fillRect(0, 0, 1024, 1024);
-    for (let i=0;i<340;i++){ const y = rnd()*1024; wg.strokeStyle = `rgba(${135+rnd()*40|0},${85+rnd()*30|0},45,${0.06+rnd()*0.14})`; wg.lineWidth = 0.6 + rnd()*2.4;
+    for (let i=0;i<130;i++){ const y = rnd()*1024; wg.strokeStyle = `rgba(${150+rnd()*30|0},${95+rnd()*25|0},55,${0.05+rnd()*0.1})`; wg.lineWidth = 1 + rnd()*5;
       wg.beginPath(); wg.moveTo(0, y); for (let x=0;x<=1024;x+=32) wg.lineTo(x, y + Math.sin(x/140 + i)*6 + Math.sin(x/37 + i*3)*1.5); wg.stroke(); }
-    for (let i=0;i<9000;i++){ wg.fillStyle = `rgba(110,70,35,${rnd()*0.12})`; wg.fillRect(rnd()*1024, rnd()*1024, 3 + rnd()*5, 1); }   // GFX: open pores along the grain
     const wood = new THREE.CanvasTexture(wc); wood.colorSpace = THREE.SRGBColorSpace; wood.anisotropy = 4;
     const board = new THREE.Mesh(roundBoxGeo(13, 0.9, 17, 0.4, 6), M('#ffffff', {r:0.72, map:wood})); board.position.y = 0.45; ks.add(board);
     const groove = new THREE.Mesh(new THREE.TorusGeometry(1, 0.05, 6, 80), M('#c08c58', {r:0.8})); groove.rotation.x = Math.PI/2; groove.scale.set(5.8, 7.8, 1); groove.position.y = 0.905; ks.add(groove);
@@ -2220,26 +2091,11 @@ const Knife = (() => {
     const pl = new THREE.PlaneGeometry(1, 1); pl.rotateX(-Math.PI/2);
     const glow = new THREE.Mesh(pl, glowM); glow.name = 'glow'; glow.renderOrder = 5; goldG.add(glow);
     const core = new THREE.Mesh(pl, coreM); core.name = 'core'; core.renderOrder = 6; goldG.add(core);
-    const edge = new THREE.Mesh(pl, new THREE.MeshBasicMaterial({color:'#a8641b', transparent:true, opacity:.22, depthTest:false, toneMapped:false})); edge.name = 'edge'; edge.renderOrder = 5.5; goldG.add(edge);
+    const edge = new THREE.Mesh(pl, new THREE.MeshBasicMaterial({color:'#a8641b', transparent:true, opacity:.55, depthTest:false, toneMapped:false})); edge.name = 'edge'; edge.renderOrder = 5.5; goldG.add(edge);
     const tri = new THREE.Shape(); tri.moveTo(-0.5, 0.35); tri.lineTo(0.5, 0.35); tri.lineTo(0, -0.45); tri.closePath();
     const tg = new THREE.ShapeGeometry(tri); tg.rotateX(-Math.PI/2);
     for (let i=0;i<3;i++){ const m = new THREE.Mesh(tg, new THREE.MeshBasicMaterial({color:'#fff6dc', transparent:true, depthTest:false, toneMapped:false})); m.renderOrder = 7; goldG.add(m); chev.push(m); }
     // keyboard knife: a dark blade line that sweeps across the gold guide; press Space when it lines up
-    // 3D chef's knife that follows the swipe and pushes/rocks down through the food
-    knifeG = new THREE.Group(); knifeG.renderOrder = 9; ks.add(knifeG);
-    { const sh = new THREE.Shape(); sh.moveTo(0, 0); sh.lineTo(0, 0.5); sh.lineTo(1.6, 0.44); sh.quadraticCurveTo(2.25, 0.3, 2.55, 0.0); sh.quadraticCurveTo(1.4, -0.06, 0, 0);
-      const bg = new THREE.ExtrudeGeometry(sh, {depth:0.03, bevelEnabled:true, bevelThickness:0.012, bevelSize:0.012, bevelSegments:2, curveSegments:14}); bg.translate(0, 0, -0.015);
-      const steelM = new THREE.MeshStandardMaterial({color:'#e6e8ea', metalness:0.9, roughness:0.22, envMapIntensity:1.2});
-      const blade = new THREE.Mesh(bg, steelM); blade.rotation.y = -Math.PI/2; knifeG.add(blade);      // blade runs along +z, edge at y=0
-      const edgeM = new THREE.MeshStandardMaterial({color:'#ffffff', metalness:1, roughness:0.1});
-      const bev = new THREE.Mesh(new THREE.BoxGeometry(0.035, 0.04, 2.3), edgeM); bev.position.set(0, 0.03, 1.15); knifeG.add(bev);
-      const bol = new THREE.Mesh(roundBoxGeo(0.09, 0.42, 0.12, 0.03, 4), steelM); bol.position.set(0, 0.27, -0.03); knifeG.add(bol);
-      const hM = new THREE.MeshStandardMaterial({color:'#2a1d16', roughness:0.45, metalness:0.05});
-      const hd = new THREE.Mesh(roundBoxGeo(0.12, 0.3, 1.15, 0.055, 4), hM); hd.position.set(0, 0.33, -0.66); knifeG.add(hd);
-      for (const z of [-0.35, -0.66, -0.97]) { const r = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.13, 12), steelM); r.rotation.z = Math.PI/2; r.position.set(0, 0.33, z); knifeG.add(r); }
-      knifeG.traverse(o => { if (o.isMesh){ o.renderOrder = 9; } });
-      const ksh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({map:radialTex('rgba(60,35,15,.35)', 'rgba(60,35,15,0)'), transparent:true, depthWrite:false, toneMapped:false}));
-      ksh.rotation.x = -Math.PI/2; ksh.scale.set(0.9, 3.4, 1); ks.add(ksh); knifeG.userData.sh = ksh; }
     kbMark = new THREE.Mesh(pl, new THREE.MeshBasicMaterial({color:'#2b2b2b', transparent:true, opacity:.7, depthTest:false, toneMapped:false})); kbMark.renderOrder = 8; kbMark.visible = false; ks.add(kbMark);
   }
   /* ---------- the piece ---------- */
@@ -2348,9 +2204,7 @@ const Knife = (() => {
     const x0 = -ex - 0.55 - Math.max(0.6, ex*0.6), z0 = -ez*0.2;
     if (cut.food === 'carrot'){
       const pts = []; for (let i=0;i<=20;i++){ const t = i/20; pts.push(new THREE.Vector2(Math.max(0.02, 0.48*(1 - Math.pow(t, 1.6)*0.85)), t*4)); }
-      const c = new THREE.Mesh(new THREE.LatheGeometry(pts, 24), M(F.c, {r:0.5})); c.rotation.z = Math.PI/2; c.rotation.y = -0.35; c.position.set(x0 - 0.3, TOP + 0.46, z0 + 1.6); decoG.add(c);
-      for (let i=0;i<6;i++){ const a = (i/6)*Math.PI*2, st = new THREE.Mesh(new THREE.ConeGeometry(0.035, 0.55 + (i%3)*0.15, 8), M(i%2 ? '#4f8f3f' : '#3f7a33', {r:0.7}));   // GFX: leafy green tops
-        st.position.set(Math.cos(a)*0.07, -0.28 - (i%3)*0.07, Math.sin(a)*0.07); st.rotation.set(Math.PI + Math.sin(a)*0.35, 0, Math.cos(a)*0.35); c.add(st); }
+      const c = new THREE.Mesh(new THREE.LatheGeometry(pts, 24), M(F.c, {r:0.5})); c.rotation.z = Math.PI/2; c.rotation.y = 0.5; c.position.set(x0, TOP + 0.46, z0 - 1.2); decoG.add(c);
     } else if (cut.food === 'potato'){
       const p = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 16), M('#c79a5b', {r:0.85})); p.scale.set(1.25, 0.75, 0.9); p.position.set(x0 - 0.4, TOP + 0.6, z0 - 0.6); decoG.add(p);
       const h = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 12, 0, Math.PI*2, 0, Math.PI/2), M(F.c, {r:0.6})); h.scale.set(0.95, 0.5, 0.75); h.position.set(x0 + 0.15, TOP, z0 + 1.4); decoG.add(h);
@@ -2373,7 +2227,7 @@ const Knife = (() => {
     const card = $('kCard'); if (!card.hidden){ botPx = Math.max(botPx, H - card.getBoundingClientRect().top + 8*Z); }
     const avail = Math.max(120, H - topPx - botPx);
     cam.aspect = W/H; cam.fov = 36; cam.clearViewOffset(); cam.updateProjectionMatrix();
-    const ex = cut.type === 'roll' ? (cut.w + cut.r*2) * 1.9 : Math.max(1.3, cut.type === 'pile' ? cut.r*2 : cut.w) * 2.0, ez = Math.max(1.0, cut.type === 'pile' ? cut.r*2 : cut.type === 'roll' ? cut.r*2 : cut.l) * 1.8;
+    const ex = cut.type === 'roll' ? (cut.w + cut.r*2) * 1.32 : Math.max(1.3, cut.type === 'pile' ? cut.r*2 : cut.w) * 1.4, ez = Math.max(1.0, cut.type === 'pile' ? cut.r*2 : cut.type === 'roll' ? cut.r*2 : cut.l) * 1.35;
     const vt = Math.tan(THREE.MathUtils.degToRad(cam.fov)/2), ht = vt * cam.aspect, elev = THREE.MathUtils.degToRad(64);
     const d = Math.max(ex / (2*ht), (ez*Math.sin(elev) + 0.3) / (2*vt*avail/H));
     const c = new THREE.Vector3(0, TOP + 0.1, 0);
@@ -2454,7 +2308,7 @@ const Knife = (() => {
       <div class="size">${esc(cut.size)}</div>
       <p class="how">${esc(cut.how)}</p>
       ${tut ? `<div class="claw">${CLAW}<div><b>Claw grip.</b> Curl the fingertips of the hand holding the food under, so your knuckles guide the blade and your fingertips stay safe.</div></div>` : ''}
-      <div class="row2">${tut ? '<button class="btn ghost" id="kSkip">Skip tutorial</button>' : '<button class="btn ghost" id="kBack">Kitchen</button>'}<button class="btn" id="kGo">${tut ? 'Try a guided cut' : 'Start cutting'}${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`);
+      <div class="row2">${tut ? '<button class="btn ghost" id="kSkip">Skip tutorial</button>' : '<button class="btn ghost" id="kBack">Map</button>'}<button class="btn" id="kGo">${tut ? 'Try a guided cut' : 'Start cutting'}${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`);
     $('kGo').onclick = () => go();
     if ($('kSkip')) $('kSkip').onclick = () => { meta.tut.knife = true; save(); tut = false; go(); };
     if ($('kBack')) $('kBack').onclick = () => toMap();
@@ -2466,7 +2320,6 @@ const Knife = (() => {
     $('kGhost').hidden = !tut; if (tut) pauseAt = performance.now();
   }
   function toMap(){ close(); MapUI.open(); }
-  $('kHome').onclick = e => { e.currentTarget.blur(); sfx.tap(); toMap(); };   // FIX: the ✕ had no handler at all
   /* ---------- swipes ---------- */
   let stroke = null;
   const pad = $('kpad');
@@ -2481,13 +2334,12 @@ const Knife = (() => {
     if (mode !== 'knife' || state !== 'play') return;
     e.preventDefault(); kb = false; kbMark.visible = false;
     try { pad.setPointerCapture(e.pointerId); } catch(_){}
-    stroke = {id:e.pointerId, px:[], w:[], len:0, done:false}; addPt(e.clientX, e.clientY); knifeTo(e.clientX, e.clientY);
+    stroke = {id:e.pointerId, px:[], w:[], len:0, done:false}; addPt(e.clientX, e.clientY);
   });
   pad.addEventListener('pointermove', e => {
     if (!stroke || e.pointerId !== stroke.id || stroke.done) return;
     const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
     for (const ev of (evs.length ? evs : [e])) addPt(ev.clientX, ev.clientY);
-    knifeTo(e.clientX, e.clientY);
     const g = guides[gi]; if (!g) return;
     const m = measure(stroke.w, g);
     if (m.cov >= 0.94){ stroke.done = true; judge(m); }
@@ -2500,15 +2352,6 @@ const Knife = (() => {
     const g = guides[gi]; if (g) judge(measure(s.w, g));
   };
   pad.addEventListener('pointerup', endStroke); pad.addEventListener('pointercancel', endStroke);
-  function knifeTo(x, y){                   // knife blade sits along the current guide, sliding to where the finger is
-    const w = toWorld(x, y); if (!w) return; const g = guides[gi];
-    if (g){ const dir = g.b.clone().sub(g.a).normalize(); KN.ry = Math.atan2(dir.x, dir.z);
-      const rel = w.clone().sub(g.a), s = rel.x*dir.x + rel.z*dir.z, L = g.a.distanceTo(g.b);
-      const p = g.a.clone().addScaledVector(dir, Math.max(0, Math.min(L, s)) + 1.25);   /* origin = heel; the blade points back along the cut, handle toward you */ const n = new THREE.Vector3(-dir.z, 0, dir.x), d = -rel.x*dir.z + rel.z*dir.x;
-      p.addScaledVector(n, d); KN.x = p.x; KN.z = p.z; }
-    else { KN.x = w.x; KN.z = w.z; }
-    KN.have = true; KN.y = 0.35;
-  }
   function measure(pts, g){
     const ux = g.b.x - g.a.x, uz = g.b.z - g.a.z, L = Math.hypot(ux, uz), dx = ux/L, dz = uz/L, s0 = g.ext, s1 = L - g.ext;
     let smin = Infinity, smax = -Infinity, n = 0, sd = 0, ss = 0, sss = 0, ssd = 0, sad = 0;
@@ -2544,7 +2387,7 @@ const Knife = (() => {
     sfx.slice(); setTimeout(() => sfx.thunk(), 40); if (R.combo >= 2 && grade !== 'good') setTimeout(() => sfx.combo(R.combo), 110);
     if (R.combo >= 8) award('combo');
     meta.bestCombo = Math.max(meta.bestCombo || 0, R.combo);
-    flash(g); KN.press = 1; KN.rock = 1;
+    flash(g);
     pop(mid[0] + 70, mid[1] - 26, {perfect:'Perfect!', great:'Great!', good:'Good'}[grade], '+' + pts);
     const c = [];
     c.push(m.ang <= 8*angTol ? ['Straight ✓'] : ['A little crooked', 'warn']);
@@ -2629,9 +2472,9 @@ const Knife = (() => {
     const total = CUTS.reduce((n, c) => n + (KS.best[c.id] || 0), 0);
     card(`<div class="kick">Level 2 complete</div><h2>Knife Skills complete!</h2>
       <div class="kstars">⭐</div><div class="size">${total} of ${CUTS.length*3} stars · ${KS.score.toLocaleString()} points</div>
-      <p class="how">You can julienne, batonnet, brunoise, dice small, medium and large, cut rondelles, chiffonade herbs and mince garlic. Safe Kitchen II is now open in the kitchen.</p>
+      <p class="how">You can julienne, batonnet, brunoise, dice small, medium and large, cut rondelles, chiffonade herbs and mince garlic. Safe Kitchen II is unlocked on the map.</p>
       <div class="newb"><span style="font-size:22px">🔪</span> Badge: Sharp Student</div>
-      <div class="row2"><button class="btn ghost" id="kAgain">Play again</button><button class="btn" id="kMap">Back to the kitchen${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`);
+      <div class="row2"><button class="btn ghost" id="kAgain">Play again</button><button class="btn" id="kMap">Back to the map${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`);
     $('kAgain').onclick = () => { KS.idx = 0; KS.score = 0; save(); intro(); };
     $('kMap').onclick = () => toMap();
   }
@@ -2661,25 +2504,13 @@ const Knife = (() => {
       c.position.x += (x - c.position.x)*k; c.position.z += (z - c.position.z)*k;
       c.userData.b = Math.max(0, c.userData.b - dt*4); c.position.y = b.y + (rm ? 0 : Math.sin(c.userData.b*Math.PI)*0.05); });
     pieceG.children.forEach(o => { if (o.userData.end){ const want = o.userData.end*(cut.w/2 + GAP*spread*cutLines.x.size/2 + 0.002); o.position.x += (want - o.position.x)*k; } });
-    if (goldG.visible){ const p = rm ? 0.5 : 0.5 + Math.sin(t*5)*0.5; glowM.opacity = 0.18 + 0.14*p; coreM.opacity = 0.38 + 0.12*p;   // faint target hint; the 3D knife does the cutting
-      chev.forEach((c, i) => { const L = c.userData.L || 1, u = rm ? (i+0.5)/3 : ((t*0.55 + i/3) % 1); c.position.set(0, 0.001, -L/2 + L*u); c.material.opacity = Math.sin(u*Math.PI)*0.45; c.rotation.y = 0; }); }
+    if (goldG.visible){ const p = rm ? 0.5 : 0.5 + Math.sin(t*5)*0.5; glowM.opacity = 0.55 + 0.45*p; coreM.opacity = 0.85 + 0.15*p;
+      chev.forEach((c, i) => { const L = c.userData.L || 1, u = rm ? (i+0.5)/3 : ((t*0.55 + i/3) % 1); c.position.set(0, 0.001, -L/2 + L*u); c.material.opacity = Math.sin(u*Math.PI)*0.95; c.rotation.y = 0; }); }
     if (kb && kbMark.visible && state === 'play'){ kbT += dt; const g = guides[gi]; if (g){ const dir = g.b.clone().sub(g.a).normalize(), n = new THREE.Vector3(-dir.z, 0, dir.x), o = kbOff(g);
       kbMark.position.copy(g.a.clone().lerp(g.b, 0.5)).addScaledVector(n, o); kbMark.position.y += 0.002; kbMark.rotation.y = Math.atan2(dir.x, dir.z); kbMark.scale.set(3*wpp, 1, g.a.distanceTo(g.b)); } }
     if (state === 'play' && tut && guides[gi]){ const g = guides[gi], u = rm ? 0.5 : ((t*0.7) % 1.25)/1.25, a = project(g.a), b = project(g.b), gh = $('kGhost');
       gh.style.left = ((a[0] + (b[0]-a[0])*u)/Z()) + 'px'; gh.style.top = ((a[1] + (b[1]-a[1])*u)/Z()) + 'px'; gh.style.opacity = String(Math.sin(Math.min(1, u)*Math.PI)); }
     if (state === 'play' && !tut){ const left = timerText(); if (left < 5.5 && Math.ceil(left) !== lastTick){ lastTick = Math.ceil(left); sfx.tick(); } if (left <= 0) finish(true); }
-    if (knifeG){ const on = state === 'play' || state === 'intro' || KN.press > 0;
-      knifeG.visible = on; knifeG.userData.sh.visible = on;
-      if (!stroke && state === 'play' && KN.press <= 0){ const g = guides[gi]; if (g){ const dir = g.b.clone().sub(g.a).normalize(); KN.ry = Math.atan2(dir.x, dir.z);
-        const p = g.a.clone().addScaledVector(dir, 1.3); KN.x += (p.x - KN.x)*k*0.4; KN.z += (p.z - KN.z)*k*0.4; KN.y += (0.55 - KN.y)*k*0.3; } }
-      KN.press = Math.max(0, KN.press - dt*2.6); KN.rock = Math.max(0, KN.rock - dt*2.2);
-      const top = cut ? guideTop() : TOP, push = rm ? 0 : Math.sin(Math.min(1, KN.press)*Math.PI);   // pushes down to the board, then lifts
-      const yy = top + KN.y*(1 - push) - (top - TOP)*push*1.02;
-      knifeG.position.set(KN.x, yy, KN.z);
-      knifeG.rotation.order = 'YXZ'; knifeG.rotation.z = rm ? 0.5 : 0.5 - 0.35*push;   // tilted so you see the blade face; straightens as it pushes down
-      let d = KN.ry + Math.PI - knifeG.rotation.y; d = Math.atan2(Math.sin(d), Math.cos(d)); knifeG.rotation.y += d*Math.min(1, dt*16);
-      knifeG.rotation.x = rm ? 0 : -Math.sin(KN.rock*Math.PI*2)*0.16 + (stroke ? 0.05 : 0.12);       // rocks tip-down, heel-up
-      const sh = knifeG.userData.sh; sh.position.set(KN.x - Math.sin(KN.ry)*1.2, TOP + 0.003, KN.z - Math.cos(KN.ry)*1.2); sh.rotation.z = -KN.ry; sh.material.opacity = 0.5 + 0.5*push; }
     drawFx();
     renderer.render(ks, cam);
   }
@@ -2895,7 +2726,7 @@ const Sauce = (() => {
       <p class="how" style="margin:6px 0 10px">${kind === 'base' ? 'What liquid is this sauce built on?' : 'What thickens it?'}</p>
       <div class="ptiles">${ids.map((id, i) => tile(kind, id, i)).join('')}</div>
       <div class="pnote" id="pNote">${note || ''}</div>
-      <div class="row2" style="margin-top:10px"><button class="btn ghost" id="sBack">Kitchen</button></div>`);
+      <div class="row2" style="margin-top:10px"><button class="btn ghost" id="sBack">Map</button></div>`);
     document.querySelectorAll('.ptile').forEach(b => b.onclick = () => choose(b));
     $('sBack').onclick = () => toMap();
   }
@@ -2934,7 +2765,7 @@ const Sauce = (() => {
       <div class="size">${esc(SAUCE_BASES[sc.base].n)} + ${esc(SAUCE_THICK[sc.thick].n.toLowerCase())}</div>
       <p class="how">${esc(sc.how)}</p>
       ${tut || SC.idx === 0 || e ? `<div class="howto">${ctl.map(([i, t]) => `<div><span>${i}</span><div>${t}</div></div>`).join('')}</div>` : ''}
-      <div class="row2"><button class="btn ghost" id="sBack2">Kitchen</button><button class="btn" id="sGo">Start cooking${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`);
+      <div class="row2"><button class="btn ghost" id="sBack2">Map</button><button class="btn" id="sGo">Start cooking${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`);
     state = 'ready';
     $('sGo').onclick = () => go(); $('sBack2').onclick = () => toMap();
   }
@@ -3122,7 +2953,7 @@ const Sauce = (() => {
       <div class="kstars">🍲</div><div class="size">${total} of ${SAUCES.length*3} stars · ${SC.score.toLocaleString()} points</div>
       <p class="how">Béchamel, velouté, espagnole, tomato sauce and hollandaise: the five mother sauces that hundreds of other sauces are built from. Baking is next.</p>
       <div class="newb"><span style="font-size:22px">🥄</span> Badge: Saucier</div>
-      <div class="row2"><button class="btn ghost" id="sAgain">Play again</button><button class="btn" id="sMap">Back to the kitchen${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`, true);
+      <div class="row2"><button class="btn ghost" id="sAgain">Play again</button><button class="btn" id="sMap">Back to the map${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`, true);
     $('sAgain').onclick = () => { SC.idx = 0; SC.score = 0; save(); intro(); };
     $('sMap').onclick = () => toMap();
   }
@@ -3387,7 +3218,7 @@ const Bake = (() => {
     card(`<div class="kick">Level 5 · Baking · Bake ${BK.idx + 1} of ${BAKES.length}</div><h2>${bk.icon} ${esc(bk.name)}</h2>
       <div class="size">${esc(bk.method)} · ${bk.steps.length} steps</div>
       <p class="how">${BK.idx === 0 ? 'Baking is about accuracy: measure carefully, mix the right way, and know when it’s done. ' : ''}Pick the right technique, then work each step and stop in the <b style="color:var(--olive)">green zone</b>.</p>
-      <div class="row2"><button class="btn ghost" id="bBack">Kitchen</button><button class="btn" id="bGo">Let’s bake${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`);
+      <div class="row2"><button class="btn ghost" id="bBack">Map</button><button class="btn" id="bGo">Let’s bake${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`);
     state = 'intro';
     $('bGo').onclick = () => { sfx.tap(); runStep(); }; $('bBack').onclick = () => toMap();
   }
@@ -3407,7 +3238,7 @@ const Bake = (() => {
       <p class="how" style="margin:6px 0 10px;font-weight:700">${esc(st.q)}</p>
       <div class="ptiles">${order.map((k, i) => { const [ic, n, s] = st.c[k]; return `<button class="ptile" data-k="${k}"><i>${ic}</i><span><b>${isTouch ? '' : `<kbd>${i+1}</kbd> `}${esc(n)}</b><small>${esc(s)}</small></span></button>`; }).join('')}</div>
       <div class="pnote" id="bNote"></div>
-      <div class="row2" style="margin-top:10px"><button class="btn ghost" id="bBack">Kitchen</button></div>`);
+      <div class="row2" style="margin-top:10px"><button class="btn ghost" id="bBack">Map</button></div>`);
     document.querySelectorAll('#bCard .ptile').forEach(b => b.onclick = () => choose(b));
     $('bBack').onclick = () => toMap();
   }
@@ -3444,7 +3275,7 @@ const Bake = (() => {
     const show = tut || si === 1 || st.t === 'weigh' || g.auto;
     card(`<div class="kick">${esc(bk.name)} · Step ${si + 1} of ${bk.steps.length}</div><h2>${esc(g.title)}</h2>
       <p class="how">${g.how}</p>
-      <div class="row2"><button class="btn ghost" id="bBack">Kitchen</button><button class="btn" id="bGo">Start${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`);
+      <div class="row2"><button class="btn ghost" id="bBack">Map</button><button class="btn" id="bGo">Start${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`);
     $('bGo').onclick = () => go(); $('bBack').onclick = () => toMap();
   }
   function go(){
@@ -3568,7 +3399,7 @@ const Bake = (() => {
     card(`<div class="kick">Level 5 complete</div><h2>Out of the oven!</h2>
       <div class="kstars">🥐</div><div class="size">${tot} of ${BAKES.length*3} stars · ${BK.score.toLocaleString()} points</div>
       <p class="how">Weighing and leveling, creaming, folding, kneading, proofing and doneness checks: the habits every good baker relies on. More levels are coming soon.</p>
-      <div class="row2"><button class="btn ghost" id="bAgain">Play again</button><button class="btn" id="bMap">Back to the kitchen${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`, true);
+      <div class="row2"><button class="btn ghost" id="bAgain">Play again</button><button class="btn" id="bMap">Back to the map${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`, true);
     $('bAgain').onclick = () => { BK.idx = 0; BK.score = 0; save(); intro(); };
     $('bMap').onclick = () => toMap();
   }
@@ -3792,7 +3623,7 @@ const MapUI = (() => {
     renderer.render(ms, cam);
   }
   function resize(){ if (built && mode === 'map') render(); }
-  return {open, close, frame, key, resize, status, starsOf, get scene(){ return ms; }, get cam(){ return cam; }};
+  return {open, close, frame, key, resize, status, get scene(){ return ms; }, get cam(){ return cam; }};
 })();
 
 /* ---------------- starting a level from the map ---------------- */
@@ -3868,7 +3699,7 @@ function frame(){
     let d = want - P.rot; d = Math.atan2(Math.sin(d), Math.cos(d));
     P.rot += d * Math.min(1, dt * 12);
     P.walkT += dt * 8.5 * Math.max(0.5, mag);
-    if ((saveT += dt) > 2){ saveT = 0; if (HUB.on) meta.hubPos = [P.x, P.z]; else S.pos = [P.x, P.z]; save(); }
+    if ((saveT += dt) > 2){ saveT = 0; S.pos = [P.x, P.z]; save(); }
   } else if (focusStation) {
     const want = Math.atan2(focusStation.pos[0] - P.x, focusStation.pos[1] - P.z);
     let d = want - P.rot; d = Math.atan2(Math.sin(d), Math.cos(d)); P.rot += d * Math.min(1, dt * 10);
@@ -3923,7 +3754,7 @@ function frame(){
 
   // marker + arrow
   const st = target();
-  marker.visible = ring.visible = ringGlow.visible = mode === 'walk' && (HUB.on ? !!HUB.t : S.step < QUESTIONS.length);
+  marker.visible = ring.visible = ringGlow.visible = mode === 'walk' && S.step < QUESTIONS.length;
   if (marker.visible){
     bob.position.y = rm ? 0 : Math.sin(t*3)*0.1; star.rotation.y = rm ? 0.6 : t*1.5;
     const p = rm ? 0.5 : 0.5 + Math.sin(t*4)*0.5;
@@ -3931,17 +3762,12 @@ function frame(){
     ringGlow.position.set(ring.position.x, 0.012, ring.position.z);
   }
   const dT = distTo(st);
-  arrowPivot.visible = mode === 'walk' && dT > 2.2 && (HUB.on ? !!HUB.t : S.step < QUESTIONS.length);
+  arrowPivot.visible = mode === 'walk' && dT > 2.2 && S.step < QUESTIONS.length;
   if (arrowPivot.visible){ arrowPivot.position.set(P.x, 0, P.z); arrowPivot.rotation.y = Math.atan2(st.spot[0]-P.x, st.spot[1]-P.z); arrow.position.z = 0.72; arrow.rotation.z = Math.PI; }
-  labels.forEach(l => l.visible = !HUB.on && mode === 'walk' && l.userData.hot);
+  labels.forEach(l => l.visible = mode === 'walk' && l.userData.hot);
 
   // prompt
-  if (mode === 'walk' && HUB.on){
-    const near = nearStation(), pr = $('prompt');
-    $('useBtn').classList.toggle('ready', !!near);
-    if (near){ const lk = HUB_LV.includes(near) && ['lock','soon'].includes(MapUI.status(near.id)); pr.hidden = false; pr.innerHTML = lk ? `🔒 ${esc(near.name)} · locked` : (document.body.classList.contains('touch') ? '✋ Tap Use: ' : '<kbd>E</kbd> ') + esc(near.verb); }
-    else pr.hidden = true;
-  } else if (mode === 'walk'){
+  if (mode === 'walk'){
     const near = nearStation();
     const ready = dT < 1.35;
     $('useBtn').classList.toggle('ready', ready);
@@ -3956,7 +3782,7 @@ function frame(){
   steamTick(dt, rm);
   washTick(Math.min(rawDt, 0.25), t);   // real time, so slow frames don't stretch the 15 s scrub
 
-  coachTick(); Hub.tick(t);
+  coachTick();
   if (mode === 'map' || mode === 'knife' || mode === 'sauce' || mode === 'bake'){ (mode === 'map' ? MapUI : mode === 'knife' ? Knife : mode === 'bake' ? Bake : Sauce).frame(dt, t); lastView = mode; requestAnimationFrame(frame); return; }
   if (lastView !== 'kitchen'){ lastView = 'kitchen'; renderer.shadowMap.needsUpdate = true; camSnap = true; }
   /* ---- camera ---- */
@@ -3969,7 +3795,7 @@ function frame(){
     const r = portrait ? 5.4 : 3.6;
     tmpV.set(P.x + Math.sin(a)*r, portrait ? 2.0 : 1.95, P.z + Math.cos(a)*r);
     tmpL.set(P.x - (portrait ? 0 : Math.cos(a)*1.25), portrait ? 1.3 : 1.15, P.z + (portrait ? 0 : Math.sin(a)*1.25));
-  } else if (focusStation && (mode === 'quiz' || mode === 'tip' || mode === 'tip-wait' || mode === 'wash' || mode === 'prep')){
+  } else if (focusStation && (mode === 'quiz' || mode === 'tip' || mode === 'tip-wait' || mode === 'wash')){
     // pulled-back three-quarter view of chef + station; the projection is shifted up so both sit above the card
     const fx = focusStation.pos[0]*0.55 + P.x*0.45, fz = focusStation.pos[1]*0.55 + P.z*0.45;
     let dx = P.x - focusStation.pos[0], dz = P.z - focusStation.pos[1]; const l = Math.hypot(dx, dz) || 1; dx /= l; dz /= l;
