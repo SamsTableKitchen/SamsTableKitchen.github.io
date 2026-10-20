@@ -3833,6 +3833,13 @@ function coachTick(){
    Knife Skills starts with real prep: get carrots from the walk-in, wash them at the
    prep sink, peel them at the cutting station, then cut.
    ===================================================================== */
+/* ?unlock=all : test mode. Every station opens and the carrot prep is skipped, only while the flag is in the URL.
+   Nothing about it is saved, and real stars/progress are left exactly as they are. */
+const UNLOCK_ALL = /[?&]unlock=all\b/.test(location.search);
+{ const _st = MapUI.status; MapUI.status = id => { const st = _st(id); return UNLOCK_ALL && st === 'lock' ? 'open' : st; }; }
+if (UNLOCK_ALL){ const pill = document.createElement('span'); pill.id = 'testPill'; pill.textContent = 'Test mode';
+  pill.style.cssText = 'align-self:center;background:#6b7f3a;color:#fff;font:700 12px/1 system-ui,sans-serif;padding:6px 9px;border-radius:999px;white-space:nowrap';
+  $('hxp').after(pill); }
 const HUB_LV = [
  {id:'fs',     name:'Food Safety',     icon:'🧼', sub:'Level 1', verb:'Start Food Safety',     pos:[ 0.9, 5.45], spot:[ 0.9, 4.35]},
  {id:'knife',  name:'Knife Skills',    icon:'🔪', sub:'Level 2', verb:'Peel and cut',          pos:[-1.6, 0.4],  spot:[-1.6, 1.55]},
@@ -3871,10 +3878,10 @@ function hubRefresh(){
     const sub = st === 'lock' ? `${L.sub} · locked` : st0 === 'done' ? `${L.sub} · ${'★'.repeat(n)}${'☆'.repeat(3-n)}` : `${L.sub} · ${nx === L ? 'next up' : 'open'}`;
     hubSign(L.id, L.icon, L.name, sub, st, L.pos[0], L.pos[1], L.id === 'sauces' ? 2.5 : 2.2);
   });
-  const prepOn = nx && nx.id === 'knife' && kp < 2;
+  const prepOn = !UNLOCK_ALL && nx && nx.id === 'knife' && kp < 2;
   HUB_PREP.forEach((p, i) => { const s = hubSign('p-' + p.id, p.icon, p.name, i === 0 ? 'Knife Skills prep · step 1' : 'Knife Skills prep · step 2', prepOn && kp === i ? 'next' : 'open', p.pos[0] + (p.id === 'wash' ? 1.0 : 1.2), p.pos[1], 2.3); s.visible = HUB.on && !!prepOn; });
   HUB.list = [...HUB_LV, ...(prepOn ? HUB_PREP : [])];
-  HUB.t = !nx ? null : nx.id === 'knife' && kp < 2 ? HUB_PREP[kp] : nx;
+  HUB.t = !nx ? null : prepOn ? HUB_PREP[kp] : nx;
   const t = HUB.t, done = HUB_LV.filter(L => MapUI.status(L.id) === 'done').length;
   $('bar').firstElementChild.style.width = (done/5*100) + '%';
   $('hxp').textContent = '⭐ ' + (meta.totalXp || 0).toLocaleString();
@@ -3914,7 +3921,7 @@ const Hub = {
     if (near.id === 'wash'){ if (kp === 0) return hint('Get the carrots from the walk-in cooler first.'); if (kp >= 2) return hint('The carrots are already washed.'); return Prep.wash(near); }
     const st = MapUI.status(near.id);
     if (st === 'lock' || st === 'soon'){ sfx.nope(); const i = HUB_LV.indexOf(near); return hint(`🔒 Finish ${HUB_LV[i-1].name} to unlock ${near.name}.`, 2200); }
-    if (near.id === 'knife'){
+    if (near.id === 'knife' && !UNLOCK_ALL){
       if (kp === 0){ sfx.nope(); return hint('First get the carrots from the walk-in cooler (follow the ★).', 2400); }
       if (kp === 1){ sfx.nope(); return hint('Wash the carrots at the prep sink before you cut them.', 2400); }
       if (kp === 2) return Prep.peel(near);
@@ -4111,8 +4118,9 @@ function frame(){
   const celebrating = chefJump > 0 && !rm;
   let shX = [sw*0.85, -sw*0.85], shZ = [-0.1, 0.1], elX = [-0.25 - amp*0.15, -0.25 - amp*0.15];
   if (scrubbing){
-    const s = W.holding && !rm ? Math.sin(t*15) * 0.12 : 0;
-    shX = [-0.85 + s, -0.85 - s]; shZ = [0.3, -0.3]; elX = [-1.05, -1.05];
+    // clearly visible rub: hands circle over each other (shoulders swing in opposite phase, elbows pump)
+    const s = W.holding && !rm ? Math.sin(t*14) * 0.26 : 0, c = W.holding && !rm ? Math.cos(t*14) * 0.12 : 0;
+    shX = [-0.85 + s, -0.85 - s]; shZ = [0.3 + c, -0.3 + c]; elX = [-1.05 - c*1.5, -1.05 + c*1.5];
   } else if (celebrating){
     const u = Math.sin((1 - chefJump) * Math.PI);
     shX = [-0.4 - 2.2*u, -0.4 - 2.2*u]; shZ = [-0.25*u, 0.25*u]; elX = [-0.4, -0.4];
