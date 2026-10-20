@@ -2168,14 +2168,13 @@ const Knife = (() => {
   function carrotTex(){        // GFX: light-to-deep orange gradient, fine growth ridges and a few root-hair specks (multiplies the carrot colour)
     const [c, g] = cnv(256, 256), gr = g.createLinearGradient(0, 0, 0, 256);
     gr.addColorStop(0, '#fff3e4'); gr.addColorStop(.5, '#ffffff'); gr.addColorStop(1, '#f0d2b8'); g.fillStyle = gr; g.fillRect(0, 0, 256, 256);
-    for (let i=0;i<46;i++){ const x = rnd()*256, a = 0.08 + rnd()*0.16; g.strokeStyle = `rgba(150,60,10,${a})`; g.lineWidth = 0.8 + rnd()*1.6;
+    for (let i=0;i<26;i++){ const x = rnd()*256, a = 0.02 + rnd()*0.04; g.strokeStyle = `rgba(150,60,10,${a})`; g.lineWidth = 0.8 + rnd()*1.6;
       g.beginPath(); g.moveTo(x, 0); for (let y=0;y<=256;y+=16) g.lineTo(x + Math.sin(y/30 + i)*2, y); g.stroke();
       g.strokeStyle = `rgba(255,235,210,${a*0.9})`; g.lineWidth = 0.8; g.beginPath(); g.moveTo(x + 2, 0); g.lineTo(x + 2, 256); g.stroke(); }
-    for (let i=0;i<60;i++){ g.fillStyle = `rgba(120,50,10,${0.1 + rnd()*0.15})`; g.fillRect(rnd()*256, rnd()*256, 1 + rnd()*2, 4 + rnd()*6); }
+    for (let i=0;i<0;i++){ g.fillStyle = `rgba(120,50,10,${0.1 + rnd()*0.15})`; g.fillRect(rnd()*256, rnd()*256, 1 + rnd()*2, 4 + rnd()*6); }
     const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; return t;
   }
   const M = (c, o={}) => {
-    if (c === '#ec7a2c' && !o.map){ carrotSkin = carrotSkin || carrotTex(); o = {...o, map:carrotSkin}; }
     return mats[c+JSON.stringify(o.map ? {...o, map:o.map.uuid} : o)] || (mats[c+JSON.stringify(o.map ? {...o, map:o.map.uuid} : o)] = new THREE.MeshStandardMaterial({color:c, roughness:o.r ?? 0.6, metalness:o.m ?? 0, envMapIntensity:0.5, ...(o.map ? {map:o.map} : {})}));
   };
   function capTex(food){
@@ -2198,9 +2197,9 @@ const Knife = (() => {
     for (let i=0;i<1400;i++){ cg.fillStyle = `rgba(${rnd()<.5?'170,150,125':'255,255,255'},${rnd()*.12})`; cg.fillRect(rnd()*256, rnd()*256, 2, 2); }
     const counter = new THREE.Mesh(roundBoxGeo(60, 2, 44, 0.5, 4), M('#ffffff', {r:0.85, map:tex(cc, 6, 5)})); counter.position.y = -1; ks.add(counter);
     const [wc, wg] = cnv(1024, 1024); wg.fillStyle = '#d9a774'; wg.fillRect(0, 0, 1024, 1024);
-    for (let i=0;i<340;i++){ const y = rnd()*1024; wg.strokeStyle = `rgba(${135+rnd()*40|0},${85+rnd()*30|0},45,${0.06+rnd()*0.14})`; wg.lineWidth = 0.6 + rnd()*2.4;
+    for (let i=0;i<140;i++){ const y = rnd()*1024; wg.strokeStyle = `rgba(${150+rnd()*30|0},${100+rnd()*25|0},55,${0.03+rnd()*0.06})`; wg.lineWidth = 1 + rnd()*4;
       wg.beginPath(); wg.moveTo(0, y); for (let x=0;x<=1024;x+=32) wg.lineTo(x, y + Math.sin(x/140 + i)*6 + Math.sin(x/37 + i*3)*1.5); wg.stroke(); }
-    for (let i=0;i<9000;i++){ wg.fillStyle = `rgba(110,70,35,${rnd()*0.12})`; wg.fillRect(rnd()*1024, rnd()*1024, 3 + rnd()*5, 1); }   // GFX: open pores along the grain
+    for (let i=0;i<2500;i++){ wg.fillStyle = `rgba(110,70,35,${rnd()*0.05})`; wg.fillRect(rnd()*1024, rnd()*1024, 3 + rnd()*5, 1); }   // GFX: open pores along the grain
     const wood = new THREE.CanvasTexture(wc); wood.colorSpace = THREE.SRGBColorSpace; wood.anisotropy = 4;
     const board = new THREE.Mesh(roundBoxGeo(13, 0.9, 17, 0.4, 6), M('#ffffff', {r:0.72, map:wood})); board.position.y = 0.45; ks.add(board);
     const groove = new THREE.Mesh(new THREE.TorusGeometry(1, 0.05, 6, 80), M('#c08c58', {r:0.8})); groove.rotation.x = Math.PI/2; groove.scale.set(5.8, 7.8, 1); groove.position.y = 0.905; ks.add(groove);
@@ -2209,7 +2208,7 @@ const Knife = (() => {
     pieceG = new THREE.Group(); ks.add(pieceG);
     decoG = new THREE.Group(); ks.add(decoG);
     guideG = new THREE.Group(); ks.add(guideG);
-    dashM = new THREE.MeshBasicMaterial({color:'#ffffff', transparent:true, opacity:.8, depthTest:false, toneMapped:false});
+    dashM = new THREE.MeshBasicMaterial({color:'#ffffff', transparent:true, opacity:.16, depthTest:false, toneMapped:false});
     // the gold "next cut" guide: bright core + soft additive glow + travel chevrons, drawn on top of everything
     const [gc, gg] = cnv(64, 8); const gr = gg.createLinearGradient(0, 0, 64, 0);
     gr.addColorStop(0, 'rgba(255,190,70,0)'); gr.addColorStop(.5, 'rgba(255,200,90,1)'); gr.addColorStop(1, 'rgba(255,190,70,0)'); gg.fillStyle = gr; gg.fillRect(0, 0, 64, 8);
@@ -2322,7 +2321,7 @@ const Knife = (() => {
       if (g.axis === 'z'){ const z = boundaryZ(g.i), e = extentX() + g.ext; g.a = new THREE.Vector3(-e, y, z); g.b = new THREE.Vector3(e, y, z); }
       // white dashes (only for cuts still to make)
       clearGroup(g.dash);
-      if (k <= gi || g.done) return;
+      if (k !== gi + 1 || g.done) return;          // only a whisper of the cut after next; everything else stays clean
       const L = g.a.distanceTo(g.b), n = Math.max(3, Math.round(L / (16*wpp*2.2))), dir = g.b.clone().sub(g.a).normalize();
       const dm = dashM;
       for (let q=0;q<n;q++){ if (q % 2) continue; const t0 = q/n, t1 = (q+1)/n;
@@ -2348,7 +2347,7 @@ const Knife = (() => {
     const x0 = -ex - 0.55 - Math.max(0.6, ex*0.6), z0 = -ez*0.2;
     if (cut.food === 'carrot'){
       const pts = []; for (let i=0;i<=20;i++){ const t = i/20; pts.push(new THREE.Vector2(Math.max(0.02, 0.48*(1 - Math.pow(t, 1.6)*0.85)), t*4)); }
-      const c = new THREE.Mesh(new THREE.LatheGeometry(pts, 24), M(F.c, {r:0.5})); c.rotation.z = Math.PI/2; c.rotation.y = -0.35; c.position.set(x0 - 0.3, TOP + 0.46, z0 + 1.6); decoG.add(c);
+      carrotSkin = carrotSkin || carrotTex(); const c = new THREE.Mesh(new THREE.LatheGeometry(pts, 24), M(F.c, {r:0.42, map:carrotSkin})); c.rotation.z = Math.PI/2; c.rotation.y = -0.35; c.position.set(x0 - 0.3, TOP + 0.46, z0 + 1.6); decoG.add(c);
       for (let i=0;i<6;i++){ const a = (i/6)*Math.PI*2, st = new THREE.Mesh(new THREE.ConeGeometry(0.035, 0.55 + (i%3)*0.15, 8), M(i%2 ? '#4f8f3f' : '#3f7a33', {r:0.7}));   // GFX: leafy green tops
         st.position.set(Math.cos(a)*0.07, -0.28 - (i%3)*0.07, Math.sin(a)*0.07); st.rotation.set(Math.PI + Math.sin(a)*0.35, 0, Math.cos(a)*0.35); c.add(st); }
     } else if (cut.food === 'potato'){
@@ -2662,7 +2661,7 @@ const Knife = (() => {
       c.userData.b = Math.max(0, c.userData.b - dt*4); c.position.y = b.y + (rm ? 0 : Math.sin(c.userData.b*Math.PI)*0.05); });
     pieceG.children.forEach(o => { if (o.userData.end){ const want = o.userData.end*(cut.w/2 + GAP*spread*cutLines.x.size/2 + 0.002); o.position.x += (want - o.position.x)*k; } });
     if (goldG.visible){ const p = rm ? 0.5 : 0.5 + Math.sin(t*5)*0.5; glowM.opacity = 0.18 + 0.14*p; coreM.opacity = 0.38 + 0.12*p;   // faint target hint; the 3D knife does the cutting
-      chev.forEach((c, i) => { const L = c.userData.L || 1, u = rm ? (i+0.5)/3 : ((t*0.55 + i/3) % 1); c.position.set(0, 0.001, -L/2 + L*u); c.material.opacity = Math.sin(u*Math.PI)*0.45; c.rotation.y = 0; }); }
+      chev.forEach((c, i) => { const L = c.userData.L || 1, u = rm ? (i+0.5)/3 : ((t*0.55 + i/3) % 1); c.position.set(0, 0.001, -L/2 + L*u); c.material.opacity = 0; c.rotation.y = 0; }); }
     if (kb && kbMark.visible && state === 'play'){ kbT += dt; const g = guides[gi]; if (g){ const dir = g.b.clone().sub(g.a).normalize(), n = new THREE.Vector3(-dir.z, 0, dir.x), o = kbOff(g);
       kbMark.position.copy(g.a.clone().lerp(g.b, 0.5)).addScaledVector(n, o); kbMark.position.y += 0.002; kbMark.rotation.y = Math.atan2(dir.x, dir.z); kbMark.scale.set(3*wpp, 1, g.a.distanceTo(g.b)); } }
     if (state === 'play' && tut && guides[gi]){ const g = guides[gi], u = rm ? 0.5 : ((t*0.7) % 1.25)/1.25, a = project(g.a), b = project(g.b), gh = $('kGhost');
@@ -3968,7 +3967,7 @@ const Prep = (() => {
       const left = st.dirt.reduce((n, d) => n + d.a, 0)/st.dirt.length; st.prog = 1 - left;
       $('prepBar').style.width = Math.round(st.prog*100) + '%';
       if (st.dirt.some(d => d.a > 0.3 && d.a <= 0.35)) $('prepTip').textContent = 'Move them under the stream: rubbing alone won’t rinse the dirt away.';
-      if (st.prog > 0.94){ st.done = true; sfx.right(); meta.kprep = 2; save();
+      if (st.prog > 0.94){ st.done = true; st.dirt.forEach(d => d.a = 0); st.cleanT = 0; sfx.right(); meta.kprep = 2; save();
         $('prepTip').innerHTML = '<b>Tip:</b> Rinse produce under cool running water and rub it with your hands or a clean vegetable brush. Don’t use soap or bleach. Wash carrots even if you’ll peel them, so dirt and germs on the skin don’t get dragged inside by the peeler or knife.';
         const g = $('prepGo'); g.disabled = false; g.textContent = 'Clean! Go to the cutting station'; g.onclick = () => { sfx.tap(); end(); hint('Now walk to the ★ Knife Skills cutting station to peel and cut.', 2600); }; }
     };
@@ -3980,9 +3979,12 @@ const Prep = (() => {
       cx.fillStyle = gr; cx.fillRect(sx - sw, 0, sw*2, H);
       cx.strokeStyle = 'rgba(255,255,255,.7)'; cx.lineWidth = 2; for (let i=0;i<7;i++){ const x = sx - sw*0.7 + i*sw*0.23, o = (t*240 + i*37) % 60; cx.beginPath(); cx.moveTo(x, o - 60); for (let y = o - 60; y < H; y += 60){ cx.moveTo(x, y); cx.lineTo(x, y + 26); } cx.stroke(); }
       for (let c=0;c<3;c++){ const y = carrotY(c);
-        const cg = cx.createLinearGradient(0, y - 14, 0, y + 14); cg.addColorStop(0, '#f6a24e'); cg.addColorStop(.5, '#ec7a2c'); cg.addColorStop(1, '#c95c18');
+        const cg = cx.createLinearGradient(0, y - 14, 0, y + 14); const cl = st.done; cg.addColorStop(0, cl ? '#ffb45e' : '#f6a24e'); cg.addColorStop(.5, cl ? '#f8862f' : '#ec7a2c'); cg.addColorStop(1, cl ? '#de6a1e' : '#c95c18');
         cx.fillStyle = cg; cx.beginPath(); cx.moveTo(40, y - 14); cx.quadraticCurveTo(W*0.55, y - 12, W - 46, y - 2); cx.lineTo(W - 46, y + 2); cx.quadraticCurveTo(W*0.55, y + 12, 40, y + 14); cx.closePath(); cx.fill();
-        cx.strokeStyle = 'rgba(150,60,10,.35)'; cx.lineWidth = 1; for (let k=0;k<6;k++){ const x = 70 + k*(W - 140)/6; cx.beginPath(); cx.moveTo(x, y - 9); cx.lineTo(x + 3, y + 9); cx.stroke(); }
+        cx.strokeStyle = 'rgba(170,70,15,.14)'; cx.lineWidth = 1; for (let k=0;k<6;k++){ const x = 70 + k*(W - 140)/6; cx.beginPath(); cx.moveTo(x, y - 9); cx.lineTo(x + 3, y + 9); cx.stroke(); }
+        if (st.done){ const sh = cx.createLinearGradient(0, y - 14, 0, y + 2); sh.addColorStop(0, 'rgba(255,255,255,0)'); sh.addColorStop(.6, 'rgba(255,255,255,.55)'); sh.addColorStop(1, 'rgba(255,255,255,0)');   // wet sheen
+          cx.fillStyle = sh; cx.beginPath(); cx.ellipse(W*0.45, y - 6, W*0.3, 3.2, -0.02, 0, Math.PI*2); cx.fill();
+          cx.fillStyle = 'rgba(255,255,255,.8)'; for (let k=0;k<5;k++){ cx.beginPath(); cx.arc(70 + k*(W - 150)/5 + (c*17 % 23), y - 4 + (k%2)*7, 1.8, 0, Math.PI*2); cx.fill(); } }
         cx.fillStyle = '#4f8f3f'; for (let k=0;k<3;k++){ cx.beginPath(); cx.ellipse(30, y - 6 + k*6, 14, 3.5, -0.3 + k*0.3, 0, Math.PI*2); cx.fill(); } }
       for (const d of st.dirt){ if (d.a <= 0.01) continue; const x = 40 + d.u*(W - 80), y = carrotY(d.c) + d.v*20; cx.fillStyle = `rgba(92,62,36,${0.85*d.a})`; cx.beginPath(); cx.arc(x, y, d.r, 0, Math.PI*2); cx.fill(); }
       if (st.down && !st.done){ cx.fillStyle = 'rgba(255,255,255,.55)'; for (let i=0;i<5;i++){ cx.beginPath(); cx.arc(st.last[0] + Math.sin(t*20 + i)*12, st.last[1] + Math.cos(t*17 + i*2)*10, 3, 0, Math.PI*2); cx.fill(); } }
@@ -4018,12 +4020,12 @@ const Prep = (() => {
       cx.save(); shape(); cx.clip();
       for (let i=0;i<5;i++){ const y0 = g.y - g.h/2 + i*g.h/5, f = st.bands[i], px = g.x0 + f*(g.x1 - g.x0);
         cx.fillStyle = '#f39a45'; cx.fillRect(g.x0, y0, px - g.x0, g.h/5 + 1);                 // peeled: bright, smooth
-        cx.fillStyle = i % 2 ? '#c8681f' : '#bd5f1b'; cx.fillRect(px, y0, g.x1 - px, g.h/5 + 1);  // skin: duller, ridged
-        cx.strokeStyle = 'rgba(100,45,10,.35)'; for (let x = px + 6; x < g.x1; x += 14){ cx.beginPath(); cx.moveTo(x, y0 + 2); cx.lineTo(x + 2, y0 + g.h/5 - 2); cx.stroke(); } }
+        cx.fillStyle = i % 2 ? '#e8782a' : '#e27226'; cx.fillRect(px, y0, g.x1 - px, g.h/5 + 1);  // washed skin: clean, a touch deeper than peeled
+        cx.strokeStyle = 'rgba(150,60,15,.16)'; for (let x = px + 6; x < g.x1; x += 14){ cx.beginPath(); cx.moveTo(x, y0 + 2); cx.lineTo(x + 2, y0 + g.h/5 - 2); cx.stroke(); } }
       const sh = cx.createLinearGradient(0, g.y - g.h/2, 0, g.y + g.h/2); sh.addColorStop(0, 'rgba(255,255,255,.25)'); sh.addColorStop(.45, 'rgba(255,255,255,0)'); sh.addColorStop(1, 'rgba(90,40,10,.3)'); cx.fillStyle = sh; cx.fillRect(0, 0, W, H);
       cx.restore();
       cx.fillStyle = '#4f8f3f'; for (let k=0;k<4;k++){ cx.beginPath(); cx.ellipse(g.x0 - 24, g.y - 16 + k*10, 26, 5, -0.4 + k*0.27, 0, Math.PI*2); cx.fill(); }
-      for (const c of st.curls){ c.t += 1/60; c.x += c.vx/60; c.y += c.vy/60; c.vy += 120/60; cx.strokeStyle = '#c8681f'; cx.lineWidth = 4; cx.beginPath(); cx.arc(c.x, c.y, 6, c.t*8, c.t*8 + 4); cx.stroke(); }
+      for (const c of st.curls){ c.t += 1/60; c.x += c.vx/60; c.y += c.vy/60; c.vy += 120/60; cx.strokeStyle = '#e8782a'; cx.lineWidth = 4; cx.beginPath(); cx.arc(c.x, c.y, 6, c.t*8, c.t*8 + 4); cx.stroke(); }
       st.curls = st.curls.filter(c => c.t < 1.2);
       const p = st.peeler || [g.x0 + 20, g.y - g.h/2 - 18];                                        // Y-peeler follows the finger
       cx.save(); cx.translate(p[0], p[1]); cx.fillStyle = '#5f8f84'; cx.beginPath(); cx.roundRect(-8, -54, 16, 40, 7); cx.fill();
