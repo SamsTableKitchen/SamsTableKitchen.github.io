@@ -179,6 +179,7 @@ body.panel-open #touch,body.panel-open #prompt,body.panel-open .goal{display:non
 }
 @media (max-height:700px){#title h1{font-size:28px}#title .sub{font-size:14px}.qtext{font-size:16px}.choice{padding:9px 12px}}
 @media (min-width:900px){.goal{position:fixed;left:16px;top:calc(64px + env(safe-area-inset-top))}
+@media (min-width:900px){.goal{max-width:360px;padding:10px 16px;gap:10px;line-height:1.3}.goal small{font-size:12px;margin-top:2px;white-space:normal}}
  #title{background:linear-gradient(90deg,rgba(250,247,242,.96) 0,rgba(250,247,242,.9) 34%,rgba(250,247,242,0) 52%);text-align:left;align-items:flex-start;padding-left:56px}
  #title>div{width:420px} .controls{justify-content:flex-start}}
 
@@ -248,6 +249,12 @@ body.panel-open #touch,body.panel-open #prompt,body.panel-open .goal{display:non
 .kchips span{background:var(--olive-l);color:var(--olive);padding:4px 10px;border-radius:999px}
 .kchips span.warn{background:#fdf0e6;color:var(--terra)}
 .kchips span.bad{background:var(--red-l);color:var(--red)}
+.admire{position:fixed;z-index:60;left:50%;top:22%;transform:translateX(-50%);background:rgba(255,255,255,.94);border-radius:18px;padding:12px 26px;text-align:center;box-shadow:0 10px 30px rgba(60,40,20,.18);animation:admIn .45s cubic-bezier(.2,1.4,.4,1) both}
+.admire b{display:block;font:700 26px/1.2 var(--serif, Georgia, serif);color:#c45f2c}.admire small{display:block;margin-top:4px;font-size:12px;color:#8a7a68}
+@media (max-width:600px){.admire{top:auto!important;bottom:150px}}
+@keyframes admIn{from{opacity:0;transform:translate(-50%,12px) scale(.9)}to{opacity:1;transform:translate(-50%,0)}}
+.kcard:not([hidden]){animation:cardIn .5s ease both}@keyframes cardIn{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.admire,.kcard{animation:none!important}}
 #kPops{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .kpop{position:absolute;transform:translate(-50%,-50%);text-align:center;pointer-events:none;animation:kpopup 1s ease forwards;white-space:nowrap}
 .kpop b{display:block;font-family:var(--serif);font-weight:900;font-size:30px;color:#fff;text-shadow:0 2px 0 #b8742a,0 3px 10px rgba(0,0,0,.25)}
@@ -785,6 +792,18 @@ let hintT = 0;
 function hint(txt, ms=1600){ const h=$('hint'); h.textContent = txt; h.hidden = false; clearTimeout(hintT); hintT = setTimeout(()=>h.hidden = true, ms); }
 function bumpXP(){ const el=$('hxp'); el.textContent='⭐ '+S.xp; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
 
+
+// Finish beat: hold on the finished work with a small banner, then run cb. Tap, click, Space or Enter skips.
+function admireHold(popsId, title, hold, cb){
+  const pops = document.getElementById(popsId), ban = document.createElement('div'); ban.className = 'admire';
+  ban.innerHTML = `<b>${title}</b><small>${isTouch ? 'Tap' : 'Click or press Space'} to continue</small>`;
+  pops && pops.appendChild(ban);
+  let shown = false, tmr;
+  const skip = e => { if (e.type === 'keydown'){ if (!(e.code === 'Space' || e.key === 'Enter')) return; e.preventDefault(); e.stopPropagation(); } go(); };
+  const go = () => { if (shown) return; shown = true; clearTimeout(tmr); removeEventListener('pointerdown', skip, true); removeEventListener('keydown', skip, true); ban.remove(); cb(); };
+  setTimeout(() => { if (!shown){ addEventListener('pointerdown', skip, true); addEventListener('keydown', skip, true); } }, 250);
+  tmr = setTimeout(go, matchMedia('(prefers-reduced-motion: reduce)').matches ? Math.min(hold, 900) : hold);
+}
 /* =====================================================================
    3D SCENE
    ===================================================================== */
@@ -2145,9 +2164,9 @@ const CUTS = [
  {id:'chiffonade', name:'Chiffonade', short:'thin herb ribbons', size:'about 1/16 in ribbons', step:'1/16 in', food:'basil', type:'roll', w:0.75, r:0.2, nx:12, passes:['x'],
   how:'Basil leaves are stacked and rolled into a tight cigar. Slice across the roll along each guide for thin ribbons.',
   tip:'For chiffonade, stack leafy herbs or greens, roll them up tightly and slice across the roll into very thin ribbons, about 1/16 in. A sharp knife keeps basil from bruising and turning black.'},
- {id:'mince', name:'Mince', short:'very fine bits', size:'smaller than ⅛ in', step:'', food:'garlic', type:'pile', r:0.62, steps:6, passes:['p'],
-  how:'Rock-chop the garlic: swipe all the way across the pile along the gold guide. Each pass makes it finer.',
-  tip:'Mincing makes very fine, even pieces, smaller than a brunoise. Keep the knife tip on the board, rock the blade over the pile, gather it back together, and repeat until it’s fine.'},
+ {id:'mince', name:'Mince', short:'very fine bits', size:'smaller than ⅛ in', step:'', food:'garlic', type:'pile', r:0.62, steps:3, rock:true, passes:['p'],
+  how:'Two steps. First, three quick slices along the gold guide to rough-chop the garlic cloves. Then rock the knife back and forth over the pile until it is finer than ⅛ inch.',
+  tip:'To mince, keep the knife tip on the board and rest your other hand flat on top of the spine, fingers up and away from the edge. Rock the heel up and down as you sweep across the pile, then gather the pile back together and rock again.'},
 ];
 const SAFETY_CHIPS = ['Claw grip: curl your fingertips', 'Knuckles guide the blade', 'Keep the knife tip down', 'Cut away from your fingers'];
 
@@ -2267,12 +2286,12 @@ const Knife = (() => {
       for (const s of [-1, 1]){ const e = new THREE.Mesh(new THREE.SphereGeometry(cut.r, 24, 16, 0, Math.PI*2, 0, Math.PI/2), M(F.c, {r:F.r}));
         e.rotation.z = -s*Math.PI/2; e.scale.y = cut.food === 'basil' ? 0.5 : 0.9; e.position.set(s*(cut.w/2 + 0.002), TOP + cut.r*0.92, 0); e.userData.end = s; pieceG.add(e); }
     } else {
-      buildPile(0);
+      rk = null; buildPile(0);
     }
     // guides
     const ext = Math.max(0.12, 18*wpp);
     if (cut.type === 'pile'){
-      const angs = [90, 0, 45, 135, 90, 0];
+      const angs = cut.rock ? [90, 0, 45] : [90, 0, 45, 135, 90, 0];
       angs.forEach((a, k) => { const r = cut.r + ext, d = new THREE.Vector3(Math.sin(a*Math.PI/180), 0, Math.cos(a*Math.PI/180));
         guides.push({axis:'p', k, a: d.clone().multiplyScalar(-r).setY(pileTop()), b: d.clone().multiplyScalar(r).setY(pileTop()), ext, sp:cut.r*0.55}); });
     } else {
@@ -2289,16 +2308,20 @@ const Knife = (() => {
     const fw = cut.type === 'pile' ? cut.r*2 : cut.w, fl = cut.type === 'pile' ? cut.r*2 : cut.type === 'roll' ? cut.r*2 : cut.l;
     shadowP.scale.set(fw*1.5 + 0.3, fl*1.5 + 0.3, 1);
   }
-  let pileMesh = null, pileStep = 0;
+  let pileMesh = null, pileStep = 0, rk = null;   // rk: rocking-mince phase state
   const pileTop = () => TOP + 0.09;
   function buildPile(step){
     pileStep = step;
     if (pileMesh){ pieceG.remove(pileMesh); pileMesh.dispose?.(); }
-    const n = Math.min(220, Math.round(18 * Math.pow(1.55, step))), size = 0.24 * Math.pow(0.72, step);
+    if (step === 0 && cut.rock){                       // whole peeled cloves before the rough chop
+      pileMesh = new THREE.InstancedMesh(new THREE.SphereGeometry(0.5, 14, 10), M(FOOD.garlic.c, {r:0.45}), 5); const o = new THREE.Object3D();
+      [[-0.28,-0.12,0.4],[0.05,-0.22,-0.3],[0.3,0.08,0.9],[-0.08,0.2,2.0],[0.22,0.3,-1.1]].forEach(([x,z,r], i) => { o.position.set(x, TOP + 0.09, z); o.rotation.set(0, r, 0.15); o.scale.set(0.34, 0.2, 0.2); o.updateMatrix(); pileMesh.setMatrixAt(i, o.matrix); });
+      pileMesh.instanceMatrix.needsUpdate = true; pieceG.add(pileMesh); return; }
+    const n = Math.min(260, Math.round(18 * Math.pow(1.55, step))), size = 0.24 * Math.pow(0.72, step);
     pileMesh = new THREE.InstancedMesh(new THREE.DodecahedronGeometry(0.5, 0), M(FOOD.garlic.c, {r:0.55}), n);
     const o = new THREE.Object3D(); let s = 11 + step*7;
-    const R = () => (s = (s*16807) % 2147483647) / 2147483647;
-    for (let i=0;i<n;i++){ const a = R()*Math.PI*2, d = Math.sqrt(R())*cut.r*0.92; const h = (1 - d/cut.r);
+    const R = () => (s = (s*16807) % 2147483647) / 2147483647, spr = cut.rock && step > 3 ? 1.12 - (rk ? rk.gathered : 0)*0.18 : 1;
+    for (let i=0;i<n;i++){ const a = R()*Math.PI*2, d = Math.sqrt(R())*cut.r*0.92*spr; const h = (1 - d/cut.r);
       o.position.set(Math.cos(a)*d, TOP + size*0.4 + h*0.12*R(), Math.sin(a)*d*0.9); o.rotation.set(R()*3, R()*3, R()*3);
       o.scale.set(size*(0.7+R()*0.6), size*(0.5+R()*0.4), size*(0.7+R()*0.6)); o.updateMatrix(); pileMesh.setMatrixAt(i, o.matrix); }
     pileMesh.instanceMatrix.needsUpdate = true; pieceG.add(pileMesh);
@@ -2412,8 +2435,8 @@ const Knife = (() => {
   function hud(){
     const att = R.cuts + R.miss, acc = att ? R.val/att : 0;
     $('kAcc').textContent = att ? Math.round(acc*100) + '%' : '–';
-    $('kCuts').textContent = `Cuts ${R.cuts} / ${guides.length}`;
-    $('kMeter').style.width = (R.cuts/guides.length*100) + '%';
+    $('kCuts').textContent = rk ? `Fineness ${Math.round(rk.p*100)}% → under ⅛ in` : `Cuts ${R.cuts} / ${guides.length}`;
+    $('kMeter').style.width = (rk ? rk.p*100 : R.cuts/guides.length*100) + '%';
     $('kScore').textContent = '⭐ ' + (KS.score + (state === 'play' ? R.score : 0)).toLocaleString();
     const cb = $('kCombo'); cb.hidden = R.combo < 2 || state !== 'play'; if (R.combo >= 2 && state === 'play'){ cb.textContent = `Combo ×${R.combo} 🔥`; cb.classList.remove('pop'); void cb.offsetWidth; cb.classList.add('pop'); }
   }
@@ -2444,7 +2467,7 @@ const Knife = (() => {
   function intro(){
     cut = CUTS[KS.idx]; state = 'intro'; kb = false;
     R = {cuts:0, miss:0, val:0, combo:0, best:0, score:0, pg:0, time:0, timedOut:false};
-    limit = Math.round(8 + 2.6*(cut.type === 'pile' ? cut.steps : (cut.passes.length === 2 ? (cut.nx - 1 + cut.nz - 1) : cut.passes[0] === 'x' ? cut.nx - 1 : cut.nz - 1)));
+    limit = Math.round(8 + (cut.rock ? 22 : 0) + 2.6*(cut.type === 'pile' ? cut.steps : (cut.passes.length === 2 ? (cut.nx - 1 + cut.nz - 1) : cut.passes[0] === 'x' ? cut.nx - 1 : cut.nz - 1)));
     setPrompt(); $('kCombo').hidden = true; chips([]);
     $('kCard').hidden = true; frameCam(); buildPiece(); hud(); timerText();
     tut = !meta.tut.knife;
@@ -2480,10 +2503,11 @@ const Knife = (() => {
     if (mode !== 'knife' || state !== 'play') return;
     e.preventDefault(); kb = false; kbMark.visible = false;
     try { pad.setPointerCapture(e.pointerId); } catch(_){}
-    stroke = {id:e.pointerId, px:[], w:[], len:0, done:false}; addPt(e.clientX, e.clientY); knifeTo(e.clientX, e.clientY);
+    stroke = {id:e.pointerId, px:[], w:[], len:0, done:false}; if (rk){ rk.sx = null; rockMove(e.clientX, e.clientY); return; } addPt(e.clientX, e.clientY); knifeTo(e.clientX, e.clientY);
   });
   pad.addEventListener('pointermove', e => {
     if (!stroke || e.pointerId !== stroke.id || stroke.done) return;
+    if (rk){ rockMove(e.clientX, e.clientY); return; }
     const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
     for (const ev of (evs.length ? evs : [e])) addPt(ev.clientX, ev.clientY);
     knifeTo(e.clientX, e.clientY);
@@ -2494,7 +2518,7 @@ const Knife = (() => {
   const endStroke = e => {
     if (!stroke || e.pointerId !== stroke.id) return;
     const s = stroke; stroke = null;
-    if (s.done || state !== 'play') return;
+    if (s.done || state !== 'play' || rk) return;
     if (s.len < 24){ return; }
     const g = guides[gi]; if (g) judge(measure(s.w, g));
   };
@@ -2559,7 +2583,36 @@ const Knife = (() => {
       chips([['Nice cut! Now the clock is running', ''], [SAFETY_CHIPS[0], 'warn']]); }
     gi++;
     layoutGuides(); hud();
-    if (gi >= guides.length) finish(false);
+    if (gi >= guides.length){ if (cut.rock && !rk) startRock(); else finish(false); }
+  }
+  /* ---------- mince step 2: rock the knife over the pile ---------- */
+  function startRock(){
+    rk = {p:0, dir:0, sx:null, gathered:0, last:0};
+    KN.ry = 0; KN.x = 0; KN.z = 1.2 + cut.r*0.5; KN.have = true;
+    pop(innerWidth/2, innerHeight*0.32, 'Rough-chopped!', 'Now rock to mince');
+    chips([['Rock the knife back and forth over the pile', ''], ['Tip on the board, other hand flat on the spine', 'warn']]);
+    $('kSub').textContent = `Rock back and forth over the pile${isTouch ? '' : ' (or tap Space)'} until it’s under ⅛ in`;
+    $('kTitle') && ($('kTitle').textContent = 'Mince: rock the knife');
+    hud();
+  }
+  function rockStep(amt){
+    if (!rk || state !== 'play') return;
+    const before = rk.p; rk.p = Math.min(1, rk.p + amt);
+    KN.press = 1; KN.rock = 1; R.score += 12; sfx.slice();
+    const lv = 3 + Math.floor(rk.p*4.999);           // pile gets visibly finer: 3 → 7
+    if (lv !== pileStep) buildPile(lv);
+    if (before < 0.5 && rk.p >= 0.5){ rk.gathered = 1; buildPile(pileStep); pop(innerWidth/2, innerHeight*0.32, 'Gather the pile', 'scrape it back together, rock again'); chips([['Gathered ✓ Rock again', ''], ['Use the spine, not the edge, to scrape', 'warn']]); }
+    hud();
+    if (rk.p >= 1){ pop(innerWidth/2, innerHeight*0.32, 'Under ⅛ in ✓', 'Finely minced'); finish(false); }
+  }
+  function rockMove(x, y){                            // count each back-and-forth sweep made over the pile
+    const w = toWorld(x, y); if (!w) return;
+    KN.x += (w.x - KN.x)*0.6; KN.z = 1.2 + cut.r*0.5; KN.ry = 0; KN.y = 0.35;   // blade across the pile, tip toward the far side, handle toward you
+    if (Math.hypot(w.x, w.z) > cut.r*1.9) return;
+    if (rk.sx == null){ rk.sx = w.x; return; }
+    const dx = w.x - rk.sx, d = Math.sign(dx);
+    if (Math.abs(dx) > cut.r*0.35){ if (d !== rk.dir){ rk.dir = d; rockStep(0.08); } rk.sx = w.x; }
+    else if (d === rk.dir && Math.abs(dx) > 0) rk.sx = d > 0 ? Math.max(rk.sx, w.x) : Math.min(rk.sx, w.x);
   }
   /* trail + cut flash on the 2D overlay */
   const trail = []; const flashes = []; const sparks = [];
@@ -2609,7 +2662,9 @@ const Knife = (() => {
     if (cut.type === 'roll') pieceG.children.forEach(o => { if (o.userData.end) o.userData.endOff = o.userData.end*GAP*spread*cut.nx*0.5; });
     if (stars >= 2){ sfx.win(); setTimeout(() => confetti(stars === 3 ? 50 : 26), 250); } else sfx.wrong();
     hud(); timerText();
-    setTimeout(() => {
+    // admire the board: hold ~2.7 s with a banner, then fade to the card. Tap/click/Space/Enter skips.
+        admireHold('kPops', timedOut ? 'Time’s up!' : stars >= 3 ? 'Look at those cuts!' : stars >= 2 ? 'Nice work!' : 'All cut!', timedOut ? 1400 : 2700, () => showCard());
+    const showCard = () => {
       if (mode !== 'knife') return;
       const starHtml = [0,1,2].map(i => `<span class="${i < stars ? '' : 'off'}">⭐</span>`).join('');
       const badgeLine = nb.length ? `<div class="newb"><span style="font-size:22px">🏅</span> New badge: ${nb.map(id => esc(BADGES.find(b => b.id === id).name)).join(', ')}</div>` : '';
@@ -2621,7 +2676,8 @@ const Knife = (() => {
         <div class="row2"><button class="btn ghost" id="kRetry">↻ Retry</button><button class="btn" id="kNext">${last ? 'Finish' : 'Next: ' + esc(next.name) + ' →'}${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`);
       $('kRetry').onclick = () => { KS.idx--; KS.score = Math.max(0, KS.score - R.score); save(); sfx.tap(); intro(); };
       $('kNext').onclick = () => { sfx.tap(); if (last) summary(); else intro(); };
-    }, reduce.matches ? 200 : 750);
+      const kc = $('kCard'); kc.classList.remove('fadein'); void kc.offsetWidth; kc.classList.add('fadein');
+    };
   }
   function summary(){
     state = 'summary'; goldG.visible = false; hud();
@@ -2644,6 +2700,7 @@ const Knife = (() => {
     if (state === 'result'){ const b = $('kNext'); if (b) b.click(); return; }
     if (state === 'summary'){ $('kMap').click(); return; }
     if (state !== 'play') return;
+    if (rk){ rockStep(0.08); return; }
     if (!kb){ kb = true; kbT = 0; kbMark.visible = true; chips([['Press Space when the dark blade lines up with the gold guide', 'warn']]); return; }
     const g = guides[gi]; if (!g) return;
     judge({cov:1, off:Math.abs(kbOff(g)), ang:0}, true);
@@ -3095,7 +3152,7 @@ const Sauce = (() => {
     if (last){ SC.done = true; meta.done.sauces = true; if (award('saucier')) nb.push('saucier'); }
     save(); hudScore();
     if (ok){ sfx.win(); if (stars >= 2) setTimeout(() => confetti(stars === 3 ? 50 : 26), 250); } else sfx.wrong();
-    setTimeout(() => {
+    admireHold('sPops', ok ? (stars >= 3 ? 'Silky smooth!' : 'Nice work!') : fail === 'time' ? 'Time’s up!' : 'Oh no!', ok ? 2500 : 1600, () => {
       if (mode !== 'sauce') return;
       const starHtml = [0,1,2].map(i => `<span class="${i < stars ? '' : 'off'}">⭐</span>`).join('');
       const badgeLine = nb.length ? `<div class="newb"><span style="font-size:22px">🏅</span> New badge: ${nb.map(id => esc(BADGES.find(b => b.id === id).name)).join(', ')}</div>` : '';
@@ -3112,7 +3169,7 @@ const Sauce = (() => {
         <div class="row2"><button class="btn ghost" id="sRetry">↻ Retry</button><button class="btn" id="sNext">${ok ? (last ? 'Finish' : 'Next: ' + esc(next.name) + ' →') : 'Try again'}${isTouch ? '' : ' <kbd>Enter</kbd>'}</button></div>`, true);
       $('sRetry').onclick = () => { if (ok) SC.idx--; SC.score = Math.max(0, SC.score - Math.round(R.score)); save(); sfx.tap(); intro(); };
       $('sNext').onclick = () => { sfx.tap(); if (!ok){ SC.score = Math.max(0, SC.score - Math.round(R.score)); save(); intro(); } else if (last) summary(); else intro(); };
-    }, reduce.matches ? 200 : 800);
+    });
   }
   function summary(){
     state = 'summary'; hudScore();
@@ -3546,6 +3603,8 @@ const Bake = (() => {
     if (last){ BK.done = true; meta.done.baking = true; if (BAKES.every(b => (BK.best[b.id] || 0) >= 2) && award('baker')) nb.push('baker'); }
     save(); R.score = 0; hudScore();
     sfx.win(); if (stars >= 2) setTimeout(() => confetti(stars === 3 ? 50 : 26), 250);
+    stage(); admireHold('bPops', stars >= 3 ? 'Picture perfect!' : stars >= 2 ? 'Smells amazing!' : 'Out of the oven!', 2500, () => {
+    if (mode !== 'bake') return;
     const starHtml = [0,1,2].map(i => `<span class="${i < stars ? '' : 'off'}">⭐</span>`).join('');
     const badgeLine = nb.length ? `<div class="newb"><span style="font-size:22px">🏅</span> New badge: ${nb.map(id => esc(BADGES.find(b => b.id === id).name)).join(', ')}</div>` : '';
     const next = !last ? BAKES[BK.idx] : null;
@@ -3560,6 +3619,7 @@ const Bake = (() => {
     const earned = Math.round((stars*150) + 0);
     $('bRetry').onclick = () => { BK.idx--; save(); sfx.tap(); intro(); };
     $('bNext').onclick = () => { sfx.tap(); if (last) summary(); else intro(); };
+    });
   }
   function summary(){
     state = 'summary';
@@ -3887,8 +3947,8 @@ function hubRefresh(){
   $('goalText').textContent = t ? 'Next: ' + (t === nx ? t.name : t.name) : 'Every station done!';
   $('goalSub').textContent = !t ? 'Replay any station for more stars' : t.id === 'carrots' ? 'Knife Skills prep: get the carrots' : t.id === 'wash' ? 'Knife Skills prep: wash the carrots' : t.id === 'knife' ? 'Peel the carrots, then cut' : `${t.sub} · walk to the ★, then ${isTouch ? 'tap ✋ Use' : 'press E'}`;
   $('streak').textContent = '';
-  if (t){ const sg = HUB.signs[HUB_LV.includes(t) ? t.id : 'p-' + t.id];   // marker floats just above its station's sign, never behind it
-    if (sg) marker.position.set(sg.position.x, sg.position.y + 0.85, sg.position.z); else { const [mx, mz] = t.pos; marker.position.set(mx, 3.05, mz); } ring.position.set(t.spot[0], 0.012, t.spot[1]); }
+  if (t){ marker.position.set(t.spot[0], 1.75, t.spot[1]);   // star floats over the gold floor ring where you stand, below the signs
+    ring.position.set(t.spot[0], 0.012, t.spot[1]); }
   chef.carrots.visible = HUB.on && kp === 1;
 }
 /* carrots the chef carries from the walk-in to the sink */
