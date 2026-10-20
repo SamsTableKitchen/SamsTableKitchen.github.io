@@ -3857,7 +3857,7 @@ const hubSign = (() => {
   }
   return (key, icon, name, sub, st, x, z, y=2.25) => {
     let s = HUB.signs[key];
-    if (!s){ s = new THREE.Sprite(new THREE.SpriteMaterial({transparent:true, depthWrite:false})); s.scale.set(2.2, 0.76, 1); s.renderOrder = 4; scene.add(s); HUB.signs[key] = s; }
+    if (!s){ s = new THREE.Sprite(new THREE.SpriteMaterial({transparent:true, depthWrite:false})); s.scale.set(1.8, 0.62, 1); s.renderOrder = 4; scene.add(s); HUB.signs[key] = s; }
     const sig = icon + name + sub + st; if (s.userData.sig !== sig){ s.userData.sig = sig; s.material.map?.dispose(); s.material.map = tex(icon, name, sub, st); s.material.needsUpdate = true; }
     s.position.set(x, y, z); s.userData.st = st; s.visible = HUB.on; return s;
   };
@@ -3879,9 +3879,10 @@ function hubRefresh(){
   $('bar').firstElementChild.style.width = (done/5*100) + '%';
   $('hxp').textContent = '⭐ ' + (meta.totalXp || 0).toLocaleString();
   $('goalText').textContent = t ? 'Next: ' + (t === nx ? t.name : t.name) : 'Every station done!';
-  $('goalSub').textContent = !t ? 'Replay any station for more stars' : t.id === 'carrots' ? 'Knife Skills prep: get the carrots' : t.id === 'wash' ? 'Knife Skills prep: wash the carrots' : t.id === 'knife' ? 'Peel the carrots, then cut' : `${t.sub} · walk to the ★`;
+  $('goalSub').textContent = !t ? 'Replay any station for more stars' : t.id === 'carrots' ? 'Knife Skills prep: get the carrots' : t.id === 'wash' ? 'Knife Skills prep: wash the carrots' : t.id === 'knife' ? 'Peel the carrots, then cut' : `${t.sub} · walk to the ★, then ${isTouch ? 'tap ✋ Use' : 'press E'}`;
   $('streak').textContent = '';
-  if (t){ const [mx, mz] = t.pos; marker.position.set(mx + (t.spot[0]-mx)*0.35, 3.05, mz + (t.spot[1]-mz)*0.35); ring.position.set(t.spot[0], 0.012, t.spot[1]); }
+  if (t){ const sg = HUB.signs[HUB_LV.includes(t) ? t.id : 'p-' + t.id];   // marker floats just above its station's sign, never behind it
+    if (sg) marker.position.set(sg.position.x, sg.position.y + 0.85, sg.position.z); else { const [mx, mz] = t.pos; marker.position.set(mx, 3.05, mz); } ring.position.set(t.spot[0], 0.012, t.spot[1]); }
   chef.carrots.visible = HUB.on && kp === 1;
 }
 /* carrots the chef carries from the walk-in to the sink */
@@ -3901,7 +3902,7 @@ const Hub = {
   tick(t){
     if (!HUB.on) return;
     const rm = reduce.matches;
-    for (const s of Object.values(HUB.signs)){ if (!s.visible) continue; const p = s.userData.st === 'next' && !rm ? 1 + Math.sin(t*3.2)*0.05 : 1; s.scale.set(2.2*p, 0.76*p, 1); s.material.opacity = s.userData.st === 'lock' ? 0.8 : 1; }
+    for (const s of Object.values(HUB.signs)){ if (!s.visible) continue; const p = s.userData.st === 'next' && !rm ? 1 + Math.sin(t*3.2)*0.05 : 1; s.scale.set(1.8*p, 0.62*p, 1); s.material.opacity = s.userData.st === 'lock' ? 0.8 : 1; }
   },
   interact(){
     const near = nearStation(), t = HUB.t;
