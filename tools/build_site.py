@@ -7,6 +7,8 @@ os.chdir(ROOT)
 # Refresh the recipe picker data and the app (PWA) wiring on every page first.
 subprocess.run(["python3", "tools/build_picker.py"], check=True)
 subprocess.run(["python3", "tools/pwa.py"], check=True)
+subprocess.run(["python3", "tools/make_thumbs.py"], check=True)   # srcset thumbnails
+subprocess.run(["python3", "tools/site_fixes.py"], check=True)    # SEO/a11y/perf fixes + guards (fails the build on errors)
 SITE = "https://samstablekitchen.com"
 SKIP = {"404.html", "search.html", "offline.html"}
 
@@ -25,7 +27,8 @@ items = []
 for f in pages:
     s = open(f, encoding="utf-8").read()
     title = html.unescape(re.search(r'<title>(.*?)</title>', s, re.S).group(1))
-    title = re.sub(r"\s*\|\s*Sam's Table$", "", title).replace(" Review", "") or "Home"
+    title = re.sub(r"\s*\|\s*Sam's Table$", "", title).replace(" Review", "")
+    title = re.sub(r": [^:]+, [A-Z]{2}$", "", title)   # "Name Review: City, ST" -> "Name" or "Home"
     title = title.replace(" (Meal Prep)", "")
     if f == "index.html": title = "Home"
     cat = "Recipe" if f.startswith("posts/recipes/") else "Meal Prep Plan" if f.startswith("posts/meal-prep/plans/") else "Meal Prep" if f.startswith("posts/meal-prep/") else "Review" if f.startswith("posts/") else "Page"
@@ -45,7 +48,9 @@ for block in re.findall(r'\{\s*name:.*?\}', src, re.S):
 
 json.dump(items, open("search-index.json", "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
 
+PAGE_DATES = json.load(open("data/page-dates.json")) if os.path.exists("data/page-dates.json") else {}
 def lastmod(f):
+    if f in PAGE_DATES: return PAGE_DATES[f]["modified"]   # last real content change, not the build date
     try:
         d = subprocess.run(["git", "log", "-1", "--format=%cs", "--", f], capture_output=True, text=True).stdout.strip()
     except Exception: d = ""
