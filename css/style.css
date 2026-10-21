@@ -249,3 +249,20 @@ a.pk-btn{text-decoration:none}.get-app [hidden],.inst [hidden]{display:none!impo
 
 /* share button styled like the old link */
 .linklike{background:none;border:0;padding:0;font:inherit;color:var(--olive);text-decoration:underline;cursor:pointer}
+
+/* ---- WCAG AA contrast ---- */
+:root{--olive:#5E7033;--terra:#A0502A}
+.text-hero .kicker,.text-hero .stars{color:#FFF4EA}
+.about-place .src,.src,.c-note,#stats span{color:#5F5F5F}
+/* footer tap targets */
+footer p a{display:inline-block;padding:8px 6px;min-height:24px}
+/* ---- compact mobile header: one scrollable nav row ---- */
+@media(max-width:720px){
+  header.site{position:static}
+  header.site .wrap{flex-direction:column;gap:4px;padding-top:10px;padding-bottom:4px}
+  header.site nav{display:flex;overflow-x:auto;white-space:nowrap;width:100%;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  header.site nav::-webkit-scrollbar{display:none}
+  header.site nav a{margin:0 16px 0 0;padding:8px 0;flex:0 0 auto}
+  header.site nav .nav-search{order:-1;margin-right:18px}
+  #recipe-card{scroll-margin-top:16px}
+}
