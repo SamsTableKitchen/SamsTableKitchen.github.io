@@ -184,7 +184,7 @@ const POSTS=[
 "url": "posts/recipes/filipino-spaghetti.html",
 "type": "Recipe",
 "kicker": "Recipe · Mains",
-"title": "Filipino Spaghetti",
+"title": "Filipino Sweet Spaghetti",
 "desc": "Sweet banana ketchup sauce with ground pork and hot dogs over spaghetti. Recipe by MG Sanchez at Hungry Huy.",
 "img": "",
 "alt": "",

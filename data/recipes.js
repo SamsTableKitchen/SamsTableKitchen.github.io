@@ -477,7 +477,7 @@ const RECIPES=[
  },
  {
   "url": "posts/recipes/filipino-spaghetti.html",
-  "title": "Filipino Spaghetti",
+  "title": "Filipino Sweet Spaghetti",
   "category": "Mains",
   "tags": [
    "Filipino",
