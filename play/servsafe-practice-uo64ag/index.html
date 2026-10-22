@@ -21,7 +21,8 @@ button{font:inherit;cursor:pointer;border:0;border-radius:14px}
 .tp b{display:block}.tp span{font-size:.8rem;color:#666}
 .tp.weak{border-color:var(--terra)}
 .hud{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:700;font-size:1.05rem}
-.hud .x{background:#fff;border:2px solid var(--line);width:46px;height:46px;font-size:1.2rem}
+.hud .x{background:#fff;border:2px solid var(--line);min-width:88px;height:50px;font-size:1rem;font-weight:700;padding:0 12px}
+.back{display:inline-flex;align-items:center;min-height:50px;padding:0 18px;margin-bottom:6px;border:2px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);font-weight:700;text-decoration:none}
 .bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden;margin:10px 0}
 .bar i{display:block;height:100%;background:var(--olive);transition:width .3s}
 .timer i{background:var(--terra);transition:width linear}
@@ -69,7 +70,7 @@ var G=null,timerT=null,keyH=null;
 function stopTimer(){if(timerT){clearTimeout(timerT);timerT=null}}
 function menu(){stopTimer();G=null;keyH=null;
  var weak=topics.filter(function(t){var a=acc(t);return a!==null&&a<75});
- var h='<h1>Food Safety Practice</h1><p class="sub">ServSafe-style questions. Quick rounds, streaks and a full practice exam.</p>';
+ var h='<a class="back" href="/about.html">← Sam\'s Table</a><h1>Food Safety Practice</h1><p class="sub">ServSafe-style questions. Quick rounds, streaks and a full practice exam.</p>';
  h+='<div class="card stat"><div><b>'+S.best+'</b>Best round</div><div><b>'+(S.exams.length?S.exams[S.exams.length-1]+'%':'–')+'</b>Last exam</div><div><b>'+Q.length+'</b>Questions</div></div>';
  h+='<button class="big" data-a="round">⚡ Quick Round<small>10 questions · 20s timer · 3 lives · streak bonus</small></button>';
  h+='<button class="big alt" data-a="exam40">📝 Practice Exam (40)<small>No timer · 75% to pass</small></button>';
@@ -89,7 +90,7 @@ var G_n=40;
 function ask(){
  var q=G.qs[G.i];G.locked=false;G.order=shuf([0,1,2,3]);
  var timed=G.mode!='exam';
- var h='<div class="hud"><button class="x" data-a="menu" aria-label="Quit">✕</button><span>'+(G.i+1)+' / '+G.qs.length+'</span>';
+ var h='<div class="hud"><button class="x" data-a="quit" aria-label="Exit to menu">✕ Exit</button><span>'+(G.i+1)+' / '+G.qs.length+'</span>';
  h+=timed?'<span>'+'❤️'.repeat(G.lives)+'🤍'.repeat(3-G.lives)+'</span><span>'+G.pts+' pts</span>':'<span>'+G.score+' right</span>';
  h+='</div><div class="bar"><i style="width:'+(100*G.i/G.qs.length)+'%"></i></div>';
  if(timed)h+='<div class="bar timer"><i id="tb" style="width:100%"></i></div>';
@@ -145,6 +146,7 @@ app.addEventListener('click',function(e){
  else if(a=='weak')go('round',Q.filter(function(q){var x=acc(q[0]);return x!==null&&x<75}));
  else if(a=='next')next();
  else if(a=='menu')menu();
+ else if(a=='quit'){if(confirm('Leave this round? Your progress in it won\'t count.'))menu()}
  else if(a=='again')start(lastMode,lastSrc);
  else if(a=='redo'){var m=G.last.miss;G_n=m.length;start('exam',m)}
  else if(a=='mute'){S.mute=!S.mute;save();menu()}
