@@ -1,0 +1,157 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="googlebot" content="noindex,nofollow">
+<title>Food Safety Practice · Sam's Table</title>
+<link rel="icon" href="/favicon.svg">
+<style>
+:root{--bg:#FAF7F2;--ink:#2B2B2B;--olive:#5E7033;--terra:#A0502A;--line:#E6DFD3;--card:#fff;--ok:#2f7d3b;--bad:#b3261e}
+*{box-sizing:border-box}html{font-size:16px}
+body{margin:0;background:var(--bg);color:var(--ink);font:1rem/1.4 Lato,system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:640px;margin:0 auto;padding:14px 14px 40px;min-height:100vh}
+h1,h2{font-family:"Playfair Display",Georgia,serif;margin:.2em 0}
+h1{font-size:1.9rem;color:var(--terra)}h2{font-size:1.4rem}
+.sub{color:#555;margin:0 0 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 2px 6px #0000000d}
+button{font:inherit;cursor:pointer;border:0;border-radius:14px}
+.big{display:block;width:100%;min-height:58px;margin:10px 0;padding:14px 16px;font-size:1.1rem;font-weight:700;background:var(--olive);color:#fff;text-align:left}
+.big.alt{background:var(--terra)}.big.ghost{background:#fff;color:var(--ink);border:2px solid var(--line)}
+.big small{display:block;font-weight:400;opacity:.85;font-size:.85rem}
+.topics{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tp{min-height:56px;padding:8px 10px;background:#fff;border:2px solid var(--line);text-align:left;font-size:.95rem}
+.tp b{display:block}.tp span{font-size:.8rem;color:#666}
+.tp.weak{border-color:var(--terra)}
+.hud{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:700;font-size:1.05rem}
+.hud .x{background:#fff;border:2px solid var(--line);width:46px;height:46px;font-size:1.2rem}
+.bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden;margin:10px 0}
+.bar i{display:block;height:100%;background:var(--olive);transition:width .3s}
+.timer i{background:var(--terra);transition:width linear}
+.q{font-size:1.25rem;font-weight:700;margin:6px 0 4px}
+.tag{display:inline-block;font-size:.8rem;background:#efe9dd;border-radius:20px;padding:2px 10px;color:#555}
+.opt{display:flex;gap:10px;align-items:center;width:100%;min-height:62px;margin:9px 0;padding:12px;background:#fff;border:2px solid var(--line);text-align:left;font-size:1.05rem;transition:transform .1s}
+.opt:active{transform:scale(.98)}
+.opt .k{flex:0 0 34px;height:34px;border-radius:50%;background:#efe9dd;display:grid;place-items:center;font-weight:700}
+.opt.ok{border-color:var(--ok);background:#e8f4e9}.opt.ok .k{background:var(--ok);color:#fff}
+.opt.bad{border-color:var(--bad);background:#fbe9e7;animation:shake .3s}.opt.bad .k{background:var(--bad);color:#fff}
+.fb{border-radius:14px;padding:12px;margin:10px 0;font-size:1rem}
+.fb.ok{background:#e8f4e9}.fb.bad{background:#fbe9e7}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@keyframes pop{0%{transform:scale(.5);opacity:0}60%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
+.pop{animation:pop .35s}
+.combo{color:var(--terra)}
+.big-score{font-size:3rem;font-weight:700;text-align:center;font-family:"Playfair Display",Georgia,serif}
+.pass{color:var(--ok)}.fail{color:var(--bad)}
+.row{display:flex;gap:8px}.row>*{flex:1}
+.miss{border-left:4px solid var(--bad);padding:8px 10px;margin:8px 0;background:#fff;border-radius:8px}
+.miss p{margin:4px 0}
+.hide{display:none}
+.stat{display:flex;justify-content:space-around;text-align:center}.stat b{display:block;font-size:1.5rem}
+</style></head><body>
+<div class="wrap" id="app"></div>
+<script src="q.js"></script>
+<script>
+(function(){
+// Chrome "Desktop site" on a phone lays out ~980px: scale up so it still looks phone-sized
+function fit(){var sw=screen.width||0,iw=innerWidth;var r=(matchMedia('(pointer:coarse)').matches&&sw&&iw>sw*1.5)?Math.min(iw/sw,3):1;document.documentElement.style.fontSize=(16*r)+'px';document.querySelector('.wrap').style.maxWidth=(640*r)+'px'}
+addEventListener('resize',fit);
+var KEY='stk-servsafe-v1',S;try{S=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){S={}}
+S.t=S.t||{};S.best=S.best||0;S.exams=S.exams||[];S.mute=!!S.mute;
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+var app=document.getElementById('app');fit();
+var topics=[];Q.forEach(function(q,i){q.id=i;if(topics.indexOf(q[0])<0)topics.push(q[0])});
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.random()*(i+1)|0,t=a[i];a[i]=a[j];a[j]=t}return a}
+function acc(t){var s=S.t[t];return s&&s.n?Math.round(100*s.c/s.n):null}
+// sound: tiny WebAudio beeps, created only on first use
+var ac;function beep(f,d,type){if(S.mute)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator(),g=ac.createGain();o.type=type||'sine';o.frequency.value=f;g.gain.setValueAtTime(.15,ac.currentTime);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+d);o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+d)}catch(e){}}
+function good(){beep(660,.12);setTimeout(function(){beep(880,.15)},90)}
+function bad(){beep(180,.25,'square')}
+var G=null,timerT=null,keyH=null;
+function stopTimer(){if(timerT){clearTimeout(timerT);timerT=null}}
+function menu(){stopTimer();G=null;keyH=null;
+ var weak=topics.filter(function(t){var a=acc(t);return a!==null&&a<75});
+ var h='<h1>Food Safety Practice</h1><p class="sub">ServSafe-style questions. Quick rounds, streaks and a full practice exam.</p>';
+ h+='<div class="card stat"><div><b>'+S.best+'</b>Best round</div><div><b>'+(S.exams.length?S.exams[S.exams.length-1]+'%':'–')+'</b>Last exam</div><div><b>'+Q.length+'</b>Questions</div></div>';
+ h+='<button class="big" data-a="round">⚡ Quick Round<small>10 questions · 20s timer · 3 lives · streak bonus</small></button>';
+ h+='<button class="big alt" data-a="exam40">📝 Practice Exam (40)<small>No timer · 75% to pass</small></button>';
+ h+='<button class="big ghost" data-a="exam90">📚 Full Exam (90)<small>Closest to the real test</small></button>';
+ if(weak.length)h+='<button class="big ghost" data-a="weak">🎯 Weak Spots<small>'+esc(weak.join(', '))+'</small></button>';
+ h+='<h2>Pick a topic</h2><div class="topics">'+topics.map(function(t){var a=acc(t),n=Q.filter(function(q){return q[0]==t}).length;return '<button class="tp'+(a!==null&&a<75?' weak':'')+'" data-t="'+esc(t)+'"><b>'+esc(t)+'</b><span>'+n+' Qs'+(a!==null?' · '+a+'%':'')+'</span></button>'}).join('')+'</div>';
+ h+='<div class="row" style="margin-top:14px"><button class="big ghost" data-a="mute">'+(S.mute?'🔇 Sound off':'🔊 Sound on')+'</button><button class="big ghost" data-a="reset">↺ Reset stats</button></div>';
+ h+='<p class="sub" style="font-size:.85rem">Tip: on a keyboard, press 1–4 to answer and Enter to continue.</p>';
+ app.innerHTML=h;scrollTo(0,0);
+}
+function start(mode,list){
+ var n=mode=='exam'?Math.min(list.length,G_n):10;
+ G={mode:mode,qs:shuf(list).slice(0,n),i:0,score:0,pts:0,streak:0,maxs:0,lives:3,miss:[],locked:false};
+ ask();
+}
+var G_n=40;
+function ask(){
+ var q=G.qs[G.i];G.locked=false;G.order=shuf([0,1,2,3]);
+ var timed=G.mode!='exam';
+ var h='<div class="hud"><button class="x" data-a="menu" aria-label="Quit">✕</button><span>'+(G.i+1)+' / '+G.qs.length+'</span>';
+ h+=timed?'<span>'+'❤️'.repeat(G.lives)+'🤍'.repeat(3-G.lives)+'</span><span>'+G.pts+' pts</span>':'<span>'+G.score+' right</span>';
+ h+='</div><div class="bar"><i style="width:'+(100*G.i/G.qs.length)+'%"></i></div>';
+ if(timed)h+='<div class="bar timer"><i id="tb" style="width:100%"></i></div>';
+ if(G.streak>=2)h+='<div class="combo pop">🔥 '+G.streak+' streak! x'+mult()+'</div>';
+ h+='<div class="card"><span class="tag">'+esc(q[0])+'</span><div class="q">'+esc(q[1])+'</div>';
+ G.order.forEach(function(o,k){h+='<button class="opt" data-o="'+k+'"><span class="k">'+(k+1)+'</span><span>'+esc(q[2][o])+'</span></button>'});
+ h+='<div id="fb"></div></div>';
+ app.innerHTML=h;scrollTo(0,0);
+ if(timed){var tb=document.getElementById('tb');requestAnimationFrame(function(){tb.style.transitionDuration='20s';tb.style.width='0%'});timerT=setTimeout(function(){answer(-1)},20000)}
+ keyH=function(e){var k=+e.key;if(k>=1&&k<=4)answer(k-1)};
+}
+function mult(){return G.streak>=5?3:G.streak>=2?2:1}
+function answer(k){
+ if(!G||G.locked)return;G.locked=true;stopTimer();
+ var tb=document.getElementById('tb');if(tb){tb.style.transitionDuration='0s';tb.style.width=getComputedStyle(tb).width}
+ var q=G.qs[G.i],btns=app.querySelectorAll('.opt'),right=G.order.indexOf(0),ok=k==right;
+ btns[right].classList.add('ok');if(k>=0&&!ok)btns[k].classList.add('bad');
+ var st=S.t[q[0]]=S.t[q[0]]||{n:0,c:0};st.n++;
+ if(ok){st.c++;G.score++;G.streak++;G.maxs=Math.max(G.maxs,G.streak);G.pts+=100*mult();good()}
+ else{G.streak=0;G.miss.push({q:q,pick:k>=0?q[2][G.order[k]]:'(time ran out)'});if(G.mode!='exam')G.lives--;bad()}
+ save();
+ var last=G.i+1>=G.qs.length||G.lives<=0;
+ document.getElementById('fb').innerHTML='<div class="fb '+(ok?'ok':'bad')+' pop"><b>'+(ok?'✅ Correct! +'+(100*(ok?mult():0)):(k<0?'⏰ Time\'s up.':'❌ Not quite.'))+'</b><br>'+esc(q[3])+'</div><button class="big" data-a="next">'+(last?'See results':'Next →')+'</button>';
+ document.querySelector('[data-a=next]').scrollIntoView({block:'nearest',behavior:'smooth'});
+ keyH=function(e){if(e.key=='Enter'||e.key==' '){e.preventDefault();next()}};
+}
+function next(){G.i++;if(G.i>=G.qs.length||G.lives<=0)results();else ask()}
+function results(){
+ keyH=function(e){if(e.key=='Enter')menu()};
+ var done=G.mode=='exam'?G.qs.length:G.i,pct=Math.round(100*G.score/Math.max(1,done)),h;
+ if(G.mode=='exam'){S.exams.push(pct);S.exams=S.exams.slice(-10);var p=pct>=75;
+  h='<h1>Exam results</h1><div class="card"><div class="big-score pop '+(p?'pass':'fail')+'">'+pct+'%</div><p style="text-align:center"><b>'+(p?'PASS 🎉':'Keep studying — 75% to pass')+'</b><br>'+G.score+' of '+G.qs.length+' correct</p></div>';}
+ else{if(G.pts>S.best)S.best=G.pts;
+  h='<h1>'+(G.lives<=0?'Out of lives!':'Round complete!')+'</h1><div class="card"><div class="big-score pop">'+G.pts+'</div><p style="text-align:center">points · '+G.score+' of '+done+' right · best streak '+G.maxs+(G.pts>=S.best&&G.pts>0?'<br><b>🏆 New best!</b>':'')+'</p></div>';}
+ save();
+ h+='<button class="big" data-a="again">Play again</button>';
+ if(G.miss.length)h+='<button class="big alt" data-a="redo">Retry the '+G.miss.length+' I missed</button>';
+ h+='<button class="big ghost" data-a="menu">Menu</button>';
+ if(G.miss.length){h+='<h2>Review missed</h2>'+G.miss.map(function(m){return '<div class="miss"><p><b>'+esc(m.q[1])+'</b></p><p class="fail">Your answer: '+esc(m.pick)+'</p><p class="pass">Correct: '+esc(m.q[2][0])+'</p><p>'+esc(m.q[3])+'</p></div>'}).join('')}
+ else h+='<p style="text-align:center">Perfect — nothing to review! 🌟</p>';
+ app.innerHTML=h;scrollTo(0,0);G.last={mode:G.mode,list:G.src,miss:G.miss.map(function(m){return m.q})};
+}
+var lastSrc=[],lastMode='round';
+function go(mode,list){lastSrc=list;lastMode=mode;start(mode,list)}
+app.addEventListener('click',function(e){
+ var b=e.target.closest('button');if(!b)return;
+ if(b.dataset.o!==undefined)return answer(+b.dataset.o);
+ if(b.dataset.t)return go('round',Q.filter(function(q){return q[0]==b.dataset.t}));
+ var a=b.dataset.a;
+ if(a=='round')go('round',Q);
+ else if(a=='exam40'){G_n=40;go('exam',Q)}
+ else if(a=='exam90'){G_n=90;go('exam',Q)}
+ else if(a=='weak')go('round',Q.filter(function(q){var x=acc(q[0]);return x!==null&&x<75}));
+ else if(a=='next')next();
+ else if(a=='menu')menu();
+ else if(a=='again')start(lastMode,lastSrc);
+ else if(a=='redo'){var m=G.last.miss;G_n=m.length;start('exam',m)}
+ else if(a=='mute'){S.mute=!S.mute;save();menu()}
+ else if(a=='reset'){if(confirm('Reset all stats?')){S={t:{},best:0,exams:[],mute:S.mute};save();menu()}}
+});
+addEventListener('keydown',function(e){if(keyH)keyH(e)});
+menu();
+window.__ss={answer:answer,get G(){return G}};
+})();
+</script></body></html>
