@@ -266,3 +266,9 @@ footer p a{display:inline-block;padding:8px 6px;min-height:24px}
   header.site nav .nav-search{order:-1;margin-right:18px}
   #recipe-card{scroll-margin-top:16px}
 }
+.share-btn{display:inline-flex;align-items:center;gap:.45em;background:#5E7033;color:#fff;font:inherit;font-weight:700;border:0;cursor:pointer;padding:.55em 1.05em;border-radius:999px;font-size:.92rem;margin:.6em 0}
+.share-btn:hover,.share-btn:focus-visible{background:#A0502A}
+.share-btn svg{width:1.1em;height:1.1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.share-more{display:flex;justify-content:center;flex-wrap:wrap;gap:.4em 1em;font-size:.88rem;margin:.2em 0}.share-more a{color:#A0502A;font-weight:700}
+.share-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#333;color:#fff;padding:.6em 1.1em;border-radius:999px;font-size:.9rem;z-index:999}
+@media print{.share-btn,.share-more{display:none}}

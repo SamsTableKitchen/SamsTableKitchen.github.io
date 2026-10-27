@@ -235,6 +235,10 @@ for f in pages:
             {"@type": "WebSite", "@id": SITE + "/#site", "name": "Sam's Table", "url": SITE + "/",
              "potentialAction": {"@type": "SearchAction", "target": SITE + "/search.html?q={q}", "query-input": "required name=q"}},
             dict(PERSON, description="Culinary student in Las Vegas sharing home recipes and honest restaurant reviews."), PUBLISHER]})
+    # recipe share button
+    if f.startswith(("posts/recipes/","posts/meal-prep/")) and '/plans/' not in f and 'class="jump-to"' in s and 'class="share-btn' not in s:
+        s = re.sub(r'(<p class="jump-to"[^>]*><a class="btn" href="#recipe-card">Jump to recipe</a>)', lambda m: m.group(1) + ' <button type="button" class="share-btn noprint" aria-label="Share this recipe"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>Share</button>', s, count=1)
+        if 'js/share.js' not in s: s = s.replace('</body>', '<script src="/js/share.js?v=1" defer></script></body>', 1)
     # a11y
     s = SHARE_RE.sub(SHARE_NEW, s)
     s = re.sub(r'<div class="stars" aria-label="(\d) out of 5 stars">(★+)</div>',
