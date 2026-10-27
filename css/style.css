@@ -272,3 +272,6 @@ footer p a{display:inline-block;padding:8px 6px;min-height:24px}
 .share-more{display:flex;justify-content:center;flex-wrap:wrap;gap:.4em 1em;font-size:.88rem;margin:.2em 0}.share-more a{color:#A0502A;font-weight:700}
 .share-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#333;color:#fff;padding:.6em 1.1em;border-radius:999px;font-size:.9rem;z-index:999}
 @media print{.share-btn,.share-more{display:none}}
+.jump-to .btn,.jump-to .share-btn{vertical-align:middle;margin:.6em .2em;box-sizing:border-box;height:44px;line-height:20px}
+.share-btn{padding:12px 22px;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;font-size:.8rem;line-height:20px}
+.jump-to .btn{display:inline-flex;align-items:center}
