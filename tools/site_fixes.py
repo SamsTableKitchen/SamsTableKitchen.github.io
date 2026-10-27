@@ -244,6 +244,10 @@ for f in pages:
     s = s.replace(COMMENTS_OLD, COMMENTS_NEW)
     # images
     s = apply_srcset(s, f)
+    # visitor counter (GoatCounter, cookie-free); never on play/
+    GC = '<script data-goatcounter="https://samstablekitchen.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
+    if 'data-goatcounter=' not in s and '</body>' in s:
+        s = s.replace('</body>', GC + '\n</body>', 1)
     # guards
     if is_review and s.count('class="about-place"') > 1: errors.append("%s: more than one about-place section" % f)
     if 'alt="Food photo"' in s or 'alt="Scenic travel photo"' in s: errors.append("%s: generic alt text" % f)
