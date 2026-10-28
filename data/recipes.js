@@ -1007,12 +1007,10 @@ const RECIPES=[
    "dill pickle relish",
    "lemon juice",
    "hot sauce",
-   "capers",
    "paprika",
-   "Creole mustard",
-   "Dijon mustard",
+   "Creole seasoning",
    "Worcestershire",
-   "garlic"
+   "garlic powder"
   ],
   "desc": "Tangy, creamy Cajun-style sauce for seafood and fries. A Sam's Table original."
  },
