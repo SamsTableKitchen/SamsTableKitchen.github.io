@@ -70,7 +70,7 @@ var G=null,timerT=null,keyH=null;
 function stopTimer(){if(timerT){clearTimeout(timerT);timerT=null}}
 function menu(){stopTimer();G=null;keyH=null;
  var weak=topics.filter(function(t){var a=acc(t);return a!==null&&a<75});
- var h='<a class="back" href="/about.html">← Sam\'s Table</a><h1>Food Safety Practice</h1><p class="sub">ServSafe-style questions. Quick rounds, streaks and a full practice exam.</p>';
+ var h='<a class="back" href="/about.html">← Sam\'s Table</a><h1>Food Safety Practice</h1><p class="sub">ServSafe-style questions. Quick rounds, streaks and a full practice exam.</p><p class="sub"><a href="../servsafe-flashcards-k07a21/">🃏 Study the glossary flashcards</a></p>';
  h+='<div class="card stat"><div><b>'+S.best+'</b>Best round</div><div><b>'+(S.exams.length?S.exams[S.exams.length-1]+'%':'–')+'</b>Last exam</div><div><b>'+Q.length+'</b>Questions</div></div>';
  h+='<button class="big" data-a="round">⚡ Quick Round<small>10 questions · 20s timer · 3 lives · streak bonus</small></button>';
  h+='<button class="big alt" data-a="exam40">📝 Practice Exam (40)<small>No timer · 75% to pass</small></button>';
