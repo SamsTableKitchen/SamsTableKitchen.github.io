@@ -50,7 +50,7 @@
 "published": "2026-10-14"
 },
 "index.html": {
-"h": "c8003e1084b9d4dd",
+"h": "a386d19bf18e88df",
 "modified": "2026-10-31",
 "published": "2026-10-14"
 },
@@ -280,13 +280,13 @@
 "published": "2026-10-14"
 },
 "posts/recipes/adobo-chicken-tacos.html": {
-"h": "830fb0a73b50df7e",
+"h": "09531ae8d5c309a6",
 "modified": "2026-10-31",
 "published": "2026-10-19"
 },
 "posts/recipes/all-butter-pie-crust.html": {
-"h": "b9e79049d1848e87",
-"modified": "2026-10-27",
+"h": "d42cdaddddca2ea2",
+"modified": "2026-10-31",
 "published": "2026-10-19"
 },
 "posts/recipes/bacon-jam.html": {
@@ -300,18 +300,18 @@
 "published": "2026-10-19"
 },
 "posts/recipes/bourbon-chicken.html": {
-"h": "7c2852ba4e4b4948",
+"h": "064ca05c16a6f5ee",
 "modified": "2026-10-31",
 "published": "2026-10-14"
 },
 "posts/recipes/bread-machine-thin-crust-pizza-dough.html": {
-"h": "7e3510ebc3bfa014",
-"modified": "2026-10-27",
+"h": "945ea93e1840eeed",
+"modified": "2026-10-31",
 "published": "2026-10-19"
 },
 "posts/recipes/bread-machine-zucchini-bread.html": {
-"h": "908a55acec5f2e91",
-"modified": "2026-10-27",
+"h": "31ff7ca406a53132",
+"modified": "2026-10-31",
 "published": "2026-10-14"
 },
 "posts/recipes/buttermilk-fried-chicken-tenders.html": {
@@ -325,7 +325,7 @@
 "published": "2026-10-19"
 },
 "posts/recipes/cheesecake-factory-style-miso-salmon.html": {
-"h": "8f7d11e3c8c97f11",
+"h": "13ede7c558c70d38",
 "modified": "2026-10-31",
 "published": "2026-10-19"
 },
@@ -339,6 +339,11 @@
 "modified": "2026-10-27",
 "published": "2026-10-14"
 },
+"posts/recipes/coconut-red-lentil-dal.html": {
+"h": "e908b1fac3d43ab0",
+"modified": "2026-10-31",
+"published": "2026-10-31"
+},
 "posts/recipes/copycat-style-mac-and-cheese.html": {
 "h": "ef7e6395ac65fb5b",
 "modified": "2026-10-27",
@@ -350,22 +355,22 @@
 "published": "2026-10-19"
 },
 "posts/recipes/dairy-free-southern-fried-chicken-tenders.html": {
-"h": "ffed2e3cdc21883a",
+"h": "87032a7e8420180a",
 "modified": "2026-10-31",
 "published": "2026-10-31"
 },
 "posts/recipes/easy-cheesy-crispy-vegan-black-bean-tacos.html": {
-"h": "2abe09b8277cb259",
+"h": "0136889269fdb93c",
 "modified": "2026-10-31",
 "published": "2026-10-19"
 },
 "posts/recipes/filipino-spaghetti.html": {
-"h": "4f72c8f0e9feb8a6",
+"h": "a810c2fbe314aa08",
 "modified": "2026-10-31",
 "published": "2026-10-19"
 },
 "posts/recipes/fried-yardbird-chicken-shake.html": {
-"h": "db3deb84c0e875ac",
+"h": "1202181bb4b935c6",
 "modified": "2026-10-31",
 "published": "2026-10-19"
 },
@@ -375,7 +380,7 @@
 "published": "2026-10-19"
 },
 "posts/recipes/greek-chicken.html": {
-"h": "477e47c25705b730",
+"h": "f15beb0ebde58dab",
 "modified": "2026-10-31",
 "published": "2026-10-14"
 },
@@ -395,17 +400,17 @@
 "published": "2026-10-19"
 },
 "posts/recipes/huli-huli-chicken.html": {
-"h": "a9729571edd5b046",
+"h": "96e7c4477a8e9f14",
 "modified": "2026-10-31",
 "published": "2026-10-14"
 },
 "posts/recipes/instant-pot-tuscan-chicken.html": {
-"h": "41243fb3e9c18715",
+"h": "4815c05d09d69434",
 "modified": "2026-10-31",
 "published": "2026-10-19"
 },
 "posts/recipes/italian-meatball-soup.html": {
-"h": "3c2aac2b63b9a839",
+"h": "442feba441274e59",
 "modified": "2026-10-31",
 "published": "2026-10-19"
 },
@@ -420,7 +425,7 @@
 "published": "2026-10-14"
 },
 "posts/recipes/one-pan-dumpling-dinner.html": {
-"h": "fdb06deca66d2f6e",
+"h": "39d5ac93ea5adc45",
 "modified": "2026-10-31",
 "published": "2026-10-19"
 },
@@ -440,12 +445,12 @@
 "published": "2026-10-19"
 },
 "posts/recipes/pellet-grill-frozen-chicken-wings.html": {
-"h": "c88ce767445950d1",
+"h": "0edb87b4b16d57f5",
 "modified": "2026-10-31",
 "published": "2026-10-14"
 },
 "posts/recipes/pellet-grill-smoked-chicken-drumsticks.html": {
-"h": "030d52dc48fe5c74",
+"h": "ad1e0298e622571a",
 "modified": "2026-10-31",
 "published": "2026-10-14"
 },
@@ -455,7 +460,7 @@
 "published": "2026-10-19"
 },
 "posts/recipes/quick-dumpling-laksa.html": {
-"h": "7514f3f87377a8e2",
+"h": "84674e74bca26278",
 "modified": "2026-10-31",
 "published": "2026-10-19"
 },
@@ -500,7 +505,7 @@
 "published": "2026-10-14"
 },
 "posts/recipes/vegan-lentil-meatballs-swedish-sauce.html": {
-"h": "f4f7551a44058d07",
+"h": "8ac12b7b86cd9d21",
 "modified": "2026-10-31",
 "published": "2026-10-19"
 },
@@ -509,8 +514,13 @@
 "modified": "2026-10-27",
 "published": "2026-10-18"
 },
+"posts/recipes/vegan-naan.html": {
+"h": "880d742d9552d8c9",
+"modified": "2026-10-31",
+"published": "2026-10-31"
+},
 "posts/recipes/vegan-tofu-egg-salad.html": {
-"h": "182a43577385fbd3",
+"h": "93d1931e067560fe",
 "modified": "2026-10-31",
 "published": "2026-10-18"
 },
@@ -535,7 +545,7 @@
 "published": "2026-10-14"
 },
 "recipes.html": {
-"h": "78179b7564ff022f",
+"h": "e6d5240213af3c8c",
 "modified": "2026-10-31",
 "published": "2026-10-14"
 },
