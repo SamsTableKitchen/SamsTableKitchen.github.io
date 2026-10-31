@@ -275,3 +275,13 @@ footer p a{display:inline-block;padding:8px 6px;min-height:24px}
 .jump-to .btn,.jump-to .share-btn{vertical-align:middle;margin:.6em .2em;box-sizing:border-box;height:44px;line-height:20px}
 .share-btn{padding:12px 22px;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;font-size:.8rem;line-height:20px}
 .jump-to .btn{display:inline-flex;align-items:center}
+
+/* recipe scaler */
+.scaler{display:inline-flex;align-items:center;gap:0;margin:2px 0 12px;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--card)}
+.scaler-l{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--terra);font-weight:700;padding:0 10px 0 14px}
+.scaler button{font:inherit;font-size:.9rem;min-width:46px;min-height:40px;padding:6px 12px;border:0;border-left:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.scaler button[aria-pressed="true"]{background:var(--olive);color:#fff;font-weight:700}
+.scaler button:focus-visible{outline:2px solid var(--terra);outline-offset:-2px}
+.scaler-note{font-size:.8rem;color:#6b6259;font-style:italic;margin:0 0 12px}.scaler-note:empty{display:none}
+.recipe ul li.ns::after{content:" *";color:var(--terra);font-weight:700}
+@media print{.scaler{display:none}}
