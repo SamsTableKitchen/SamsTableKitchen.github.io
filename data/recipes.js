@@ -2,6 +2,33 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
  {
+  "url": "posts/recipes/dairy-free-southern-fried-chicken-tenders.html",
+  "title": "Dairy-Free Southern Fried Chicken Tenders",
+  "category": "Mains",
+  "tags": [
+   "dairy free",
+   "fried chicken",
+   "chicken",
+   "Southern",
+   "crispy"
+  ],
+  "ingredients": [
+   "chicken tenderloins",
+   "almond milk",
+   "apple cider vinegar",
+   "hot sauce",
+   "yellow mustard",
+   "flour",
+   "cornstarch",
+   "baking powder",
+   "paprika",
+   "garlic powder",
+   "onion powder",
+   "cayenne"
+  ],
+  "desc": "Southern-style fried chicken tenders with an almond milk buttermilk brine and a thick, craggy, ultra-crispy crust."
+ },
+ {
   "url": "posts/recipes/buttermilk-fried-chicken-tenders.html",
   "title": "Buttermilk Fried Chicken Tenders",
   "category": "Mains",
