@@ -2,6 +2,35 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
  {
+  "url": "posts/recipes/buttermilk-fried-chicken-tenders.html",
+  "title": "Buttermilk Fried Chicken Tenders",
+  "category": "Mains",
+  "tags": [
+   "chicken",
+   "fried",
+   "buttermilk",
+   "crispy",
+   "kid friendly",
+   "dinner",
+   "comfort food",
+   "Southern"
+  ],
+  "ingredients": [
+   "chicken tenders",
+   "buttermilk",
+   "pickle juice",
+   "hot sauce",
+   "garlic granules",
+   "onion granules",
+   "paprika",
+   "flour",
+   "cornstarch",
+   "baking powder",
+   "eggs"
+  ],
+  "desc": "Extra-crispy chicken tenders soaked in a buttermilk pickle-juice marinade and double-dredged. Adapted from Billy Parisi."
+ },
+ {
   "url": "posts/recipes/italian-meatball-soup.html",
   "title": "Easy 30 Minute Italian Meatball Soup",
   "category": "Mains",

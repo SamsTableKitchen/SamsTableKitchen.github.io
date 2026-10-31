@@ -300,8 +300,8 @@
 "published": "2026-10-19"
 },
 "posts/recipes/bourbon-chicken.html": {
-"h": "2dc07a17448ef8c5",
-"modified": "2026-10-27",
+"h": "6479b1fd78f479be",
+"modified": "2026-10-31",
 "published": "2026-10-14"
 },
 "posts/recipes/bread-machine-thin-crust-pizza-dough.html": {
@@ -314,14 +314,19 @@
 "modified": "2026-10-27",
 "published": "2026-10-14"
 },
+"posts/recipes/buttermilk-fried-chicken-tenders.html": {
+"h": "21882f160c9be9ef",
+"modified": "2026-10-30",
+"published": "2026-10-30"
+},
 "posts/recipes/candied-almonds.html": {
 "h": "0d67e224d768b510",
 "modified": "2026-10-27",
 "published": "2026-10-19"
 },
 "posts/recipes/cheesecake-factory-style-miso-salmon.html": {
-"h": "5dbf307007b3c889",
-"modified": "2026-10-27",
+"h": "92b6273a44c4b4b7",
+"modified": "2026-10-31",
 "published": "2026-10-19"
 },
 "posts/recipes/childhood-honey-mustard.html": {
@@ -345,8 +350,8 @@
 "published": "2026-10-19"
 },
 "posts/recipes/easy-cheesy-crispy-vegan-black-bean-tacos.html": {
-"h": "c1c22ff79108ce30",
-"modified": "2026-10-27",
+"h": "0136889269fdb93c",
+"modified": "2026-10-31",
 "published": "2026-10-19"
 },
 "posts/recipes/filipino-spaghetti.html": {
@@ -365,8 +370,8 @@
 "published": "2026-10-19"
 },
 "posts/recipes/greek-chicken.html": {
-"h": "81b52aeeef3918d2",
-"modified": "2026-10-27",
+"h": "8c117233e0c16505",
+"modified": "2026-10-31",
 "published": "2026-10-14"
 },
 "posts/recipes/hawaiian-macaroni-salad.html": {
@@ -385,18 +390,18 @@
 "published": "2026-10-19"
 },
 "posts/recipes/huli-huli-chicken.html": {
-"h": "9c3d9168a5121cf4",
-"modified": "2026-10-27",
+"h": "96e7c4477a8e9f14",
+"modified": "2026-10-31",
 "published": "2026-10-14"
 },
 "posts/recipes/instant-pot-tuscan-chicken.html": {
-"h": "3137bad18cc95875",
-"modified": "2026-10-27",
+"h": "07da3b329d0dca79",
+"modified": "2026-10-31",
 "published": "2026-10-19"
 },
 "posts/recipes/italian-meatball-soup.html": {
-"h": "acc1980865bbf3f1",
-"modified": "2026-10-27",
+"h": "bc96bd4b510acd6a",
+"modified": "2026-10-31",
 "published": "2026-10-19"
 },
 "posts/recipes/jiffy-cornbread.html": {
@@ -410,8 +415,8 @@
 "published": "2026-10-14"
 },
 "posts/recipes/one-pan-dumpling-dinner.html": {
-"h": "3bf7c0f98145786c",
-"modified": "2026-10-27",
+"h": "e3d1430b6ea9c56e",
+"modified": "2026-10-31",
 "published": "2026-10-19"
 },
 "posts/recipes/oven-roasted-corn-on-the-cob.html": {
@@ -435,8 +440,8 @@
 "published": "2026-10-14"
 },
 "posts/recipes/pellet-grill-smoked-chicken-drumsticks.html": {
-"h": "7751657735b02b64",
-"modified": "2026-10-27",
+"h": "31b021b95b91c53a",
+"modified": "2026-10-31",
 "published": "2026-10-14"
 },
 "posts/recipes/portokalopita-greek-orange-cake.html": {
@@ -490,8 +495,8 @@
 "published": "2026-10-14"
 },
 "posts/recipes/vegan-lentil-meatballs-swedish-sauce.html": {
-"h": "c6c1df1f8dc09990",
-"modified": "2026-10-27",
+"h": "17a4e16626c25619",
+"modified": "2026-10-31",
 "published": "2026-10-19"
 },
 "posts/recipes/vegan-mayonnaise.html": {
@@ -525,8 +530,8 @@
 "published": "2026-10-14"
 },
 "recipes.html": {
-"h": "f6dedae0079370ca",
-"modified": "2026-10-22",
+"h": "bff32ba3f0a0e462",
+"modified": "2026-10-31",
 "published": "2026-10-14"
 },
 "reviews.html": {
