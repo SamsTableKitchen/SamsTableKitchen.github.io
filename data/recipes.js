@@ -1,6 +1,55 @@
 // Recipe list for the Recipes page search. Add one object per new recipe.
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
+{
+ "url": "posts/recipes/coconut-red-lentil-dal.html",
+ "title": "Coconut Red Lentil Dal",
+ "category": "Mains",
+ "tags": [
+  "vegan",
+  "dairy free",
+  "lentils",
+  "dal",
+  "curry",
+  "gluten free"
+ ],
+ "ingredients": [
+  "red lentils",
+  "coconut milk",
+  "chopped tomatoes",
+  "onions",
+  "garlic",
+  "ginger",
+  "cumin seeds",
+  "turmeric",
+  "chili powder",
+  "lime",
+  "cilantro",
+  "rice"
+ ],
+ "desc": "Creamy one-pot red lentils with coconut milk, tomatoes, cumin and lime. Recipe by The Plant Slant."
+},
+{
+ "url": "posts/recipes/vegan-naan.html",
+ "title": "Vegan Naan",
+ "category": "Baking",
+ "tags": [
+  "vegan",
+  "dairy free",
+  "bread",
+  "flatbread",
+  "naan"
+ ],
+ "ingredients": [
+  "flour",
+  "instant yeast",
+  "salt",
+  "oat milk",
+  "maple syrup",
+  "vegan butter"
+ ],
+ "desc": "Soft, chewy no-knead skillet flatbread with no dairy or eggs. Recipe by Andrew Bernard at Make It Dairy Free."
+},
  {
   "url": "posts/recipes/dairy-free-southern-fried-chicken-tenders.html",
   "title": "Dairy-Free Southern Fried Chicken Tenders",
