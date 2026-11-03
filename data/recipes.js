@@ -2,6 +2,73 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
 {
+ "url": "posts/recipes/high-protein-tuna-salad.html",
+ "title": "High-Protein Tuna Salad",
+ "category": "Mains",
+ "tags": [
+  "tuna salad",
+  "high protein",
+  "low calorie",
+  "greek yogurt",
+  "no cook"
+ ],
+ "ingredients": [
+  "tuna",
+  "cucumber",
+  "red onion",
+  "green onion",
+  "dill",
+  "greek yogurt",
+  "light mayo",
+  "mustard",
+  "lime"
+ ],
+ "desc": "Tuna, cucumber and red onion in a light Greek yogurt dressing. Adapted from a Reddit post on r/LowCalorieCooking."
+},
+{
+ "url": "posts/recipes/honey-mustard-chicken.html",
+ "title": "Honey Mustard Chicken",
+ "category": "Mains",
+ "tags": [
+  "chicken",
+  "honey mustard",
+  "chicken thighs",
+  "sheet pan",
+  "easy dinner"
+ ],
+ "ingredients": [
+  "chicken thighs",
+  "honey",
+  "mustard",
+  "garlic",
+  "onion powder",
+  "vinegar",
+  "oil"
+ ],
+ "desc": "Boneless chicken thighs roasted hot in a garlicky honey mustard glaze. Recipe by Bob Morano."
+},
+{
+ "url": "posts/recipes/english-muffins.html",
+ "title": "English Muffins",
+ "category": "Baking",
+ "tags": [
+  "english muffins",
+  "bread",
+  "breakfast",
+  "skillet",
+  "yeast"
+ ],
+ "ingredients": [
+  "bread flour",
+  "caster sugar",
+  "dried yeast",
+  "salt",
+  "whole milk",
+  "semolina"
+ ],
+ "desc": "Soft, chewy skillet English muffins dusted with semolina. Recipe by Bob Dickinson."
+},
+{
  "url": "posts/recipes/smoked-hamburger-helper.html",
  "title": "Smoked Hamburger Helper",
  "category": "Mains",
