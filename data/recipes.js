@@ -2,6 +2,28 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
 {
+ "url": "posts/recipes/thick-chocolate-chip-cookies.html",
+ "title": "Thick Chocolate Chip Cookies",
+ "category": "Desserts",
+ "tags": [
+  "cookies",
+  "chocolate chip",
+  "baking",
+  "dessert"
+ ],
+ "ingredients": [
+  "butter",
+  "light brown sugar",
+  "caster sugar",
+  "eggs",
+  "self-raising flour",
+  "vanilla",
+  "dark chocolate",
+  "sea salt"
+ ],
+ "desc": "Big, thick bakery-style cookies with dark chocolate chunks and flaky salt. Recipe by Bob Dickinson."
+},
+{
  "url": "posts/recipes/high-protein-tuna-salad.html",
  "title": "High-Protein Tuna Salad",
  "category": "Mains",
