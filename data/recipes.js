@@ -190,7 +190,7 @@ const RECIPES=[
    "cayenne"
   ],
   "desc": "Southern-style fried chicken tenders with an almond milk buttermilk brine and a thick, craggy, ultra-crispy crust.",
-  "img": "images/r-dairy-free-chicken-tenders.webp"
+  "img": "images/r-dairy-free-chicken-tenders-v2.webp"
  },
  {
   "url": "posts/recipes/buttermilk-fried-chicken-tenders.html",
