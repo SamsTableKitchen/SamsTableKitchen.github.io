@@ -2,6 +2,31 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
 {
+ "url": "posts/recipes/smoked-hamburger-helper.html",
+ "title": "Smoked Hamburger Helper",
+ "category": "Mains",
+ "tags": [
+  "smoked",
+  "pellet grill",
+  "pasta",
+  "ground beef",
+  "comfort food"
+ ],
+ "ingredients": [
+  "ground beef",
+  "tomato paste",
+  "cream of mushroom soup",
+  "frozen onion",
+  "heavy cream",
+  "Velveeta",
+  "garlic",
+  "Italian seasoning",
+  "smoked paprika",
+  "shell pasta"
+ ],
+ "desc": "Browned beef and Velveeta smoked low and slow, then folded into shell pasta. Idea by KING-D0RK."
+},
+{
  "url": "posts/recipes/coconut-red-lentil-dal.html",
  "title": "Coconut Red Lentil Dal",
  "category": "Mains",
@@ -75,7 +100,8 @@ const RECIPES=[
    "onion powder",
    "cayenne"
   ],
-  "desc": "Southern-style fried chicken tenders with an almond milk buttermilk brine and a thick, craggy, ultra-crispy crust."
+  "desc": "Southern-style fried chicken tenders with an almond milk buttermilk brine and a thick, craggy, ultra-crispy crust.",
+  "img": "images/r-dairy-free-chicken-tenders.webp"
  },
  {
   "url": "posts/recipes/buttermilk-fried-chicken-tenders.html",
