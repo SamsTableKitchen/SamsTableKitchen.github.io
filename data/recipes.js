@@ -2,6 +2,26 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
 {
+ "url": "posts/recipes/homemade-90s-kraft-powder.html",
+ "title": "Homemade 90s Kraft Powder",
+ "category": "Sauces",
+ "tags": [
+  "kraft",
+  "mac and cheese",
+  "cheese powder",
+  "copycat",
+  "pantry"
+ ],
+ "ingredients": [
+  "skim milk powder",
+  "cheddar cheese powder",
+  "parmesan powder",
+  "salt",
+  "citric acid"
+ ],
+ "desc": "Mix-your-own cheese powder that aims for the 90s boxed mac flavor. Recipe by u/MasterMahanJr on r/macandcheese."
+},
+{
  "url": "posts/recipes/thick-chocolate-chip-cookies.html",
  "title": "Thick Chocolate Chip Cookies",
  "category": "Desserts",
