@@ -2,6 +2,30 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
 {
+ "url": "posts/recipes/chicken-or-turkey-brine.html",
+ "title": "Chicken or Turkey Brine",
+ "category": "Sauces",
+ "tags": [
+  "brine",
+  "chicken",
+  "turkey",
+  "smoking",
+  "make ahead"
+ ],
+ "ingredients": [
+  "kosher salt",
+  "sugar",
+  "granulated garlic",
+  "black pepper",
+  "onion powder",
+  "paprika",
+  "thyme",
+  "sage",
+  "celery seed"
+ ],
+ "desc": "My make-ahead brine mix for juicy smoked or roasted chicken and turkey."
+},
+{
  "url": "posts/recipes/homemade-90s-kraft-powder.html",
  "title": "Homemade 90s Kraft Powder",
  "category": "Sauces",
