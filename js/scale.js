@@ -50,6 +50,7 @@ function fmtQ(a,b,unit,f,ctx){ // returns string or null
     var o2=unit; if(key=='g'&&A>=1000){return (Math.round(A/100)/10)+' kg'}
     if(key=='ml'&&A>=1000){return (Math.round(A/100)/10)+' liters'}
     if(/^l|liter/i.test(unit)){var ml=A*1000;return (ml<1000?metric(ml)+' ml':(Math.round(A*10)/10)+(A>1?' liters':' liter'))}
+    if(Bv!=null&&r(A)==r(Bv)){r=function(x){return Math.round(x*2)/2}}
     return r(A)+(Bv!=null?'–'+r(Bv):'')+(unit==='g'||unit==='ml'?' ':' ')+unit;}
   if(key=='oz'||key=='ounce'||key=='fl oz'||key=='fl. oz'){
     if(key!='fl oz'&&key!='fl. oz'&&Bv==null&&A>=16-1e-9&&fits(A/16)&&Math.abs(A/16*4-Math.round(A/16*4))<.02)return nf(A/16)+' lb';
