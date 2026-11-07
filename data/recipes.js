@@ -2,6 +2,25 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
 {
+ "url": "posts/recipes/smoked-whole-bbq-chicken.html",
+ "title": "Smoked Whole BBQ Chicken",
+ "category": "Mains",
+ "tags": [
+  "smoked chicken",
+  "bbq",
+  "pellet grill",
+  "whole chicken",
+  "spatchcock"
+ ],
+ "ingredients": [
+  "whole chicken",
+  "brine",
+  "bbq seasoning",
+  "bbq sauce"
+ ],
+ "desc": "Brined, spatchcocked whole chicken smoked at 325°F and glazed with BBQ sauce."
+},
+{
  "url": "posts/recipes/chicken-or-turkey-brine.html",
  "title": "Chicken or Turkey Brine",
  "category": "Sauces",
