@@ -50,8 +50,8 @@
 "published": "2026-10-14"
 },
 "index.html": {
-"h": "f5edfd3e6c317594",
-"modified": "2026-11-05",
+"h": "630d4c7235f0ad74",
+"modified": "2026-11-06",
 "published": "2026-10-14"
 },
 "meal-prep.html": {
@@ -290,8 +290,8 @@
 "published": "2026-10-19"
 },
 "posts/recipes/bacon-jam.html": {
-"h": "3251ca080293bb83",
-"modified": "2026-11-05",
+"h": "82e0dbb62a26c70f",
+"modified": "2026-11-06",
 "published": "2026-10-19"
 },
 "posts/recipes/bevs-chocolate-pie.html": {
@@ -329,14 +329,19 @@
 "modified": "2026-11-03",
 "published": "2026-10-19"
 },
+"posts/recipes/chicken-or-turkey-brine.html": {
+"h": "2f3362f02c763538",
+"modified": "2026-11-06",
+"published": "2026-11-06"
+},
 "posts/recipes/childhood-honey-mustard.html": {
-"h": "d4f7c49cee85ec2b",
-"modified": "2026-11-05",
+"h": "ca4a4ef2e211d092",
+"modified": "2026-11-06",
 "published": "2026-10-14"
 },
 "posts/recipes/cilantro-lime-crema.html": {
-"h": "4c2a239d2a3a353a",
-"modified": "2026-11-05",
+"h": "45c7330b49b15d78",
+"modified": "2026-11-06",
 "published": "2026-10-14"
 },
 "posts/recipes/coconut-red-lentil-dal.html": {
@@ -405,13 +410,13 @@
 "published": "2026-10-14"
 },
 "posts/recipes/homemade-90s-kraft-powder.html": {
-"h": "3ccf3d5d524112cc",
+"h": "df91812c1f31df91",
 "modified": "2026-11-06",
 "published": "2026-11-05"
 },
 "posts/recipes/homemade-salsa.html": {
-"h": "0b4f8899b8343b82",
-"modified": "2026-11-05",
+"h": "2d9cd32cd19e00eb",
+"modified": "2026-11-06",
 "published": "2026-10-19"
 },
 "posts/recipes/honey-mustard-chicken.html": {
@@ -485,18 +490,18 @@
 "published": "2026-10-19"
 },
 "posts/recipes/raising-canes-copycat-sauce.html": {
-"h": "cac9c36c2b6a0112",
-"modified": "2026-11-05",
+"h": "91750adc1e29e2d1",
+"modified": "2026-11-06",
 "published": "2026-10-14"
 },
 "posts/recipes/remoulade-sauce.html": {
-"h": "939874e7b6910de7",
-"modified": "2026-11-05",
+"h": "3b0c17668ad101c5",
+"modified": "2026-11-06",
 "published": "2026-10-14"
 },
 "posts/recipes/slow-cooker-marinara-sauce.html": {
-"h": "acd937d16a328284",
-"modified": "2026-11-05",
+"h": "563acd3c2bb33989",
+"modified": "2026-11-06",
 "published": "2026-10-14"
 },
 "posts/recipes/smoked-hamburger-helper.html": {
@@ -540,8 +545,8 @@
 "published": "2026-10-19"
 },
 "posts/recipes/vegan-mayonnaise.html": {
-"h": "2741ea7c8358d64a",
-"modified": "2026-11-05",
+"h": "d4f322a9980bdcc3",
+"modified": "2026-11-06",
 "published": "2026-10-18"
 },
 "posts/recipes/vegan-naan.html": {
@@ -575,8 +580,8 @@
 "published": "2026-10-14"
 },
 "recipes.html": {
-"h": "47e786a0e68758a3",
-"modified": "2026-11-05",
+"h": "073b76b6ec6f9196",
+"modified": "2026-11-06",
 "published": "2026-10-14"
 },
 "reviews.html": {
