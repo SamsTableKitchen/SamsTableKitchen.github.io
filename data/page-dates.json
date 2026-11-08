@@ -50,8 +50,8 @@
 "published": "2026-10-14"
 },
 "index.html": {
-"h": "b03b23708441abc5",
-"modified": "2026-11-06",
+"h": "f5c86450f726e148",
+"modified": "2026-11-08",
 "published": "2026-10-14"
 },
 "meal-prep.html": {
@@ -285,8 +285,8 @@
 "published": "2026-10-19"
 },
 "posts/recipes/all-butter-pie-crust.html": {
-"h": "87a80438c09a1ba9",
-"modified": "2026-11-03",
+"h": "ed5474ae23be8297",
+"modified": "2026-11-08",
 "published": "2026-10-19"
 },
 "posts/recipes/bacon-jam.html": {
@@ -305,13 +305,13 @@
 "published": "2026-10-14"
 },
 "posts/recipes/bread-machine-thin-crust-pizza-dough.html": {
-"h": "db21c8e82006e282",
-"modified": "2026-11-03",
+"h": "69dba53e366beb19",
+"modified": "2026-11-08",
 "published": "2026-10-19"
 },
 "posts/recipes/bread-machine-zucchini-bread.html": {
-"h": "a1a164421058f3ed",
-"modified": "2026-11-03",
+"h": "cf0a22ae38f91bcc",
+"modified": "2026-11-08",
 "published": "2026-10-14"
 },
 "posts/recipes/buttermilk-fried-chicken-tenders.html": {
@@ -338,6 +338,11 @@
 "h": "ca4a4ef2e211d092",
 "modified": "2026-11-06",
 "published": "2026-10-14"
+},
+"posts/recipes/chocolate-chip-banana-bread.html": {
+"h": "e5f13829cc0d3782",
+"modified": "2026-11-08",
+"published": "2026-11-08"
 },
 "posts/recipes/cilantro-lime-crema.html": {
 "h": "45c7330b49b15d78",
@@ -370,8 +375,8 @@
 "published": "2026-10-19"
 },
 "posts/recipes/english-muffins.html": {
-"h": "68bb92a1ece1d20b",
-"modified": "2026-11-03",
+"h": "5ad41268700b7fc4",
+"modified": "2026-11-08",
 "published": "2026-11-03"
 },
 "posts/recipes/filipino-spaghetti.html": {
@@ -555,8 +560,8 @@
 "published": "2026-10-18"
 },
 "posts/recipes/vegan-naan.html": {
-"h": "f78ad169f1e20f32",
-"modified": "2026-11-03",
+"h": "959b3c98a960c226",
+"modified": "2026-11-08",
 "published": "2026-10-31"
 },
 "posts/recipes/vegan-tofu-egg-salad.html": {
@@ -585,8 +590,8 @@
 "published": "2026-10-14"
 },
 "recipes.html": {
-"h": "0742df23e173cfe7",
-"modified": "2026-11-06",
+"h": "ff30a527ab4c7c1c",
+"modified": "2026-11-08",
 "published": "2026-10-14"
 },
 "reviews.html": {
