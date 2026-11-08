@@ -2,6 +2,31 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
 {
+ "url": "posts/recipes/chocolate-chip-banana-bread.html",
+ "title": "Chocolate Chip Banana Bread",
+ "img": "images/banana-bread-chocolate-chip-v1.webp",
+ "category": "Baking",
+ "tags": [
+  "banana bread",
+  "chocolate chips",
+  "baking",
+  "no nuts"
+ ],
+ "ingredients": [
+  "bananas",
+  "butter",
+  "sugar",
+  "eggs",
+  "flour",
+  "baking soda",
+  "salt",
+  "vanilla",
+  "raisins",
+  "mini chocolate chips"
+ ],
+ "desc": "Moist banana bread with mini chocolate chips, adapted from Natasha Kravchuk of Natasha’s Kitchen."
+},
+{
  "url": "posts/recipes/smoked-whole-bbq-chicken.html",
  "title": "Smoked Whole BBQ Chicken",
  "category": "Mains",
