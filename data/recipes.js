@@ -2,6 +2,25 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
 {
+ "url": "posts/recipes/bbq-chicken-drumsticks.html",
+ "title": "BBQ Chicken Drumsticks",
+ "img": "images/bbq-chicken-drumsticks-v1.webp",
+ "category": "Mains",
+ "tags": [
+  "bbq",
+  "chicken",
+  "drumsticks",
+  "pellet grill",
+  "brine"
+ ],
+ "ingredients": [
+  "chicken drumsticks",
+  "brine",
+  "bbq sauce"
+ ],
+ "desc": "Juicy BBQ chicken drumsticks, brined then smoked or oven-roasted and sauced."
+},
+{
  "url": "posts/recipes/chocolate-chip-banana-bread.html",
  "title": "Chocolate Chip Banana Bread",
  "img": "images/banana-bread-chocolate-chip-v1.webp",
