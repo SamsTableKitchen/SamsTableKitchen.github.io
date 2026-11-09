@@ -285,3 +285,11 @@ footer p a{display:inline-block;padding:8px 6px;min-height:24px}
 .scaler-note{font-size:.8rem;color:#6b6259;font-style:italic;margin:0 0 12px}.scaler-note:empty{display:none}
 .recipe ul li.ns::after{content:" *";color:var(--terra);font-weight:700}
 @media print{.scaler{display:none}}
+
+.gallery.event{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:32px 0}
+.gallery.event figure{margin:0}
+.gallery.event img,.gallery.event img:first-child{grid-column:auto;aspect-ratio:4/5;object-fit:cover;width:100%;height:auto}
+.gallery.event figcaption{font-size:.85rem;color:#777;margin-top:6px}
+.gallery.match{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0;align-items:stretch}
+.gallery.match img,.gallery.match img:first-child{grid-column:auto;aspect-ratio:5/4;object-fit:cover;width:100%;height:auto}
+.gallery.match figure{margin:0}

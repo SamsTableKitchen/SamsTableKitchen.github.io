@@ -4,7 +4,7 @@ const RECIPES=[
 {
  "url": "posts/recipes/bbq-chicken-drumsticks.html",
  "title": "BBQ Chicken Drumsticks",
- "img": "images/bbq-chicken-drumsticks-v1.webp",
+ "img": "images/bbq-chicken-drumsticks-v2.webp",
  "category": "Mains",
  "tags": [
   "bbq",
@@ -48,7 +48,7 @@ const RECIPES=[
 {
  "url": "posts/recipes/smoked-whole-bbq-chicken.html",
  "title": "Smoked Whole BBQ Chicken",
- "img": "images/smoked-whole-chicken-board-v1.webp",
+ "img": "images/smoked-whole-chicken-board-v2.webp",
  "category": "Mains",
  "tags": [
   "smoked chicken",

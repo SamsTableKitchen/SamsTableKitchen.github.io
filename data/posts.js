@@ -26,7 +26,7 @@ const POSTS=[
 "kicker": "Recipe · Mains",
 "title": "Smoked Whole BBQ Chicken",
 "desc": "Brined, spatchcocked whole chicken smoked at 325°F and glazed with BBQ sauce.",
-"img": "images/smoked-whole-chicken-board-v1.webp",
+"img": "images/smoked-whole-chicken-board-v2.webp",
 "alt": "Smoked Whole BBQ Chicken",
 "o": 2
 },
@@ -756,7 +756,7 @@ const POSTS=[
 "kicker": "Recipe · Mains",
 "title": "BBQ Chicken Drumsticks",
 "desc": "Juicy BBQ chicken drumsticks, brined then smoked or oven-roasted and sauced.",
-"img": "images/bbq-chicken-drumsticks-v1.webp",
+"img": "images/bbq-chicken-drumsticks-v2.webp",
 "alt": "BBQ Chicken Drumsticks"
 }
 ];
