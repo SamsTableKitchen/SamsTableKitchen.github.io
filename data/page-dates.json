@@ -385,7 +385,7 @@
 "published": "2026-10-19"
 },
 "posts/recipes/english-muffins.html": {
-"h": "727b32e98483d1ad",
+"h": "babe9f8f1a505fb8",
 "modified": "2026-11-09",
 "published": "2026-11-03"
 },
@@ -499,8 +499,13 @@
 "modified": "2026-11-03",
 "published": "2026-10-19"
 },
+"posts/recipes/potato-buns-for-smashburgers.html": {
+"h": "58dddf0e287e25a0",
+"modified": "2026-11-09",
+"published": "2026-11-09"
+},
 "posts/recipes/potato-buns.html": {
-"h": "028205e7987cd76d",
+"h": "2163b0ab5874ce72",
 "modified": "2026-11-09",
 "published": "2026-11-09"
 },
@@ -605,7 +610,7 @@
 "published": "2026-10-14"
 },
 "recipes.html": {
-"h": "fb89b1e850d9f02e",
+"h": "5b0eef7fbb1ae60e",
 "modified": "2026-11-09",
 "published": "2026-10-14"
 },
