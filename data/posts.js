@@ -16,8 +16,8 @@ const POSTS=[
 "kicker": "Recipe · Mains",
 "title": "Smoked Whole BBQ Chicken",
 "desc": "Brined, spatchcocked whole chicken smoked at 325°F and glazed with BBQ sauce.",
-"img": "",
-"alt": "",
+"img": "images/smoked-whole-chicken-board-v1.webp",
+"alt": "Smoked Whole BBQ Chicken",
 "o": 1
 },
 {
@@ -388,7 +388,7 @@ const POSTS=[
 "desc": "Very good and unique: a fried chicken waffle taco piled with mac and cheese.",
 "img": "",
 "alt": "",
-"o": 1
+"o": 2
 },
 {
 "url": "posts/hash-house-a-go-go-plaza-las-vegas.html",
@@ -398,7 +398,7 @@ const POSTS=[
 "desc": "Great food and great service: the Fried chicken egg Benedict and a pancake to share.",
 "img": "",
 "alt": "",
-"o": 0
+"o": 1
 },
 {
 "url": "posts/fuku-burger-chinatown-las-vegas.html",
@@ -408,7 +408,7 @@ const POSTS=[
 "desc": "Great burgers and fries: the bacon-loaded BUTA and the TAMAGO with a runny egg.",
 "img": "",
 "alt": "",
-"o": 2
+"o": 3
 },
 {
 "url": "posts/9th-island-grill-henderson.html",
@@ -418,7 +418,7 @@ const POSTS=[
 "desc": "A Hawaiian mixed plate with BBQ chicken and chicken katsu, a tasty pulled pork sandwich, and sauces on the side.",
 "img": "",
 "alt": "",
-"o": 3
+"o": 4
 },
 {
 "url": "posts/mi-ranchito-san-diego.html",
@@ -428,7 +428,7 @@ const POSTS=[
 "desc": "My favorite meal in all of California: fresh lobster and seafood burritos and a super friendly chef-owner.",
 "img": "",
 "alt": "",
-"o": 4
+"o": 5
 },
 {
 "url": "posts/uncle-joes-pizzeria-anchorage.html",
@@ -438,7 +438,7 @@ const POSTS=[
 "desc": "Phenomenal stone-baked pizza, amazing service and a warm, welcoming atmosphere.",
 "img": "",
 "alt": "",
-"o": 5
+"o": 6
 },
 {
 "url": "posts/bai-tong-thai-street-cafe-seattle.html",
@@ -448,7 +448,7 @@ const POSTS=[
 "desc": "Fantastic Thai food and excellent service: crispy garlic chicken, pad thai and panang curry.",
 "img": "",
 "alt": "",
-"o": 6
+"o": 7
 },
 {
 "url": "posts/pza-pizzeria-lake-havasu.html",
@@ -458,7 +458,7 @@ const POSTS=[
 "desc": "Fresh wood-fired, build-your-own pizza, and a cheese-free BLT with bacon jam that became my favorite.",
 "img": "",
 "alt": "",
-"o": 7
+"o": 8
 },
 {
 "url": "posts/thai-alaska-kitchen-sitka.html",
@@ -468,7 +468,7 @@ const POSTS=[
 "desc": "Some of the best Thai food in Alaska: rich panang curry with beautiful butterfly pea flower rice.",
 "img": "",
 "alt": "",
-"o": 8
+"o": 9
 },
 {
 "url": "posts/bonrue-bakery-hurricane.html",
@@ -478,7 +478,7 @@ const POSTS=[
 "desc": "A must-stop on the way to Zion: a gorgeous pastry case, a striped chocolate croissant and coffee.",
 "img": "",
 "alt": "",
-"o": 9
+"o": 10
 },
 {
 "url": "posts/oscars-cafe-springdale.html",
@@ -488,7 +488,7 @@ const POSTS=[
 "desc": "The Murder Burger, a half-pound garlic burger, and fantastic pork enchiladas just 5 minutes from Zion.",
 "img": "",
 "alt": "",
-"o": 10
+"o": 11
 },
 {
 "url": "posts/slaters-5050-las-vegas.html",
@@ -498,7 +498,7 @@ const POSTS=[
 "desc": "Excellent burgers, killer bacon, crispy mac and cheese balls and a $28 all-you-can-eat deal off the Strip.",
 "img": "",
 "alt": "",
-"o": 11
+"o": 12
 },
 {
 "url": "posts/carriage-house-jefferson.html",
@@ -508,7 +508,7 @@ const POSTS=[
 "desc": "A fresh, hot Southern breakfast buffet and honestly my favorite pancakes ever.",
 "img": "",
 "alt": "",
-"o": 12
+"o": 13
 },
 {
 "url": "posts/seoul-casa-anchorage.html",
@@ -518,7 +518,7 @@ const POSTS=[
 "desc": "Korean Mexican fusion done right: crispy bulgogi egg rolls, kalbi beef enchiladas and a quesadilla with mac salad.",
 "img": "",
 "alt": "",
-"o": 13
+"o": 14
 },
 {
 "url": "posts/recipes/oven-roasted-corn-on-the-cob.html",
@@ -728,7 +728,7 @@ const POSTS=[
 "desc": "Cuban bread done right since 1915, and a dessert case that makes you renegotiate your order.",
 "img": "",
 "alt": "",
-"o": 14
+"o": 15
 },
 {
 "url": "posts/el-mezcal-homosassa.html",
@@ -738,6 +738,15 @@ const POSTS=[
 "desc": "Chipotle shrimp, soft shrimp chimichangas with cheese sauce, and great service on a quiet Sunday.",
 "img": "",
 "alt": "",
-"o": 15
+"o": 16
+},
+{
+"url": "posts/las-vegas-bbq-festival.html",
+"type": "Review",
+"kicker": "Event · Las Vegas, NV",
+"title": "Las Vegas BBQ Festival",
+"desc": "Super good BBQ, and I got to vote for People’s Choice.",
+"img": "",
+"alt": ""
 }
 ];
