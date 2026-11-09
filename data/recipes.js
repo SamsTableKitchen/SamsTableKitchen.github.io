@@ -29,6 +29,7 @@ const RECIPES=[
 {
  "url": "posts/recipes/smoked-whole-bbq-chicken.html",
  "title": "Smoked Whole BBQ Chicken",
+ "img": "images/smoked-whole-chicken-board-v1.webp",
  "category": "Mains",
  "tags": [
   "smoked chicken",
