@@ -2,8 +2,8 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
 {
- "url": "posts/recipes/potato-buns-for-smashburgers.html",
- "title": "Potato Buns for Smashburgers",
+ "url": "posts/recipes/potato-buns.html",
+ "title": "Potato Buns",
  "category": "Baking",
  "tags": [
   "potato buns",
@@ -21,7 +21,7 @@ const RECIPES=[
   "eggs",
   "butter"
  ],
- "desc": "Soft potato buns made for smashburgers. Recipe by ALF’s Kitchen on YouTube."
+ "desc": "Soft potato buns made for smash or regular burgers. Recipe by ALF’s Kitchen on YouTube."
 },
 {
  "url": "posts/recipes/bbq-chicken-drumsticks.html",

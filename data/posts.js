@@ -761,11 +761,11 @@ const POSTS=[
 "o": 16
 },
 {
-"url": "posts/recipes/potato-buns-for-smashburgers.html",
+"url": "posts/recipes/potato-buns.html",
 "type": "Recipe",
 "kicker": "Recipe · Baking",
-"title": "Potato Buns for Smashburgers",
-"desc": "Soft potato buns made for smashburgers. Recipe by ALF’s Kitchen on YouTube.",
+"title": "Potato Buns",
+"desc": "Soft potato buns made for smash or regular burgers. Recipe by ALF’s Kitchen on YouTube.",
 "img": "",
 "alt": ""
 }
