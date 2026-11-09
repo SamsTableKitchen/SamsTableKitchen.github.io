@@ -202,7 +202,12 @@ for f in pages:
     title_plain = re.sub(r"\s*\|\s*Sam's Table$", "", html.unescape(re.search(r'<title>([^<]*)</title>', s).group(1)))
     pd = page_dates(f, s)
     if f.startswith("posts/"):
-        h1 = html.unescape(re.sub(r'<[^>]+>', '', re.search(r'<h1[^>]*>(.*?)</h1>', s, re.S).group(1))).strip()
+        hm = re.search(r'<h1[^>]*>(.*?)</h1>', s, re.S)
+    if not hm:
+        if 'http-equiv="refresh"' in s or 'location.replace' in s:
+            continue
+        raise SystemExit(f'no h1 in {path}')
+    h1 = html.unescape(re.sub(r'<[^>]+>', '', hm.group(1))).strip()
         sec = ("Reviews", "reviews.html") if is_review else ("Meal Prep", "meal-prep.html") if f.startswith("posts/meal-prep/") else ("Recipes", "recipes.html")
         s = put_ld(s, "crumbs", {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
