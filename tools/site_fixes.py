@@ -3,6 +3,7 @@
 - non-blocking Google Fonts; self-hosted Leaflet loaded right before the map script
 - links to the home page use "/" (matches the canonical)
 - default og:image (real photo) + og/twitter image alt on pages without a photo
+- Recipe JSON-LD image: real dish photo if the page has one, else a branded typographic card (og:image too; never shown as a page photo)
 - noindex on search/404/offline
 - meta descriptions <= 155 chars, review titles with the city
 - Review / Recipe / BreadcrumbList / WebSite JSON-LD (datePublished = real first-commit date, never shown on the page)
@@ -13,6 +14,7 @@
 Page dates live in data/page-dates.json (published + last content change), filled from git history."""
 import re, glob, os, json, html, hashlib, subprocess, sys
 from PIL import Image
+from recipe_card import ensure_card, W as CARD_W, H as CARD_H
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 SITE = "https://samstablekitchen.com"
@@ -87,6 +89,127 @@ def put_ld(s, key, obj):
     pat = r'<script type="application/ld\+json" data-k="%s">.*?</script>' % key
     if re.search(pat, s, re.S): return re.sub(pat, lambda m: tag, s, count=1, flags=re.S)
     return s.replace('</head>', tag + '</head>', 1)
+
+
+def site_image_path(url):
+    """Map a site image URL or relative src to a repo path under images/, or None."""
+    if not url:
+        return None
+    url = url.strip()
+    prefixes = (SITE + "/images/", "/images/", "../images/", "../../images/", "../../../images/", "images/")
+    for pre in prefixes:
+        if url.startswith(pre):
+            return "images/" + url[len(pre):]
+    if url.startswith(SITE + "/"):
+        rel = url[len(SITE) + 1:]
+        return rel if rel.startswith("images/") else None
+    return None
+
+def image_urls(im):
+    if not im:
+        return []
+    if isinstance(im, str):
+        return [im.strip()] if im.strip() else []
+    if isinstance(im, list):
+        out = []
+        for x in im:
+            out.extend(image_urls(x))
+        return out
+    if isinstance(im, dict):
+        u = (im.get("url") or im.get("contentUrl") or "").strip()
+        return [u] if u else []
+    return []
+
+def image_file_exists(url):
+    loc = site_image_path(url)
+    return bool(loc and os.path.exists(loc))
+
+def absolutize_image(src):
+    """Turn a page src into an absolute site URL, preferring a .jpg sibling when present."""
+    loc = site_image_path(src)
+    if not loc:
+        return src if src.startswith("http") else None
+    if loc.endswith(".webp"):
+        jpg = loc[:-5] + ".jpg"
+        if os.path.exists(jpg):
+            loc = jpg
+    if not os.path.exists(loc):
+        return None
+    return SITE + "/" + loc.replace("\\", "/")
+
+def visible_recipe_photo_url(s):
+    """Hero photo of this recipe only — not keep-exploring cards for other dishes."""
+    main = re.search(r'<main[^>]*>(.*?)</main>', s, re.S)
+    scope = main.group(1) if main else s
+    scope = re.split(r'<section class="keep-exploring', scope, maxsplit=1)[0]
+    for tag in re.findall(r'<img\b[^>]*>', scope):
+        if 'recipe-photo' in tag:
+            m = re.search(r'\bsrc="([^"]+)"', tag)
+            if m:
+                return absolutize_image(m.group(1))
+    return None
+
+def recipe_slug(f):
+    name = os.path.splitext(os.path.basename(f))[0]
+    if f.startswith("posts/meal-prep/"):
+        return "meal-prep-" + name
+    return name
+
+def set_og_image(s, url, w, h, alt):
+    s = set_meta(s, "property", "og:image", url)
+    s = set_meta(s, "property", "og:image:width", str(w))
+    s = set_meta(s, "property", "og:image:height", str(h))
+    s = set_meta(s, "property", "og:image:alt", alt)
+    if 'name="twitter:image"' in s or 'name="twitter:image:src"' in s:
+        s = set_meta(s, "name", "twitter:image", url)
+    s = set_meta(s, "name", "twitter:image:alt", alt)
+    return s
+
+def ensure_recipe_image(f, s):
+    """Guarantee Recipe JSON-LD has a valid image (real photo or branded card). Cards are meta-only."""
+    if not (f.startswith("posts/recipes/") or (f.startswith("posts/meal-prep/") and "/plans/" not in f)):
+        return s
+    if 'http-equiv="refresh"' in s or 'location.replace(' in s:
+        return s
+    for b in ld_blocks(s):
+        try:
+            d = json.loads(b.group(1))
+        except Exception:
+            continue
+        if not (isinstance(d, dict) and d.get("@type") == "Recipe"):
+            continue
+        title = d.get("name") or re.sub(r"\s*\|\s*Sam's Table$", "", html.unescape(re.search(r'<title>([^<]*)</title>', s).group(1)))
+        existing = image_urls(d.get("image"))
+        url = None
+        kind = None
+        if existing and all(image_file_exists(u) for u in existing):
+            url = existing[0]
+            kind = "existing"
+        else:
+            photo = visible_recipe_photo_url(s)
+            if photo:
+                url = photo
+                kind = "photo"
+            else:
+                slug = recipe_slug(f)
+                url = ensure_card(slug, title)
+                kind = "card"
+        if kind != "existing":
+            d["image"] = [url]
+            s = s[:b.start()] + s[b.start():b.end()].replace(b.group(1), json.dumps(d, ensure_ascii=False)) + s[b.end():]
+        # For pages with no real photo, point social meta at the branded card (not the default shrimp photo).
+        # Leave a real dish og:image alone.
+        og = re.search(r'<meta property="og:image" content="([^"]*)"', s)
+        ogv = og.group(1) if og else ""
+        if kind == "card" and ogv != url:
+            s = set_og_image(s, url, CARD_W, CARD_H, "%s — Sam's Table recipe card" % title)
+        elif kind == "photo" and (not ogv or ogv == OG_DEFAULT):
+            loc = site_image_path(url)
+            size = img_size(loc) if loc else None
+            w, h = size if size else (1200, 900)
+            s = set_og_image(s, url, w, h, title)
+        break
+    return s
 
 def img_size(path):
     try:
@@ -240,6 +363,7 @@ for f in pages:
             {"@type": "WebSite", "@id": SITE + "/#site", "name": "Sam's Table", "url": SITE + "/",
              "potentialAction": {"@type": "SearchAction", "target": SITE + "/search.html?q={q}", "query-input": "required name=q"}},
             dict(PERSON, description="Culinary student in Las Vegas sharing home recipes and honest restaurant reviews."), PUBLISHER]})
+    s = ensure_recipe_image(f, s)
     # recipe share button
     if f.startswith(("posts/recipes/","posts/meal-prep/")) and '/plans/' not in f and 'class="jump-to"' in s and 'class="share-btn' not in s:
         s = re.sub(r'(<p class="jump-to"[^>]*><a class="btn" href="#recipe-card">Jump to recipe</a>)', lambda m: m.group(1) + ' <button type="button" class="share-btn noprint" aria-label="Share this recipe"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>Share</button>', s, count=1)
