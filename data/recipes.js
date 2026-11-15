@@ -2,6 +2,34 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
 {
+ "url": "posts/recipes/chicken-alla-cacciatore.html",
+ "title": "Chicken alla Cacciatore",
+ "category": "Mains",
+ "tags": [
+  "chicken",
+  "cacciatore",
+  "italian",
+  "braise",
+  "tomato",
+  "hunter-style"
+ ],
+ "ingredients": [
+  "chicken",
+  "flour",
+  "onion",
+  "green bell pepper",
+  "celery",
+  "carrot",
+  "garlic",
+  "white wine",
+  "tomatoes",
+  "tomato paste",
+  "basil",
+  "bay leaf"
+ ],
+ "desc": "Bone-in chicken legs and thighs braised in a tomato, pepper, and wine sauce. Adapted from a CSN culinary class recipe."
+},
+{
  "url": "posts/recipes/potato-buns.html",
  "title": "Potato Buns",
  "category": "Baking",
