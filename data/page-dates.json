@@ -50,7 +50,7 @@
 "published": "2026-10-14"
 },
 "index.html": {
-"h": "cd074261b3ddc1e4",
+"h": "b6e48f6a266cc6be",
 "modified": "2026-11-14",
 "published": "2026-10-14"
 },
@@ -290,7 +290,7 @@
 "published": "2026-10-19"
 },
 "posts/recipes/all-butter-pie-crust.html": {
-"h": "561b3cd7c098e692",
+"h": "288dc57b66c48986",
 "modified": "2026-11-14",
 "published": "2026-10-19"
 },
@@ -315,12 +315,12 @@
 "published": "2026-10-14"
 },
 "posts/recipes/bread-machine-thin-crust-pizza-dough.html": {
-"h": "5b9a1d7726ab256f",
+"h": "b66bb1c6236d676e",
 "modified": "2026-11-14",
 "published": "2026-10-19"
 },
 "posts/recipes/bread-machine-zucchini-bread.html": {
-"h": "ac7da76690ff3781",
+"h": "cf8a3bcdb8bb23f8",
 "modified": "2026-11-14",
 "published": "2026-10-14"
 },
@@ -340,7 +340,7 @@
 "published": "2026-10-19"
 },
 "posts/recipes/chicken-alla-cacciatore.html": {
-"h": "01bebd42b9191908",
+"h": "bdf58cf1dbd53d5b",
 "modified": "2026-11-14",
 "published": "2026-11-14"
 },
@@ -355,7 +355,7 @@
 "published": "2026-10-14"
 },
 "posts/recipes/chocolate-chip-banana-bread.html": {
-"h": "f2fefcc2947e12cb",
+"h": "ddeda73ccb204be0",
 "modified": "2026-11-14",
 "published": "2026-11-08"
 },
@@ -390,7 +390,7 @@
 "published": "2026-10-19"
 },
 "posts/recipes/english-muffins.html": {
-"h": "76819d82728417f9",
+"h": "c46b3e2d0734a235",
 "modified": "2026-11-14",
 "published": "2026-11-03"
 },
@@ -510,9 +510,14 @@
 "published": "2026-11-09"
 },
 "posts/recipes/potato-buns.html": {
-"h": "2163b0ab5874ce72",
-"modified": "2026-11-09",
+"h": "04453d6e3ad6f9f0",
+"modified": "2026-11-14",
 "published": "2026-11-09"
+},
+"posts/recipes/pumpkin-bread.html": {
+"h": "770e9191cd457b25",
+"modified": "2026-11-14",
+"published": "2026-11-14"
 },
 "posts/recipes/quick-dumpling-laksa.html": {
 "h": "48c0258ea89a6f01",
@@ -585,7 +590,7 @@
 "published": "2026-10-18"
 },
 "posts/recipes/vegan-naan.html": {
-"h": "959b3c98a960c226",
+"h": "14f6b032cdf06b92",
 "modified": "2026-11-14",
 "published": "2026-10-31"
 },
@@ -615,7 +620,7 @@
 "published": "2026-10-14"
 },
 "recipes.html": {
-"h": "31b7006c383366ae",
+"h": "a1fa2847672ca737",
 "modified": "2026-11-14",
 "published": "2026-10-14"
 },
