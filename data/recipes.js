@@ -2,6 +2,36 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
 {
+ "url": "posts/recipes/pumpkin-bread.html",
+ "title": "Pumpkin Bread",
+ "category": "Baking",
+ "tags": [
+  "pumpkin bread",
+  "chocolate chips",
+  "baking",
+  "quick bread",
+  "pumpkin"
+ ],
+ "ingredients": [
+  "pumpkin",
+  "butter",
+  "oil",
+  "sugar",
+  "brown sugar",
+  "eggs",
+  "vanilla",
+  "flour",
+  "baking soda",
+  "baking powder",
+  "cinnamon",
+  "nutmeg",
+  "ginger",
+  "cloves",
+  "chocolate chips"
+ ],
+ "desc": "Moist pumpkin bread with chocolate chips, baked in two loaves. Adapted from Natasha Kravchuk of Natasha’s Kitchen banana bread."
+},
+{
  "url": "posts/recipes/chicken-alla-cacciatore.html",
  "title": "Chicken alla Cacciatore",
  "category": "Mains",

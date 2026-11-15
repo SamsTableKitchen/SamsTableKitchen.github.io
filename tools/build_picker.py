@@ -41,7 +41,8 @@ MEATY = {'Chicken', 'Beef', 'Pork', 'Turkey', 'Seafood'}
 MEAL = {'Mains': ['Main'], 'Sides': ['Side'], 'Sauces': ['Sauce'], 'Desserts': ['Dessert'], 'Breakfast': ['Breakfast'],
         'Snacks': ['Snack'], 'Appetizers': ['Appetizer'], 'Baking': ['Side']}
 OVERRIDE = {'all-butter-pie-crust': ['Dessert'], 'bread-machine-thin-crust-pizza-dough': ['Main'], 'jiffy-cornbread': ['Side'],
-            'bread-machine-zucchini-bread': ['Breakfast', 'Snack'], 'parmesan-zucchini-fritters': ['Side', 'Snack'],
+            'bread-machine-zucchini-bread': ['Breakfast', 'Snack'],
+            'pumpkin-bread': ['Breakfast', 'Snack'], 'parmesan-zucchini-fritters': ['Side', 'Snack'],
             'bacon-jam': ['Sauce', 'Appetizer'], 'candied-almonds': ['Snack'], 'homemade-salsa': ['Sauce', 'Appetizer']}
 
 def page_info(path):
