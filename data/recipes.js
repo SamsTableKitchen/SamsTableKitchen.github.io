@@ -191,6 +191,7 @@ const RECIPES=[
 },
 {
  "url": "posts/recipes/thick-chocolate-chip-cookies.html",
+ "kitchenTest": true,
  "title": "Thick Chocolate Chip Cookies",
  "category": "Desserts",
  "tags": [
@@ -213,6 +214,7 @@ const RECIPES=[
 },
 {
  "url": "posts/recipes/high-protein-tuna-salad.html",
+ "kitchenTest": true,
  "title": "High-Protein Tuna Salad",
  "category": "Mains",
  "tags": [
@@ -237,6 +239,7 @@ const RECIPES=[
 },
 {
  "url": "posts/recipes/honey-mustard-chicken.html",
+ "kitchenTest": true,
  "title": "Honey Mustard Chicken",
  "category": "Mains",
  "tags": [
@@ -259,6 +262,7 @@ const RECIPES=[
 },
 {
  "url": "posts/recipes/english-muffins.html",
+ "kitchenTest": true,
  "title": "English Muffins",
  "category": "Baking",
  "tags": [
@@ -280,6 +284,7 @@ const RECIPES=[
 },
 {
  "url": "posts/recipes/smoked-hamburger-helper.html",
+ "kitchenTest": true,
  "title": "Smoked Hamburger Helper",
  "category": "Mains",
  "tags": [
