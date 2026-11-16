@@ -13,11 +13,11 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
-W, H = 1200, 900
+W, H = 1200, 630
 BG = (250, 247, 242)       # --bg
 INK = (43, 43, 43)         # --ink
-OLIVE = (107, 127, 58)     # --olive
-TERRA = (196, 104, 61)     # --terra
+OLIVE = (90, 108, 48)       # --olive #5A6C30
+TERRA = (163, 82, 48)      # --terra #A35230
 LINE = (230, 223, 211)     # --line
 WHITE = (255, 255, 255)
 
@@ -66,7 +66,7 @@ def _fit_title(draw, title, max_width, max_lines=4, max_size=86, min_size=42):
         if len(lines) <= max_lines:
             heights = [draw.textbbox((0, 0), ln, font=font)[3] for ln in lines]
             total = sum(heights) + int(size * 0.18) * (len(lines) - 1)
-            if total <= 420:
+            if total <= 280:
                 return font, lines, size
     font = _playfair(min_size, 700)
     return font, _wrap(draw, title, font, max_width)[:max_lines], min_size
@@ -77,16 +77,16 @@ def render_card(title: str) -> Image.Image:
     d = ImageDraw.Draw(im)
 
     # Inner card
-    m = 64
+    m = 48
     d.rounded_rectangle((m, m, W - m, H - m), radius=8, fill=WHITE, outline=LINE, width=2)
     # Olive bar along the top of the card (matches on-page recipe card)
     d.rectangle((m, m, W - m, m + 16), fill=OLIVE)
 
     cx = W // 2
-    y = m + 88
+    y = m + 56
 
     # Wordmark: Sam's Table
-    mark = _playfair(72, 700)
+    mark = _playfair(56, 700)
     sam, table = "Sam's ", "Table"
     w_sam = d.textbbox((0, 0), sam, font=mark)[2]
     w_tab = d.textbbox((0, 0), table, font=mark)[2]
@@ -94,16 +94,16 @@ def render_card(title: str) -> Image.Image:
     # Playfair sits a little low; use anchor
     d.text((x0, y), sam, font=mark, fill=INK, anchor="ls")
     d.text((x0 + w_sam, y), table, font=mark, fill=TERRA, anchor="ls")
-    y += 36
+    y += 22
 
     # Divider
     line_w = 220
     d.rectangle((cx - line_w // 2, y, cx + line_w // 2, y + 3), fill=OLIVE)
-    y += 36
+    y += 22
 
-    kicker = _lato(22, bold=True)
+    kicker = _lato(18, bold=True)
     d.text((cx, y), "RECIPE", font=kicker, fill=TERRA, anchor="mt")
-    y += 52
+    y += 36
 
     max_w = W - m * 2 - 120
     font, lines, size = _fit_title(d, title, max_w)
@@ -112,16 +112,16 @@ def render_card(title: str) -> Image.Image:
     bboxes = [d.textbbox((0, 0), ln, font=font) for ln in lines]
     heights = [b[3] - b[1] for b in bboxes]
     block_h = sum(heights) + line_gap * (len(lines) - 1)
-    footer_y = H - m - 70
+    footer_y = H - m - 44
     # place title in the space between kicker and footer
     avail_top = y
-    avail_bot = footer_y - 30
+    avail_bot = footer_y - 16
     ty = avail_top + max(0, (avail_bot - avail_top - block_h) // 2)
     for ln, h in zip(lines, heights):
         d.text((cx, ty), ln, font=font, fill=INK, anchor="mt")
         ty += h + line_gap
 
-    foot = _lato(22, bold=True)
+    foot = _lato(18, bold=True)
     d.text((cx, footer_y), "samstablekitchen.com", font=foot, fill=OLIVE, anchor="mt")
     return im
 
@@ -153,7 +153,14 @@ def ensure_card(slug: str, title: str) -> str:
     os.makedirs(CARD_DIR, exist_ok=True)
     path = card_path(slug)
     man = _load_manifest()
-    if os.path.exists(path) and man.get(slug) == title:
+    size_ok = False
+    if os.path.exists(path):
+        try:
+            from PIL import Image as _Im
+            size_ok = _Im.open(path).size == (W, H)
+        except Exception:
+            size_ok = False
+    if os.path.exists(path) and man.get(slug) == title and size_ok:
         return card_url(slug)
     im = render_card(title)
     im.save(path, "JPEG", quality=90, optimize=True, subsampling=0)

@@ -23,6 +23,7 @@ FONT_OLD = '<link href="%s" rel="stylesheet">' % FONT
 FONT_NEW = ('<link rel="preload" as="style" href="{0}"><link rel="stylesheet" href="{0}" media="print" onload="this.media=\'all\'">'
             '<noscript><link rel="stylesheet" href="{0}"></noscript>').format(FONT)
 OG_DEFAULT = SITE + "/images/og-default.jpg"
+CSS_V = "20261116a"
 OG_ALT_DEFAULT = "Sam's Table: recipes, reviews and travel food finds"
 PERSON = {"@type": "Person", "@id": SITE + "/#sam", "name": "Sam", "url": SITE + "/about.html"}
 PUBLISHER = {"@type": "Organization", "name": "Sam's Table", "url": SITE + "/"}
@@ -321,6 +322,8 @@ for f in pages:
     if 'name="twitter:image:alt"' not in s:
         ia = re.search(r'<meta property="og:image:alt" content="([^"]*)">', s).group(1)
         s = s.replace('</head>', '<meta name="twitter:image:alt" content="%s"></head>' % ia, 1)
+    s = set_meta(s, "name", "twitter:card", "summary_large_image")
+    s = re.sub(r'style\.css\?v=[^"\']+', 'style.css?v=' + CSS_V, s)
     # structured data
     title_plain = re.sub(r"\s*\|\s*Sam's Table$", "", html.unescape(re.search(r'<title>([^<]*)</title>', s).group(1)))
     pd = page_dates(f, s)
