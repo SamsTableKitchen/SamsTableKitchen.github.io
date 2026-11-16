@@ -20,7 +20,8 @@ for f in glob.glob('**/*.html', recursive=True):
     s = s.replace('<link rel="apple-touch-icon" href="/apple-touch-icon.png">', '<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">')
     if 'rel="apple-touch-icon"' not in s: s = s.replace('</head>', '<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"></head>', 1)
     if 'rel="manifest"' not in s: s = s.replace('</head>', '<link rel="manifest" href="/site.webmanifest"></head>', 1)
-    if 'name="theme-color"' not in s: s = s.replace('</head>', '<meta name="theme-color" content="#6B7F3A"></head>', 1)
+    s = s.replace('name="theme-color" content="#6B7F3A"', 'name="theme-color" content="#5A6C30"')
+    if 'name="theme-color"' not in s: s = s.replace('</head>', '<meta name="theme-color" content="#5A6C30"></head>', 1)
     s = s.replace('<link rel="manifest" href="/site.webmanifest">', '<link rel="manifest" href="/site.webmanifest">' + META, 1)
     if APP not in s:
         s = s.replace('<script src="/js/search.js"', APP + '<script src="/js/search.js"', 1) if '<script src="/js/search.js"' in s else s.replace('</body>', APP + '</body>', 1)

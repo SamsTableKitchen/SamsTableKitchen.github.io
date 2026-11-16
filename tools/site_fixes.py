@@ -23,7 +23,7 @@ FONT_OLD = '<link href="%s" rel="stylesheet">' % FONT
 FONT_NEW = ('<link rel="preload" as="style" href="{0}"><link rel="stylesheet" href="{0}" media="print" onload="this.media=\'all\'">'
             '<noscript><link rel="stylesheet" href="{0}"></noscript>').format(FONT)
 OG_DEFAULT = SITE + "/images/og-default.jpg"
-CSS_V = "20261116a"
+CSS_V = "20261116b"
 OG_ALT_DEFAULT = "Sam's Table: recipes, reviews and travel food finds"
 PERSON = {"@type": "Person", "@id": SITE + "/#sam", "name": "Sam", "url": SITE + "/about.html"}
 PUBLISHER = {"@type": "Organization", "name": "Sam's Table", "url": SITE + "/"}
@@ -258,6 +258,27 @@ SHARE_NEW = ('<button type="button" class="linklike" id="shareBtn">Copy / share 
              'if(navigator.share){navigator.share({title:document.title,url:location.href}).catch(function(){})}'
              'else navigator.clipboard.writeText(location.href).then(function(){b.textContent="Link copied"})});</script>')
 
+
+def ensure_recipe_tools(f, s):
+    """Jump to ingredients, Print, and Cook mode on recipe pages (not redirects or plans)."""
+    if not (f.startswith(("posts/recipes/", "posts/meal-prep/")) and "/plans/" not in f):
+        return s
+    if "class=\"jump-to\"" not in s or 'id="recipe-card"' not in s:
+        return s
+    if 'id="ingredients"' not in s:
+        s = s.replace("<h3>Ingredients</h3>", '<h3 id="ingredients">Ingredients</h3>', 1)
+    s = s.replace('href="#recipe-card">Jump to recipe', 'href="#ingredients">Jump to recipe')
+    if "cook-toggle" not in s:
+        extra = (' <button type="button" class="btn-lite noprint" onclick="window.print()">Print</button>'
+                 ' <button type="button" class="btn-lite noprint cook-toggle" hidden aria-pressed="false">Cook mode</button>')
+        s = re.sub(r'(<a class="btn" href="#ingredients">Jump to recipe</a>)', r"\1" + extra, s, count=1)
+    src = '<script src="/js/recipe-tools.js?v=' + CSS_V + '" defer></script>'
+    if "js/recipe-tools.js" in s:
+        s = re.sub(r'<script src="/js/recipe-tools\.js\?v=[^"]*" defer></script>', src, s)
+    else:
+        s = s.replace("</body>", src + "</body>", 1)
+    return s
+
 pages = sorted(glob.glob("**/*.html", recursive=True))
 changed = 0
 for f in pages:
@@ -367,10 +388,13 @@ for f in pages:
              "potentialAction": {"@type": "SearchAction", "target": SITE + "/search.html?q={q}", "query-input": "required name=q"}},
             dict(PERSON, description="Culinary student in Las Vegas sharing home recipes and honest restaurant reviews."), PUBLISHER]})
     s = ensure_recipe_image(f, s)
+    # theme color (current olive)
+    s = s.replace('name="theme-color" content="#6B7F3A"', 'name="theme-color" content="#5A6C30"')
     # recipe share button
     if f.startswith(("posts/recipes/","posts/meal-prep/")) and '/plans/' not in f and 'class="jump-to"' in s and 'class="share-btn' not in s:
-        s = re.sub(r'(<p class="jump-to"[^>]*><a class="btn" href="#recipe-card">Jump to recipe</a>)', lambda m: m.group(1) + ' <button type="button" class="share-btn noprint" aria-label="Share this recipe"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>Share</button>', s, count=1)
+        s = re.sub(r'(<p class="jump-to"[^>]*><a class="btn" href="#[^"]+">Jump to recipe</a>)', lambda m: m.group(1) + ' <button type="button" class="share-btn noprint" aria-label="Share this recipe"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>Share</button>', s, count=1)
         if 'js/share.js' not in s: s = s.replace('</body>', '<script src="/js/share.js?v=1" defer></script></body>', 1)
+    s = ensure_recipe_tools(f, s)
     # a11y
     s = SHARE_RE.sub(SHARE_NEW, s)
     s = re.sub(r'<div class="stars" aria-label="(\d) out of 5 stars">(★+)</div>',
