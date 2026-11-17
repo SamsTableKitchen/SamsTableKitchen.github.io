@@ -282,7 +282,7 @@ def ensure_recipe_tools(f, s):
 pages = sorted(glob.glob("**/*.html", recursive=True))
 changed = 0
 for f in pages:
-    if f.startswith(("play/", "vendor/", "tools/")): continue
+    if f.startswith(("play/", "vendor/", "tools/", "prickly-pit-smoke-co/")): continue
     s = o = open(f, encoding="utf-8").read()
     if '</head>' not in s: continue
     pre = "../" * f.count("/")

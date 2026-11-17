@@ -24,8 +24,8 @@ def text(s):
 
 pages = []
 for f in sorted(glob.glob("**/*.html", recursive=True)):
-    if f in SKIP or f.startswith("play/"):   # play/: unlisted previews, never indexed
-        continue
+    if f in SKIP or f.startswith("play/") or f.startswith("prickly-pit-smoke-co/"):
+        continue  # play/ and prickly-pit-smoke-co/: unlisted, never indexed
     s = open(f, encoding="utf-8").read()
     # Redirect stubs (e.g. renamed recipes) stay on the server but are not indexed.
     if 'http-equiv="refresh"' in s or 'location.replace(' in s:
