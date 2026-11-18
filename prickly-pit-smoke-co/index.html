@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Prickly Pit Smoke Co. | Coming Soon</title>
-<meta name="description" content="A smoky, savory, garlic-forward Nevada BBQ rub from Prickly Pit Smoke Co. Not loaded with sugar, made in small batches. Coming soon.">
+<title>Prickly Pit Smoke Co. | Nevada BBQ Rub</title>
+<meta name="description" content="A smoky, savory, garlic-forward Nevada BBQ rub from Prickly Pit Smoke Co. Not loaded with sugar, made in small batches.">
 <meta name="robots" content="noindex,nofollow">
 <link rel="canonical" href="https://samstablekitchen.com/prickly-pit-smoke-co/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Prickly Pit Smoke Co.">
-<meta property="og:title" content="Prickly Pit Smoke Co. | Coming Soon">
-<meta property="og:description" content="A smoky, savory, garlic-forward Nevada BBQ rub from Prickly Pit Smoke Co. Not loaded with sugar, made in small batches. Coming soon.">
+<meta property="og:title" content="Prickly Pit Smoke Co. | Nevada BBQ Rub">
+<meta property="og:description" content="A smoky, savory, garlic-forward Nevada BBQ rub from Prickly Pit Smoke Co. Not loaded with sugar, made in small batches.">
 <meta property="og:url" content="https://samstablekitchen.com/prickly-pit-smoke-co/">
 <meta property="og:image" content="https://samstablekitchen.com/images/prickly-pit/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -24,107 +24,274 @@
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap"></noscript>
 <style>
 :root{
   --bg:#FBF1DE;
   --ink:#242428;
   --muted:#5A5348;
   --cactus:#5E8A3A;
+  --cactus-dark:#4A6E2C;
   --orange:#C65A1A;
   --card:#FFF8EB;
   --line:#E8D9B8;
+  --oos:#7A7368;
+  --oos-bg:#E8E0D0;
+  --header-h:64px;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 html,body{margin:0}
 body{
   background:var(--bg);
   color:var(--ink);
-  font:18px/1.65 Nunito,system-ui,sans-serif;
+  font:17px/1.6 Nunito,system-ui,sans-serif;
 }
 img{max-width:100%;height:auto;display:block}
 a{color:var(--cactus)}
 a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
-.skip-link{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:8px 16px;z-index:10}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:8px 16px;z-index:40}
 .skip-link:focus{left:8px;top:8px}
-.wrap{width:min(1040px,calc(100% - 40px));margin:0 auto}
-header.brand-top{padding:18px 0}
-header.brand-top a{
-  color:var(--muted);
+.wrap{width:min(1100px,calc(100% - 40px));margin:0 auto}
+section{scroll-margin-top:calc(var(--header-h) + 12px)}
+
+/* Header */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:30;
+  background:rgba(251,241,222,.96);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.site-header .bar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  min-height:var(--header-h);
+  padding:8px 0;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:var(--ink);
   text-decoration:none;
-  font-size:.82rem;
+  min-width:0;
+}
+.brand img{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  flex-shrink:0;
+  background:var(--card);
+}
+.brand-name{
+  font-weight:900;
+  font-size:.95rem;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  line-height:1.15;
+}
+.nav{
+  display:flex;
+  gap:4px 18px;
+  flex-shrink:0;
+}
+.nav a{
+  color:var(--ink);
+  text-decoration:none;
   font-weight:800;
-  letter-spacing:.08em;
+  font-size:.82rem;
+  letter-spacing:.12em;
   text-transform:uppercase;
 }
-header.brand-top a:hover{color:var(--cactus)}
-.hero{text-align:center;padding:12px 0 28px}
+.nav a:hover{color:var(--cactus)}
+
+/* Hero */
+.hero{
+  text-align:center;
+  padding:36px 0 48px;
+  border-bottom:1px solid var(--line);
+}
 .hero-logo{
-  width:min(380px,86vw);
-  margin:0 auto 8px;
+  width:min(280px,70vw);
+  margin:0 auto 6px;
 }
 .kicker{
   display:inline-block;
   color:var(--orange);
   font-weight:800;
-  font-size:.8rem;
+  font-size:.78rem;
   letter-spacing:.22em;
   text-transform:uppercase;
-  margin:8px 0 10px;
+  margin:4px 0 10px;
 }
-h1,h2{font-weight:900;letter-spacing:.04em;line-height:1.15;margin:0 0 .45em}
-h1{font-size:clamp(2rem,6vw,3.1rem);text-transform:uppercase}
-h2{font-size:clamp(1.25rem,3vw,1.55rem);text-transform:uppercase;letter-spacing:.12em;text-align:center}
-.intro{
-  max-width:38rem;
-  margin:0 auto;
-  font-size:1.12rem;
+.hero h1{
+  font-weight:900;
+  letter-spacing:.04em;
+  line-height:1.1;
+  margin:0 0 .4em;
+  font-size:clamp(1.85rem,6vw,3rem);
+  text-transform:uppercase;
+}
+.tagline{
+  max-width:28rem;
+  margin:0 auto 1.4em;
+  font-size:1.15rem;
   color:var(--ink);
 }
-.intro p{margin:0 0 1em}
-.jar-section{padding:48px 0 24px}
-.jar-frame{
-  width:min(420px,100%);
-  margin:28px auto 0;
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:18px 18px 8px;
-  box-shadow:0 10px 30px rgba(36,36,40,.06);
+.btn{
+  display:inline-block;
+  background:var(--cactus);
+  color:#fff;
+  text-decoration:none;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-size:.85rem;
+  padding:14px 28px;
+  border-radius:8px;
+  border:0;
+  box-shadow:0 4px 0 var(--cactus-dark);
 }
-.jar-frame img{margin:0 auto;border-radius:10px}
-.jar-frame figcaption{
-  font-size:.9rem;
-  color:var(--muted);
+.btn:hover{background:var(--cactus-dark)}
+
+/* Shop */
+.shop{padding:56px 0 24px}
+.section-h{
+  font-weight:900;
+  font-size:clamp(1.25rem,3vw,1.55rem);
+  letter-spacing:.14em;
+  text-transform:uppercase;
   text-align:center;
-  padding:12px 8px 8px;
+  margin:0 0 8px;
 }
-.merch{padding:36px 0 64px}
-.merch-grid{
+.section-sub{
+  text-align:center;
+  color:var(--muted);
+  margin:0 0 32px;
+  font-size:1rem;
+}
+.product-grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
-  margin-top:28px;
+  grid-template-columns:1fr;
+  gap:22px;
 }
-.merch-card{
+.card{
   background:var(--card);
   border:1px solid var(--line);
   border-radius:16px;
   overflow:hidden;
-  padding:10px 10px 16px;
+  display:flex;
+  flex-direction:column;
+  box-shadow:0 8px 24px rgba(36,36,40,.05);
 }
-.merch-card img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;background:#f3e6c8}
-.merch-card p{
-  margin:12px 4px 0;
-  text-align:center;
+.media{
+  position:relative;
+  aspect-ratio:1;
+  background:#E8D9B8;
+  overflow:hidden;
+}
+.media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+.media img.jar{object-position:center 38%}
+.badge-oos{
+  position:absolute;
+  top:12px;
+  left:12px;
+  background:var(--ink);
+  color:var(--bg);
   font-weight:800;
-  letter-spacing:.06em;
+  font-size:.7rem;
+  letter-spacing:.1em;
   text-transform:uppercase;
-  font-size:.78rem;
-  color:var(--ink);
+  padding:6px 10px;
+  border-radius:6px;
 }
+.card-body{
+  padding:18px 18px 20px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  gap:6px;
+}
+.card-body h2{
+  font-weight:900;
+  font-size:1.15rem;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  margin:0;
+  line-height:1.2;
+}
+.card-sub{
+  margin:0;
+  font-weight:800;
+  color:var(--cactus-dark);
+  font-size:.95rem;
+}
+.card-meta{
+  margin:0;
+  color:var(--muted);
+  font-size:.88rem;
+  font-weight:700;
+}
+.card-desc{
+  margin:4px 0 12px;
+  color:var(--ink);
+  font-size:.95rem;
+  flex:1;
+}
+.btn-oos{
+  display:block;
+  width:100%;
+  margin-top:auto;
+  background:var(--oos-bg);
+  color:var(--oos);
+  font-weight:800;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-size:.8rem;
+  padding:12px 16px;
+  border-radius:8px;
+  border:1px solid var(--line);
+  cursor:not-allowed;
+  font-family:inherit;
+}
+
+/* About + contact */
+.about{
+  padding:56px 0 24px;
+}
+.about-inner, .contact-inner{
+  max-width:38rem;
+  margin:0 auto;
+  text-align:center;
+}
+.about p{
+  margin:0 0 1em;
+  font-size:1.08rem;
+}
+.contact{padding:24px 0 64px}
+.contact p{
+  margin:0;
+  font-size:1.05rem;
+}
+.contact a{
+  font-weight:800;
+  text-decoration:none;
+  color:var(--orange);
+}
+.contact a:hover{text-decoration:underline}
+
 footer.brand-foot{
   border-top:1px solid var(--line);
   padding:28px 0 40px;
@@ -132,72 +299,110 @@ footer.brand-foot{
   color:var(--muted);
   font-size:.92rem;
 }
-footer.brand-foot .est{
-  display:block;
-  font-weight:800;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  font-size:.75rem;
-  color:var(--ink);
-  margin-bottom:8px;
+footer.brand-foot p{margin:0}
+
+@media(min-width:640px){
+  .product-grid{grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+  .hero{padding:48px 0 64px}
+  .hero-logo{width:min(320px,50vw)}
 }
-footer.brand-foot a{font-weight:800;text-decoration:none}
-footer.brand-foot a:hover{text-decoration:underline}
-@media(max-width:800px){
-  .merch-grid{grid-template-columns:repeat(2,1fr);gap:14px}
-  .wrap{width:min(1040px,calc(100% - 28px))}
-  .intro{font-size:1.05rem}
-}
-@media(max-width:420px){
-  .jar-frame{padding:10px 10px 4px}
+@media(max-width:639px){
+  :root{--header-h:92px}
+  .wrap{width:min(1100px,calc(100% - 28px))}
+  .site-header .bar{flex-wrap:wrap;justify-content:center;gap:4px 16px;padding:8px 0 6px}
+  .brand{width:100%;justify-content:center}
+  .brand-name{font-size:.85rem;letter-spacing:.06em;white-space:nowrap}
+  .nav{width:100%;justify-content:center;padding-bottom:6px;gap:8px 22px}
+  .nav a{font-size:.78rem;letter-spacing:.12em}
+  .hero{padding:24px 0 40px}
+  .tagline{font-size:1.05rem}
 }
 </style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<header class="brand-top"><div class="wrap"><a href="/">Sam's Table</a></div></header>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="#top">
+      <img src="/images/prickly-pit/logo.webp" width="88" height="88" alt="">
+      <span class="brand-name">Prickly Pit Smoke Co.</span>
+    </a>
+    <nav class="nav" aria-label="Page">
+      <a href="#shop">Shop</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 <main id="main">
-  <section class="hero wrap">
+  <section class="hero wrap" id="top">
     <img class="hero-logo" src="/images/prickly-pit/logo.webp" width="900" height="900" alt="Prickly Pit Smoke Co. logo: a cowboy cactus with crossed arms, sunglasses, and a hat, inside a circle badge that reads Prickly Pit Smoke Co., Est. 2026 Nevada" fetchpriority="high">
     <span class="kicker">Nevada · Est. 2026</span>
-    <h1>Coming soon</h1>
-    <div class="intro">
-      <p>I'm working on a smoky, savory, garlic-forward Nevada BBQ rub. It's not loaded with sugar, and I'm making it in small batches. The first jars — and a little merch — will be here soon.</p>
+    <h1>Smoky. Savory. Nevada BBQ.</h1>
+    <p class="tagline">A garlic-forward rub that's not loaded with sugar, made in small batches.</p>
+    <a class="btn" href="#shop">Shop now</a>
+  </section>
+
+  <section class="shop wrap" id="shop" aria-labelledby="shop-h">
+    <h2 class="section-h" id="shop-h">Shop</h2>
+    <p class="section-sub">The first run: one rub, a tee, and a hat.</p>
+    <div class="product-grid">
+      <article class="card">
+        <div class="media">
+          <img class="jar" src="/images/prickly-pit/jar.webp" width="864" height="1152" alt="Shaker jar of Prickly Pit Smoke Co. Smoky Roasted Garlic Rub, with the cowboy cactus logo on a cream label">
+          <span class="badge-oos">Out of stock</span>
+        </div>
+        <div class="card-body">
+          <h2>Prickly Pit Original</h2>
+          <p class="card-sub">Smoky Roasted Garlic Rub</p>
+          <p class="card-meta">Net Wt 5.5 oz (156 g)</p>
+          <p class="card-desc">Salty, savory, and smoky. Garlic and onion based, with low sugar.</p>
+          <button type="button" class="btn-oos" disabled>Out of stock</button>
+        </div>
+      </article>
+      <article class="card">
+        <div class="media">
+          <img src="/images/prickly-pit/tee.webp" width="800" height="800" alt="Charcoal T-shirt with the Prickly Pit Smoke Co. cowboy cactus logo" loading="lazy" decoding="async">
+          <span class="badge-oos">Out of stock</span>
+        </div>
+        <div class="card-body">
+          <h2>Logo Tee</h2>
+          <p class="card-desc">A charcoal T-shirt with the Prickly Pit Smoke Co. cowboy cactus logo.</p>
+          <button type="button" class="btn-oos" disabled>Out of stock</button>
+        </div>
+      </article>
+      <article class="card">
+        <div class="media">
+          <img src="/images/prickly-pit/hat.webp" width="800" height="800" alt="Olive and cream trucker hat with an embroidered Prickly Pit Smoke Co. patch" loading="lazy" decoding="async">
+          <span class="badge-oos">Out of stock</span>
+        </div>
+        <div class="card-body">
+          <h2>Logo Hat</h2>
+          <p class="card-desc">An olive and cream trucker hat with an embroidered Prickly Pit Smoke Co. patch.</p>
+          <button type="button" class="btn-oos" disabled>Out of stock</button>
+        </div>
+      </article>
     </div>
   </section>
-  <section class="jar-section wrap" aria-labelledby="rub-h">
-    <h2 id="rub-h">The first rub</h2>
-    <figure class="jar-frame">
-      <img src="/images/prickly-pit/jar.webp" width="864" height="1152" alt="Shaker jar mockup of Prickly Pit Smoke Co. Smoky Garlic BBQ Rub, with the cowboy cactus logo on a cream label">
-      <figcaption>A first look at the Smoky Garlic BBQ Rub shaker. The label may change as I dial in the batch.</figcaption>
-    </figure>
+
+  <section class="about" id="about" aria-labelledby="about-h">
+    <div class="wrap about-inner">
+      <h2 class="section-h" id="about-h">About</h2>
+      <p>I'm working on a smoky, savory, garlic-forward Nevada BBQ rub. It's not loaded with sugar, and I'm making it in small batches.</p>
+      <p>I'm starting with one flavor, Prickly Pit Original, plus a logo tee and hat. When the first run is ready, you'll be able to order them right here.</p>
+    </div>
   </section>
-  <section class="merch wrap" aria-labelledby="merch-h">
-    <h2 id="merch-h">A little merch, too</h2>
-    <div class="merch-grid">
-      <figure class="merch-card">
-        <img src="/images/prickly-pit/tee.webp" width="800" height="800" alt="Charcoal T-shirt with the Prickly Pit Smoke Co. cowboy cactus logo" loading="lazy" decoding="async">
-        <p>Tee</p>
-      </figure>
-      <figure class="merch-card">
-        <img src="/images/prickly-pit/hoodie.webp" width="800" height="800" alt="Burnt orange hoodie with the Prickly Pit Smoke Co. cowboy cactus logo" loading="lazy" decoding="async">
-        <p>Hoodie</p>
-      </figure>
-      <figure class="merch-card">
-        <img src="/images/prickly-pit/hat.webp" width="800" height="800" alt="Olive and cream trucker hat with an embroidered Prickly Pit Smoke Co. patch" loading="lazy" decoding="async">
-        <p>Hat</p>
-      </figure>
-      <figure class="merch-card">
-        <img src="/images/prickly-pit/plush.webp" width="800" height="800" alt="Plush cowboy cactus in a terracotta pot labeled Prickly Pit, wearing a hat and sunglasses with arms crossed" loading="lazy" decoding="async">
-        <p>Plush cactus</p>
-      </figure>
+
+  <section class="contact" id="contact" aria-labelledby="contact-h">
+    <div class="wrap contact-inner">
+      <h2 class="section-h" id="contact-h">Contact</h2>
+      <p>Questions? Reach me at <a href="mailto:sam@samstablekitchen.com">sam@samstablekitchen.com</a>.</p>
     </div>
   </section>
 </main>
 <footer class="brand-foot">
   <div class="wrap">
-    <span class="est">Est. 2026 · Nevada</span>
-    <p>A project from <a href="/">Sam's Table</a></p>
+    <p>© 2026 Prickly Pit Smoke Co.</p>
   </div>
 </footer>
 <script data-goatcounter="https://samstable.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
