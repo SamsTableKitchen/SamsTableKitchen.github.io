@@ -1,4 +1,4 @@
-/* Sam's Table recipe scaler: ½× 1× 2× */
+/* Sam's Table recipe scaler: ½× 1× 1.5× 2× */
 (function(){
 var UF={'½':.5,'⅓':1/3,'⅔':2/3,'¼':.25,'¾':.75,'⅛':.125,'⅜':.375,'⅝':.625,'⅞':.875};
 var NUM='(?:\\d+\\s*[½⅓⅔¼¾⅛⅜⅝⅞]|\\d+\\s+\\d+/\\d+|\\d+/\\d+|\\d+(?:\\.\\d+)?|[½⅓⅔¼¾⅛⅜⅝⅞])';
@@ -135,7 +135,8 @@ function scaleLine(text,f){
   return {t:pre+lead+r3+c2.note,ok:true};}
 function scaleYield(t,f){ if(f===1)return t;
   return t.replace(new RegExp(RANGE+'(?!\\s*-?\\s*inch)(?![\\d/])','g'),function(all,a,b){var A=pn(a)*f,Bv=b?pn(b)*f:null;
-    function r(x){return x>=3?Math.round(x):nf(x)}return r(A)+(Bv!=null?'–'+r(Bv):'')});}
+    function r(x){if(Math.abs(x-Math.round(x))<1e-9)return String(Math.round(x));if(Math.abs(x*2-Math.round(x*2))<1e-9)return nf(x);return x>=3?String(Math.round(x)):nf(x)}
+    return r(A)+(Bv!=null?'–'+r(Bv):'')});}
 if(typeof module!=='undefined'){module.exports={scaleLine:scaleLine,scaleYield:scaleYield};return}
 function init(){
   var h=[].slice.call(document.querySelectorAll('.recipe h3')).filter(function(x){return /ingredients/i.test(x.textContent)})[0];
@@ -144,7 +145,7 @@ function init(){
   var yOrig=yEl&&yEl.textContent;
   var orig=lis.map(function(li){return [].slice.call(li.childNodes).filter(function(n){return n.nodeType===3}).map(function(n){return [n,n.nodeValue]})});
   var bar=document.createElement('div');bar.className='scaler noprint';bar.setAttribute('role','group');bar.setAttribute('aria-label','Recipe size');
-  bar.innerHTML='<span class="scaler-l" aria-hidden="true">Make</span>'+[['0.5','½×','Half recipe'],['1','1×','Original recipe'],['2','2×','Double recipe']].map(function(o){return '<button type="button" data-f="'+o[0]+'" aria-label="'+o[2]+'" aria-pressed="'+(o[0]=='1')+'">'+o[1]+'</button>'}).join('');
+  bar.innerHTML='<span class="scaler-l" aria-hidden="true">Make</span>'+[['0.5','½×','Half recipe'],['1','1×','Original recipe'],['1.5','1.5×','1.5 times recipe'],['2','2×','Double recipe']].map(function(o){return '<button type="button" data-f="'+o[0]+'" aria-label="'+o[2]+'" aria-pressed="'+(o[0]=='1')+'">'+o[1]+'</button>'}).join('');
   var note=document.createElement('p');note.className='scaler-note';note.setAttribute('aria-live','polite');
   h.insertAdjacentElement('afterend',bar);bar.insertAdjacentElement('afterend',note);
   function apply(f){
@@ -154,7 +155,7 @@ function init(){
         p[0].nodeValue=r.t;if(!r.ok&&f!==1){li.classList.add('ns');bad++}})});
     if(yEl)yEl.textContent=scaleYield(yOrig,f);
     [].forEach.call(bar.querySelectorAll('button'),function(b){b.setAttribute('aria-pressed',String(+b.dataset.f===f))});
-    note.textContent=f===1?'':(f<1?'Halved. ':'Doubled. ')+'Cooking times and pan size may need adjusting.'+(bad?' Amounts marked * stay as written, so adjust those yourself.':'');}
+    note.textContent=f===1?'':(f===.5?'Halved. ':f===2?'Doubled. ':'1.5×. ')+'Cooking times and pan size may need adjusting.'+(bad?' Amounts marked * stay as written, so adjust those yourself.':'');}
   bar.addEventListener('click',function(e){var b=e.target.closest('button');if(b)apply(+b.dataset.f)});
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
