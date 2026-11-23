@@ -2,6 +2,38 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
 {
+ "url": "posts/recipes/yellow-curry-seared-chicken.html",
+ "title": "Yellow Curry with Seared Bone-In Chicken Thighs & Drumsticks",
+ "category": "Mains",
+ "tags": [
+  "yellow curry",
+  "chicken",
+  "Thai",
+  "coconut milk",
+  "bone-in",
+  "thighs",
+  "drumsticks",
+  "oven"
+ ],
+ "ingredients": [
+  "chicken",
+  "onion",
+  "potatoes",
+  "carrot",
+  "yellow curry paste",
+  "ginger",
+  "garlic",
+  "coconut milk",
+  "cornstarch",
+  "fish sauce",
+  "lime",
+  "brown sugar",
+  "rice",
+  "cilantro"
+ ],
+ "desc": "Yellow curry with seared bone-in chicken thighs and drumsticks, finished in the oven. Adapted from Tastes Better From Scratch."
+},
+{
  "url": "posts/recipes/pumpkin-bread.html",
  "title": "Pumpkin Bread",
  "category": "Baking",
