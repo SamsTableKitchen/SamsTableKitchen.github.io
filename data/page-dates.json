@@ -50,7 +50,7 @@
 "published": "2026-10-14"
 },
 "index.html": {
-"h": "0d5f0f1d652e6ef4",
+"h": "878b80df00293595",
 "modified": "2026-11-27",
 "published": "2026-10-14"
 },
@@ -554,6 +554,11 @@
 "modified": "2026-11-09",
 "published": "2026-11-06"
 },
+"posts/recipes/southern-deviled-eggs.html": {
+"h": "91c33d15c79363b9",
+"modified": "2026-11-27",
+"published": "2026-11-27"
+},
 "posts/recipes/strawberry-lemonade-cookies.html": {
 "h": "e8ee5b512782ec95",
 "modified": "2026-11-03",
@@ -630,7 +635,7 @@
 "published": "2026-10-14"
 },
 "recipes.html": {
-"h": "6c88abd674c172c0",
+"h": "10faef2850b01f39",
 "modified": "2026-11-27",
 "published": "2026-10-14"
 },

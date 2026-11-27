@@ -2,6 +2,34 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
 {
+ "url": "posts/recipes/southern-deviled-eggs.html",
+ "title": "Southern Deviled Eggs",
+ "category": "Sides",
+ "tags": [
+  "deviled eggs",
+  "southern",
+  "eggs",
+  "smoked",
+  "pellet grill",
+  "appetizer",
+  "barbecue",
+  "vegetarian"
+ ],
+ "ingredients": [
+  "eggs",
+  "mayo",
+  "sweet pickle relish",
+  "yellow mustard",
+  "apple cider vinegar",
+  "salt",
+  "black pepper",
+  "pickled jalapeños",
+  "chives",
+  "paprika"
+ ],
+ "desc": "This is one of the recipes I like, and it came out great. Classic Southern deviled eggs with a smoker option. Recipe by Malcom Reed at HowToBBQRight."
+},
+{
  "url": "posts/recipes/slow-cooker-mac-and-cheese.html",
  "title": "Slow Cooker Mac and Cheese",
  "category": "Sides",
