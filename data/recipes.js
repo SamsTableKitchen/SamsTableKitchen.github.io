@@ -60,7 +60,7 @@ const RECIPES=[
 },
 {
  "url": "posts/recipes/yellow-curry-seared-chicken.html",
- "title": "Yellow Curry with Seared Bone-In Chicken Thighs & Drumsticks",
+ "title": "Yellow Chicken Curry",
  "category": "Mains",
  "tags": [
   "yellow curry",
@@ -448,7 +448,7 @@ const RECIPES=[
 },
  {
   "url": "posts/recipes/dairy-free-southern-fried-chicken-tenders.html",
-  "title": "Dairy-Free Southern Fried Chicken Tenders",
+  "title": "Dairy-Free Chicken Tenders",
   "category": "Mains",
   "tags": [
    "dairy free",
@@ -505,7 +505,7 @@ const RECIPES=[
  },
  {
   "url": "posts/recipes/italian-meatball-soup.html",
-  "title": "Easy 30 Minute Italian Meatball Soup",
+  "title": "Italian Meatball Soup",
   "category": "Mains",
   "tags": [
    "soup",
@@ -595,7 +595,7 @@ const RECIPES=[
  },
  {
   "url": "posts/recipes/vegan-lentil-meatballs-swedish-sauce.html",
-  "title": "Vegan Lentil Meatballs with Swedish Sauce",
+  "title": "Swedish Lentil Meatballs",
   "category": "Mains",
   "tags": [
    "vegan",
@@ -751,7 +751,7 @@ const RECIPES=[
  },
  {
   "url": "posts/recipes/copycat-style-waffles.html",
-  "title": "Waffle House-Style Waffles (Copycat)",
+  "title": "Waffle House Waffles",
   "category": "Breakfast",
   "tags": [
    "waffles",
@@ -828,7 +828,7 @@ const RECIPES=[
  },
  {
   "url": "posts/recipes/bacon-jam.html",
-  "title": "Bacon Jam with Onion, Balsamic, and Thyme",
+  "title": "Bacon Jam",
   "category": "Sauces",
   "tags": [
    "bacon",
@@ -877,7 +877,7 @@ const RECIPES=[
  },
  {
   "url": "posts/recipes/bread-machine-thin-crust-pizza-dough.html",
-  "title": "Bread Machine Thin Crust Pizza Dough",
+  "title": "Bread Machine Pizza Dough",
   "category": "Baking",
   "tags": [
    "pizza",
@@ -952,7 +952,7 @@ const RECIPES=[
  },
  {
   "url": "posts/recipes/portokalopita-greek-orange-cake.html",
-  "title": "Portokalopita (Greek Orange Cake with Syrup)",
+  "title": "Greek Orange Cake",
   "category": "Desserts",
   "tags": [
    "Greek",
@@ -1005,7 +1005,7 @@ const RECIPES=[
  },
  {
   "url": "posts/recipes/cheesecake-factory-style-miso-salmon.html",
-  "title": "Cheesecake Factory-Style Miso Salmon (Copycat)",
+  "title": "Copycat Miso Salmon",
   "category": "Mains",
   "tags": [
    "salmon",
@@ -1032,7 +1032,7 @@ const RECIPES=[
  },
  {
   "url": "posts/recipes/easy-cheesy-crispy-vegan-black-bean-tacos.html",
-  "title": "Easy Cheesy Crispy Vegan Black Bean Tacos",
+  "title": "Vegan Black Bean Tacos",
   "category": "Mains",
   "tags": [
    "vegan",
@@ -1057,7 +1057,7 @@ const RECIPES=[
  },
  {
   "url": "posts/recipes/pai-huang-gua-chinese-cucumber-salad.html",
-  "title": "Pai Huang Gua (Chinese Cucumber Salad)",
+  "title": "Chinese Cucumber Salad",
   "category": "Sides",
   "tags": [
    "vegan",
@@ -1286,7 +1286,7 @@ const RECIPES=[
  },
  {
   "url": "posts/recipes/jiffy-cornbread.html",
-  "title": "The Best Jiffy Cornbread",
+  "title": "Jiffy Cornbread",
   "category": "Baking",
   "tags": [
    "cornbread",
@@ -1427,7 +1427,7 @@ const RECIPES=[
  },
  {
   "url": "posts/recipes/korean-potato-salad.html",
-  "title": "Korean Potato Salad (Gamja Salad)",
+  "title": "Korean Potato Salad",
   "category": "Sides",
   "tags": [
    "Korean",
@@ -1517,7 +1517,7 @@ const RECIPES=[
  },
  {
   "url": "posts/recipes/oven-roasted-corn-on-the-cob.html",
-  "title": "The Best Way to Cook Corn on the Cob",
+  "title": "Oven-Roasted Corn",
   "category": "Sides",
   "tags": [
    "corn",
@@ -1544,7 +1544,7 @@ const RECIPES=[
  },
  {
   "url": "posts/recipes/pellet-grill-frozen-chicken-wings.html",
-  "title": "Pellet Grill Frozen Chicken Wings (0 to 400 Method)",
+  "title": "Pellet Grill Chicken Wings",
   "category": "Mains",
   "tags": [
    "pellet grill",
