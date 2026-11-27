@@ -2,6 +2,35 @@
 // category becomes a filter chip automatically. Optional "img" shows a photo on the card.
 const RECIPES=[
 {
+ "url": "posts/recipes/slow-cooker-mac-and-cheese.html",
+ "title": "Slow Cooker Mac and Cheese",
+ "category": "Sides",
+ "tags": [
+  "mac and cheese",
+  "slow cooker",
+  "pasta",
+  "comfort food",
+  "side",
+  "cheddar",
+  "Velveeta",
+  "vegetarian"
+ ],
+ "ingredients": [
+  "elbow macaroni",
+  "olive oil",
+  "butter",
+  "evaporated milk",
+  "milk",
+  "kosher salt",
+  "mustard powder",
+  "smoked paprika",
+  "black pepper",
+  "cheddar",
+  "Velveeta"
+ ],
+ "desc": "Creamy slow cooker mac and cheese with cheddar and Velveeta. A Sam's Table original."
+},
+{
  "url": "posts/recipes/yellow-curry-seared-chicken.html",
  "title": "Yellow Curry with Seared Bone-In Chicken Thighs & Drumsticks",
  "category": "Mains",
@@ -945,29 +974,6 @@ const RECIPES=[
    "cheese"
   ],
   "desc": "Sweet banana ketchup sauce with ground pork and hot dogs over spaghetti. Recipe by MG Sanchez at Hungry Huy."
- },
- {
-  "url": "posts/recipes/copycat-style-mac-and-cheese.html",
-  "title": "Bob Evans-Style Mac and Cheese (Copycat)",
-  "category": "Sides",
-  "tags": [
-   "mac and cheese",
-   "pasta",
-   "comfort food",
-   "copycat",
-   "side",
-   "kid friendly",
-   "vegetarian"
-  ],
-  "ingredients": [
-   "elbow macaroni",
-   "cheddar",
-   "Velveeta",
-   "milk",
-   "paprika",
-   "dry mustard"
-  ],
-  "desc": "Extra creamy stovetop mac and cheese with Velveeta and cheddar. Recipe by Audrey Wood at Two Pink Peonies."
  },
  {
   "url": "posts/recipes/cheesecake-factory-style-miso-salmon.html",

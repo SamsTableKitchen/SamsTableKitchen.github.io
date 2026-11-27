@@ -50,8 +50,8 @@
 "published": "2026-10-14"
 },
 "index.html": {
-"h": "de08cd21946aacde",
-"modified": "2026-11-22",
+"h": "0d5f0f1d652e6ef4",
+"modified": "2026-11-27",
 "published": "2026-10-14"
 },
 "meal-prep.html": {
@@ -370,8 +370,8 @@
 "published": "2026-10-31"
 },
 "posts/recipes/copycat-style-mac-and-cheese.html": {
-"h": "3fd4df346683e395",
-"modified": "2026-10-27",
+"h": "5677c77b7c06de15",
+"modified": "2026-11-27",
 "published": "2026-10-19"
 },
 "posts/recipes/copycat-style-waffles.html": {
@@ -465,8 +465,8 @@
 "published": "2026-10-14"
 },
 "posts/recipes/korean-potato-salad.html": {
-"h": "46128caf33903904",
-"modified": "2026-10-27",
+"h": "6f01532c5e67db88",
+"modified": "2026-11-27",
 "published": "2026-10-14"
 },
 "posts/recipes/one-pan-dumpling-dinner.html": {
@@ -485,8 +485,8 @@
 "published": "2026-10-19"
 },
 "posts/recipes/parmesan-zucchini-fritters.html": {
-"h": "41c01486006384b5",
-"modified": "2026-10-27",
+"h": "e3ac2551bf0128ea",
+"modified": "2026-11-27",
 "published": "2026-10-19"
 },
 "posts/recipes/pellet-grill-frozen-chicken-wings.html": {
@@ -533,6 +533,11 @@
 "h": "fd857b085403c68f",
 "modified": "2026-11-06",
 "published": "2026-10-14"
+},
+"posts/recipes/slow-cooker-mac-and-cheese.html": {
+"h": "99a7e16d51e9a449",
+"modified": "2026-11-27",
+"published": "2026-11-27"
 },
 "posts/recipes/slow-cooker-marinara-sauce.html": {
 "h": "48d0ca95e52c3a12",
@@ -625,8 +630,8 @@
 "published": "2026-10-14"
 },
 "recipes.html": {
-"h": "e30eda21b01fab5b",
-"modified": "2026-11-14",
+"h": "6c88abd674c172c0",
+"modified": "2026-11-27",
 "published": "2026-10-14"
 },
 "reviews.html": {
@@ -645,8 +650,8 @@
 "published": "2026-10-14"
 },
 "vegetarian.html": {
-"h": "951ef513b4354c21",
-"modified": "2026-10-19",
+"h": "773439c2738e29e9",
+"modified": "2026-11-27",
 "published": "2026-10-18"
 },
 "what-to-make.html": {
