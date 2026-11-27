@@ -5,7 +5,6 @@ const RECIPES=[
  "url": "posts/recipes/southern-deviled-eggs.html",
  "title": "Southern Deviled Eggs",
  "category": "Sides",
- "img": "images/southern-deviled-eggs.webp",
  "tags": [
   "deviled eggs",
   "southern",
