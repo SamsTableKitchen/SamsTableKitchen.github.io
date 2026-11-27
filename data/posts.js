@@ -6,8 +6,8 @@ const POSTS=[
 "kicker": "Recipe · Sides",
 "title": "Southern Deviled Eggs",
 "desc": "This is one of the recipes I like, and it came out great. Classic Southern deviled eggs with a smoker option. Recipe by Malcom Reed at HowToBBQRight.",
-"img": "",
-"alt": "",
+"img": "images/southern-deviled-eggs.webp",
+"alt": "Eggs smoking on a pellet grill grate",
 "o": 0
 },
 {
